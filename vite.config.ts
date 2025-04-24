@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
@@ -28,4 +29,20 @@ export default defineConfig({
       sourcemap: !!process.env.TAURI_ENV_DEBUG,
    },
    plugins: [react()],
+   test: {
+      coverage: {
+         provider: 'v8',
+         include: ['src/**/*.ts'],
+         exclude: [
+            'node_modules/**',
+            'dist/**',
+            '**/*.d.ts',
+            '**/*.test.ts',
+            '**/*.spec.ts',
+            '**/data/**',
+            '**/i18n/**',
+            '**/types/**',
+         ],
+      },
+   },
 });
