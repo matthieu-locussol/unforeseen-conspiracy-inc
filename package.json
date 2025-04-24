@@ -16,7 +16,9 @@
       "lint": "eslint .",
       "preview": "vite preview",
       "dev:app": "tauri dev",
-      "build:app": "TAURI_SIGNING_PRIVATE_KEY=~/.tauri/unforeseen-conspiracy-inc.key tauri build"
+      "build:app": "TAURI_SIGNING_PRIVATE_KEY=~/.tauri/unforeseen-conspiracy-inc.key tauri build",
+      "dev:android": "tauri android dev",
+      "dev:ios": "tauri ios dev"
    },
    "dependencies": {
       "react": "^19.0.0",
