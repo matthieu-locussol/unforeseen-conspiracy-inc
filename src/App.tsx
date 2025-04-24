@@ -57,7 +57,7 @@ const App = () => {
                Edit <code>src/App.tsx</code> and save to test HMR
             </p>
          </div>
-         <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+         <p className="read-the-docs">Click on the Vite and React logos to learn more ent</p>
          <p className="read-the-docs">{t.resources[RESOURCES[0].i18nKey].name}</p>
          <LanguageSwitcherButtons />
       </>

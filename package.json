@@ -15,7 +15,8 @@
       "build": "tsc -b && vite build",
       "lint": "eslint .",
       "preview": "vite preview",
-      "dev:app": "tauri dev"
+      "dev:app": "tauri dev",
+      "build:app": "TAURI_SIGNING_PRIVATE_KEY=~/.tauri/unforeseen-conspiracy-inc.key tauri build"
    },
    "dependencies": {
       "react": "^19.0.0",
