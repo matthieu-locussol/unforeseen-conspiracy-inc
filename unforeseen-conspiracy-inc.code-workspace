@@ -14,9 +14,16 @@
          "source.fixAll": "explicit",
          "source.organizeImports": "explicit"
       },
-      "typescript.tsdk": "Unforeseen Conspiracy Inc. ✨/node_modules/typescript/lib"
+      "typescript.tsdk": "Unforeseen Conspiracy Inc. ✨/node_modules/typescript/lib",
+      "[rust]": {
+         "editor.defaultFormatter": "jinxdash.prettier-rust"
+      }
    },
    "extensions": {
-      "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+      "recommendations": [
+         "dbaeumer.vscode-eslint",
+         "esbenp.prettier-vscode",
+         "jinxdash.prettier-rust"
+      ]
    }
 }
