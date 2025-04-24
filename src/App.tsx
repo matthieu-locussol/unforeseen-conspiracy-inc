@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { observer } from 'mobx-react-lite';
 
 import reactLogo from './assets/react.svg';
 
@@ -7,6 +7,7 @@ import viteLogo from '/vite.svg';
 
 import { RESOURCES } from './data/resources';
 import { useI18n } from './i18n/i18n';
+import { useStore } from './store/StoreContext';
 
 interface LanguageSwitcherProps {
    className?: string;
@@ -36,9 +37,9 @@ export const LanguageSwitcherButtons: React.FC<LanguageSwitcherProps> = ({ class
    );
 };
 
-const App = () => {
-   const [count, setCount] = useState(0);
+const App = observer(() => {
    const { t } = useI18n();
+   const { gameStore } = useStore();
 
    return (
       <>
@@ -52,7 +53,7 @@ const App = () => {
          </div>
          <h1>Vite + React</h1>
          <div className="card">
-            <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
+            <button onClick={() => gameStore.increment()}>count is {gameStore.count}</button>
             <p>
                Edit <code>src/App.tsx</code> and save to test HMR
             </p>
@@ -62,6 +63,6 @@ const App = () => {
          <LanguageSwitcherButtons />
       </>
    );
-};
+});
 
 export default App;
