@@ -1,36 +1,41 @@
 {
-  "name": "unforeseen-conspiracy-inc",
-  "version": "0.0.0",
-  "description": "",
-  "repository": "git@github.com:matthieu-locussol/unforeseen-conspiracy-inc.git",
-  "author": {
-     "name": "Matthieu LOCUSSOL",
-     "email": "dev.matthieu.locussol@gmail.com",
-     "url": "https://www.matthieu-locussol.com"
-  },
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.22.0",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.22.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^16.0.0",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.26.1",
-    "vite": "^6.3.1"
-  }
+   "name": "unforeseen-conspiracy-inc",
+   "version": "0.0.0",
+   "description": "",
+   "repository": "git@github.com:matthieu-locussol/unforeseen-conspiracy-inc.git",
+   "author": {
+      "name": "Matthieu LOCUSSOL",
+      "email": "dev.matthieu.locussol@gmail.com",
+      "url": "https://www.matthieu-locussol.com"
+   },
+   "private": true,
+   "type": "module",
+   "scripts": {
+      "dev": "vite",
+      "build": "tsc -b && vite build",
+      "lint": "eslint .",
+      "preview": "vite preview"
+   },
+   "dependencies": {
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0"
+   },
+   "devDependencies": {
+      "@eslint/compat": "^1.2.8",
+      "@eslint/js": "^9.22.0",
+      "@types/react": "^19.0.10",
+      "@types/react-dom": "^19.0.4",
+      "@vitejs/plugin-react": "^4.3.4",
+      "eslint": "^9.22.0",
+      "eslint-plugin-import": "^2.31.0",
+      "eslint-plugin-jsx-a11y": "^6.10.2",
+      "eslint-plugin-react": "^7.37.5",
+      "eslint-plugin-react-hooks": "^5.2.0",
+      "eslint-plugin-react-refresh": "^0.4.19",
+      "eslint-plugin-unused-imports": "^4.1.4",
+      "globals": "^16.0.0",
+      "typescript": "^5.8.3",
+      "typescript-eslint": "^8.26.1",
+      "vite": "^6.3.1"
+   }
 }
