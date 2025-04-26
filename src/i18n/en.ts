@@ -24,5 +24,15 @@ export const EN = {
          description:
             "The white trails behind airplanes aren't water vapor, they're chemicals designed to control the population!",
       },
+      flat_earth: {
+         name: 'Flat Earth',
+         description:
+            'The Flat Earth movement is a political and social movement that seeks to create a world where the population is equally distributed and resources are distributed equally.',
+      },
+      michael_jackson: {
+         name: 'Michael Jackson',
+         description:
+            "The King of Pop's death was a hoax. He is still alive and living in a secret bunker with Elvis Presley.",
+      },
    },
 } satisfies Translation;

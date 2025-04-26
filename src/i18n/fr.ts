@@ -24,5 +24,15 @@ export const FR = {
          description:
             "Les traces blanches derrière les avions ne sont pas de vapeur d'eau, c'est des produits chimiques conçus pour contrôler la population!",
       },
+      flat_earth: {
+         name: 'Flat Earth',
+         description:
+            'La mouvement Flat Earth est un mouvement politique et social qui cherche à créer un monde où la population et les ressources sont également distribuées.',
+      },
+      michael_jackson: {
+         name: 'Michael Jackson',
+         description:
+            'La mort du roi de Pop est un complot. Il est toujours vivant et se trouve dans un bunker secret avec Elvis Presley.',
+      },
    },
 } satisfies Translation;
