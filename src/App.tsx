@@ -1,11 +1,11 @@
 import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 
 import reactLogo from './assets/react.svg';
 
 import './App.css';
 import viteLogo from '/vite.svg';
 
-import { RESOURCES } from './data/resources';
 import { useI18n } from './i18n/i18n';
 import { useStore } from './store/StoreContext';
 
@@ -38,8 +38,32 @@ export const LanguageSwitcherButtons: React.FC<LanguageSwitcherProps> = ({ class
 };
 
 const App = observer(() => {
-   const { t } = useI18n();
-   const { gameStore } = useStore();
+   const { gameStore, saveStore } = useStore();
+
+   useEffect(() => {
+      saveStore.startAutosave();
+
+      return () => {
+         saveStore.stopAutosave();
+      };
+   }, []);
+
+   useEffect(() => {
+      gameStore.start();
+
+      const tickInterval = window.setInterval(() => {
+         gameStore.tick();
+      }, 1000);
+
+      return () => {
+         gameStore.stop();
+         clearInterval(tickInterval);
+      };
+   }, [gameStore]);
+
+   const handleClickProofs = () => {
+      gameStore.clickProofs();
+   };
 
    return (
       <>
@@ -51,16 +75,54 @@ const App = observer(() => {
                <img alt="React logo" className="logo react" src={reactLogo} />
             </a>
          </div>
-         <h1>Vite + React</h1>
+         <h1>Unforeseen Conspiracy Inc.</h1>
          <div className="card">
-            <button onClick={() => gameStore.increment()}>count is {gameStore.count}</button>
-            <p>
-               Edit <code>src/App.tsx</code> and save to test HMR
-            </p>
+            <div className="resources">
+               <div>
+                  <h2>Proofs: {gameStore.proofs.value.toFixed(0)}</h2>
+               </div>
+               <div>
+                  <h2>Followers: {gameStore.followers.value.toFixed(0)}</h2>
+               </div>
+               <div>
+                  <h2>Paranoia: {gameStore.paranoia.value.toFixed(0)}</h2>
+               </div>
+            </div>
+            <button onClick={() => handleClickProofs()}>Extract proofs</button>
          </div>
-         <p className="read-the-docs">Click on the Vite and React logos to learn more ent</p>
-         <p className="read-the-docs">{t.resources[RESOURCES[0].i18nKey].name}</p>
+         <div className="generators">
+            {gameStore.generators.map((generator) => (
+               <fieldset key={generator.id}>
+                  <h2>
+                     {generator.id} - Level: {generator.level}
+                  </h2>
+                  <p>
+                     Cost: {generator.getCost(1).proofs} proofs, {generator.getCost(1).followers}{' '}
+                     followers
+                  </p>
+                  <p>
+                     Production: {generator.effectiveProduction.proofs} proofs,{' '}
+                     {generator.effectiveProduction.followers} followers,{' '}
+                     {generator.effectiveProduction.paranoia} paranoia
+                  </p>
+                  <button onClick={() => gameStore.buyGenerator(generator.id, 1)}>Buy 1</button>
+               </fieldset>
+            ))}
+         </div>
          <LanguageSwitcherButtons />
+         <div className="controls">
+            <button
+               onClick={() => {
+                  if (gameStore.isRunning) {
+                     gameStore.stop();
+                  } else {
+                     gameStore.start();
+                  }
+               }}
+            >
+               {gameStore.isRunning ? 'Pause' : 'Resume'}
+            </button>
+         </div>
       </>
    );
 });

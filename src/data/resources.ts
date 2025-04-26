@@ -2,15 +2,21 @@ import type { Resource } from '../types/resources';
 
 export const RESOURCES: Resource[] = [
    {
-      i18nKey: 'proofs',
-      initialValue: 0,
+      id: 'proofs',
+      baseProduction: 0,
+      productionMultiplier: 0,
+      isClickable: true,
    },
    {
-      i18nKey: 'followers',
-      initialValue: 0,
+      id: 'followers',
+      baseProduction: 0,
+      productionMultiplier: 0,
+      isClickable: false,
    },
    {
-      i18nKey: 'paranoia',
-      initialValue: 0,
+      id: 'paranoia',
+      baseProduction: 0,
+      productionMultiplier: 0,
+      isClickable: false,
    },
 ];

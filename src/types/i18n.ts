@@ -1,18 +1,21 @@
+import type { GeneratorId } from './generators';
+import type { ResourceId } from './resources';
+
 export type Locale = 'en' | 'fr';
 
 export interface Translation {
-   resources: {
-      proofs: {
+   resources: Record<
+      ResourceId,
+      {
          name: string;
          description: string;
-      };
-      followers: {
+      }
+   >;
+   generators: Record<
+      GeneratorId,
+      {
          name: string;
          description: string;
-      };
-      paranoia: {
-         name: string;
-         description: string;
-      };
-   };
+      }
+   >;
 }

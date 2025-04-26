@@ -18,4 +18,11 @@ export const FR = {
             "Ce sentiment constant, oppressant d'être observé... ou est-ce juste toi? Entrave ton avancement en rendant les choses plus difficiles et en bloquant certains progrès.",
       },
    },
+   generators: {
+      chemtrails: {
+         name: 'Chemtrails',
+         description:
+            "Les traces blanches derrière les avions ne sont pas de vapeur d'eau, c'est des produits chimiques conçus pour contrôler la population!",
+      },
+   },
 } satisfies Translation;

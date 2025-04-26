@@ -18,4 +18,11 @@ export const EN = {
             'This constant feeling of being observed... or is it just you? It advances your progress by making things more difficult and blocking some progress.',
       },
    },
+   generators: {
+      chemtrails: {
+         name: 'Chemtrails',
+         description:
+            "The white trails behind airplanes aren't water vapor, they're chemicals designed to control the population!",
+      },
+   },
 } satisfies Translation;

@@ -1,6 +1,13 @@
-import type { Translation } from './i18n';
+export type ResourceId = 'proofs' | 'followers' | 'paranoia';
 
 export interface Resource {
-   i18nKey: keyof Translation['resources'];
-   initialValue: number;
+   id: ResourceId;
+   baseProduction: number;
+   productionMultiplier: number;
+   isClickable: boolean;
+}
+
+export interface SerializedResourceData {
+   id: ResourceId;
+   value: number;
 }

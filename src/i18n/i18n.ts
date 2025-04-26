@@ -2,6 +2,7 @@ import type { Locale, Translation } from '../types/i18n';
 
 import { useEffect, useState } from 'react';
 
+import { LOCALSTORAGE_I18N_KEY } from '../data/constants';
 import { LOCALES, TRANSLATIONS } from '../data/i18n';
 
 class I18nManager {
@@ -15,7 +16,7 @@ class I18nManager {
    private detectInitialLanguage(): Locale {
       try {
          // First check localStorage
-         const savedLanguage = localStorage.getItem('language');
+         const savedLanguage = localStorage.getItem(LOCALSTORAGE_I18N_KEY);
 
          if (savedLanguage && this.isValidLanguage(savedLanguage)) {
             return savedLanguage as Locale;
@@ -45,7 +46,6 @@ class I18nManager {
 
          return 'en';
       } catch (error) {
-         // In case of any errors (e.g., localStorage not available in incognito)
          console.warn('Failed to detect language:', error);
 
          return 'en';
@@ -65,7 +65,7 @@ class I18nManager {
          this.language = lang;
 
          try {
-            localStorage.setItem('language', lang);
+            localStorage.setItem(LOCALSTORAGE_I18N_KEY, lang);
          } catch (error) {
             console.warn('Could not save language preference:', error);
          }
