@@ -1,4 +1,4 @@
-export const LOCALSTORAGE_I18N_KEY = 'game_language';
+export const LOCALSTORAGE_I18N_KEY = 'game_locale';
 
 export const LOCALSTORAGE_SAVE_KEY = 'game_state';
 

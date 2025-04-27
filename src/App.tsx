@@ -1,41 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 
-import reactLogo from './assets/react.svg';
-
 import './App.css';
-import viteLogo from '/vite.svg';
 
-import { useI18n } from './i18n/i18n';
+import { LocaleSwitch } from './components/LocaleSwitch';
 import { useStore } from './store/StoreContext';
-
-interface LanguageSwitcherProps {
-   className?: string;
-}
-
-export const LanguageSwitcherButtons: React.FC<LanguageSwitcherProps> = ({ className }) => {
-   const i18n = useI18n();
-   const currentLanguage = i18n.getLanguage();
-
-   return (
-      <div className={className}>
-         <button
-            aria-pressed={currentLanguage === 'en'}
-            disabled={currentLanguage === 'en'}
-            onClick={() => i18n.setLanguage('en')}
-         >
-            English
-         </button>
-         <button
-            aria-pressed={currentLanguage === 'fr'}
-            disabled={currentLanguage === 'fr'}
-            onClick={() => i18n.setLanguage('fr')}
-         >
-            Français
-         </button>
-      </div>
-   );
-};
 
 const App = observer(() => {
    const { gameStore, saveStore } = useStore();
@@ -67,14 +36,6 @@ const App = observer(() => {
 
    return (
       <>
-         <div>
-            <a href="https://vite.dev" target="_blank">
-               <img alt="Vite logo" className="logo" src={viteLogo} />
-            </a>
-            <a href="https://react.dev" target="_blank">
-               <img alt="React logo" className="logo react" src={reactLogo} />
-            </a>
-         </div>
          <h1>Unforeseen Conspiracy Inc.</h1>
          <div className="card">
             <div className="resources">
@@ -109,7 +70,7 @@ const App = observer(() => {
                </fieldset>
             ))}
          </div>
-         <LanguageSwitcherButtons />
+         <LocaleSwitch />
          <div className="controls">
             <button
                onClick={() => {
