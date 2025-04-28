@@ -131,7 +131,7 @@ export class GameStore {
          followers: this.followers.serialize(),
          paranoia: this.paranoia.serialize(),
          generators: this.generators.map((generator) => generator.serialize()),
-         clickManager: this.clicker.serialize(),
+         clicker: this.clicker.serialize(),
          statistics: this.statistics.serialize(),
          lastUpdateTime: this.lastUpdateTime,
          isRunning: this.isRunning,
@@ -151,7 +151,7 @@ export class GameStore {
          return generator;
       });
 
-      this.clicker.deserialize(data.clickManager);
+      this.clicker.deserialize(data.clicker);
       this.statistics.deserialize(data.statistics);
 
       this.lastUpdateTime = data.lastUpdateTime;

@@ -12,22 +12,20 @@ const App = observer(() => {
    const { gameStore, saveStore } = useStore();
 
    useEffect(() => {
-      saveStore.load();
+      const loaded = saveStore.load();
+
+      if (!loaded) {
+         gameStore.start();
+      }
+
       saveStore.startAutosave();
-
-      return () => {
-         saveStore.stopAutosave();
-      };
-   }, []);
-
-   useEffect(() => {
-      gameStore.start();
 
       const tickInterval = window.setInterval(() => {
          gameStore.tick();
       }, 1000);
 
       return () => {
+         saveStore.stopAutosave();
          gameStore.stop();
          clearInterval(tickInterval);
       };
