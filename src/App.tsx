@@ -10,6 +10,7 @@ const App = observer(() => {
    const { gameStore, saveStore } = useStore();
 
    useEffect(() => {
+      saveStore.load();
       saveStore.startAutosave();
 
       return () => {
