@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import './App.css';
 
+import { GeneratorCard } from './components/GeneratorCard';
 import { LocaleSwitch } from './components/LocaleSwitch';
 import { ResourceCard } from './components/ResourceCard';
 import { useStore } from './store/StoreContext';
@@ -49,21 +50,7 @@ const App = observer(() => {
          </div>
          <div className="generators">
             {gameStore.generators.map((generator) => (
-               <fieldset key={generator.id}>
-                  <h2>
-                     {generator.id} - Level: {generator.level}
-                  </h2>
-                  <p>
-                     Cost: {generator.getCost(1).proofs} proofs, {generator.getCost(1).followers}{' '}
-                     followers
-                  </p>
-                  <p>
-                     Production: {generator.effectiveProduction.proofs} proofs,{' '}
-                     {generator.effectiveProduction.followers} followers,{' '}
-                     {generator.effectiveProduction.paranoia} paranoia
-                  </p>
-                  <button onClick={() => gameStore.buyGenerator(generator.id, 1)}>Buy 1</button>
-               </fieldset>
+               <GeneratorCard key={generator.id} generatorStore={generator} />
             ))}
          </div>
          <LocaleSwitch />
