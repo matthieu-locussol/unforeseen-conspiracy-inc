@@ -1,10 +1,12 @@
 import type { ResourceStore } from '../store/ResourceStore';
 
+import { observer } from 'mobx-react-lite';
+
 interface ResourceCardProps {
    resourceStore: ResourceStore;
 }
 
-export const ResourceCard = ({ resourceStore }: ResourceCardProps) => {
+export const ResourceCard = observer(({ resourceStore }: ResourceCardProps) => {
    return (
       <div>
          <h2>
@@ -12,4 +14,4 @@ export const ResourceCard = ({ resourceStore }: ResourceCardProps) => {
          </h2>
       </div>
    );
-};
+});

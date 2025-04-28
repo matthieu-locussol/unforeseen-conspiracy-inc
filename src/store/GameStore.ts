@@ -154,7 +154,7 @@ export class GameStore {
       this.clicker.deserialize(data.clickManager);
       this.statistics.deserialize(data.statistics);
 
-      this.lastUpdateTime = data.lastUpdateTime ?? Date.now();
-      this.isRunning = data.isRunning ?? true;
+      this.lastUpdateTime = data.lastUpdateTime;
+      this.isRunning = data.isRunning;
    }
 }
