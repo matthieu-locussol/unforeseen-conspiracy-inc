@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import './App.css';
 
 import { LocaleSwitch } from './components/LocaleSwitch';
+import { ResourceCard } from './components/ResourceCard';
 import { useStore } from './store/StoreContext';
 
 const App = observer(() => {
@@ -40,15 +41,9 @@ const App = observer(() => {
          <h1>Unforeseen Conspiracy Inc.</h1>
          <div className="card">
             <div className="resources">
-               <div>
-                  <h2>Proofs: {gameStore.proofs.value.toFixed(0)}</h2>
-               </div>
-               <div>
-                  <h2>Followers: {gameStore.followers.value.toFixed(0)}</h2>
-               </div>
-               <div>
-                  <h2>Paranoia: {gameStore.paranoia.value.toFixed(0)}</h2>
-               </div>
+               <ResourceCard resourceStore={gameStore.proofs} />
+               <ResourceCard resourceStore={gameStore.followers} />
+               <ResourceCard resourceStore={gameStore.paranoia} />
             </div>
             <button onClick={() => handleClickProofs()}>Extract proofs</button>
          </div>
