@@ -1,7 +1,5 @@
 import { observer } from 'mobx-react-lite';
 
-import './App.css';
-
 import { BulkBuyButtons } from './components/BulkBuyButtons';
 import { GeneratorCard } from './components/GeneratorCard';
 import { LocaleSwitch } from './components/LocaleSwitch';

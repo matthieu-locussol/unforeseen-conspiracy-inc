@@ -6,7 +6,7 @@ export const BulkBuyButtons = observer(() => {
    const { gameStore } = useStore();
 
    return (
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="flex items-center justify-center gap-4">
          <p>Bulk buy:</p>
          <button
             disabled={gameStore.hudStore.bulkBuy === 1}
