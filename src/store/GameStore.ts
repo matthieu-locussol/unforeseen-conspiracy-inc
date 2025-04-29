@@ -7,7 +7,6 @@ import { GENERATORS } from '../data/generators';
 
 import { ClickerStore } from './ClickerStore';
 import { GeneratorStore } from './GeneratorStore';
-import { HudStore } from './HudStore';
 import { ResourceStore } from './ResourceStore';
 import { StatisticsStore } from './StatisticsStore';
 
@@ -21,9 +20,6 @@ export class GameStore {
    public generators: GeneratorStore[];
    public clicker: ClickerStore;
    public statistics: StatisticsStore;
-
-   // Game interfaces
-   public hudStore: HudStore;
 
    // Game state
    public lastUpdateTime: number;
@@ -41,9 +37,6 @@ export class GameStore {
       this.generators = [];
       this.clicker = new ClickerStore('default');
       this.statistics = new StatisticsStore();
-
-      // Initialize game interfaces
-      this.hudStore = new HudStore();
 
       // Load initial game data
       this.initializeGenerators();

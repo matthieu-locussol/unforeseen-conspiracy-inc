@@ -1,50 +1,18 @@
 import { observer } from 'mobx-react-lite';
 
-import { BulkBuyButtons } from './components/BulkBuyButtons';
-import { GeneratorCard } from './components/GeneratorCard';
-import { LocaleSwitch } from './components/LocaleSwitch';
-import { ResourceCard } from './components/ResourceCard';
-import { useGameLifecycle } from './hooks/useGameLifecycle';
+import { Layout } from './components/Layout';
+import { GamePage } from './pages/GamePage';
+import { LauncherPage } from './pages/LauncherPage';
 import { useStore } from './store/StoreContext';
 
 const App = observer(() => {
-   const { gameStore } = useStore();
-
-   // Update game state on every tick
-   useGameLifecycle();
+   const { routingStore } = useStore();
 
    return (
-      <>
-         <h1 className="text-3xl font-orbitron">Unforeseen Conspiracy Inc.</h1>
-         <div className="card">
-            <div className="resources">
-               <ResourceCard resourceStore={gameStore.proofs} />
-               <ResourceCard resourceStore={gameStore.followers} />
-               <ResourceCard resourceStore={gameStore.paranoia} />
-            </div>
-            <button onClick={() => gameStore.clickProofs()}>Extract proofs</button>
-         </div>
-         <BulkBuyButtons />
-         <div className="generators">
-            {gameStore.generators.map((generator) => (
-               <GeneratorCard key={generator.id} generatorStore={generator} />
-            ))}
-         </div>
-         <LocaleSwitch />
-         <div className="controls">
-            <button
-               onClick={() => {
-                  if (gameStore.isRunning) {
-                     gameStore.stop();
-                  } else {
-                     gameStore.start();
-                  }
-               }}
-            >
-               {gameStore.isRunning ? 'Pause' : 'Resume'}
-            </button>
-         </div>
-      </>
+      <Layout>
+         {routingStore.page === 'launcher' && <LauncherPage />}
+         {routingStore.page === 'game' && <GamePage />}
+      </Layout>
    );
 });
 
