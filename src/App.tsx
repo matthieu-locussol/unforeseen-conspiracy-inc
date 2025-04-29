@@ -1,35 +1,17 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
 
 import './App.css';
 
 import { GeneratorCard } from './components/GeneratorCard';
 import { LocaleSwitch } from './components/LocaleSwitch';
 import { ResourceCard } from './components/ResourceCard';
+import { useGameLifecycle } from './hooks/useGameLifecycle';
 import { useStore } from './store/StoreContext';
 
 const App = observer(() => {
-   const { gameStore, saveStore } = useStore();
+   useGameLifecycle();
 
-   useEffect(() => {
-      const loaded = saveStore.load();
-
-      if (!loaded) {
-         gameStore.start();
-      }
-
-      saveStore.startAutosave();
-
-      const tickInterval = window.setInterval(() => {
-         gameStore.tick();
-      }, 1000);
-
-      return () => {
-         saveStore.stopAutosave();
-         gameStore.stop();
-         clearInterval(tickInterval);
-      };
-   }, [gameStore]);
+   const { gameStore } = useStore();
 
    const handleClickProofs = () => {
       gameStore.clickProofs();
