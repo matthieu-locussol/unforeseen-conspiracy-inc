@@ -28,6 +28,29 @@ const App = observer(() => {
             </div>
             <button onClick={() => handleClickProofs()}>Extract proofs</button>
          </div>
+         <div
+            style={{ display: 'flex', gap: '1rem', alignItems: 'center', justifyContent: 'center' }}
+         >
+            <p>Bulk buy:</p>
+            <button
+               disabled={gameStore.hudStore.bulkBuy === 1}
+               onClick={() => gameStore.hudStore.setBulkBuy(1)}
+            >
+               1
+            </button>
+            <button
+               disabled={gameStore.hudStore.bulkBuy === 10}
+               onClick={() => gameStore.hudStore.setBulkBuy(10)}
+            >
+               10
+            </button>
+            <button
+               disabled={gameStore.hudStore.bulkBuy === 100}
+               onClick={() => gameStore.hudStore.setBulkBuy(100)}
+            >
+               100
+            </button>
+         </div>
          <div className="generators">
             {gameStore.generators.map((generator) => (
                <GeneratorCard key={generator.id} generatorStore={generator} />
