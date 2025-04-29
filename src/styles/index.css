@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+:root {
+   --font-orbitron: Orbitron, sans-serif;
+   --font-chakra-petch: 'Chakra Petch', sans-serif;
+}
+
+.font-orbitron {
+   font-family: var(--font-orbitron);
+}
+
+.font-chakra-petch {
+   font-family: var(--font-chakra-petch);
+}

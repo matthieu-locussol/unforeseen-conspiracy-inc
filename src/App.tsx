@@ -15,7 +15,7 @@ const App = observer(() => {
 
    return (
       <>
-         <h1>Unforeseen Conspiracy Inc.</h1>
+         <h1 className="text-3xl font-orbitron">Unforeseen Conspiracy Inc.</h1>
          <div className="card">
             <div className="resources">
                <ResourceCard resourceStore={gameStore.proofs} />
