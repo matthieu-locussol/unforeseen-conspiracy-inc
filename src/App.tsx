@@ -10,13 +10,10 @@ import { useGameLifecycle } from './hooks/useGameLifecycle';
 import { useStore } from './store/StoreContext';
 
 const App = observer(() => {
-   useGameLifecycle();
-
    const { gameStore } = useStore();
 
-   const handleClickProofs = () => {
-      gameStore.clickProofs();
-   };
+   // Update game state on every tick
+   useGameLifecycle();
 
    return (
       <>
@@ -27,7 +24,7 @@ const App = observer(() => {
                <ResourceCard resourceStore={gameStore.followers} />
                <ResourceCard resourceStore={gameStore.paranoia} />
             </div>
-            <button onClick={() => handleClickProofs()}>Extract proofs</button>
+            <button onClick={() => gameStore.clickProofs()}>Extract proofs</button>
          </div>
          <BulkBuyButtons />
          <div className="generators">
