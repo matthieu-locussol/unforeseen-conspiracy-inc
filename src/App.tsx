@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 
-import { Layout } from './components/Layout';
+import { Layout } from './components/core/Layout';
 import { GamePage } from './pages/GamePage';
 import { LauncherPage } from './pages/LauncherPage';
 import { useStore } from './store/StoreContext';

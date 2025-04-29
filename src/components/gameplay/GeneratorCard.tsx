@@ -1,8 +1,8 @@
-import type { GeneratorStore } from '../store/GeneratorStore';
+import type { GeneratorStore } from '../../store/GeneratorStore';
 
 import { observer } from 'mobx-react-lite';
 
-import { useStore } from '../store/StoreContext';
+import { useStore } from '../../store/StoreContext';
 
 export interface GeneratorCardProps {
    generatorStore: GeneratorStore;

@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite';
 
-import { BulkBuyButtons } from '../components/BulkBuyButtons';
-import { GeneratorCard } from '../components/GeneratorCard';
+import { BulkBuyButtons } from '../components/gameplay/BulkBuyButtons';
+import { GeneratorCard } from '../components/gameplay/GeneratorCard';
+import { ResourceCard } from '../components/gameplay/ResourceCard';
 import { LocaleSwitch } from '../components/LocaleSwitch';
-import { ResourceCard } from '../components/ResourceCard';
 import { useGameLifecycle } from '../hooks/useGameLifecycle';
 import { useStore } from '../store/StoreContext';
 

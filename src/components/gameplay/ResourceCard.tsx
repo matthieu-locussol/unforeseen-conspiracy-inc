@@ -1,4 +1,4 @@
-import type { ResourceStore } from '../store/ResourceStore';
+import type { ResourceStore } from '../../store/ResourceStore';
 
 import { observer } from 'mobx-react-lite';
 

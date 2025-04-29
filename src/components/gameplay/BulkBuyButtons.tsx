@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 
-import { useStore } from '../store/StoreContext';
+import { useStore } from '../../store/StoreContext';
 
 export const BulkBuyButtons = observer(() => {
    const { hudStore } = useStore();
