@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 
+import { Progress } from '../components/core/ui/progress';
 import { useStore } from '../store/StoreContext';
 
 export const LauncherPage = observer(() => {
@@ -15,6 +16,7 @@ export const LauncherPage = observer(() => {
          >
             GO TO GAME
          </button>
+         <Progress max={100} value={30} />
       </>
    );
 });

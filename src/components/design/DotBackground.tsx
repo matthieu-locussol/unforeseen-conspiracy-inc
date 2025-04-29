@@ -1,9 +1,9 @@
-import { twMerge } from 'tailwind-merge';
+import { cn } from '../../utils/cn';
 
 export const DotBackground = () => {
    return (
       <div
-         className={twMerge(
+         className={cn(
             'absolute w-full h-full pointer-events-none -z-1',
             'bg-[rgba(25,30,35,0.95)]',
          )}

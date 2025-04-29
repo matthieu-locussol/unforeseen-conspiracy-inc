@@ -5,7 +5,7 @@ import App from './App.tsx';
 import { StoreProvider } from './store/index.tsx';
 
 import './styles/fonts.css';
-import './styles/index.css';
+import './styles/globals.css';
 
 createRoot(document.getElementById('root')!).render(
    <StrictMode>
