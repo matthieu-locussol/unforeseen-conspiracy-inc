@@ -3,5 +3,5 @@ interface LayoutProps {
 }
 
 export const Layout = ({ children }: LayoutProps) => {
-   return <div className="mx-auto min-h-screen max-w-4xl">{children}</div>;
+   return <div className="mx-auto min-h-screen max-w-4xl py-8">{children}</div>;
 };

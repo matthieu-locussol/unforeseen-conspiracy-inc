@@ -12,6 +12,7 @@
    "type": "module",
    "scripts": {
       "dev": "vite",
+      "prebuild": "pnpm generate:version",
       "build": "tsc -b && vite build",
       "test": "vitest",
       "coverage": "vitest run --coverage",
@@ -20,7 +21,8 @@
       "dev:app": "tauri dev",
       "build:app": "TAURI_SIGNING_PRIVATE_KEY=~/.tauri/unforeseen-conspiracy-inc.key tauri build",
       "dev:android": "tauri android dev",
-      "dev:ios": "tauri ios dev"
+      "dev:ios": "tauri ios dev",
+      "generate:version": "tsx src/scripts/version.ts"
    },
    "dependencies": {
       "@radix-ui/react-progress": "^1.1.4",
@@ -53,6 +55,7 @@
       "eslint-plugin-react-refresh": "^0.4.19",
       "eslint-plugin-unused-imports": "^4.1.4",
       "globals": "^16.0.0",
+      "tsx": "^4.19.4",
       "typescript": "^5.8.3",
       "typescript-eslint": "^8.26.1",
       "vite": "^6.3.1",
