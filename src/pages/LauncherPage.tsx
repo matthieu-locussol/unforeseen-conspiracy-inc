@@ -104,7 +104,13 @@ export const LauncherPage = observer(() => {
          >
             GO TO GAME
          </button>
-         <Progress max={100} value={30} />
+         <div className="text-center text-xs text-gray-500 mt-8">
+            <p>© {new Date().getFullYear()} Unforeseen Conspiracy Inc. All rights reserved.</p>
+            <p className="mt-1">
+               This simulation is for entertainment purposes only. Any resemblance to actual
+               conspiracies is purely... coincidental.
+            </p>
+         </div>
       </>
    );
 });
