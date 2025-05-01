@@ -1,7 +1,7 @@
-import { AlertTriangle, Download, FileWarning, Info, Play, Settings } from 'lucide-react';
-import { observer } from 'mobx-react-lite';
+import { AlertTriangle, Download, FileWarning, Info, Settings } from 'lucide-react';
 import { useState } from 'react';
 
+import { PlayButton } from '../components/core/PlayButton';
 import { Note, Title } from '../components/core/Typography';
 import { Badge } from '../components/core/ui/badge';
 import { Button } from '../components/core/ui/button';
@@ -16,11 +16,8 @@ import { Progress } from '../components/core/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/core/ui/tabs';
 import { CHANGELOG } from '../data/changelog';
 import { VERSION_BUILD, VERSION_COMMIT, VERSION_DATE } from '../data/version';
-import { useStore } from '../store/StoreContext';
 
-export const LauncherPage = observer(() => {
-   const { routingStore } = useStore();
-
+export const LauncherPage = () => {
    const isUpdating = false; // Placeholder for update status
    const updateProgress = 40; // Placeholder for update progress
    const updateStatus = 'No updates available'; // Placeholder for update status message
@@ -200,22 +197,8 @@ export const LauncherPage = observer(() => {
             </div>
 
             <div className="flex flex-col gap-4">
-               <Button
-                  className="w-full h-24 bg-gradient-to-r from-green-900 to-green-700 hover:from-green-800 hover:to-green-600 text-green-100 border border-green-600/50 shadow-lg shadow-green-900/30 font-orbitron tracking-wider text-xl rounded-lg transition-all duration-300 hover:scale-105 relative overflow-hidden"
-                  disabled={isUpdating}
-                  onClick={() => routingStore.setPage('game')}
-               >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/10 to-transparent transform -translate-x-full animate-[shimmer_2s_infinite]" />
-                  </div>
-                  <Play className="h-6 w-6 mr-2" />
-                  LAUNCH
-               </Button>
-
-               <Button
-                  className="w-full justify-start text-sm bg-gray-800 hover:bg-gray-700 border-green-900/30 text-green-400"
-                  variant="outline"
-               >
+               <PlayButton />
+               <Button className="w-full justify-start text-sm border-green-900/30 text-green-400">
                   <Settings className="h-4 w-4 mr-2" />
                   Settings
                </Button>
@@ -230,4 +213,4 @@ export const LauncherPage = observer(() => {
          </div>
       </>
    );
-});
+};

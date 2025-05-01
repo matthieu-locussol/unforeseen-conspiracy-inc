@@ -73,3 +73,13 @@ body::after {
    z-index: 2;
    opacity: 0.15;
 }
+
+@theme {
+   --animate-shimmer: shimmer 2s infinite;
+
+   @keyframes shimmer {
+      100% {
+         transform: translateX(200%);
+      }
+   }
+}
