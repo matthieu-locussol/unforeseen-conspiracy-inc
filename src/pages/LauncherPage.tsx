@@ -25,6 +25,7 @@ import {
 } from '../components/core/ui/card';
 import { Progress } from '../components/core/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/core/ui/tabs';
+import { CHANGELOG } from '../data/changelog';
 import { VERSION_BUILD, VERSION_COMMIT, VERSION_DATE } from '../data/version';
 import { useStore } from '../store/StoreContext';
 
@@ -34,44 +35,6 @@ export const LauncherPage = observer(() => {
    const isUpdating = false; // Placeholder for update status
    const updateProgress = 40; // Placeholder for update progress
    const updateStatus = 'No updates available'; // Placeholder for update status message
-   const changelogData = [
-      {
-         version: 'v0.9.2',
-         date: '2025-04-24',
-         type: 'update',
-         changes: [
-            'Added sticky resource navbar for better tracking while scrolling',
-            'Fixed tooltip z-index issues',
-            'Improved offline progress calculations',
-            'Added new tier 3 upgrades for all buildings',
-            'Optimized particle effects for better performance',
-         ],
-      },
-      {
-         version: 'v0.9.1',
-         date: '2025-04-15',
-         type: 'hotfix',
-         changes: [
-            'Fixed critical bug in prestige calculations',
-            'Corrected research effect application',
-            'Improved mobile responsiveness',
-            'Fixed sound effects not playing on some browsers',
-         ],
-      },
-      {
-         version: 'v0.9.0',
-         date: '2025-04-10',
-         type: 'major',
-         changes: [
-            'Added prestige system with three resource tracks',
-            'Implemented research laboratory with 20+ research options',
-            'Added daily rewards system with streak bonuses',
-            'New conspiracy-themed UI overhaul',
-            'Added 15 new achievements to unlock',
-            'Implemented offline progress tracking',
-         ],
-      },
-   ];
    const [activeTab, setActiveTab] = useState('changelog');
 
    return (
@@ -163,7 +126,6 @@ export const LauncherPage = observer(() => {
                         ABOUT
                      </TabsTrigger>
                   </TabsList>
-
                   <TabsContent
                      className="mt-4 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[300px] overflow-y-auto"
                      value="changelog"
@@ -172,7 +134,7 @@ export const LauncherPage = observer(() => {
                         DECLASSIFIED UPDATES
                      </h3>
                      <div className="space-y-6">
-                        {changelogData.map((release) => (
+                        {CHANGELOG.map((release) => (
                            <div key={release.version} className="space-y-2">
                               <div className="flex items-center gap-2">
                                  <Badge
@@ -202,7 +164,6 @@ export const LauncherPage = observer(() => {
                         ))}
                      </div>
                   </TabsContent>
-
                   <TabsContent
                      className="mt-4 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[300px] overflow-y-auto"
                      value="about"
