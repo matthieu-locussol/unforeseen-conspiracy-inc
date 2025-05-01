@@ -1,15 +1,4 @@
-import {
-   AlertTriangle,
-   Download,
-   FileWarning,
-   Info,
-   MessageSquare,
-   Play,
-   Settings,
-   Sparkles,
-   XIcon,
-   Zap,
-} from 'lucide-react';
+import { AlertTriangle, Download, FileWarning, Info, Play, Settings } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 
@@ -56,7 +45,7 @@ export const LauncherPage = observer(() => {
             WARNING: This simulation contains classified information about covert operations, shadow
             governments, and quantum manipulation. Unauthorized access will be monitored.
          </Note>
-         <Card shining className="mb-6 overflow-hidden">
+         <Card shining className="mb-4 overflow-hidden">
             <CardHeader className="pb-2 relative">
                <div className="flex justify-between items-center">
                   <CardTitle className="flex items-center">
@@ -113,7 +102,7 @@ export const LauncherPage = observer(() => {
                </div>
             </CardContent>
          </Card>
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
             <div className="md:col-span-2">
                <Tabs className="w-full" value={activeTab} onValueChange={setActiveTab}>
                   <TabsList className="grid w-full grid-cols-2 bg-gray-900 border border-green-900/50">
@@ -127,7 +116,7 @@ export const LauncherPage = observer(() => {
                      </TabsTrigger>
                   </TabsList>
                   <TabsContent
-                     className="mt-4 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[300px] overflow-y-auto"
+                     className="mt-4 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[160px] overflow-y-auto"
                      value="changelog"
                   >
                      <h3 className="text-lg font-orbitron text-green-300 mb-4">
@@ -165,7 +154,7 @@ export const LauncherPage = observer(() => {
                      </div>
                   </TabsContent>
                   <TabsContent
-                     className="mt-4 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[300px] overflow-y-auto"
+                     className="mt-4 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[160px] overflow-y-auto"
                      value="about"
                   >
                      <h3 className="text-lg font-orbitron text-green-300 mb-4">PROJECT DETAILS</h3>
@@ -222,41 +211,6 @@ export const LauncherPage = observer(() => {
                   <Play className="h-6 w-6 mr-2" />
                   LAUNCH
                </Button>
-
-               <Card shining>
-                  <CardHeader className="pb-2">
-                     <CardTitle className="text-sm flex items-center">
-                        <Zap className="h-4 w-4 mr-2" />
-                        SOCIAL NETWORKS
-                     </CardTitle>
-                     <CardDescription className="text-xs">
-                        Connect with other operatives
-                     </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                     <Button
-                        className="w-full justify-start text-sm bg-gray-800 hover:bg-gray-700 border-blue-900/30 text-blue-400"
-                        variant="outline"
-                     >
-                        <XIcon className="h-4 w-4 mr-2" />
-                        Follow on X
-                     </Button>
-                     <Button
-                        className="w-full justify-start text-sm bg-gray-800 hover:bg-gray-700 border-blue-900/30 text-blue-400"
-                        variant="outline"
-                     >
-                        <Sparkles className="h-4 w-4 mr-2" />
-                        Join on Bluesky
-                     </Button>
-                     <Button
-                        className="w-full justify-start text-sm bg-gray-800 hover:bg-gray-700 border-purple-900/30 text-purple-400"
-                        variant="outline"
-                     >
-                        <MessageSquare className="h-4 w-4 mr-2" />
-                        Join Discord
-                     </Button>
-                  </CardContent>
-               </Card>
 
                <Button
                   className="w-full justify-start text-sm bg-gray-800 hover:bg-gray-700 border-green-900/30 text-green-400"
