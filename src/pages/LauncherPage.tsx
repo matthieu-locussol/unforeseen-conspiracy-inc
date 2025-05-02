@@ -42,7 +42,7 @@ export const LauncherPage = () => {
             WARNING: This simulation contains classified information about covert operations, shadow
             governments, and quantum manipulation. Unauthorized access will be monitored.
          </Note>
-         <Card shining className="mb-4 overflow-hidden">
+         <Card shining className="mb-2 overflow-hidden">
             <CardHeader className="pb-2 relative">
                <div className="flex justify-between items-center">
                   <CardTitle className="flex items-center">
@@ -113,7 +113,7 @@ export const LauncherPage = () => {
                      </TabsTrigger>
                   </TabsList>
                   <TabsContent
-                     className="mt-4 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[160px] overflow-y-auto"
+                     className="mt-2 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[180px] overflow-y-auto"
                      value="changelog"
                   >
                      <h3 className="text-lg font-orbitron text-green-300 mb-4">
@@ -151,46 +151,33 @@ export const LauncherPage = () => {
                      </div>
                   </TabsContent>
                   <TabsContent
-                     className="mt-4 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[160px] overflow-y-auto"
+                     className="mt-4 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[180px] overflow-y-auto"
                      value="about"
                   >
                      <h3 className="text-lg font-orbitron text-green-300 mb-4">PROJECT DETAILS</h3>
                      <div className="space-y-4 text-gray-300">
                         <p>
-                           <span className="text-green-400 font-bold">
-                              Project: Quantum Conspiracy
-                           </span>{' '}
-                           is an incremental game where you uncover the secrets of shadow
-                           governments, alien technology, and quantum manipulation.
+                           Welcome, truth-seeker. Think you know what's really going on? Well, think
+                           again.
                         </p>
                         <p>
-                           Build your network of classified projects, research forbidden
-                           technologies, and ascend through prestige systems to gain influence over
-                           the world's hidden power structures.
+                           Click your way through layers of lies, generating undeniable{' '}
+                           <span className="text-green-400 font-bold">Proofs</span> that expose
+                           everything – from chemtrails to questionable celebrity "retirements".
+                           Gather <span className="text-green-400 font-bold">Proofs</span>, amass{' '}
+                           <span className="text-green-400 font-bold">Followers</span> who
+                           understand, and manage that creeping{' '}
+                           <span className="text-red-400 font-bold">Paranoia</span> (is your
+                           webcam... watching you?).
                         </p>
                         <p>
-                           This simulation is based on{' '}
-                           <span className="text-red-400 font-bold">REDACTED</span> documents and
-                           should be treated as{' '}
-                           <span className="text-red-400 font-bold">CLASSIFIED</span> information.
+                           Unravel conspiracies both mundane and monstrous, from government
+                           cover-ups to why pigeons seem so... shifty. Click onward, the rabbit hole
+                           awaits!
                         </p>
-                        <div className="bg-gray-800/50 p-3 rounded-md border border-green-900/30 mt-4">
-                           <h4 className="text-green-400 font-orbitron mb-2 text-sm">
-                              DEVELOPMENT TEAM
-                           </h4>
-                           <p className="text-sm">
-                              Lead Developer: <span className="text-green-300">REDACTED</span>
-                           </p>
-                           <p className="text-sm">
-                              Art Direction: <span className="text-green-300">REDACTED</span>
-                           </p>
-                           <p className="text-sm">
-                              Narrative Design: <span className="text-green-300">REDACTED</span>
-                           </p>
-                           <p className="text-sm">
-                              Quantum Algorithms: <span className="text-green-300">REDACTED</span>
-                           </p>
-                        </div>
+                        <p className="italic">
+                           And don't forget to check behind you from time to time...
+                        </p>
                      </div>
                   </TabsContent>
                </Tabs>
