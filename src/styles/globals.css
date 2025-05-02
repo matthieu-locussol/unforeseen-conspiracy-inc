@@ -90,7 +90,7 @@ body::after {
 }
 
 @theme inline {
-   --animate-shimmer: shimmer 2s infinite;
+   --animate-shimmer: shimmer 3s infinite;
 
    @keyframes shimmer {
       100% {

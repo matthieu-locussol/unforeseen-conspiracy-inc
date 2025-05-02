@@ -1,4 +1,4 @@
-import { AlertTriangle, Download, FileWarning, Info, Settings } from 'lucide-react';
+import { AlertTriangle, DatabaseBackup, Download, FileWarning, Info, Settings } from 'lucide-react';
 import { useState } from 'react';
 
 import { PlayButton } from '../components/core/PlayButton';
@@ -38,7 +38,7 @@ export const LauncherPage = () => {
                CLASSIFIED
             </Badge>
          </div>
-         <Note className="max-w-2xl mx-auto text-center mb-4">
+         <Note className="max-w-2xl mx-auto text-center mb-6">
             WARNING: This simulation contains classified information about covert operations, shadow
             governments, and quantum manipulation. Unauthorized access will be monitored.
          </Note>
@@ -195,16 +195,19 @@ export const LauncherPage = () => {
                   </TabsContent>
                </Tabs>
             </div>
-
             <div className="flex flex-col gap-4">
                <PlayButton />
-               <Button className="w-full justify-start text-sm border-green-900/30 text-green-400">
+               <Button className="w-full justify-start text-sm mt-auto" variant="outline">
                   <Settings className="h-4 w-4 mr-2" />
                   Settings
                </Button>
+               <Button className="w-full justify-start text-sm" variant="destructive">
+                  <DatabaseBackup className="h-4 w-4 mr-2" />
+                  Reset data
+               </Button>
             </div>
          </div>
-         <div className="text-center text-xs text-gray-500 mt-8">
+         <div className="text-center text-xs text-gray-500 mt-2">
             <p>© {new Date().getFullYear()} Unforeseen Conspiracy Inc. All rights reserved.</p>
             <p className="mt-1">
                This simulation is for entertainment purposes only. Any resemblance to actual
