@@ -42,7 +42,7 @@ export const LauncherPage = () => {
             WARNING: This simulation contains classified information about covert operations, shadow
             governments, and quantum manipulation. Unauthorized access will be monitored.
          </Note>
-         <Card shining className="mb-2 overflow-hidden">
+         <Card shining className="mb-4 overflow-hidden">
             <CardHeader className="pb-2 relative">
                <div className="flex justify-between items-center">
                   <CardTitle className="flex items-center">
@@ -113,7 +113,7 @@ export const LauncherPage = () => {
                      </TabsTrigger>
                   </TabsList>
                   <TabsContent
-                     className="mt-2 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[180px] overflow-y-auto"
+                     className="mt-2 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[170px] overflow-y-auto"
                      value="changelog"
                   >
                      <h3 className="text-lg font-orbitron text-green-300 mb-4">
@@ -151,7 +151,7 @@ export const LauncherPage = () => {
                      </div>
                   </TabsContent>
                   <TabsContent
-                     className="mt-4 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[180px] overflow-y-auto"
+                     className="mt-2 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[170px] overflow-y-auto"
                      value="about"
                   >
                      <h3 className="text-lg font-orbitron text-green-300 mb-4">PROJECT DETAILS</h3>
