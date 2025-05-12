@@ -1,4 +1,5 @@
 import { AlertTriangle, DatabaseBackup, Download, FileWarning, Info, Settings } from 'lucide-react';
+import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 
 import { PlayButton } from '../components/core/PlayButton';
@@ -17,7 +18,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/core/ui/
 import { CHANGELOG } from '../data/changelog';
 import { VERSION_BUILD, VERSION_COMMIT, VERSION_DATE } from '../data/version';
 
-export const LauncherPage = () => {
+export const LauncherPage = observer(() => {
    const isUpdating = false; // Placeholder for update status
    const updateProgress = 40; // Placeholder for update progress
    const updateStatus = 'No updates available'; // Placeholder for update status message
@@ -116,9 +117,6 @@ export const LauncherPage = () => {
                      className="mt-2 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[170px] overflow-y-auto"
                      value="changelog"
                   >
-                     <h3 className="text-lg font-orbitron text-green-300 mb-4">
-                        DECLASSIFIED UPDATES
-                     </h3>
                      <div className="space-y-6">
                         {CHANGELOG.map((release) => (
                            <div key={release.version} className="space-y-2">
@@ -154,7 +152,6 @@ export const LauncherPage = () => {
                      className="mt-2 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[170px] overflow-y-auto"
                      value="about"
                   >
-                     <h3 className="text-lg font-orbitron text-green-300 mb-4">PROJECT DETAILS</h3>
                      <div className="space-y-4 text-gray-300">
                         <p>
                            Welcome, truth-seeker. Think you know what's really going on? Well, think
@@ -203,4 +200,4 @@ export const LauncherPage = () => {
          </div>
       </>
    );
-};
+});

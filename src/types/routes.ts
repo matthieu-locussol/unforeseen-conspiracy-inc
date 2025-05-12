@@ -1,1 +1,1 @@
-export type Route = 'launcher' | 'game';
+export type Route = 'launcher' | 'bootloader' | 'game';
