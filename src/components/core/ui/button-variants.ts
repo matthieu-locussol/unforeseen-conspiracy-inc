@@ -77,7 +77,7 @@ export const buttonVariants = cva(
                'shadow-[0_0_2px_rgba(0,255,0,0.2)]',
                'hover:bg-green-700/20 hover:shadow-[0_0_5px_rgba(0,255,0,0.4)]',
                'active:bg-green-700/30 active:shadow-[0_0_5px_rgba(0,255,0,0.4)]',
-               'bg-gray-900/30 hover:bg-gray-800/40',
+               'bg-gray-900/40 hover:bg-gray-800/50',
             ]),
          },
          size: {
