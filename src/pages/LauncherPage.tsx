@@ -1,7 +1,7 @@
-import { AlertTriangle, DatabaseBackup, Download, FileWarning, Info, Settings } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 
+import { CustomIcon } from '../components/core/Icons';
 import { PlayButton } from '../components/core/PlayButton';
 import { Note, Title } from '../components/core/Typography';
 import { Badge } from '../components/core/ui/badge';
@@ -35,7 +35,7 @@ export const LauncherPage = observer(() => {
                BUILD {VERSION_COMMIT}
             </Badge>
             <Badge className="bg-red-900/50 text-red-300 border-red-900/50">
-               <AlertTriangle className="h-3 w-3 mr-1" />
+               <CustomIcon className="h-3 w-3 mr-1" icon="alertTriangle" />
                CLASSIFIED
             </Badge>
          </div>
@@ -47,7 +47,7 @@ export const LauncherPage = observer(() => {
             <CardHeader className="pb-2 relative">
                <div className="flex justify-between items-center">
                   <CardTitle className="flex items-center">
-                     <Download className="h-5 w-5 mr-2" />
+                     <CustomIcon className="h-5 w-5 mr-2" icon="download" />
                      SYSTEM STATUS
                   </CardTitle>
                   <Badge
@@ -105,11 +105,11 @@ export const LauncherPage = observer(() => {
                <Tabs className="w-full" value={activeTab} onValueChange={setActiveTab}>
                   <TabsList className="grid w-full grid-cols-2 bg-gray-900 border border-green-900/50">
                      <TabsTrigger className="snappy-transition" value="changelog">
-                        <FileWarning className="h-4 w-4 mr-1" />
+                        <CustomIcon className="h-4 w-4 mr-1" icon="fileWarning" />
                         CHANGELOG
                      </TabsTrigger>
                      <TabsTrigger className="snappy-transition" value="about">
-                        <Info className="h-4 w-4 mr-1" />
+                        <CustomIcon className="h-4 w-4 mr-1" icon="info" />
                         ABOUT
                      </TabsTrigger>
                   </TabsList>
@@ -182,11 +182,11 @@ export const LauncherPage = observer(() => {
             <div className="flex flex-col gap-4">
                <PlayButton />
                <Button className="w-full justify-start text-sm mt-auto" variant="outline">
-                  <Settings className="h-4 w-4 mr-2" />
+                  <CustomIcon className="h-4 w-4 mr-2" icon="settings" />
                   Settings
                </Button>
                <Button className="w-full justify-start text-sm" variant="destructive">
-                  <DatabaseBackup className="h-4 w-4 mr-2" />
+                  <CustomIcon className="h-4 w-4 mr-2" icon="databaseBackup" />
                   Reset data
                </Button>
             </div>

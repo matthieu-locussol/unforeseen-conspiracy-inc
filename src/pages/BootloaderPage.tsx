@@ -1,7 +1,7 @@
-import { AlertTriangle, Database, Lock, Shield, Terminal } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState } from 'react';
 
+import { CustomIcon } from '../components/core/Icons';
 import { Badge } from '../components/core/ui/badge';
 import { Progress } from '../components/core/ui/progress';
 import { CRTBackground } from '../components/design/CRTBackground';
@@ -102,7 +102,7 @@ export const BootloaderPage = observer(() => {
          <div className="w-full max-w-3xl px-4 py-8 relative z-10">
             <div className="flex items-center justify-between mb-6">
                <h1 className="text-2xl font-bold font-orbitron tracking-wider flex items-center">
-                  <Terminal className="mr-2 h-6 w-6" />
+                  <CustomIcon className="mr-2 h-6 w-6" icon="terminal" />
                   BOOTLOADER
                </h1>
                <div className="flex items-center gap-2">
@@ -110,7 +110,7 @@ export const BootloaderPage = observer(() => {
                      v{VERSION_BUILD}
                   </Badge>
                   <Badge className="bg-red-900/30 text-red-300 border-red-900/50 px-2 py-0.5 text-xs">
-                     <AlertTriangle className="h-3 w-3 mr-1" />
+                     <CustomIcon className="h-3 w-3 mr-1" icon="alertTriangle" />
                      CLASSIFIED
                   </Badge>
                </div>
@@ -140,29 +140,30 @@ export const BootloaderPage = observer(() => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
                <div className="bg-gray-900/50 p-2 rounded-md border border-green-900/30 flex items-center">
-                  <Shield className="h-4 w-4 mr-2 text-green-400" />
+                  <CustomIcon className="h-4 w-4 mr-2 text-green-400" icon="shield" />
                   <div className="text-xs">
                      <div className="text-gray-400">Security</div>
                      <div className="font-bold text-green-400">ACTIVE</div>
                   </div>
                </div>
                <div className="bg-gray-900/50 p-2 rounded-md border border-green-900/30 flex items-center">
-                  <Database className="h-4 w-4 mr-2 text-green-400" />
+                  <CustomIcon className="h-4 w-4 mr-2 text-green-400" icon="database" />
                   <div className="text-xs">
                      <div className="text-gray-400">Database</div>
                      <div className="font-bold text-green-400">CONNECTED</div>
                   </div>
                </div>
                <div className="bg-gray-900/50 p-2 rounded-md border border-green-900/30 flex items-center">
-                  <Lock className="h-4 w-4 mr-2 text-green-400" />
+                  <CustomIcon className="h-4 w-4 mr-2 text-green-400" icon="lock" />
                   <div className="text-xs">
                      <div className="text-gray-400">Encryption</div>
                      <div className="font-bold text-green-400">QUANTUM</div>
                   </div>
                </div>
                <div className="bg-gray-900/50 p-2 rounded-md border border-green-900/30 flex items-center">
-                  <AlertTriangle
+                  <CustomIcon
                      className={`h-4 w-4 mr-2 ${showError ? 'text-red-400' : 'text-green-400'}`}
+                     icon="alertTriangle"
                   />
                   <div className="text-xs">
                      <div className="text-gray-400">Status</div>

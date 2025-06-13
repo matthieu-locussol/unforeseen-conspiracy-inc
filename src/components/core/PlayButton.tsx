@@ -1,8 +1,8 @@
-import { Play } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 
 import { useStore } from '../../store/StoreContext';
 
+import { CustomIcon } from './Icons';
 import { Button } from './ui/button';
 
 export const PlayButton = observer(() => {
@@ -16,7 +16,7 @@ export const PlayButton = observer(() => {
          <div className="absolute inset-0 flex items-center justify-center">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/10 to-transparent transform -translate-x-full animate-shimmer" />
          </div>
-         <Play className="h-6 w-6 mr-2" />
+         <CustomIcon className="h-6 w-6 mr-2" icon="play" />
          LAUNCH
       </Button>
    );

@@ -3,13 +3,17 @@ import { describe, expect, it } from 'vitest';
 import { GameStore } from './GameStore';
 
 describe('GameStore', () => {
-   it('should increment the count', () => {
+   it('should toggle the play state', () => {
       const gameStore = new GameStore();
 
-      expect(gameStore.count).toBe(0);
+      expect(gameStore.isRunning).toBe(true);
 
-      gameStore.increment();
+      gameStore.togglePlay();
 
-      expect(gameStore.count).toBe(1);
+      expect(gameStore.isRunning).toBe(false);
+
+      gameStore.togglePlay();
+
+      expect(gameStore.isRunning).toBe(true);
    });
 });

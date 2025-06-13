@@ -125,6 +125,14 @@ export class GameStore {
       this.isRunning = false;
    }
 
+   public togglePlay(): void {
+      if (this.isRunning) {
+         this.stop();
+      } else {
+         this.start();
+      }
+   }
+
    public serialize(): SerializedGameData {
       return {
          proofs: this.proofs.serialize(),

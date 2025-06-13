@@ -71,6 +71,14 @@ export const buttonVariants = cva(
                'hover:text-green-400 active:text-green-600',
                'hover:translate-y-0 active:translate-y-0 before:hidden',
             ]),
+
+            dark: cn([
+               'bg-green-700/10 text-green-500/90 border-green-500/30',
+               'shadow-[0_0_2px_rgba(0,255,0,0.2)]',
+               'hover:bg-green-700/20 hover:shadow-[0_0_5px_rgba(0,255,0,0.4)]',
+               'active:bg-green-700/30 active:shadow-[0_0_5px_rgba(0,255,0,0.4)]',
+               'bg-gray-900/30 hover:bg-gray-800/40',
+            ]),
          },
          size: {
             default: 'h-10 px-4 py-2',
