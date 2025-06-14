@@ -7,7 +7,7 @@ export const BulkBuyButtons = observer(() => {
    const { hudStore } = useStore();
 
    return (
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex items-center justify-center gap-2 md:gap-4">
          <Button
             disabled={hudStore.bulkBuy === 1}
             variant="dark"

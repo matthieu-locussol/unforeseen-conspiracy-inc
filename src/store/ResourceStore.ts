@@ -1,3 +1,5 @@
+import type { CustomIcon } from '../components/core/Icons';
+
 import { makeAutoObservable } from 'mobx';
 
 import { RESOURCES } from '../data/resources';
@@ -5,6 +7,8 @@ import { type ResourceId, type SerializedResourceData } from '../types/resources
 
 export class ResourceStore {
    public id!: ResourceId;
+
+   public icon!: CustomIcon;
 
    public baseProduction!: number;
 
@@ -76,6 +80,7 @@ export class ResourceStore {
 
       this.id = id;
 
+      this.icon = data.icon;
       this.baseProduction = data.baseProduction;
       this.productionMultiplier = data.productionMultiplier;
       this.isClickable = data.isClickable;

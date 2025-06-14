@@ -69,6 +69,15 @@ const DownloadIcon = (props: IconSvgProps) => {
    );
 };
 
+const EyeIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+         <circle cx="12" cy="12" r="3" />
+      </svg>
+   );
+};
+
 const FileWarningIcon = (props: IconSvgProps) => {
    return (
       <svg {...getCommonProps(props)}>
@@ -151,11 +160,22 @@ const TerminalIcon = (props: IconSvgProps) => {
    );
 };
 
+const UsersRoundIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M18 21a8 8 0 0 0-16 0" />
+         <circle cx="10" cy="8" r="5" />
+         <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
+      </svg>
+   );
+};
+
 export type CustomIcon =
    | 'alertTriangle'
    | 'database'
    | 'databaseBackup'
    | 'download'
+   | 'eye'
    | 'fileWarning'
    | 'info'
    | 'lock'
@@ -164,13 +184,15 @@ export type CustomIcon =
    | 'searchCheck'
    | 'settings'
    | 'shield'
-   | 'terminal';
+   | 'terminal'
+   | 'usersRound';
 
 const ICONS: Record<CustomIcon, React.FC<IconSvgProps>> = {
    alertTriangle: AlertTriangleIcon,
    database: DatabaseIcon,
    databaseBackup: DatabaseBackupIcon,
    download: DownloadIcon,
+   eye: EyeIcon,
    fileWarning: FileWarningIcon,
    info: InfoIcon,
    lock: LockIcon,
@@ -180,6 +202,7 @@ const ICONS: Record<CustomIcon, React.FC<IconSvgProps>> = {
    settings: SettingsIcon,
    shield: ShieldIcon,
    terminal: TerminalIcon,
+   usersRound: UsersRoundIcon,
 };
 
 interface CustomIconProps extends IconSvgProps {

@@ -22,12 +22,12 @@ export const FR = {
       chemtrails: {
          name: 'Chemtrails',
          description:
-            "Les traces blanches derrière les avions ne sont pas de vapeur d'eau, c'est des produits chimiques conçus pour contrôler la population!",
+            "Les traces blanches derrière les avions ne sont pas de la vapeur d'eau, c'est des produits chimiques conçus pour contrôler la population!",
       },
       flat_earth: {
-         name: 'Flat Earth',
+         name: 'Terre Plate',
          description:
-            'La mouvement Flat Earth est un mouvement politique et social qui cherche à créer un monde où la population et les ressources sont également distribuées.',
+            'La mouvement Terre Plate est un mouvement politique et social qui cherche à créer un monde où la population et les ressources sont également distribuées.',
       },
       michael_jackson: {
          name: 'Michael Jackson',

@@ -31,16 +31,16 @@ export const GamePage = observer(() => {
                </Button>
             </div>
          </div>
-         <div className="flex gap-4">
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <ResourceCard resourceStore={gameStore.proofs} />
             <ResourceCard resourceStore={gameStore.followers} />
             <ResourceCard resourceStore={gameStore.paranoia} />
          </div>
-         <div className="flex justify-between">
+         <div className="flex justify-between gap-4">
             <ExtractButton onClick={() => gameStore.clickProofs()}>Extract proofs</ExtractButton>
             <BulkBuyButtons />
          </div>
-         <div className="generators">
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {gameStore.generators.map((generator) => (
                <GeneratorCard key={generator.id} generatorStore={generator} />
             ))}

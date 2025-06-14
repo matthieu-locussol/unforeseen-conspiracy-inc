@@ -27,8 +27,8 @@ export const ExtractButton = ({
             'rounded-md px-4 py-2',
 
             // Shadows and effects
-            'shadow-lg shadow-emerald-900/30',
-            'hover:shadow-xl hover:shadow-emerald-800/40',
+            'shadow-sm shadow-emerald-900/30',
+            'hover:shadow-md hover:shadow-emerald-800/40',
 
             // Transitions
             'transition-all duration-200 ease-out',
