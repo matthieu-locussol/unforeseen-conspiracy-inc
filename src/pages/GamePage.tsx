@@ -26,7 +26,11 @@ export const GamePage = observer(() => {
                <Button className="px-3" variant="dark" onClick={() => gameStore.togglePlay()}>
                   <CustomIcon className="w-4 h-4" icon={gameStore.isRunning ? 'pause' : 'play'} />
                </Button>
-               <SettingsMenu />
+               <SettingsMenu>
+                  <Button className="px-3" variant="dark">
+                     <CustomIcon className="w-4 h-4" icon="settings" />
+                  </Button>
+               </SettingsMenu>
             </div>
          </div>
          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

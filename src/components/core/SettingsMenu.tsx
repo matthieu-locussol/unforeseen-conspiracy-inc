@@ -8,7 +8,6 @@ import { useStore } from '../../store/StoreContext';
 import { cn } from '../../utils/cn';
 import { LocaleSwitch } from '../LocaleSwitch';
 
-import { CustomIcon } from './Icons';
 import { Button } from './ui/button';
 import {
    Dialog,
@@ -27,18 +26,18 @@ import {
    DrawerTrigger,
 } from './ui/drawer';
 
-export const SettingsMenu = observer(() => {
+interface SettingsMenuProps {
+   children: React.ReactNode;
+}
+
+export const SettingsMenu = observer(({ children }: SettingsMenuProps) => {
    const { hudStore } = useStore();
    const isDesktop = useMediaQuery('(min-width: 768px)');
 
    if (isDesktop) {
       return (
          <Dialog open={hudStore.isSettingsOpen} onOpenChange={() => hudStore.toggleSettings()}>
-            <DialogTrigger asChild>
-               <Button className="px-3" variant="dark">
-                  <CustomIcon className="w-4 h-4" icon="settings" />
-               </Button>
-            </DialogTrigger>
+            <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                <DialogHeader>
                   <DialogTitle className="text-green-400">Settings</DialogTitle>
@@ -54,11 +53,7 @@ export const SettingsMenu = observer(() => {
 
    return (
       <Drawer open={hudStore.isSettingsOpen} onOpenChange={() => hudStore.toggleSettings()}>
-         <DrawerTrigger asChild>
-            <Button className="px-3" variant="dark">
-               <CustomIcon className="w-4 h-4" icon="settings" />
-            </Button>
-         </DrawerTrigger>
+         <DrawerTrigger asChild>{children}</DrawerTrigger>
          <DrawerContent className="pb-4">
             <DrawerHeader className="text-left">
                <DrawerTitle className="text-green-400">Settings</DrawerTitle>
