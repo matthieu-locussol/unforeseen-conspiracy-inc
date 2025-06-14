@@ -170,6 +170,15 @@ const UsersRoundIcon = (props: IconSvgProps) => {
    );
 };
 
+const XIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M18 6 6 18" />
+         <path d="m6 6 12 12" />
+      </svg>
+   );
+};
+
 export type CustomIcon =
    | 'alertTriangle'
    | 'database'
@@ -185,7 +194,8 @@ export type CustomIcon =
    | 'settings'
    | 'shield'
    | 'terminal'
-   | 'usersRound';
+   | 'usersRound'
+   | 'x';
 
 const ICONS: Record<CustomIcon, React.FC<IconSvgProps>> = {
    alertTriangle: AlertTriangleIcon,
@@ -203,6 +213,7 @@ const ICONS: Record<CustomIcon, React.FC<IconSvgProps>> = {
    shield: ShieldIcon,
    terminal: TerminalIcon,
    usersRound: UsersRoundIcon,
+   x: XIcon,
 };
 
 interface CustomIconProps extends IconSvgProps {
