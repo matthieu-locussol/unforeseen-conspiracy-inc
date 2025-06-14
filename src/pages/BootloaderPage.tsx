@@ -95,7 +95,7 @@ export const BootloaderPage = observer(() => {
    }, [progress, bootPhase, showError]);
 
    return (
-      <div className="min-h-screen bg-black/50 text-green-400 font-mono flex flex-col items-center justify-center relative overflow-hidden">
+      <div className="fixed w-full min-h-screen bg-black/50 text-green-400 font-mono flex flex-col items-center justify-center overflow-hidden">
          <CRTBackground />
          <div className={`absolute inset-0 bg-green-900/10 pointer-events-none animate-flicker`} />
 
