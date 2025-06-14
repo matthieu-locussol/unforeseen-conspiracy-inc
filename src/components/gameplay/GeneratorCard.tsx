@@ -23,7 +23,7 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
          className={cn([
             'flex flex-col items-center w-full p-4 gap-3 relative',
             'border-green-900/50 hover:shadow-lg hover:shadow-green-900/30',
-            'transition-all duration-300 hover:transform hover:scale-[1.01]',
+            'transition-all duration-200',
             `${!generatorStore.unlocked && 'opacity-75 pointer-events-none bg-gray-900/40'}`,
          ])}
       >
