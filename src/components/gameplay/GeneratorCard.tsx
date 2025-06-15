@@ -29,10 +29,10 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
       >
          <div className="flex flex-col w-full gap-1">
             <div className="flex justify-between w-full">
-               <h2 className="text-lg font-semibold font-orbitron">
+               <h2 className="text-lg font-semibold font-orbitron text-gray-200">
                   {t['generators'][generatorStore.id]['name']}
                </h2>
-               <Badge className="font-orbitron bg-[rgba(0,50,0,0.8)] text-[#00ff00] border border-[rgba(0,255,0,0.5)] rounded-sm">
+               <Badge className="font-orbitron bg-blue-700/10 text-blue-400/90 border border-blue-400/30 rounded-sm">
                   LVL {generatorStore.level}
                </Badge>
             </div>
@@ -63,19 +63,18 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
             {t['generators'][generatorStore.id]['description']}
          </p>
          <div className="grid grid-cols-2 w-full gap-2">
-            <Card className="p-2 bg-gray-800/30 rounded-sm">
+            <Card className="p-2 bg-green-800/30 border-green-900 rounded-sm">
                <h2 className="text-sm text-gray-400">Cost:</h2>
                <p className="text-sm">{generatorStore.getCost(1).proofs} proofs</p>
-               <p className="text-xs text-gray-500">Available</p>
             </Card>
-            <Card className="p-2 bg-gray-800/30 rounded-sm">
+            <Card className="p-2 bg-blue-800/30 border-blue-900 rounded-sm">
                <h2 className="text-sm text-gray-400">Next level:</h2>
-               <p className="text-sm">11 → 11.1/sec</p>
-               <p className="text-xs text-green-400">Increase: +0.1/sec</p>
+               <p className="text-sm text-blue-200">11 → 11.1/sec (++0.1/sec)</p>
             </Card>
          </div>
          <Button
             className="w-full font-orbitron"
+            size="sm"
             onClick={() => gameStore.buyGenerator(generatorStore.id, 1)}
          >
             UPGRADE x1
