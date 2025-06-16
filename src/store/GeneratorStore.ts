@@ -22,7 +22,7 @@ export class GeneratorStore {
 
    public baseProduction!: GeneratorProduction;
 
-   public productionIncrease!: GeneratorProduction;
+   public productionMultiplier!: GeneratorProduction;
 
    public conditions!: GeneratorConditions;
 
@@ -36,24 +36,35 @@ export class GeneratorStore {
       this._initialize(id);
    }
 
+   /**
+    * @description Buy **amount** levels of this generator.
+    * @param amount - The amount of new levels to buy.
+    */
    public buy(amount: number): void {
       this.level += amount;
       this.unlocked = true;
    }
 
+   /**
+    * @description Get the cost to buy **amount** of this generator.
+    * @param amount - The amount of new levels you want to buy.
+    * @returns The cost to buy *amount* of this generator.
+    */
    public getCost(amount: number): GeneratorCost {
-      const newLevel = this.level + amount;
+      let totalProofsCost = 0;
+      let totalFollowersCost = 0;
 
-      const proofsCost = Math.floor(
-         this.baseCost.proofs * Math.pow(this.costMultiplier.proofs, newLevel),
-      );
-      const followersCost = Math.floor(
-         this.baseCost.followers * Math.pow(this.costMultiplier.followers, newLevel),
-      );
+      for (let i = 1; i <= amount; i++) {
+         const levelToBuy = this.level + i;
+
+         totalProofsCost += this.baseCost.proofs * Math.pow(this.costMultiplier.proofs, levelToBuy);
+         totalFollowersCost +=
+            this.baseCost.followers * Math.pow(this.costMultiplier.followers, levelToBuy);
+      }
 
       return {
-         proofs: proofsCost,
-         followers: followersCost,
+         proofs: Math.floor(totalProofsCost),
+         followers: Math.floor(totalFollowersCost),
       };
    }
 
@@ -67,11 +78,11 @@ export class GeneratorStore {
       }
 
       const proofsProduction =
-         this.baseProduction.proofs + (amount - 1) * this.productionIncrease.proofs;
+         this.baseProduction.proofs + (amount - 1) * this.productionMultiplier.proofs;
       const followersProduction =
-         this.baseProduction.followers + (amount - 1) * this.productionIncrease.followers;
+         this.baseProduction.followers + (amount - 1) * this.productionMultiplier.followers;
       const paranoiaProduction =
-         this.baseProduction.paranoia + (amount - 1) * this.productionIncrease.paranoia;
+         this.baseProduction.paranoia + (amount - 1) * this.productionMultiplier.paranoia;
 
       return {
          proofs: +proofsProduction.toFixed(1),
@@ -81,18 +92,12 @@ export class GeneratorStore {
    }
 
    public getProductionIncrease(amount: number): GeneratorProduction {
+      const newProduction = this.getProduction(this.level + amount);
+
       return {
-         proofs: +(
-            this.getProduction(this.level + amount).proofs - this.getProduction(this.level).proofs
-         ).toFixed(1),
-         followers: +(
-            this.getProduction(this.level + amount).followers -
-            this.getProduction(this.level).followers
-         ).toFixed(1),
-         paranoia: +(
-            this.getProduction(this.level + amount).paranoia -
-            this.getProduction(this.level).paranoia
-         ).toFixed(1),
+         proofs: +(newProduction.proofs - this.effectiveProduction.proofs).toFixed(1),
+         followers: +(newProduction.followers - this.effectiveProduction.followers).toFixed(1),
+         paranoia: +(newProduction.paranoia - this.effectiveProduction.paranoia).toFixed(1),
       };
    }
 
@@ -130,7 +135,7 @@ export class GeneratorStore {
       this.baseCost = { ...data.baseCost };
       this.costMultiplier = { ...data.costMultiplier };
       this.baseProduction = { ...data.baseProduction };
-      this.productionIncrease = { ...data.productionMultiplier };
+      this.productionMultiplier = { ...data.productionMultiplier };
       this.conditions = { ...data.conditions };
       this.unlocked = data.unlocked;
 

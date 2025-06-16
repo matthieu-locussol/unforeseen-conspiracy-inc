@@ -24,25 +24,37 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
             'flex flex-col items-center w-full p-4 gap-3 relative',
             'border-green-900/50 hover:shadow-lg hover:shadow-green-900/30',
             'transition-all duration-200',
-            `${!generatorStore.unlocked && 'opacity-75 pointer-events-none bg-gray-900/40'}`,
+            `${
+               !generatorStore.unlocked &&
+               !gameStore.canBuyGenerator(generatorStore.id, hudStore.bulkBuy) &&
+               'opacity-75 pointer-events-none bg-gray-900/40'
+            }`,
          ])}
       >
          <div className="flex flex-col w-full gap-1">
             <div className="flex justify-between w-full">
                <h2 className="text-lg font-semibold font-orbitron text-gray-200">
-                  {t['generators'][generatorStore.id]['name']}
+                  {generatorStore.unlocked ? t['generators'][generatorStore.id]['name'] : '???'}
                </h2>
                <Badge className="font-orbitron bg-blue-700/10 text-blue-400/90 border border-blue-400/30 rounded-sm">
                   LVL {generatorStore.level}
                </Badge>
             </div>
             <div className="grid grid-cols-3 gap-3 mr-auto">
-               {generatorStore.effectiveProduction.proofs > 0 && (
-                  <div className="flex items-center gap-1.5">
-                     <CustomIcon className="h-4 w-4 text-green-400" icon="searchCheck" />
-                     <p className="text-sm">{generatorStore.effectiveProduction.proofs}/sec</p>
-                  </div>
-               )}
+               <div className="flex items-center gap-1.5">
+                  <CustomIcon
+                     className={cn([
+                        'h-4 w-4 text-green-400',
+                        !generatorStore.unlocked && 'text-gray-400',
+                     ])}
+                     icon="searchCheck"
+                  />
+                  <p className={cn(['text-sm', !generatorStore.unlocked && 'text-gray-400'])}>
+                     {generatorStore.unlocked
+                        ? `${generatorStore.effectiveProduction.proofs}/sec`
+                        : '???'}
+                  </p>
+               </div>
                {generatorStore.effectiveProduction.followers > 0 && (
                   <div className="flex items-center gap-1.5">
                      <CustomIcon className="h-4 w-4 text-green-400" icon="usersRound" />
@@ -59,26 +71,40 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                )}
             </div>
          </div>
-         <p className="text-xs italic text-gray-400">
-            {t['generators'][generatorStore.id]['description']}
+         <p
+            className={cn([
+               'text-xs italic text-gray-400 mb-auto',
+               !generatorStore.unlocked && 'w-full',
+            ])}
+         >
+            {generatorStore.unlocked
+               ? t['generators'][generatorStore.id]['description']
+               : 'You need to dig deeper...'}
          </p>
          <div className="grid grid-cols-2 w-full gap-2">
             <Card className="p-2 bg-green-800/30 border-green-900 rounded-sm">
                <h2 className="text-sm text-gray-400">Cost:</h2>
                <p className="text-sm">{generatorStore.getCost(hudStore.bulkBuy).proofs} proofs</p>
             </Card>
-            <Card className="p-2 bg-blue-800/30 border-blue-900 rounded-sm">
-               <h2 className="text-sm text-gray-400">Next level:</h2>
-               <p className="text-sm text-blue-200">
-                  {generatorStore.level + hudStore.bulkBuy} →{' '}
-                  {generatorStore.getProduction(generatorStore.level + hudStore.bulkBuy).proofs}/sec
-                  (+
-                  {generatorStore.getProductionIncrease(hudStore.bulkBuy).proofs}/sec)
-               </p>
-            </Card>
+            {generatorStore.unlocked ? (
+               <Card className="p-2 bg-blue-800/30 border-blue-900 rounded-sm">
+                  <h2 className="text-sm text-gray-400">Next level:</h2>
+                  <p className="text-sm text-blue-200">
+                     {generatorStore.level + hudStore.bulkBuy} →{' '}
+                     {generatorStore.getProduction(generatorStore.level + hudStore.bulkBuy).proofs}
+                     /sec (+
+                     {generatorStore.getProductionIncrease(hudStore.bulkBuy).proofs}/sec)
+                  </p>
+               </Card>
+            ) : (
+               <Card className="p-2 bg-gray-600/30 border-gray-900 rounded-sm flex justify-center items-center">
+                  ???
+               </Card>
+            )}
          </div>
          <Button
             className="w-full font-orbitron"
+            disabled={!gameStore.canBuyGenerator(generatorStore.id, hudStore.bulkBuy)}
             size="sm"
             onClick={() => gameStore.buyGenerator(generatorStore.id, hudStore.bulkBuy)}
          >

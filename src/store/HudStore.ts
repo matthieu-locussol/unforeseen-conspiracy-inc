@@ -5,6 +5,8 @@ export class HudStore {
 
    public isSettingsOpen: boolean = false;
 
+   public isResetOpen: boolean = false;
+
    constructor() {
       makeAutoObservable(this);
    }
@@ -19,5 +21,13 @@ export class HudStore {
 
    public toggleSettings(): void {
       this.isSettingsOpen = !this.isSettingsOpen;
+   }
+
+   public setIsResetOpen(value: boolean): void {
+      this.isResetOpen = value;
+   }
+
+   public toggleReset(): void {
+      this.isResetOpen = !this.isResetOpen;
    }
 }

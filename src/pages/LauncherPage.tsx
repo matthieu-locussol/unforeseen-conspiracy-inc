@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { CustomIcon } from '../components/core/Icons';
 import { PlayButton } from '../components/core/PlayButton';
+import { ResetMenu } from '../components/core/ResetMenu';
 import { SettingsMenu } from '../components/core/SettingsMenu';
 import { Note, Title } from '../components/core/Typography';
 import { Badge } from '../components/core/ui/badge';
@@ -188,10 +189,12 @@ export const LauncherPage = observer(() => {
                      Settings
                   </Button>
                </SettingsMenu>
-               <Button className="w-full justify-start text-sm" variant="destructive">
-                  <CustomIcon className="h-4 w-4 mr-2" icon="databaseBackup" />
-                  Reset data
-               </Button>
+               <ResetMenu>
+                  <Button className="w-full justify-start text-sm" variant="destructive">
+                     <CustomIcon className="h-4 w-4 mr-2" icon="databaseBackup" />
+                     Reset data
+                  </Button>
+               </ResetMenu>
             </div>
          </div>
          <div className="text-center text-xs text-gray-500 mt-2">

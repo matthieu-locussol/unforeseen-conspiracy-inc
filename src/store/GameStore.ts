@@ -78,6 +78,18 @@ export class GameStore {
       );
    }
 
+   public canBuyGenerator(id: GeneratorId, amount: number): boolean {
+      const generatorStore = this.generators.find((generator) => generator.id === id);
+
+      if (!generatorStore) {
+         return false;
+      }
+
+      const cost = generatorStore.getCost(amount);
+
+      return this.proofs.value >= cost.proofs && this.followers.value >= cost.followers;
+   }
+
    public buyGenerator(id: GeneratorId, amount: number): boolean {
       const generatorStore = this.generators.find((generator) => generator.id === id);
 
@@ -164,5 +176,16 @@ export class GameStore {
 
       this.lastUpdateTime = data.lastUpdateTime;
       this.isRunning = data.isRunning;
+   }
+
+   public get visibleGenerators(): GeneratorStore[] {
+      const unlockedGenerators = this.generators.filter((generator) => generator.unlocked);
+      const nextLockedGenerator = this.generators.find((generator) => !generator.unlocked);
+
+      if (nextLockedGenerator === undefined) {
+         return unlockedGenerators;
+      }
+
+      return [...unlockedGenerators, nextLockedGenerator];
    }
 }

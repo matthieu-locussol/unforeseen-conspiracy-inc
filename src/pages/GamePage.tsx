@@ -43,7 +43,7 @@ export const GamePage = observer(() => {
             <BulkBuyButtons />
          </div>
          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {gameStore.generators.map((generator) => (
+            {gameStore.visibleGenerators.map((generator) => (
                <GeneratorCard key={generator.id} generatorStore={generator} />
             ))}
          </div>
