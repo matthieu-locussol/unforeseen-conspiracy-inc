@@ -15,7 +15,7 @@ export interface GeneratorCardProps {
 }
 
 export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) => {
-   const { gameStore } = useStore();
+   const { gameStore, hudStore } = useStore();
    const { t } = useI18n();
 
    return (
@@ -65,19 +65,24 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
          <div className="grid grid-cols-2 w-full gap-2">
             <Card className="p-2 bg-green-800/30 border-green-900 rounded-sm">
                <h2 className="text-sm text-gray-400">Cost:</h2>
-               <p className="text-sm">{generatorStore.getCost(1).proofs} proofs</p>
+               <p className="text-sm">{generatorStore.getCost(hudStore.bulkBuy).proofs} proofs</p>
             </Card>
             <Card className="p-2 bg-blue-800/30 border-blue-900 rounded-sm">
                <h2 className="text-sm text-gray-400">Next level:</h2>
-               <p className="text-sm text-blue-200">11 → 11.1/sec (++0.1/sec)</p>
+               <p className="text-sm text-blue-200">
+                  {generatorStore.level + hudStore.bulkBuy} →{' '}
+                  {generatorStore.getProduction(generatorStore.level + hudStore.bulkBuy).proofs}/sec
+                  (+
+                  {generatorStore.getProductionIncrease(hudStore.bulkBuy).proofs}/sec)
+               </p>
             </Card>
          </div>
          <Button
             className="w-full font-orbitron"
             size="sm"
-            onClick={() => gameStore.buyGenerator(generatorStore.id, 1)}
+            onClick={() => gameStore.buyGenerator(generatorStore.id, hudStore.bulkBuy)}
          >
-            UPGRADE x1
+            UPGRADE x{hudStore.bulkBuy}
          </Button>
       </Card>
    );

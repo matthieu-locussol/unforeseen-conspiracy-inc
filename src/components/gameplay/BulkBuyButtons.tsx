@@ -23,11 +23,11 @@ export const BulkBuyButtons = observer(() => {
             x10
          </Button>
          <Button
-            disabled={hudStore.bulkBuy === 100}
+            disabled={hudStore.bulkBuy === 25}
             variant="dark"
-            onClick={() => hudStore.setBulkBuy(100)}
+            onClick={() => hudStore.setBulkBuy(25)}
          >
-            x100
+            x25
          </Button>
       </div>
    );

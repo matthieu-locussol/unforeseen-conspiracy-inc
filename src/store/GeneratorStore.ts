@@ -57,7 +57,7 @@ export class GeneratorStore {
       };
    }
 
-   public get effectiveProduction(): GeneratorProduction {
+   public getProduction(amount: number): GeneratorProduction {
       if (!this.unlocked || this.level === 0) {
          return {
             proofs: 0,
@@ -67,17 +67,37 @@ export class GeneratorStore {
       }
 
       const proofsProduction =
-         this.baseProduction.proofs + (this.level - 1) * this.productionIncrease.proofs;
+         this.baseProduction.proofs + (amount - 1) * this.productionIncrease.proofs;
       const followersProduction =
-         this.baseProduction.followers + (this.level - 1) * this.productionIncrease.followers;
+         this.baseProduction.followers + (amount - 1) * this.productionIncrease.followers;
       const paranoiaProduction =
-         this.baseProduction.paranoia + (this.level - 1) * this.productionIncrease.paranoia;
+         this.baseProduction.paranoia + (amount - 1) * this.productionIncrease.paranoia;
 
       return {
          proofs: +proofsProduction.toFixed(1),
          followers: +followersProduction.toFixed(1),
          paranoia: +paranoiaProduction.toFixed(1),
       };
+   }
+
+   public getProductionIncrease(amount: number): GeneratorProduction {
+      return {
+         proofs: +(
+            this.getProduction(this.level + amount).proofs - this.getProduction(this.level).proofs
+         ).toFixed(1),
+         followers: +(
+            this.getProduction(this.level + amount).followers -
+            this.getProduction(this.level).followers
+         ).toFixed(1),
+         paranoia: +(
+            this.getProduction(this.level + amount).paranoia -
+            this.getProduction(this.level).paranoia
+         ).toFixed(1),
+      };
+   }
+
+   public get effectiveProduction(): GeneratorProduction {
+      return this.getProduction(this.level);
    }
 
    public reset(): void {
