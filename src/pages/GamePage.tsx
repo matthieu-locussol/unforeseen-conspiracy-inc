@@ -5,7 +5,7 @@ import { CustomIcon } from '../components/core/Icons';
 import { SettingsMenu } from '../components/core/SettingsMenu';
 import { Button } from '../components/core/ui/button';
 import { BulkBuyButtons } from '../components/gameplay/BulkBuyButtons';
-import { GeneratorCard } from '../components/gameplay/GeneratorCard';
+import { GeneratorsGrid } from '../components/gameplay/GeneratorsGrid';
 import { ResourceCard } from '../components/gameplay/ResourceCard';
 import { useGameLifecycle } from '../hooks/useGameLifecycle';
 import { useStore } from '../store/StoreContext';
@@ -42,11 +42,7 @@ export const GamePage = observer(() => {
             <ExtractButton onClick={() => gameStore.clickProofs()}>Extract proofs</ExtractButton>
             <BulkBuyButtons />
          </div>
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {gameStore.visibleGenerators.map((generator) => (
-               <GeneratorCard key={generator.id} generatorStore={generator} />
-            ))}
-         </div>
+         <GeneratorsGrid />
          <div className="border-t border-dashed border-green-500/20 pt-2 text-xs text-green-500/40 text-center mt-4">
             <p>CLASSIFIED INFORMATION - AUTHORIZED ACCESS ONLY - LEVEL 1 CLEARANCE REQUIRED</p>
             <p>MAJESTIC-12 OVERSIGHT COMMITTEE - PROJECT QUANTUM - {new Date().toISOString()}</p>

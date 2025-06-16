@@ -23,20 +23,34 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
          className={cn([
             'flex flex-col items-center w-full p-4 gap-3 relative',
             'border-green-900/50 hover:shadow-lg hover:shadow-green-900/30',
-            'transition-all duration-200',
+            'transition-all duration-300 ease-out',
+            'transform-gpu will-change-transform',
             `${
                !generatorStore.unlocked &&
                !gameStore.canBuyGenerator(generatorStore.id, hudStore.bulkBuy) &&
                'opacity-75 pointer-events-none bg-gray-900/40'
             }`,
+            generatorStore.unlocked && 'hover:scale-[1.02]',
          ])}
       >
          <div className="flex flex-col w-full gap-1">
             <div className="flex justify-between w-full">
-               <h2 className="text-lg font-semibold font-orbitron text-gray-200">
+               <h2
+                  className={cn([
+                     'text-lg font-semibold font-orbitron transition-colors duration-300',
+                     generatorStore.unlocked ? 'text-gray-200' : 'text-gray-400',
+                  ])}
+               >
                   {generatorStore.unlocked ? t['generators'][generatorStore.id]['name'] : '???'}
                </h2>
-               <Badge className="font-orbitron bg-blue-700/10 text-blue-400/90 border border-blue-400/30 rounded-sm">
+               <Badge
+                  className={cn([
+                     'font-orbitron border rounded-sm transition-all duration-300',
+                     generatorStore.unlocked
+                        ? 'bg-blue-700/10 text-blue-400/90 border-blue-400/30'
+                        : 'bg-gray-700/10 text-gray-400/90 border-gray-400/30',
+                  ])}
+               >
                   LVL {generatorStore.level}
                </Badge>
             </div>
@@ -44,12 +58,17 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                <div className="flex items-center gap-1.5">
                   <CustomIcon
                      className={cn([
-                        'h-4 w-4 text-green-400',
-                        !generatorStore.unlocked && 'text-gray-400',
+                        'h-4 w-4 transition-colors duration-300',
+                        generatorStore.unlocked ? 'text-green-400' : 'text-gray-400',
                      ])}
                      icon="searchCheck"
                   />
-                  <p className={cn(['text-sm', !generatorStore.unlocked && 'text-gray-400'])}>
+                  <p
+                     className={cn([
+                        'text-sm transition-colors duration-300',
+                        generatorStore.unlocked ? 'text-gray-200' : 'text-gray-400',
+                     ])}
+                  >
                      {generatorStore.unlocked
                         ? `${generatorStore.effectiveProduction.proofs}/sec`
                         : '???'}
@@ -73,8 +92,8 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
          </div>
          <p
             className={cn([
-               'text-xs italic text-gray-400 mb-auto',
-               !generatorStore.unlocked && 'w-full',
+               'text-xs italic mb-auto transition-all duration-300',
+               generatorStore.unlocked ? 'text-gray-400' : 'text-gray-500 w-full',
             ])}
          >
             {generatorStore.unlocked
@@ -82,12 +101,12 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                : 'You need to dig deeper...'}
          </p>
          <div className="grid grid-cols-2 w-full gap-2">
-            <Card className="p-2 bg-green-800/30 border-green-900 rounded-sm">
+            <Card className="p-2 bg-green-800/30 border-green-900 rounded-sm transition-all duration-200 hover:bg-green-800/40">
                <h2 className="text-sm text-gray-400">Cost:</h2>
                <p className="text-sm">{generatorStore.getCost(hudStore.bulkBuy).proofs} proofs</p>
             </Card>
             {generatorStore.unlocked ? (
-               <Card className="p-2 bg-blue-800/30 border-blue-900 rounded-sm">
+               <Card className="p-2 bg-blue-800/30 border-blue-900 rounded-sm transition-all duration-200 hover:bg-blue-800/40">
                   <h2 className="text-sm text-gray-400">Next level:</h2>
                   <p className="text-sm text-blue-200">
                      {generatorStore.level + hudStore.bulkBuy} →{' '}
@@ -97,13 +116,18 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                   </p>
                </Card>
             ) : (
-               <Card className="p-2 bg-gray-600/30 border-gray-900 rounded-sm flex justify-center items-center">
-                  ???
+               <Card className="p-2 bg-gray-600/30 border-gray-900 rounded-sm flex justify-center items-center transition-all duration-300">
+                  <span className="text-gray-500">???</span>
                </Card>
             )}
          </div>
          <Button
-            className="w-full font-orbitron"
+            className={cn([
+               'w-full font-orbitron transition-all duration-300 transform-gpu',
+               'hover:scale-105 active:scale-95',
+               !gameStore.canBuyGenerator(generatorStore.id, hudStore.bulkBuy) &&
+                  'hover:scale-100 active:scale-100',
+            ])}
             disabled={!gameStore.canBuyGenerator(generatorStore.id, hudStore.bulkBuy)}
             size="sm"
             onClick={() => gameStore.buyGenerator(generatorStore.id, hudStore.bulkBuy)}
