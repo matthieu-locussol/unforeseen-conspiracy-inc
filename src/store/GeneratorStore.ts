@@ -1,39 +1,35 @@
 import type {
-   GeneratorCategory,
-   GeneratorConditions,
-   GeneratorCost,
    GeneratorId,
    GeneratorProduction,
-   GeneratorUpgrade,
    SerializedGeneratorData,
-   StatsBoost,
-   UpgradeId,
 } from '../types/generators';
+import type { Boost, CategoryId, Conditions, Cost, Upgrade, UpgradeId } from '../types/upgrades';
 
 import { makeAutoObservable } from 'mobx';
 
 import { GENERATORS } from '../data/generators';
+import { UPGRADES } from '../data/upgrades';
 
 export class GeneratorStore {
    public id!: GeneratorId;
 
-   public categories!: GeneratorCategory[];
+   public categories!: CategoryId[];
 
-   public baseCost!: GeneratorCost;
+   public baseCost!: Cost;
 
-   public costMultiplier!: GeneratorCost;
+   public costMultiplier!: Cost;
 
    public baseProduction!: GeneratorProduction;
 
    public productionMultiplier!: GeneratorProduction;
 
-   public conditions!: GeneratorConditions;
+   public conditions!: Conditions;
 
    public unlocked!: boolean;
 
    public level!: number;
 
-   public upgrades!: GeneratorUpgrade[];
+   public upgradesIds!: UpgradeId[];
 
    public purchasedUpgrades: Set<UpgradeId> = new Set();
 
@@ -41,6 +37,12 @@ export class GeneratorStore {
       makeAutoObservable(this);
 
       this._initialize(id);
+   }
+
+   public get upgrades(): Upgrade[] {
+      return this.upgradesIds
+         .map((upgradeId) => UPGRADES.find(({ id }) => id === upgradeId))
+         .filter((upgrade) => upgrade !== undefined) as Upgrade[];
    }
 
    public hasPurchasedUpgrade(upgradeId: UpgradeId): boolean {
@@ -109,7 +111,7 @@ export class GeneratorStore {
     * @param amount - The amount of new levels you want to buy.
     * @returns The cost to buy *amount* of this generator.
     */
-   public getCost(amount: number): GeneratorCost {
+   public getCost(amount: number): Cost {
       let totalProofsCost = 0;
       let totalFollowersCost = 0;
 
@@ -149,8 +151,12 @@ export class GeneratorStore {
             continue;
          }
 
-         for (const boost of upgrade.statsBoosts) {
-            if (boost.type === 'cost_reduction' && boost.target === 'this_generator') {
+         for (const boost of upgrade.boosts) {
+            if (
+               boost.type === 'cost_reduction' &&
+               boost.target.type === 'generator' &&
+               boost.target.id === this.id
+            ) {
                reduction += boost.value;
             }
          }
@@ -210,8 +216,12 @@ export class GeneratorStore {
             continue;
          }
 
-         for (const boost of upgrade.statsBoosts) {
-            if (boost.type === 'production_flat' && boost.target === 'this_generator') {
+         for (const boost of upgrade.boosts) {
+            if (
+               boost.type === 'production_flat' &&
+               boost.target.type === 'generator' &&
+               boost.target.id === this.id
+            ) {
                if (boost.resource === 'proofs') {
                   proofs += boost.value;
                } else if (boost.resource === 'followers') {
@@ -242,8 +252,12 @@ export class GeneratorStore {
             continue;
          }
 
-         for (const boost of upgrade.statsBoosts) {
-            if (boost.type === 'production_multiplier' && boost.target === 'this_generator') {
+         for (const boost of upgrade.boosts) {
+            if (
+               boost.type === 'production_multiplier' &&
+               boost.target.type === 'generator' &&
+               boost.target.id === this.id
+            ) {
                if (boost.resource === 'proofs') {
                   proofs += boost.value;
                } else if (boost.resource === 'followers') {
@@ -262,8 +276,8 @@ export class GeneratorStore {
     * @description Get stats boosts that apply to this generator from its own upgrades.
     * @returns Array of stats boosts.
     */
-   public getAppliedStatsBoosts(): StatsBoost[] {
-      const boosts: StatsBoost[] = [];
+   public getAppliedStatsBoosts(): Boost[] {
+      const boosts: Boost[] = [];
 
       for (const upgradeId of this.purchasedUpgrades) {
          const upgrade = this.upgrades.find(({ id }) => id === upgradeId);
@@ -272,8 +286,8 @@ export class GeneratorStore {
             continue;
          }
 
-         for (const boost of upgrade.statsBoosts) {
-            if (boost.target === 'this_generator') {
+         for (const boost of upgrade.boosts) {
+            if (boost.target.type === 'generator' && boost.target.id === this.id) {
                boosts.push(boost);
             }
          }
@@ -301,7 +315,10 @@ export class GeneratorStore {
    }
 
    public serialize(): SerializedGeneratorData {
-      const upgradesRecord: Record<UpgradeId, boolean> = {};
+      const upgradesRecord: Record<UpgradeId, boolean> = UPGRADES.reduce(
+         (acc, upgrade) => ({ ...acc, [upgrade.id]: false }),
+         {} as Record<UpgradeId, boolean>,
+      );
 
       for (const upgrade of this.upgrades) {
          upgradesRecord[upgrade.id] = upgrade.purchased;
@@ -323,7 +340,7 @@ export class GeneratorStore {
          this.purchasedUpgrades.clear();
          for (const [upgradeId, purchased] of Object.entries(data.upgrades)) {
             if (purchased) {
-               this.purchasedUpgrades.add(upgradeId);
+               this.purchasedUpgrades.add(upgradeId as UpgradeId);
                const upgrade = this.upgrades.find((u) => u.id === upgradeId);
 
                if (upgrade) {
@@ -350,8 +367,7 @@ export class GeneratorStore {
       this.productionMultiplier = { ...data.productionMultiplier };
       this.conditions = { ...data.conditions };
       this.unlocked = data.unlocked;
-      this.upgrades = data.upgrades.map((upgrade) => ({ ...upgrade }));
-
+      this.upgradesIds = [...data.upgradesIds];
       this.level = 0;
       this.purchasedUpgrades.clear();
    }

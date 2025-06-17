@@ -1,5 +1,5 @@
 import type { I18nManager } from '../i18n/i18n';
-import type { StatsBoost } from '../types/generators';
+import type { Boost } from '../types/upgrades';
 
 export const toUpperCaseFirst = (str: string | undefined): string => {
    if (str === undefined) {
@@ -9,7 +9,7 @@ export const toUpperCaseFirst = (str: string | undefined): string => {
    return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-export const stringifyStatsBoost = (boost: StatsBoost, _i18n: I18nManager): string => {
+export const stringifyStatsBoost = (boost: Boost, _i18n: I18nManager): string => {
    const valueStr =
       boost.type.includes('multiplier') ||
       boost.type.includes('chance') ||
@@ -18,12 +18,12 @@ export const stringifyStatsBoost = (boost: StatsBoost, _i18n: I18nManager): stri
          : `+${boost.value}`;
 
    const targetStr =
-      boost.target === 'this_generator'
+      boost.target.type === 'generator'
          ? 'this generator'
-         : boost.target === 'all_generators'
+         : boost.target.type === 'all_generators'
          ? 'all generators'
-         : boost.target === 'category'
-         ? `${boost.category} generators`
+         : boost.target.type === 'category'
+         ? `${boost.target.id} generators`
          : 'global';
 
    const typeStr = boost.type.replace('_', ' ').replace(/\b\w/g, (l: string) => l.toUpperCase());

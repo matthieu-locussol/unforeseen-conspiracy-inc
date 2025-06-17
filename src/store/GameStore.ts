@@ -1,5 +1,6 @@
 import type { SerializedGameData } from '../types/game';
-import type { GeneratorId, UpgradeId } from '../types/generators';
+import type { GeneratorId } from '../types/generators';
+import type { UpgradeId } from '../types/upgrades';
 
 import { makeAutoObservable } from 'mobx';
 
@@ -110,11 +111,12 @@ export class GameStore {
                continue;
             }
 
-            for (const boost of upgrade.statsBoosts) {
+            for (const boost of upgrade.boosts) {
                if (boost.type === 'production_multiplier') {
                   if (
-                     boost.target === 'all_generators' ||
-                     (boost.target === 'category' && generator.categories.includes(boost.category!))
+                     boost.target.type === 'all_generators' ||
+                     (boost.target.type === 'category' &&
+                        generator.categories.includes(boost.target.id))
                   ) {
                      if (boost.resource === 'proofs') {
                         proofsMultiplier += boost.value;
@@ -156,9 +158,9 @@ export class GameStore {
                continue;
             }
 
-            for (const boost of upgrade.statsBoosts) {
-               if (boost.type === 'production_multiplier' && boost.target === 'category') {
-                  if (targetGenerator.categories.includes(boost.category!)) {
+            for (const boost of upgrade.boosts) {
+               if (boost.type === 'production_multiplier' && boost.target.type === 'category') {
+                  if (targetGenerator.categories.includes(boost.target.id)) {
                      if (boost.resource === 'proofs') {
                         proofsMultiplier += boost.value;
                      } else if (boost.resource === 'followers') {

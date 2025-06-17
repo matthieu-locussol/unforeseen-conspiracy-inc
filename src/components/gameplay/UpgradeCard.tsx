@@ -1,5 +1,5 @@
 import type { GeneratorStore } from '../../store/GeneratorStore';
-import type { GeneratorUpgrade } from '../../types/generators';
+import type { Upgrade } from '../../types/upgrades';
 
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
@@ -15,7 +15,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../core/ui/popover';
 
 export interface UpgradeCardProps {
    generatorStore: GeneratorStore;
-   upgrade: GeneratorUpgrade;
+   upgrade: Upgrade;
 }
 
 export const UpgradeCard = observer(({ generatorStore, upgrade }: UpgradeCardProps) => {
@@ -88,7 +88,7 @@ export const UpgradeCard = observer(({ generatorStore, upgrade }: UpgradeCardPro
                   <div className="border-t border-gray-700 pt-3">
                      <h4 className="text-sm font-medium text-gray-400 mb-2">Effects:</h4>
                      <div className="space-y-1">
-                        {upgrade.statsBoosts.map((boost, index) => (
+                        {upgrade.boosts.map((boost, index) => (
                            <div key={index} className="text-xs text-gray-300">
                               {stringifyStatsBoost(boost, i18n)}
                            </div>

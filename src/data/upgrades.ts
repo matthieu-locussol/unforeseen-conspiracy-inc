@@ -1,127 +1,197 @@
-import type { UpgradeCategory, UpgradeData } from '../store/UpgradeStore';
+import type { Upgrade } from '../types/upgrades';
 
-// Initial upgrades for the game
-export const initialUpgrades: UpgradeData[] = [
-   // Click upgrades (Metabolism)
+export const UPGRADES: Upgrade[] = [
    {
-      id: 'click_value_1',
-      name: 'Watch YouTube',
-      description: 'YouTube conspiracy videos give you new ideas. +1 to click value.',
-      category: 'click' as UpgradeCategory,
-      cost: 15,
-      purchased: false,
-      visible: true,
-      prerequisiteUpgradeIds: [],
-      requiredProofs: 0,
-   },
-   {
-      id: 'click_value_2',
-      name: 'Practice Penspinning',
+      id: 'chemtrails_production_boost',
+      name: 'Enhanced Chemical Analysis',
       description:
-         'Distract yourself with pen tricks to unlock your subconscious. +5 to click value.',
-      category: 'click' as UpgradeCategory,
-      cost: 100,
+         'Improved analysis techniques reveal more evidence. +50% proof production for Chemtrails.',
+      icon: 'flask',
+      cost: { proofs: 100, followers: 0 },
+      boosts: [
+         {
+            type: 'production_multiplier',
+            target: {
+               type: 'generator',
+               id: 'chemtrails',
+            },
+            value: 0.5,
+            resource: 'proofs',
+         },
+      ],
+      conditions: { proofs: 50, followers: 0, paranoia: 0, generators: [] },
+      maxLevel: 1,
       purchased: false,
-      visible: false,
-      prerequisiteUpgradeIds: ['click_value_1'],
-      requiredProofs: 50,
    },
    {
-      id: 'click_multiplier_1',
-      name: 'Fold Aluminum Hats',
-      description: 'Block out mind control rays. +50% to all clicks.',
-      category: 'click' as UpgradeCategory,
-      cost: 250,
-      purchased: false,
-      visible: false,
-      prerequisiteUpgradeIds: ['click_value_1'],
-      requiredProofs: 150,
-   },
-   {
-      id: 'click_critical_chance_1',
-      name: 'Read Conspiracy Books',
-      description: 'Discover patterns others miss. +5% chance of critical clicks.',
-      category: 'click' as UpgradeCategory,
-      cost: 500,
-      purchased: false,
-      visible: false,
-      prerequisiteUpgradeIds: ['click_value_2'],
-      requiredProofs: 300,
-   },
-   {
-      id: 'click_critical_multiplier_1',
-      name: 'Browse 4chan Archives',
-      description: 'The wisdom of anonymous. Increases critical click multiplier from 2x to 3x.',
-      category: 'click' as UpgradeCategory,
-      cost: 1000,
-      purchased: false,
-      visible: false,
-      prerequisiteUpgradeIds: ['click_critical_chance_1'],
-      requiredProofs: 750,
-   },
-
-   // Resource upgrades
-   {
-      id: 'proof_multiplier_1',
-      name: 'Bookmark Forum Posts',
-      description: 'Save important information for later. +25% to proof production.',
-      category: 'resource' as UpgradeCategory,
-      cost: 200,
-      purchased: false,
-      visible: false,
-      prerequisiteUpgradeIds: [],
-      requiredProofs: 100,
-   },
-   {
-      id: 'proof_multiplier_2',
-      name: 'Cognitive Dissonance Resistance',
+      id: 'chemtrails_cost_reduction',
+      name: 'Efficient Evidence Gathering',
       description:
-         'Conflicting information just makes your theories stronger. +50% to proof production.',
-      category: 'resource' as UpgradeCategory,
-      cost: 1000,
+         'Streamlined processes reduce investigation costs. -25% cost for Chemtrails upgrades.',
+      icon: 'coins',
+      cost: { proofs: 200, followers: 0 },
+      boosts: [
+         {
+            type: 'cost_reduction',
+            target: {
+               type: 'generator',
+               id: 'chemtrails',
+            },
+            value: 0.25,
+         },
+      ],
+      conditions: { proofs: 150, followers: 0, paranoia: 0, generators: [] },
+      maxLevel: 1,
       purchased: false,
-      visible: false,
-      prerequisiteUpgradeIds: ['proof_multiplier_1'],
-      requiredProofs: 750,
-   },
-
-   // Generator category upgrades
-   {
-      id: 'common_generator_boost',
-      name: 'Connect the Dots',
-      description:
-         'Find common patterns between conspiracies. Common conspiracies produce +50% more proofs.',
-      category: 'generator' as UpgradeCategory,
-      cost: 500,
-      purchased: false,
-      visible: false,
-      prerequisiteUpgradeIds: [],
-      requiredProofs: 400,
    },
    {
-      id: 'uncommon_generator_boost',
-      name: 'Deep Web Research',
+      id: 'chemtrails_double_chance',
+      name: 'Critical Discovery',
       description:
-         'Venture into the hidden parts of the internet. Uncommon conspiracies produce +50% more proofs.',
-      category: 'generator' as UpgradeCategory,
-      cost: 2500,
+         'Sometimes you find smoking gun evidence. 15% chance to double Chemtrails production.',
+      icon: 'target',
+      cost: { proofs: 500, followers: 0 },
+      boosts: [
+         {
+            type: 'double_chance',
+            target: {
+               type: 'generator',
+               id: 'chemtrails',
+            },
+            value: 0.15,
+         },
+      ],
+      conditions: { proofs: 300, followers: 0, paranoia: 0, generators: [] },
+      maxLevel: 1,
       purchased: false,
-      visible: false,
-      prerequisiteUpgradeIds: [],
-      requiredProofs: 2000,
    },
-
-   // Special upgrades
    {
-      id: 'offline_progress_1',
-      name: 'Subconscious Processing',
+      id: 'michael_jackson_media_boost',
+      name: 'Media Manipulation Mastery',
       description:
-         "Your brain works on conspiracies even when you're not actively thinking about them. Increase offline progress from 50% to 75%.",
-      category: 'special' as UpgradeCategory,
-      cost: 1500,
+         'Better understanding of media manipulation techniques. +75% proof production for media-manipulation conspiracies.',
+      icon: 'tv',
+      cost: { proofs: 300, followers: 0 },
+      boosts: [
+         {
+            type: 'production_multiplier',
+            target: {
+               type: 'category',
+               id: 'media-manipulation',
+            },
+            value: 0.75,
+            resource: 'proofs',
+         },
+      ],
+      conditions: { proofs: 200, followers: 0, paranoia: 0, generators: [] },
+      maxLevel: 1,
       purchased: false,
-      visible: false,
-      prerequisiteUpgradeIds: [],
-      requiredProofs: 1000,
+   },
+   {
+      id: 'michael_jackson_speed_boost',
+      name: 'Rapid Investigation',
+      description:
+         'Faster evidence collection techniques. +30% speed for Michael Jackson investigations.',
+      icon: 'zap',
+      cost: { proofs: 800, followers: 0 },
+      boosts: [
+         {
+            type: 'speed',
+            target: {
+               type: 'generator',
+               id: 'michael_jackson',
+            },
+            value: 0.3,
+         },
+      ],
+      conditions: { proofs: 500, followers: 0, paranoia: 0, generators: [] },
+      maxLevel: 1,
+      purchased: false,
+   },
+   {
+      id: 'michael_jackson_bulk_discount',
+      name: 'Economy of Scale',
+      description:
+         'Bulk operations become more efficient. -10% cost when buying x100 Michael Jackson levels.',
+      icon: 'package',
+      cost: { proofs: 1500, followers: 0 },
+      boosts: [
+         {
+            type: 'bulk_discount',
+            target: {
+               type: 'generator',
+               id: 'michael_jackson',
+            },
+            value: 0.1,
+         },
+      ],
+      conditions: { proofs: 1000, followers: 0, paranoia: 0, generators: [] },
+      maxLevel: 1,
+      purchased: false,
+   },
+   {
+      id: 'flat_earth_global_boost',
+      name: 'Conspiracy Network',
+      description:
+         'Establish connections between all conspiracies. +25% proof production for all generators.',
+      icon: 'globe',
+      cost: { proofs: 2000, followers: 0 },
+      boosts: [
+         {
+            type: 'production_multiplier',
+            target: {
+               type: 'all_generators',
+            },
+            value: 0.25,
+            resource: 'proofs',
+         },
+      ],
+      conditions: { proofs: 1500, followers: 0, paranoia: 0, generators: [] },
+      maxLevel: 1,
+      purchased: false,
+   },
+   {
+      id: 'flat_earth_organization_boost',
+      name: 'Organizational Excellence',
+      description:
+         'Better coordination among organized conspiracies. +100% proof production for organization conspiracies.',
+      icon: 'users',
+      cost: { proofs: 1200, followers: 0 },
+      boosts: [
+         {
+            type: 'production_multiplier',
+            target: {
+               type: 'category',
+               id: 'organization',
+            },
+            value: 1.0,
+            resource: 'proofs',
+         },
+      ],
+      conditions: { proofs: 800, followers: 0, paranoia: 0, generators: [] },
+      maxLevel: 1,
+      purchased: false,
+   },
+   {
+      id: 'flat_earth_production_flat',
+      name: 'Core Evidence Cache',
+      description:
+         'A fundamental collection of irrefutable evidence. +2 base proof production for Flat Earth.',
+      icon: 'archive',
+      cost: { proofs: 5000, followers: 0 },
+      boosts: [
+         {
+            type: 'production_flat',
+            target: {
+               type: 'generator',
+               id: 'flat_earth',
+            },
+            value: 2,
+            resource: 'proofs',
+         },
+      ],
+      conditions: { proofs: 3000, followers: 0, paranoia: 0, generators: [] },
+      maxLevel: 1,
+      purchased: false,
    },
 ];

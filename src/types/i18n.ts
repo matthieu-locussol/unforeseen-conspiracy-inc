@@ -1,5 +1,6 @@
-import type { GeneratorId, UpgradeId } from './generators';
+import type { GeneratorId } from './generators';
 import type { ResourceId } from './resources';
+import type { UpgradeId } from './upgrades';
 
 export type Locale = 'en' | 'fr';
 
