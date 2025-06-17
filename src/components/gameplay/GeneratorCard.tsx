@@ -30,7 +30,6 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                !gameStore.canBuyGenerator(generatorStore.id, hudStore.bulkBuy) &&
                'opacity-75 pointer-events-none bg-gray-900/40'
             }`,
-            generatorStore.unlocked && 'hover:scale-[1.02]',
          ])}
       >
          <div className="flex flex-col w-full gap-1">
@@ -122,12 +121,7 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
             )}
          </div>
          <Button
-            className={cn([
-               'w-full font-orbitron transition-all duration-300 transform-gpu',
-               'hover:scale-105 active:scale-95',
-               !gameStore.canBuyGenerator(generatorStore.id, hudStore.bulkBuy) &&
-                  'hover:scale-100 active:scale-100',
-            ])}
+            className={cn(['w-full font-orbitron transition-all duration-300 transform-gpu'])}
             disabled={!gameStore.canBuyGenerator(generatorStore.id, hudStore.bulkBuy)}
             size="sm"
             onClick={() => gameStore.buyGenerator(generatorStore.id, hudStore.bulkBuy)}

@@ -46,14 +46,6 @@ export const GeneratorsGrid = observer(() => {
                         ease: 'easeInOut',
                      },
                   }}
-                  whileHover={
-                     generator.unlocked
-                        ? {
-                             scale: 1.02,
-                             transition: { duration: 0.2 },
-                          }
-                        : undefined
-                  }
                >
                   <GeneratorCard generatorStore={generator} />
                </motion.div>
