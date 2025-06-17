@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { LOCALSTORAGE_I18N_KEY } from '../data/constants';
 import { LOCALES, TRANSLATIONS } from '../data/i18n';
 
-class I18nManager {
+export class I18nManager {
    private locale: Locale;
    private listeners: Array<() => void> = [];
 

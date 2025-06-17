@@ -36,6 +36,35 @@ const AlertTriangleIcon = (props: IconSvgProps) => {
    );
 };
 
+const ArchiveIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <rect height="12" rx="2" width="20" x="2" y="3" />
+         <path d="m8 7 4 4 4-4" />
+         <path d="M2 7h20" />
+      </svg>
+   );
+};
+
+const CheckIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M20 6 9 17l-5-5" />
+      </svg>
+   );
+};
+
+const CoinsIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <circle cx="8" cy="8" r="6" />
+         <path d="M18.09 10.37A6 6 0 1 1 10.34 18" />
+         <path d="M7 6h1v4" />
+         <path d="M16.71 13.88A4 4 0 1 1 20.42 10.15" />
+      </svg>
+   );
+};
+
 const DatabaseIcon = (props: IconSvgProps) => {
    return (
       <svg {...getCommonProps(props)}>
@@ -88,6 +117,25 @@ const FileWarningIcon = (props: IconSvgProps) => {
    );
 };
 
+const FlaskIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M9 3v3l-7 7a2 2 0 0 0 0 2.83l2.17 2.17a2 2 0 0 0 2.83 0L15 10V3" />
+         <path d="M16 2v6l6 6a2 2 0 0 1 0 2.83l-2.17 2.17a2 2 0 0 1-2.83 0L10 12V6" />
+      </svg>
+   );
+};
+
+const GlobeIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <circle cx="12" cy="12" r="10" />
+         <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+         <path d="M2 12h20" />
+      </svg>
+   );
+};
+
 const InfoIcon = (props: IconSvgProps) => {
    return (
       <svg {...getCommonProps(props)}>
@@ -103,6 +151,16 @@ const LockIcon = (props: IconSvgProps) => {
       <svg {...getCommonProps(props)}>
          <rect height="11" rx="2" ry="2" width="18" x="3" y="11" />
          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      </svg>
+   );
+};
+
+const PackageIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
+         <path d="M12 22V12" />
+         <path d="m3.3 7 8.7 5 8.7-5" />
       </svg>
    );
 };
@@ -151,11 +209,41 @@ const ShieldIcon = (props: IconSvgProps) => {
    );
 };
 
+const TargetIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <circle cx="12" cy="12" r="10" />
+         <circle cx="12" cy="12" r="6" />
+         <circle cx="12" cy="12" r="2" />
+      </svg>
+   );
+};
+
 const TerminalIcon = (props: IconSvgProps) => {
    return (
       <svg {...getCommonProps(props)}>
          <path d="M12 19h8" />
          <path d="m4 17 6-6-6-6" />
+      </svg>
+   );
+};
+
+const TvIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <rect height="13" rx="2" ry="2" width="20" x="2" y="3" />
+         <path d="m8 21 4-4 4 4" />
+      </svg>
+   );
+};
+
+const UsersIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+         <circle cx="9" cy="7" r="4" />
+         <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+         <path d="M16 3.13a4 4 0 0 1 0 7.75" />
       </svg>
    );
 };
@@ -179,41 +267,69 @@ const XIcon = (props: IconSvgProps) => {
    );
 };
 
+const ZapIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+      </svg>
+   );
+};
+
 export type CustomIcon =
    | 'alertTriangle'
+   | 'archive'
+   | 'check'
+   | 'coins'
    | 'database'
    | 'databaseBackup'
    | 'download'
    | 'eye'
    | 'fileWarning'
+   | 'flask'
+   | 'globe'
    | 'info'
    | 'lock'
+   | 'package'
    | 'pause'
    | 'play'
    | 'searchCheck'
    | 'settings'
    | 'shield'
+   | 'target'
    | 'terminal'
+   | 'tv'
+   | 'users'
    | 'usersRound'
-   | 'x';
+   | 'x'
+   | 'zap';
 
 const ICONS: Record<CustomIcon, React.FC<IconSvgProps>> = {
    alertTriangle: AlertTriangleIcon,
+   archive: ArchiveIcon,
+   check: CheckIcon,
+   coins: CoinsIcon,
    database: DatabaseIcon,
    databaseBackup: DatabaseBackupIcon,
    download: DownloadIcon,
    eye: EyeIcon,
    fileWarning: FileWarningIcon,
+   flask: FlaskIcon,
+   globe: GlobeIcon,
    info: InfoIcon,
    lock: LockIcon,
+   package: PackageIcon,
    pause: PauseIcon,
    play: PlayIcon,
    searchCheck: SearchCheckIcon,
    settings: SettingsIcon,
    shield: ShieldIcon,
+   target: TargetIcon,
    terminal: TerminalIcon,
+   tv: TvIcon,
+   users: UsersIcon,
    usersRound: UsersRoundIcon,
    x: XIcon,
+   zap: ZapIcon,
 };
 
 interface CustomIconProps extends IconSvgProps {

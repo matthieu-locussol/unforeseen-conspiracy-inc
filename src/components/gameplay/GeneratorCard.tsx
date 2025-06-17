@@ -10,6 +10,8 @@ import { Badge } from '../core/ui/badge';
 import { Button } from '../core/ui/button';
 import { Card } from '../core/ui/card';
 
+import { UpgradesGrid } from './UpgradesGrid';
+
 export interface GeneratorCardProps {
    generatorStore: GeneratorStore;
 }
@@ -58,7 +60,7 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                   <CustomIcon
                      className={cn([
                         'h-4 w-4 transition-colors duration-300',
-                        generatorStore.unlocked ? 'text-green-400' : 'text-gray-400',
+                        generatorStore.unlocked ? 'text-amber-400' : 'text-gray-400',
                      ])}
                      icon="searchCheck"
                   />
@@ -75,7 +77,7 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                </div>
                {generatorStore.effectiveProduction.followers > 0 && (
                   <div className="flex items-center gap-1.5">
-                     <CustomIcon className="h-4 w-4 text-green-400" icon="usersRound" />
+                     <CustomIcon className="h-4 w-4 text-amber-400" icon="usersRound" />
                      <p className="text-sm">{generatorStore.effectiveProduction.followers}/sec</p>
                   </div>
                )}
@@ -107,8 +109,12 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
             {generatorStore.unlocked ? (
                <Card className="p-2 bg-blue-800/30 border-blue-900 rounded-sm transition-all duration-200 hover:bg-blue-800/40">
                   <h2 className="text-sm text-gray-400">Next level:</h2>
-                  <p className="text-sm text-blue-200">
-                     {generatorStore.level + hudStore.bulkBuy} →{' '}
+                  <p className="text-sm text-blue-200 flex items-center">
+                     <CustomIcon
+                        className="inline-flex h-4 w-4 mr-1 text-amber-400"
+                        icon="searchCheck"
+                     />{' '}
+                     →{' '}
                      {generatorStore.getProduction(generatorStore.level + hudStore.bulkBuy).proofs}
                      /sec (+
                      {generatorStore.getProductionIncrease(hudStore.bulkBuy).proofs}/sec)
@@ -120,13 +126,14 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                </Card>
             )}
          </div>
+         <UpgradesGrid generatorStore={generatorStore} />
          <Button
-            className={cn(['w-full font-orbitron transition-all duration-300 transform-gpu'])}
+            className="w-full font-orbitron transition-all duration-300 transform-gpu"
             disabled={!gameStore.canBuyGenerator(generatorStore.id, hudStore.bulkBuy)}
             size="sm"
             onClick={() => gameStore.buyGenerator(generatorStore.id, hudStore.bulkBuy)}
          >
-            UPGRADE x{hudStore.bulkBuy}
+            Upgrade ×{hudStore.bulkBuy}
          </Button>
       </Card>
    );

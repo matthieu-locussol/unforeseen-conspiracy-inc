@@ -1,5 +1,5 @@
 import type { SerializedGameData } from '../types/game';
-import type { GeneratorId } from '../types/generators';
+import type { GeneratorId, UpgradeId } from '../types/generators';
 
 import { makeAutoObservable } from 'mobx';
 
@@ -61,10 +61,26 @@ export class GameStore {
       const previousFollowers = this.followers.value;
       const previousParanoia = this.paranoia.value;
 
+      // Get global multipliers that apply to all generators
+      const globalMultipliers = this.getGlobalMultipliers();
+
       this.generators.forEach((generator) => {
-         this.proofs.add(generator.effectiveProduction.proofs);
-         this.followers.add(generator.effectiveProduction.followers);
-         this.paranoia.add(generator.effectiveProduction.paranoia);
+         const production = generator.effectiveProduction;
+
+         // Get category-specific multipliers for this generator
+         const categoryMultipliers = this.getCategoryMultipliers(generator);
+
+         // Apply both global and category multipliers
+         const finalProofsProduction =
+            production.proofs * globalMultipliers.proofs * categoryMultipliers.proofs;
+         const finalFollowersProduction =
+            production.followers * globalMultipliers.followers * categoryMultipliers.followers;
+         const finalParanoiaProduction =
+            production.paranoia * globalMultipliers.paranoia * categoryMultipliers.paranoia;
+
+         this.proofs.add(finalProofsProduction);
+         this.followers.add(finalFollowersProduction);
+         this.paranoia.add(finalParanoiaProduction);
       });
 
       this.proofs.tick();
@@ -78,10 +94,95 @@ export class GameStore {
       );
    }
 
+   /**
+    * @description Get global multipliers from all purchased upgrades.
+    */
+   private getGlobalMultipliers(): { proofs: number; followers: number; paranoia: number } {
+      let proofsMultiplier = 1;
+      let followersMultiplier = 1;
+      let paranoiaMultiplier = 1;
+
+      for (const generator of this.generators) {
+         for (const upgradeId of generator.purchasedUpgrades) {
+            const upgrade = generator.upgrades.find(({ id }) => id === upgradeId);
+
+            if (upgrade === undefined) {
+               continue;
+            }
+
+            for (const boost of upgrade.statsBoosts) {
+               if (boost.type === 'production_multiplier') {
+                  if (
+                     boost.target === 'all_generators' ||
+                     (boost.target === 'category' && generator.categories.includes(boost.category!))
+                  ) {
+                     if (boost.resource === 'proofs') {
+                        proofsMultiplier += boost.value;
+                     } else if (boost.resource === 'followers') {
+                        followersMultiplier += boost.value;
+                     } else if (boost.resource === 'paranoia') {
+                        paranoiaMultiplier += boost.value;
+                     }
+                  }
+               }
+            }
+         }
+      }
+
+      return {
+         proofs: proofsMultiplier,
+         followers: followersMultiplier,
+         paranoia: paranoiaMultiplier,
+      };
+   }
+
+   /**
+    * @description Get category-specific multipliers for a given generator.
+    */
+   public getCategoryMultipliers(targetGenerator: GeneratorStore): {
+      proofs: number;
+      followers: number;
+      paranoia: number;
+   } {
+      let proofsMultiplier = 1;
+      let followersMultiplier = 1;
+      let paranoiaMultiplier = 1;
+
+      for (const generator of this.generators) {
+         for (const upgradeId of generator.purchasedUpgrades) {
+            const upgrade = generator.upgrades.find(({ id }) => id === upgradeId);
+
+            if (upgrade === undefined) {
+               continue;
+            }
+
+            for (const boost of upgrade.statsBoosts) {
+               if (boost.type === 'production_multiplier' && boost.target === 'category') {
+                  if (targetGenerator.categories.includes(boost.category!)) {
+                     if (boost.resource === 'proofs') {
+                        proofsMultiplier += boost.value;
+                     } else if (boost.resource === 'followers') {
+                        followersMultiplier += boost.value;
+                     } else if (boost.resource === 'paranoia') {
+                        paranoiaMultiplier += boost.value;
+                     }
+                  }
+               }
+            }
+         }
+      }
+
+      return {
+         proofs: proofsMultiplier,
+         followers: followersMultiplier,
+         paranoia: paranoiaMultiplier,
+      };
+   }
+
    public canBuyGenerator(id: GeneratorId, amount: number): boolean {
       const generatorStore = this.generators.find((generator) => generator.id === id);
 
-      if (!generatorStore) {
+      if (generatorStore === undefined) {
          return false;
       }
 
@@ -93,7 +194,7 @@ export class GameStore {
    public buyGenerator(id: GeneratorId, amount: number): boolean {
       const generatorStore = this.generators.find((generator) => generator.id === id);
 
-      if (!generatorStore) {
+      if (generatorStore === undefined) {
          return false;
       }
 
@@ -109,6 +210,55 @@ export class GameStore {
       generatorStore.buy(amount);
 
       return true;
+   }
+
+   /**
+    * @description Check if the player can buy an upgrade.
+    * @param generatorId - The ID of the generator.
+    * @param upgradeId - The ID of the upgrade.
+    * @returns true if the upgrade can be purchased, false otherwise.
+    */
+   public canBuyUpgrade(generatorId: GeneratorId, upgradeId: UpgradeId): boolean {
+      const generatorStore = this.generators.find(({ id }) => id === generatorId);
+
+      if (generatorStore === undefined) {
+         return false;
+      }
+
+      return generatorStore.canBuyUpgrade(upgradeId, this.proofs.value, this.followers.value);
+   }
+
+   /**
+    * @description Buy an upgrade for a generator.
+    * @param generatorId - The ID of the generator.
+    * @param upgradeId - The ID of the upgrade.
+    * @returns true if the upgrade was successfully purchased, false otherwise.
+    */
+   public buyUpgrade(generatorId: GeneratorId, upgradeId: UpgradeId): boolean {
+      const generatorStore = this.generators.find((generator) => generator.id === generatorId);
+
+      if (generatorStore === undefined) {
+         return false;
+      }
+
+      const upgrade = generatorStore.upgrades.find(({ id }) => id === upgradeId);
+
+      if (!upgrade || upgrade.purchased) {
+         return false;
+      }
+
+      if (!this.canBuyUpgrade(generatorId, upgradeId)) {
+         return false;
+      }
+
+      const successProofs = this.proofs.remove(upgrade.cost.proofs);
+      const successFollowers = this.followers.remove(upgrade.cost.followers);
+
+      if (!successProofs || !successFollowers) {
+         return false;
+      }
+
+      return generatorStore.buyUpgrade(upgradeId);
    }
 
    public clickProofs(): number {

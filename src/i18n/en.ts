@@ -35,4 +35,51 @@ export const EN = {
             "The King of Pop's death was a hoax. He is still alive and living in a secret bunker with Elvis Presley.",
       },
    },
+   upgrades: {
+      chemtrails_production_boost: {
+         name: 'Enhanced Chemical Analysis',
+         description:
+            'Improved analysis techniques reveal more evidence. +50% proof production for Chemtrails.',
+      },
+      chemtrails_cost_reduction: {
+         name: 'Efficient Evidence Gathering',
+         description:
+            'Streamlined processes reduce investigation costs. -25% cost for Chemtrails upgrades.',
+      },
+      chemtrails_double_chance: {
+         name: 'Critical Discovery',
+         description:
+            'Sometimes you find smoking gun evidence. 15% chance to double Chemtrails production.',
+      },
+      michael_jackson_media_boost: {
+         name: 'Media Manipulation Mastery',
+         description:
+            'Better understanding of media manipulation techniques. +75% proof production for media-manipulation conspiracies.',
+      },
+      michael_jackson_speed_boost: {
+         name: 'Rapid Investigation',
+         description:
+            'Faster evidence collection techniques. +30% speed for Michael Jackson investigations.',
+      },
+      michael_jackson_bulk_discount: {
+         name: 'Economy of Scale',
+         description:
+            'Bulk operations become more efficient. -10% cost when buying x100 Michael Jackson levels.',
+      },
+      flat_earth_global_boost: {
+         name: 'Conspiracy Network',
+         description:
+            'Establish connections between all conspiracies. +25% proof production for all generators.',
+      },
+      flat_earth_organization_boost: {
+         name: 'Organizational Excellence',
+         description:
+            'Better coordination among organized conspiracies. +100% proof production for organization conspiracies.',
+      },
+      flat_earth_production_flat: {
+         name: 'Core Evidence Cache',
+         description:
+            'A fundamental collection of irrefutable evidence. +2 base proof production for Flat Earth.',
+      },
+   },
 } satisfies Translation;
