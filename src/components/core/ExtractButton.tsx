@@ -7,7 +7,9 @@ export const ExtractButton = ({
    ...rest
 }: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) => {
    const handleExtract: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-      onClick?.(event);
+      if (event.clientX !== 0 && event.clientY !== 0) {
+         onClick?.(event);
+      }
    };
 
    return (
@@ -36,6 +38,7 @@ export const ExtractButton = ({
             // Disabled state
             'disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none',
          ])}
+         tabIndex={-1}
          {...rest}
          onClick={handleExtract}
       />
