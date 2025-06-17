@@ -9,6 +9,7 @@ export const badgeVariants = cva(
             secondary: 'border-transparent bg-secondary text-secondary-foreground',
             destructive: 'border-transparent bg-destructive text-destructive-foreground',
             outline: 'text-foreground',
+            icon: 'absolute -top-1.25 right-0.25 h-3 w-3 p-0 flex items-center justify-center',
          },
       },
       defaultVariants: {
