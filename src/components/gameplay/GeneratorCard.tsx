@@ -24,7 +24,7 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
    return (
       <Card
          className={cn([
-            'flex flex-col items-center w-full p-4 gap-3 relative',
+            'flex flex-col items-center w-full p-4 gap-3 relative h-full',
             'border-green-900/50 hover:shadow-lg hover:shadow-green-900/30',
             'transition-all duration-300 ease-out',
             'transform-gpu will-change-transform',
