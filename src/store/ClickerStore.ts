@@ -51,10 +51,10 @@ export class ClickerStore {
 
       if (delta < this.comboTimeWindow) {
          this.clickCount++;
-         this.comboMultiplier = Math.min(this.clickCount * 0.1, this.maxComboMultiplier);
+         this.comboMultiplier = 1 + Math.min(this.clickCount * 0.1, this.maxComboMultiplier);
       } else {
          this.clickCount = 1;
-         this.comboMultiplier = 0;
+         this.comboMultiplier = 1;
       }
 
       this.lastClickTime = now;

@@ -113,7 +113,7 @@ export const ExtractButton = ({ onClick, children, ...rest }: ExtractButtonProps
                >
                   +{text.value.toFixed(1)}
                   <span className="text-amber-400 text-xs ml-0.5">
-                     {text.combo > 0 && `×${text.combo.toFixed(1)}`}
+                     {text.combo > 1 && `×${text.combo.toFixed(1)}`}
                   </span>
                </div>
             ))}
