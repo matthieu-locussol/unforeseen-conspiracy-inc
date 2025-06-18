@@ -23,18 +23,6 @@ export const BootloaderPage = observer(() => {
       'System initialization started...',
       'Loading boot modules...',
       'Checking system integrity...',
-      'Verifying security protocols...',
-      'Loading user interface...',
-      'Establishing network connections...',
-      'Running diagnostic tests...',
-      'Calibrating neural interface...',
-      'Loading conspiracy database...',
-      'Encrypting communications...',
-      'Initializing quantum protocols...',
-      'Running security scans...',
-      'Loading classified modules...',
-      'Establishing secure channels...',
-      'Final system checks...',
    ]);
    const [bootPhase, setBootPhase] = useState(1);
 
