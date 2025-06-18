@@ -237,6 +237,15 @@ const TerminalIcon = (props: IconSvgProps) => {
    );
 };
 
+const TrendingUpIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M16 7h6v6" />
+         <path d="m22 7-8.5 8.5-5-5L2 17" />
+      </svg>
+   );
+};
+
 const TvIcon = (props: IconSvgProps) => {
    return (
       <svg {...getCommonProps(props)}>
@@ -307,6 +316,7 @@ export type CustomIcon =
    | 'shield'
    | 'target'
    | 'terminal'
+   | 'trendingUp'
    | 'tv'
    | 'users'
    | 'usersRound'
@@ -336,6 +346,7 @@ const ICONS: Record<CustomIcon, React.FC<IconSvgProps>> = {
    shield: ShieldIcon,
    target: TargetIcon,
    terminal: TerminalIcon,
+   trendingUp: TrendingUpIcon,
    tv: TvIcon,
    users: UsersIcon,
    usersRound: UsersRoundIcon,

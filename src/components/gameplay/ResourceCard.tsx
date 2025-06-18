@@ -3,6 +3,7 @@ import type { ResourceStore } from '../../store/ResourceStore';
 import { observer } from 'mobx-react-lite';
 
 import { useI18n } from '../../i18n/i18n';
+import { useStore } from '../../store/StoreContext';
 import { cn } from '../../utils/cn';
 import { CustomIcon } from '../core/Icons';
 import { Card } from '../core/ui/card';
@@ -14,6 +15,7 @@ interface ResourceCardProps {
 
 export const ResourceCard = observer(({ isRed, resourceStore }: ResourceCardProps) => {
    const { t } = useI18n();
+   const { gameStore } = useStore();
 
    return (
       <Card
@@ -50,6 +52,17 @@ export const ResourceCard = observer(({ isRed, resourceStore }: ResourceCardProp
                {resourceStore.value.toFixed(0)}
             </p>
          </div>
+         {gameStore.totalProduction[resourceStore.id] > 0 && (
+            <div
+               className={cn([
+                  'absolute flex items-center gap-1 border-t border-l border-amber-400/40 bg-amber-700/30 bottom-0 right-0 rounded-tl-md rounded-br-md px-2 text-xs text-amber-200',
+                  isRed && 'border-red-400/40 bg-red-700/30 text-red-200',
+               ])}
+            >
+               {gameStore.totalProduction[resourceStore.id].toFixed(1)}/s{' '}
+               <CustomIcon className="w-2.5 h-2.5" icon="trendingUp" />
+            </div>
+         )}
       </Card>
    );
 });

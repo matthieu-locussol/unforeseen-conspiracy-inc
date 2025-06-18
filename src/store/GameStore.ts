@@ -312,6 +312,19 @@ export class GameStore {
       return Math.min(reduction, 0.9);
    }
 
+   public get totalProduction(): GeneratorProduction {
+      return this.generators.reduce(
+         (acc, generator) => {
+            return {
+               proofs: acc.proofs + generator.effectiveProduction.proofs,
+               followers: acc.followers + generator.effectiveProduction.followers,
+               paranoia: acc.paranoia + generator.effectiveProduction.paranoia,
+            };
+         },
+         { proofs: 0, followers: 0, paranoia: 0 },
+      );
+   }
+
    public clickProofs(): number {
       const value = this.clicker.click();
 
