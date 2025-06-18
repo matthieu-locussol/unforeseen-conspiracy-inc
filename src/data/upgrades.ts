@@ -20,8 +20,7 @@ export const UPGRADES: Upgrade[] = [
          },
       ],
       conditions: { proofs: 50, followers: 0, paranoia: 0, generators: [] },
-      maxLevel: 1,
-      purchased: false,
+      unlocked: false,
    },
    {
       id: 'chemtrails_cost_reduction',
@@ -41,8 +40,7 @@ export const UPGRADES: Upgrade[] = [
          },
       ],
       conditions: { proofs: 150, followers: 0, paranoia: 0, generators: [] },
-      maxLevel: 1,
-      purchased: false,
+      unlocked: false,
    },
    {
       id: 'chemtrails_double_chance',
@@ -62,8 +60,7 @@ export const UPGRADES: Upgrade[] = [
          },
       ],
       conditions: { proofs: 300, followers: 0, paranoia: 0, generators: [] },
-      maxLevel: 1,
-      purchased: false,
+      unlocked: false,
    },
    {
       id: 'michael_jackson_media_boost',
@@ -84,8 +81,7 @@ export const UPGRADES: Upgrade[] = [
          },
       ],
       conditions: { proofs: 200, followers: 0, paranoia: 0, generators: [] },
-      maxLevel: 1,
-      purchased: false,
+      unlocked: false,
    },
    {
       id: 'michael_jackson_speed_boost',
@@ -105,8 +101,7 @@ export const UPGRADES: Upgrade[] = [
          },
       ],
       conditions: { proofs: 500, followers: 0, paranoia: 0, generators: [] },
-      maxLevel: 1,
-      purchased: false,
+      unlocked: false,
    },
    {
       id: 'michael_jackson_bulk_discount',
@@ -126,8 +121,7 @@ export const UPGRADES: Upgrade[] = [
          },
       ],
       conditions: { proofs: 1000, followers: 0, paranoia: 0, generators: [] },
-      maxLevel: 1,
-      purchased: false,
+      unlocked: false,
    },
    {
       id: 'flat_earth_global_boost',
@@ -147,8 +141,7 @@ export const UPGRADES: Upgrade[] = [
          },
       ],
       conditions: { proofs: 1500, followers: 0, paranoia: 0, generators: [] },
-      maxLevel: 1,
-      purchased: false,
+      unlocked: false,
    },
    {
       id: 'flat_earth_organization_boost',
@@ -169,8 +162,7 @@ export const UPGRADES: Upgrade[] = [
          },
       ],
       conditions: { proofs: 800, followers: 0, paranoia: 0, generators: [] },
-      maxLevel: 1,
-      purchased: false,
+      unlocked: false,
    },
    {
       id: 'flat_earth_production_flat',
@@ -191,7 +183,6 @@ export const UPGRADES: Upgrade[] = [
          },
       ],
       conditions: { proofs: 3000, followers: 0, paranoia: 0, generators: [] },
-      maxLevel: 1,
-      purchased: false,
+      unlocked: false,
    },
 ];

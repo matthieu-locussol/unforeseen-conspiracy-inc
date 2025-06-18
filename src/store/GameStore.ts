@@ -1,15 +1,18 @@
 import type { SerializedGameData } from '../types/game';
 import type { GeneratorId } from '../types/generators';
-import type { UpgradeId } from '../types/upgrades';
+import type { Conditions, UpgradeId } from '../types/upgrades';
 
 import { makeAutoObservable } from 'mobx';
 
 import { GENERATORS } from '../data/generators';
+import { UPGRADES } from '../data/upgrades';
+import { _assertTrue } from '../utils/_assertMgt';
 
 import { ClickerStore } from './ClickerStore';
 import { GeneratorStore } from './GeneratorStore';
 import { ResourceStore } from './ResourceStore';
 import { StatisticsStore } from './StatisticsStore';
+import { UpgradeStore } from './UpgradeStore';
 
 export class GameStore {
    // Main game resources
@@ -21,6 +24,7 @@ export class GameStore {
    public generators: GeneratorStore[];
    public clicker: ClickerStore;
    public statistics: StatisticsStore;
+   public upgrades: UpgradeStore[];
 
    // Game state
    public lastUpdateTime: number;
@@ -38,16 +42,24 @@ export class GameStore {
       this.generators = [];
       this.clicker = new ClickerStore('default');
       this.statistics = new StatisticsStore();
+      this.upgrades = [];
 
       // Load initial game data
       this.initializeGenerators();
+      this.initializeUpgrades();
 
       this.lastUpdateTime = Date.now();
    }
 
    private initializeGenerators(): void {
       GENERATORS.forEach((generator) => {
-         this.generators.push(new GeneratorStore(generator.id));
+         this.generators.push(new GeneratorStore(generator.id, this));
+      });
+   }
+
+   private initializeUpgrades(): void {
+      UPGRADES.forEach((upgrade) => {
+         this.upgrades.push(new UpgradeStore(upgrade.id, this));
       });
    }
 
@@ -71,13 +83,22 @@ export class GameStore {
          // Get category-specific multipliers for this generator
          const categoryMultipliers = this.getCategoryMultipliers(generator);
 
-         // Apply both global and category multipliers
+         // Get flat bonuses for this generator
+         const flatBonuses = this.getFlatBonuses(generator);
+
+         // Apply flat bonuses first, then multipliers
          const finalProofsProduction =
-            production.proofs * globalMultipliers.proofs * categoryMultipliers.proofs;
+            (production.proofs + flatBonuses.proofs) *
+            globalMultipliers.proofs *
+            categoryMultipliers.proofs;
          const finalFollowersProduction =
-            production.followers * globalMultipliers.followers * categoryMultipliers.followers;
+            (production.followers + flatBonuses.followers) *
+            globalMultipliers.followers *
+            categoryMultipliers.followers;
          const finalParanoiaProduction =
-            production.paranoia * globalMultipliers.paranoia * categoryMultipliers.paranoia;
+            (production.paranoia + flatBonuses.paranoia) *
+            globalMultipliers.paranoia *
+            categoryMultipliers.paranoia;
 
          this.proofs.add(finalProofsProduction);
          this.followers.add(finalFollowersProduction);
@@ -96,35 +117,77 @@ export class GameStore {
    }
 
    /**
-    * @description Get global multipliers from all purchased upgrades.
+    * Get global multipliers that apply to all generators
     */
    private getGlobalMultipliers(): { proofs: number; followers: number; paranoia: number } {
       let proofsMultiplier = 1;
       let followersMultiplier = 1;
       let paranoiaMultiplier = 1;
 
-      for (const generator of this.generators) {
-         for (const upgradeId of generator.purchasedUpgrades) {
-            const upgrade = generator.upgrades.find(({ id }) => id === upgradeId);
+      const unlockedUpgrades = this.upgrades.filter((upgrade) => upgrade.unlocked);
 
-            if (upgrade === undefined) {
-               continue;
+      for (const upgrade of unlockedUpgrades) {
+         for (const boost of upgrade.boosts) {
+            if (
+               boost.type === 'production_multiplier' &&
+               (boost.target.type === 'all_generators' || boost.target.type === 'global')
+            ) {
+               if (boost.resource === 'proofs') {
+                  proofsMultiplier += boost.value;
+               } else if (boost.resource === 'followers') {
+                  followersMultiplier += boost.value;
+               } else if (boost.resource === 'paranoia') {
+                  paranoiaMultiplier += boost.value;
+               }
             }
+         }
+      }
 
-            for (const boost of upgrade.boosts) {
-               if (boost.type === 'production_multiplier') {
-                  if (
-                     boost.target.type === 'all_generators' ||
-                     (boost.target.type === 'category' &&
-                        generator.categories.includes(boost.target.id))
-                  ) {
-                     if (boost.resource === 'proofs') {
-                        proofsMultiplier += boost.value;
-                     } else if (boost.resource === 'followers') {
-                        followersMultiplier += boost.value;
-                     } else if (boost.resource === 'paranoia') {
-                        paranoiaMultiplier += boost.value;
-                     }
+      return {
+         proofs: proofsMultiplier,
+         followers: followersMultiplier,
+         paranoia: paranoiaMultiplier,
+      };
+   }
+
+   /**
+    * Get category-specific multipliers for a generator
+    */
+   private getCategoryMultipliers(generator: GeneratorStore): {
+      proofs: number;
+      followers: number;
+      paranoia: number;
+   } {
+      let proofsMultiplier = 1;
+      let followersMultiplier = 1;
+      let paranoiaMultiplier = 1;
+
+      const unlockedUpgrades = this.upgrades.filter((upgrade) => upgrade.unlocked);
+
+      for (const upgrade of unlockedUpgrades) {
+         for (const boost of upgrade.boosts) {
+            if (boost.type === 'production_multiplier') {
+               // Generator-specific boosts
+               if (boost.target.type === 'generator' && boost.target.id === generator.id) {
+                  if (boost.resource === 'proofs') {
+                     proofsMultiplier += boost.value;
+                  } else if (boost.resource === 'followers') {
+                     followersMultiplier += boost.value;
+                  } else if (boost.resource === 'paranoia') {
+                     paranoiaMultiplier += boost.value;
+                  }
+               }
+               // Category-specific boosts
+               else if (
+                  boost.target.type === 'category' &&
+                  generator.categories.includes(boost.target.id)
+               ) {
+                  if (boost.resource === 'proofs') {
+                     proofsMultiplier += boost.value;
+                  } else if (boost.resource === 'followers') {
+                     followersMultiplier += boost.value;
+                  } else if (boost.resource === 'paranoia') {
+                     paranoiaMultiplier += boost.value;
                   }
                }
             }
@@ -139,46 +202,76 @@ export class GameStore {
    }
 
    /**
-    * @description Get category-specific multipliers for a given generator.
+    * Get flat bonuses that apply to a generator
     */
-   public getCategoryMultipliers(targetGenerator: GeneratorStore): {
+   private getFlatBonuses(generator: GeneratorStore): {
       proofs: number;
       followers: number;
       paranoia: number;
    } {
-      let proofsMultiplier = 1;
-      let followersMultiplier = 1;
-      let paranoiaMultiplier = 1;
+      let proofsBonus = 0;
+      let followersBonus = 0;
+      let paranoiaBonus = 0;
 
-      for (const generator of this.generators) {
-         for (const upgradeId of generator.purchasedUpgrades) {
-            const upgrade = generator.upgrades.find(({ id }) => id === upgradeId);
+      const unlockedUpgrades = this.upgrades.filter((upgrade) => upgrade.unlocked);
 
-            if (upgrade === undefined) {
-               continue;
-            }
-
-            for (const boost of upgrade.boosts) {
-               if (boost.type === 'production_multiplier' && boost.target.type === 'category') {
-                  if (targetGenerator.categories.includes(boost.target.id)) {
-                     if (boost.resource === 'proofs') {
-                        proofsMultiplier += boost.value;
-                     } else if (boost.resource === 'followers') {
-                        followersMultiplier += boost.value;
-                     } else if (boost.resource === 'paranoia') {
-                        paranoiaMultiplier += boost.value;
-                     }
+      for (const upgrade of unlockedUpgrades) {
+         for (const boost of upgrade.boosts) {
+            if (boost.type === 'production_flat') {
+               // Generator-specific flat bonuses
+               if (boost.target.type === 'generator' && boost.target.id === generator.id) {
+                  if (boost.resource === 'proofs') {
+                     proofsBonus += boost.value;
+                  } else if (boost.resource === 'followers') {
+                     followersBonus += boost.value;
+                  } else if (boost.resource === 'paranoia') {
+                     paranoiaBonus += boost.value;
+                  }
+               }
+               // Category-specific flat bonuses
+               else if (
+                  boost.target.type === 'category' &&
+                  generator.categories.includes(boost.target.id)
+               ) {
+                  if (boost.resource === 'proofs') {
+                     proofsBonus += boost.value;
+                  } else if (boost.resource === 'followers') {
+                     followersBonus += boost.value;
+                  } else if (boost.resource === 'paranoia') {
+                     paranoiaBonus += boost.value;
+                  }
+               }
+               // Global flat bonuses
+               else if (boost.target.type === 'all_generators' || boost.target.type === 'global') {
+                  if (boost.resource === 'proofs') {
+                     proofsBonus += boost.value;
+                  } else if (boost.resource === 'followers') {
+                     followersBonus += boost.value;
+                  } else if (boost.resource === 'paranoia') {
+                     paranoiaBonus += boost.value;
                   }
                }
             }
          }
       }
 
-      return {
-         proofs: proofsMultiplier,
-         followers: followersMultiplier,
-         paranoia: paranoiaMultiplier,
-      };
+      return { proofs: proofsBonus, followers: followersBonus, paranoia: paranoiaBonus };
+   }
+
+   public checkConditions(conditions: Conditions): boolean {
+      const hasMissingGenerator = conditions.generators.some(
+         (generatorId) => !this.generators.some((generator) => generator.id === generatorId),
+      );
+
+      if (hasMissingGenerator) {
+         return false;
+      }
+
+      return (
+         this.proofs.value >= conditions.proofs &&
+         this.followers.value >= conditions.followers &&
+         this.paranoia.value >= conditions.paranoia
+      );
    }
 
    public canBuyGenerator(id: GeneratorId, amount: number): boolean {
@@ -188,7 +281,7 @@ export class GameStore {
          return false;
       }
 
-      const cost = generatorStore.getCost(amount);
+      const cost = generatorStore.getCost(amount, this.getGeneratorCostReduction(id));
 
       return this.proofs.value >= cost.proofs && this.followers.value >= cost.followers;
    }
@@ -200,7 +293,7 @@ export class GameStore {
          return false;
       }
 
-      const cost = generatorStore.getCost(amount);
+      const cost = generatorStore.getCost(amount, this.getGeneratorCostReduction(id));
 
       const successProofs = this.proofs.remove(cost.proofs);
       const successFollowers = this.followers.remove(cost.followers);
@@ -214,53 +307,85 @@ export class GameStore {
       return true;
    }
 
-   /**
-    * @description Check if the player can buy an upgrade.
-    * @param generatorId - The ID of the generator.
-    * @param upgradeId - The ID of the upgrade.
-    * @returns true if the upgrade can be purchased, false otherwise.
-    */
-   public canBuyUpgrade(generatorId: GeneratorId, upgradeId: UpgradeId): boolean {
-      const generatorStore = this.generators.find(({ id }) => id === generatorId);
+   public hasPurchasedUpgrade(upgradeId: UpgradeId): boolean {
+      const upgradeStore = this.upgrades.find(({ id, unlocked }) => id === upgradeId && unlocked);
 
-      if (generatorStore === undefined) {
-         return false;
-      }
-
-      return generatorStore.canBuyUpgrade(upgradeId, this.proofs.value, this.followers.value);
+      return upgradeStore !== undefined;
    }
 
    /**
-    * @description Buy an upgrade for a generator.
-    * @param generatorId - The ID of the generator.
+    * @description Check if the player can buy an upgrade.
+    * @param upgradeId - The ID of the upgrade.
+    * @returns true if the upgrade can be purchased, false otherwise.
+    */
+   public canBuyUpgrade(upgradeId: UpgradeId): boolean {
+      const upgradeStore = this.upgrades.find(({ id }) => id === upgradeId);
+
+      if (upgradeStore === undefined) {
+         return false;
+      }
+
+      return upgradeStore.canBuy(this.proofs.value, this.followers.value);
+   }
+
+   /**
+    * @description Buy an upgrade.
     * @param upgradeId - The ID of the upgrade.
     * @returns true if the upgrade was successfully purchased, false otherwise.
     */
-   public buyUpgrade(generatorId: GeneratorId, upgradeId: UpgradeId): boolean {
-      const generatorStore = this.generators.find((generator) => generator.id === generatorId);
+   public buyUpgrade(upgradeId: UpgradeId): boolean {
+      const upgradeStore = this.upgrades.find(({ id }) => id === upgradeId);
 
-      if (generatorStore === undefined) {
+      if (upgradeStore === undefined) {
          return false;
       }
 
-      const upgrade = generatorStore.upgrades.find(({ id }) => id === upgradeId);
-
-      if (!upgrade || upgrade.purchased) {
+      if (!upgradeStore.canBuy(this.proofs.value, this.followers.value)) {
          return false;
       }
 
-      if (!this.canBuyUpgrade(generatorId, upgradeId)) {
-         return false;
-      }
-
-      const successProofs = this.proofs.remove(upgrade.cost.proofs);
-      const successFollowers = this.followers.remove(upgrade.cost.followers);
+      const successProofs = this.proofs.remove(upgradeStore.cost.proofs);
+      const successFollowers = this.followers.remove(upgradeStore.cost.followers);
 
       if (!successProofs || !successFollowers) {
          return false;
       }
 
-      return generatorStore.buyUpgrade(upgradeId);
+      upgradeStore.buy();
+
+      return true;
+   }
+
+   public getGeneratorCostReduction(generatorId: GeneratorId): number {
+      let reduction = 0;
+
+      const unlockedCostReductionUpgrades = this.upgrades
+         .filter((upgrade) => upgrade.unlocked)
+         .filter(({ boosts }) => boosts.some(({ type }) => type === 'cost_reduction'));
+
+      for (const { boosts } of unlockedCostReductionUpgrades) {
+         for (const boost of boosts) {
+            if (boost.target.type === 'all_generators' || boost.target.type === 'global') {
+               reduction += boost.value;
+            } else if (boost.target.type === 'generator' && boost.target.id === generatorId) {
+               reduction += boost.value;
+            } else if (
+               boost.target.type === 'category' &&
+               this.generators.some((generator) => {
+                  _assertTrue(
+                     boost.target.type === 'category',
+                     'boost.target.type should be category',
+                  );
+
+                  return generator.categories.includes(boost.target.id);
+               })
+            ) {
+               reduction += boost.value;
+            }
+         }
+      }
+
+      return Math.min(reduction, 0.9);
    }
 
    public clickProofs(): number {
@@ -303,6 +428,7 @@ export class GameStore {
          followers: this.followers.serialize(),
          paranoia: this.paranoia.serialize(),
          generators: this.generators.map((generator) => generator.serialize()),
+         upgrades: this.upgrades.map((upgrade) => upgrade.serialize()),
          clicker: this.clicker.serialize(),
          statistics: this.statistics.serialize(),
          lastUpdateTime: this.lastUpdateTime,
@@ -316,12 +442,23 @@ export class GameStore {
       this.paranoia.deserialize(data.paranoia);
 
       this.generators = data.generators.map((generatorData) => {
-         const generator = new GeneratorStore(generatorData.id);
+         const generator = new GeneratorStore(generatorData.id, this);
 
          generator.deserialize(generatorData);
 
          return generator;
       });
+
+      // Deserialize upgrades if they exist in the save data
+      if (data.upgrades) {
+         this.upgrades.forEach((upgrade) => {
+            const savedUpgrade = data.upgrades.find((saved) => saved.id === upgrade.id);
+
+            if (savedUpgrade) {
+               upgrade.deserialize(savedUpgrade);
+            }
+         });
+      }
 
       this.clicker.deserialize(data.clicker);
       this.statistics.deserialize(data.statistics);
@@ -339,5 +476,14 @@ export class GameStore {
       }
 
       return [...unlockedGenerators, nextLockedGenerator];
+   }
+
+   public get visibleUpgrades(): UpgradeStore[] {
+      const unlockedUpgrades = this.upgrades.filter((upgrade) => upgrade.unlocked);
+      const nextAvailableUpgrades = this.upgrades.filter(
+         (upgrade) => !upgrade.unlocked && this.checkConditions(upgrade.conditions),
+      );
+
+      return [...unlockedUpgrades, ...nextAvailableUpgrades];
    }
 }

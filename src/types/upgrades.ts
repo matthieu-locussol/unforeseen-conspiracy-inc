@@ -80,6 +80,10 @@ export interface Upgrade {
    cost: Cost;
    boosts: Boost[];
    conditions: Conditions;
-   maxLevel: number;
-   purchased: boolean;
+   unlocked: boolean;
+}
+
+export interface SerializedUpgradeData {
+   id: UpgradeId;
+   unlocked: boolean;
 }

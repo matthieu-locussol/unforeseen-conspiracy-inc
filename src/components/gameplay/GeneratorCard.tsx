@@ -104,7 +104,15 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
          <div className="grid grid-cols-2 w-full gap-2">
             <Card className="p-2 bg-green-800/30 border-green-900 rounded-sm transition-all duration-200 hover:bg-green-800/40">
                <h2 className="text-sm text-gray-400">Cost:</h2>
-               <p className="text-sm">{generatorStore.getCost(hudStore.bulkBuy).proofs} proofs</p>
+               <p className="text-sm">
+                  {
+                     generatorStore.getCost(
+                        hudStore.bulkBuy,
+                        gameStore.getGeneratorCostReduction(generatorStore.id),
+                     ).proofs
+                  }{' '}
+                  proofs
+               </p>
             </Card>
             {generatorStore.unlocked ? (
                <Card className="p-2 bg-blue-800/30 border-blue-900 rounded-sm transition-all duration-200 hover:bg-blue-800/40">

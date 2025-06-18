@@ -24,5 +24,4 @@ export interface SerializedGeneratorData {
    id: GeneratorId;
    unlocked: boolean;
    level: number;
-   upgrades: Record<UpgradeId, boolean>;
 }

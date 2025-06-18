@@ -1,4 +1,3 @@
-import type { GeneratorStore } from '../../store/GeneratorStore';
 import type { Upgrade } from '../../types/upgrades';
 
 import { observer } from 'mobx-react-lite';
@@ -14,20 +13,19 @@ import { Button } from '../core/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '../core/ui/popover';
 
 export interface UpgradeCardProps {
-   generatorStore: GeneratorStore;
    upgrade: Upgrade;
 }
 
-export const UpgradeCard = observer(({ generatorStore, upgrade }: UpgradeCardProps) => {
+export const UpgradeCard = observer(({ upgrade }: UpgradeCardProps) => {
    const i18n = useI18n();
    const { gameStore } = useStore();
    const [isOpen, setIsOpen] = useState(false);
 
-   const canAfford = gameStore.canBuyUpgrade(generatorStore.id, upgrade.id);
-   const isPurchased = generatorStore.hasPurchasedUpgrade(upgrade.id);
+   const canAfford = gameStore.canBuyUpgrade(upgrade.id);
+   const isPurchased = gameStore.hasPurchasedUpgrade(upgrade.id);
 
    const handleUnlock = () => {
-      const success = gameStore.buyUpgrade(generatorStore.id, upgrade.id);
+      const success = gameStore.buyUpgrade(upgrade.id);
 
       if (success) {
          setIsOpen(false);
