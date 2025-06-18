@@ -5,17 +5,17 @@ export const FR = {
       proofs: {
          name: 'Preuves',
          description:
-            "Téléchargées directement depuis le 'Hidden WikiLeaks' hébergé sur une page Geocities que quelqu'un a mis en miroir. Source..? Mec, crois-moi.",
+            "Téléchargées directement depuis le 'Hidden WikiLeaks' hébergé sur une page Geocities que quelqu'un a mise en miroir. Source..? Mec, crois-moi.",
       },
       followers: {
          name: 'Abonnés',
          description:
-            'Ton audience croissante. Ils rejoignent passivement ta cause, offrant biais de confirmation et réduisant ta Paranoïa. Mieux vaut ne pas lire leurs commentaires, cependant.',
+            "Ton audience croissante. Ils rejoignent passivement ta cause, t'offrant du biais de confirmation et réduisant ta Paranoïa. Mieux vaut ne pas lire leurs commentaires, cependant.",
       },
       paranoia: {
          name: 'Paranoïa',
          description:
-            "Ce sentiment constant, oppressant d'être observé... ou est-ce juste toi? Entrave ton avancement en rendant les choses plus difficiles et en bloquant certains progrès.",
+            "Ce sentiment constant, oppressant d'être observé... ou est-ce juste toi ? Entrave ton avancement en rendant les choses plus difficiles et en bloquant certains progrès.",
       },
    },
    generators: {
@@ -27,7 +27,7 @@ export const FR = {
       flat_earth: {
          name: 'Terre Plate',
          description:
-            'Le mouvement de la Terre plate est un mouvement politique et social qui cherche à créer un monde où la population est distribuée de manière égale et les ressources sont distribuées de manière égale.',
+            "La Terre n'est pas ronde, c'est évident ! Une immense conspiration mondiale cache la vérité sur notre planète plate. Les bords ? Gardés par la NASA, bien sûr.",
       },
       michael_jackson: {
          name: 'Michael Jackson',
@@ -49,7 +49,7 @@ export const FR = {
       chemtrails_double_chance: {
          name: 'Découverte Critique',
          description:
-            'Parfois vous trouvez des preuves irréfutables. 15% de chance de doubler la production Chemtrails.',
+            'Parfois tu tombes sur des preuves irréfutables. 15% de chance de doubler la production Chemtrails.',
       },
       michael_jackson_media_boost: {
          name: 'Maîtrise de la Manipulation Médiatique',
@@ -116,9 +116,9 @@ export const FR = {
       // Reset menu
       resetData: 'Réinitialiser',
       resetDescription:
-         '<b>Attention !</b> Ceci réinitialisera tous vos progrès et supprimera toutes vos données. Êtes-vous sûr de vouloir continuer ?',
+         '<b>Attention !</b> Ceci réinitialisera tous tes progrès et supprimera toutes tes données. Es-tu sûr de vouloir continuer ?',
       resetCountdown: 'Réinitialisation dans {seconds} secondes...',
-      resetSuccess: 'Votre sauvegarde a été réinitialisée avec succès.',
+      resetSuccess: 'Ta sauvegarde a été réinitialisée avec succès.',
 
       // System status
       systemStatus: 'ÉTAT DU SYSTÈME',
@@ -135,7 +135,7 @@ export const FR = {
       level: 'NIV',
       cost: 'Coût :',
       nextLevel: 'Niveau suivant :',
-      youNeedToDigDeeper: 'Il faut creuser plus profond...',
+      youNeedToDigDeeper: 'Tu dois creuser plus profond...',
       insufficientResources: 'RESSOURCES INSUFFISANTES',
       unlock: 'DÉBLOQUER',
       unlocked: 'Débloqué !',
@@ -231,12 +231,12 @@ export const FR = {
          "ATTENTION : Cette simulation contient des informations classifiées sur les opérations secrètes, les gouvernements fantômes et la manipulation quantique. L'accès non autorisé sera surveillé.",
       aboutText: {
          paragraph1:
-            'Bienvenue, chercheur de vérité. Tu penses savoir ce qui se passe vraiment ? Eh bien, détrompez-vous.',
+            'Bienvenue, chercheur de vérité. Tu penses savoir ce qui se passe vraiment ? Eh bien, détrompe-toi.',
          paragraph2:
-            'Cliquez à travers des couches de mensonges, générant des <span class="text-green-400 font-bold">Preuves</span> indéniables qui exposent tout – des chemtrails aux "retraites" suspectes de célébrités. Récoltez des <span class="text-green-400 font-bold">Preuves</span>, amassez des <span class="text-green-400 font-bold">Abonnés</span> qui comprennent, et gérez cette <span class="text-red-400 font-bold">Paranoïa</span> rampante (est-ce que votre webcam... vous regarde ?).',
+            'Clique à travers des couches de mensonges, générant des <span class="text-green-400 font-bold">Preuves</span> indéniables qui exposent tout – des chemtrails aux "retraites" suspectes de célébrités. Récolte des <span class="text-green-400 font-bold">Preuves</span>, amasse des <span class="text-green-400 font-bold">Abonnés</span> qui comprennent, et gère cette <span class="text-red-400 font-bold">Paranoïa</span> rampante (est-ce que ta webcam... te regarde ?).',
          paragraph3:
-            'Démêlez des conspirations à la fois banales et monstrueuses, des dissimulations gouvernementales à pourquoi les pigeons semblent si... louches. Cliquez en avant, le terrier du lapin vous attend !',
-         paragraph4: "Et n'oubliez pas de regarder derrière vous de temps en temps...",
+            "Démêle des conspirations à la fois banales et monstrueuses, des dissimulations gouvernementales à pourquoi les pigeons semblent si... louches. Clique en avant, le terrier du lapin t'attend !",
+         paragraph4: "Et n'oublie pas de regarder derrière toi de temps en temps...",
       },
       footer: {
          copyright: '© {year} Unforeseen Conspiracy Inc. Tous droits réservés.',
