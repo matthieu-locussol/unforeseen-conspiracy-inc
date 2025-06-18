@@ -41,11 +41,7 @@ export const GamePage = observer(() => {
             <ResourceCard isRed resourceStore={gameStore.paranoia} />
          </div>
          <div className="flex justify-between gap-4">
-            <ExtractButton
-               onClick={() => {
-                  return gameStore.clickProofs();
-               }}
-            >
+            <ExtractButton onClick={() => gameStore.clickProofs()}>
                {t.ui.extractProofs}
             </ExtractButton>
             <BulkBuyButtons />

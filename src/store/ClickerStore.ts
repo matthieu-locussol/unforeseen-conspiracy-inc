@@ -1,4 +1,4 @@
-import type { ClickerId, SerializedClickerData } from '../types/clicker';
+import type { ClickData, ClickerId, SerializedClickerData } from '../types/clicker';
 
 import { makeAutoObservable } from 'mobx';
 
@@ -31,12 +31,10 @@ export class ClickerStore {
       this._initialize(id);
    }
 
-   public click(): number {
+   public click(): ClickData {
       this.updateCombo();
 
-      let value = this.baseClickValue * this.clickMultiplier;
-
-      value *= 1 + this.comboMultiplier;
+      let value = this.baseClickValue * this.clickMultiplier * this.comboMultiplier;
 
       const isCritical = Math.random() < this.criticalChance;
 
@@ -44,7 +42,7 @@ export class ClickerStore {
          value *= this.criticalMultiplier;
       }
 
-      return value;
+      return { value, isCritical, combo: this.comboMultiplier };
    }
 
    private updateCombo(): void {
@@ -53,7 +51,7 @@ export class ClickerStore {
 
       if (delta < this.comboTimeWindow) {
          this.clickCount++;
-         this.comboMultiplier = Math.min(this.clickCount * 0.01, this.maxComboMultiplier);
+         this.comboMultiplier = Math.min(this.clickCount * 0.1, this.maxComboMultiplier);
       } else {
          this.clickCount = 1;
          this.comboMultiplier = 0;

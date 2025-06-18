@@ -1,3 +1,4 @@
+import type { ClickData } from '../types/clicker';
 import type { SerializedGameData } from '../types/game';
 import type { GeneratorId, GeneratorProduction } from '../types/generators';
 import type { Conditions, UpgradeId } from '../types/upgrades';
@@ -325,13 +326,13 @@ export class GameStore {
       );
    }
 
-   public clickProofs(): number {
-      const value = this.clicker.click();
+   public clickProofs(): ClickData {
+      const clickData = this.clicker.click();
 
-      this.proofs.add(value);
+      this.proofs.add(clickData.value);
       this.statistics.trackClicks(1);
 
-      return value;
+      return clickData;
    }
 
    public start(): void {

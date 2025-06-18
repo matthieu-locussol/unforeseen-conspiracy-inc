@@ -1,5 +1,11 @@
 export type ClickerId = 'default';
 
+export interface ClickData {
+   value: number;
+   isCritical: boolean;
+   combo: number;
+}
+
 export interface Clicker {
    id: ClickerId;
    baseClickValue: number;

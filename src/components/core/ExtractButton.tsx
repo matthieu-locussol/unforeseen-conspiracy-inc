@@ -1,3 +1,5 @@
+import type { ClickData } from '../../types/clicker';
+
 import { useRef, useState } from 'react';
 
 import { cn } from '../../utils/cn';
@@ -7,15 +9,21 @@ import { Button } from './ui/button';
 interface FloatingText {
    id: number;
    value: number;
+   isCritical: boolean;
+   combo: number;
    x: number;
    y: number;
 }
 
-export const ExtractButton = ({
-   onClick,
-   children,
-   ...rest
-}: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) => {
+interface ExtractButtonProps
+   extends React.DetailedHTMLProps<
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+   > {
+   onClick: () => ClickData;
+}
+
+export const ExtractButton = ({ onClick, children, ...rest }: ExtractButtonProps) => {
    const [floatingTexts, setFloatingTexts] = useState<FloatingText[]>([]);
    const buttonRef = useRef<HTMLButtonElement>(null);
    const textIdRef = useRef(0);
@@ -23,10 +31,10 @@ export const ExtractButton = ({
    const handleExtract: React.MouseEventHandler<HTMLButtonElement> = (event) => {
       if (event.clientX !== 0 && event.clientY !== 0) {
          // Call the original onClick to get the generated value
-         const result = onClick?.(event);
+         const { value, isCritical, combo } = onClick();
 
          // If onClick returns a number (the generated value), create floating text
-         if (typeof result === 'number' && result > 0 && buttonRef.current) {
+         if (buttonRef.current) {
             const buttonRect = buttonRef.current.getBoundingClientRect();
 
             // Generate random position within and slightly around the button
@@ -35,7 +43,9 @@ export const ExtractButton = ({
 
             const newFloatingText: FloatingText = {
                id: textIdRef.current++,
-               value: result,
+               value,
+               isCritical,
+               combo,
                x: randomX,
                y: randomY,
             };
@@ -90,14 +100,21 @@ export const ExtractButton = ({
             {floatingTexts.map((text) => (
                <div
                   key={text.id}
-                  className="absolute text-white font-bold text-lg animate-float-up"
+                  className={cn([
+                     'absolute font-mono text-white font-semibold text-lg animate-float-up',
+                     text.isCritical &&
+                        'text-2xl text-red-400 font-bold uppercase tracking-wider shadow-lg',
+                  ])}
                   style={{
                      left: `${text.x}px`,
                      top: `${text.y}px`,
                      textShadow: '0 0 8px rgba(74, 222, 128, 0.8)',
                   }}
                >
-                  +{Math.floor(text.value)}
+                  +{text.value.toFixed(1)}
+                  <span className="text-amber-400 text-xs ml-0.5">
+                     {text.combo > 0 && `×${text.combo.toFixed(1)}`}
+                  </span>
                </div>
             ))}
          </div>
