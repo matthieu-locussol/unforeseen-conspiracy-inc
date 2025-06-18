@@ -52,6 +52,11 @@ export const UpgradeCard = observer(({ upgrade }: UpgradeCardProps) => {
                      <CustomIcon className="h-2 w-2 text-green-400" icon="check" />
                   </Badge>
                )}
+               {!isPurchased && canAfford && (
+                  <Badge className="border-amber-700 bg-amber-900" variant="icon">
+                     <CustomIcon className="h-2 w-2 text-amber-400" icon="dollar" />
+                  </Badge>
+               )}
             </div>
          </PopoverTrigger>
          <PopoverContent className="w-70" side="top">

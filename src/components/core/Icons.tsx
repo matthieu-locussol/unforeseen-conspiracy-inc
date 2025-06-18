@@ -88,6 +88,15 @@ const DatabaseBackupIcon = (props: IconSvgProps) => {
    );
 };
 
+const DollarIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <line x1="12" x2="12" y1="2" y2="22" />
+         <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+      </svg>
+   );
+};
+
 const DownloadIcon = (props: IconSvgProps) => {
    return (
       <svg {...getCommonProps(props)}>
@@ -282,6 +291,7 @@ export type CustomIcon =
    | 'coins'
    | 'database'
    | 'databaseBackup'
+   | 'dollar'
    | 'download'
    | 'eye'
    | 'fileWarning'
@@ -310,6 +320,7 @@ const ICONS: Record<CustomIcon, React.FC<IconSvgProps>> = {
    coins: CoinsIcon,
    database: DatabaseIcon,
    databaseBackup: DatabaseBackupIcon,
+   dollar: DollarIcon,
    download: DownloadIcon,
    eye: EyeIcon,
    fileWarning: FileWarningIcon,

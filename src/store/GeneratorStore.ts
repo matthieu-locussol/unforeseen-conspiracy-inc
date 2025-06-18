@@ -3,8 +3,9 @@ import type {
    GeneratorProduction,
    SerializedGeneratorData,
 } from '../types/generators';
-import type { CategoryId, Conditions, Cost } from '../types/upgrades';
+import type { CategoryId, Conditions, Cost, UpgradeId } from '../types/upgrades';
 import type { GameStore } from './GameStore';
+import type { UpgradeStore } from './UpgradeStore';
 
 import { makeAutoObservable } from 'mobx';
 
@@ -31,12 +32,22 @@ export class GeneratorStore {
 
    public level!: number;
 
+   public upgradesIds!: UpgradeId[];
+
    constructor(id: GeneratorId, store: GameStore) {
       makeAutoObservable(this);
 
       this._store = store;
 
       this._initialize(id);
+   }
+
+   public get upgrades(): UpgradeStore[] {
+      const upgradesStores = this.upgradesIds.map((upgradeId) =>
+         this._store.upgrades.find((upgrade) => upgrade.id === upgradeId),
+      );
+
+      return upgradesStores.filter((upgrade) => upgrade !== undefined) as UpgradeStore[];
    }
 
    /**
@@ -199,5 +210,6 @@ export class GeneratorStore {
       this.conditions = { ...data.conditions };
       this.unlocked = data.unlocked;
       this.level = 0;
+      this.upgradesIds = [...data.upgradesIds];
    }
 }
