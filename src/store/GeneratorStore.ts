@@ -43,9 +43,9 @@ export class GeneratorStore {
    }
 
    public get upgrades(): UpgradeStore[] {
-      const upgradesStores = this.upgradesIds.map((upgradeId) =>
-         this._store.upgrades.find((upgrade) => upgrade.id === upgradeId),
-      );
+      const upgradesStores = this.upgradesIds.map((upgradeId) => {
+         return this._store.upgrades.find((upgrade) => upgrade.id === upgradeId);
+      });
 
       return upgradesStores.filter((upgrade): upgrade is UpgradeStore => upgrade !== undefined);
    }
@@ -129,6 +129,12 @@ export class GeneratorStore {
       }
 
       // Get bonuses and multipliers from the game store
+      if (
+         typeof this._store.getGeneratorMultipliers !== 'function' ||
+         typeof this._store.getFlatBonusesForGenerator !== 'function'
+      ) {
+         throw new Error('GameStore is missing required methods for production calculation');
+      }
       const multipliers = this._store.getGeneratorMultipliers(this);
       const flatBonuses = this._store.getFlatBonusesForGenerator(this);
 
@@ -189,8 +195,12 @@ export class GeneratorStore {
    }
 
    public deserialize(data: SerializedGeneratorData): void {
-      this.level = data.level;
-      this.unlocked = data.unlocked;
+      if (typeof data.level !== 'undefined') {
+         this.level = data.level;
+      }
+      if (typeof data.unlocked !== 'undefined') {
+         this.unlocked = data.unlocked;
+      }
    }
 
    private _initialize(id: GeneratorId): void {
