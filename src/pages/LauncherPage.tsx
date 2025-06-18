@@ -19,16 +19,18 @@ import { Progress } from '../components/core/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/core/ui/tabs';
 import { CHANGELOG } from '../data/changelog';
 import { VERSION_BUILD, VERSION_COMMIT, VERSION_DATE } from '../data/version';
+import { useI18n } from '../i18n/i18n';
 
 export const LauncherPage = observer(() => {
+   const { t } = useI18n();
    const isUpdating = false; // Placeholder for update status
    const updateProgress = 40; // Placeholder for update progress
-   const updateStatus = 'No updates available'; // Placeholder for update status message
+   const updateStatus = t.ui.noUpdatesAvailable; // Placeholder for update status message
    const [activeTab, setActiveTab] = useState('changelog');
 
    return (
       <>
-         <Title className="text-center">UNFORESEEN CONSPIRACY INC.</Title>
+         <Title className="text-center">{t.launcher.title}</Title>
          <div className="flex items-center justify-center gap-3 my-4">
             <Badge className="bg-green-900/50 text-green-300 border-green-700/50">
                v{VERSION_BUILD}
@@ -38,19 +40,16 @@ export const LauncherPage = observer(() => {
             </Badge>
             <Badge className="bg-red-900/50 text-red-300 border-red-900/50">
                <CustomIcon className="h-3 w-3 mr-1" icon="alertTriangle" />
-               CLASSIFIED
+               {t.ui.classified}
             </Badge>
          </div>
-         <Note className="max-w-2xl mx-auto text-center mb-6">
-            WARNING: This simulation contains classified information about covert operations, shadow
-            governments, and quantum manipulation. Unauthorized access will be monitored.
-         </Note>
+         <Note className="max-w-2xl mx-auto text-center mb-6">{t.launcher.warningMessage}</Note>
          <Card shining className="mb-4 overflow-hidden">
             <CardHeader className="pb-2 relative">
                <div className="flex justify-between items-center">
                   <CardTitle className="flex items-center">
                      <CustomIcon className="h-5 w-5 mr-2" icon="download" />
-                     SYSTEM STATUS
+                     {t.ui.systemStatus}
                   </CardTitle>
                   <Badge
                      className={`${
@@ -60,7 +59,7 @@ export const LauncherPage = observer(() => {
                      }`}
                      variant="outline"
                   >
-                     {isUpdating ? 'UPDATING' : 'READY'}
+                     {isUpdating ? t.ui.updating : t.ui.ready}
                   </Badge>
                </div>
                <CardDescription>{updateStatus}</CardDescription>
@@ -77,26 +76,26 @@ export const LauncherPage = observer(() => {
 
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs text-gray-500">
                      <div className="bg-gray-800/50 p-2 rounded-md">
-                        <div className="text-gray-400">Status</div>
+                        <div className="text-gray-400">{t.ui.status}</div>
                         <div
                            className={`font-bold ${
                               isUpdating ? 'text-yellow-400' : 'text-green-400'
                            }`}
                         >
-                           {isUpdating ? 'Updating...' : 'Ready to Launch'}
+                           {isUpdating ? t.ui.updating + '...' : t.ui.readyToLaunch}
                         </div>
                      </div>
                      <div className="bg-gray-800/50 p-2 rounded-md">
-                        <div className="text-gray-400">Version</div>
+                        <div className="text-gray-400">{t.ui.version}</div>
                         <div className="font-bold text-green-400">{VERSION_BUILD}</div>
                      </div>
                      <div className="bg-gray-800/50 p-2 rounded-md">
-                        <div className="text-gray-400">Last Updated</div>
+                        <div className="text-gray-400">{t.ui.lastUpdated}</div>
                         <div className="font-bold text-green-400">{VERSION_DATE}</div>
                      </div>
                      <div className="bg-gray-800/50 p-2 rounded-md">
-                        <div className="text-gray-400">Security Level</div>
-                        <div className="font-bold text-red-400">CLASSIFIED</div>
+                        <div className="text-gray-400">{t.ui.securityLevel}</div>
+                        <div className="font-bold text-red-400">{t.ui.classified}</div>
                      </div>
                   </div>
                </div>
@@ -108,11 +107,11 @@ export const LauncherPage = observer(() => {
                   <TabsList className="grid w-full grid-cols-2 bg-gray-900 border border-green-900/50">
                      <TabsTrigger className="snappy-transition" value="changelog">
                         <CustomIcon className="h-4 w-4 mr-1" icon="fileWarning" />
-                        CHANGELOG
+                        {t.ui.changelog}
                      </TabsTrigger>
                      <TabsTrigger className="snappy-transition" value="about">
                         <CustomIcon className="h-4 w-4 mr-1" icon="info" />
-                        ABOUT
+                        {t.ui.about}
                      </TabsTrigger>
                   </TabsList>
                   <TabsContent
@@ -155,28 +154,10 @@ export const LauncherPage = observer(() => {
                      value="about"
                   >
                      <div className="space-y-4 text-gray-300">
-                        <p>
-                           Welcome, truth-seeker. Think you know what's really going on? Well, think
-                           again.
-                        </p>
-                        <p>
-                           Click your way through layers of lies, generating undeniable{' '}
-                           <span className="text-green-400 font-bold">Proofs</span> that expose
-                           everything – from chemtrails to questionable celebrity "retirements".
-                           Gather <span className="text-green-400 font-bold">Proofs</span>, amass{' '}
-                           <span className="text-green-400 font-bold">Followers</span> who
-                           understand, and manage that creeping{' '}
-                           <span className="text-red-400 font-bold">Paranoia</span> (is your
-                           webcam... watching you?).
-                        </p>
-                        <p>
-                           Unravel conspiracies both mundane and monstrous, from government
-                           cover-ups to why pigeons seem so... shifty. Click onward, the rabbit hole
-                           awaits!
-                        </p>
-                        <p className="italic">
-                           And don't forget to check behind you from time to time...
-                        </p>
+                        <p>{t.launcher.aboutText.paragraph1}</p>
+                        <p dangerouslySetInnerHTML={{ __html: t.launcher.aboutText.paragraph2 }} />
+                        <p>{t.launcher.aboutText.paragraph3}</p>
+                        <p className="italic">{t.launcher.aboutText.paragraph4}</p>
                      </div>
                   </TabsContent>
                </Tabs>
@@ -186,13 +167,13 @@ export const LauncherPage = observer(() => {
                <SettingsMenu>
                   <Button className="w-full justify-start text-sm mt-auto" variant="outline">
                      <CustomIcon className="h-4 w-4 mr-2" icon="settings" />
-                     Settings
+                     {t.ui.settings}
                   </Button>
                </SettingsMenu>
                <ResetMenu>
                   <Button className="w-full justify-start text-sm" variant="destructive">
                      <CustomIcon className="h-4 w-4 mr-2" icon="databaseBackup" />
-                     Reset data
+                     {t.ui.resetData}
                   </Button>
                </ResetMenu>
             </div>

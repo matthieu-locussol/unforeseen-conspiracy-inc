@@ -6,8 +6,10 @@ import { toast } from 'sonner';
 
 import { RESET_COUNTDOWN } from '../../data/constants';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
+import { useI18n } from '../../i18n/i18n';
 import { useStore } from '../../store/StoreContext';
 import { cn } from '../../utils/cn';
+import { interpolate } from '../../utils/stringMgt';
 
 import { Button } from './ui/button';
 import {
@@ -33,6 +35,7 @@ interface ResetMenuProps {
 
 export const ResetMenu = observer(({ children }: ResetMenuProps) => {
    const { hudStore } = useStore();
+   const { t } = useI18n();
    const isDesktop = useMediaQuery('(min-width: 768px)');
 
    if (isDesktop) {
@@ -41,11 +44,11 @@ export const ResetMenu = observer(({ children }: ResetMenuProps) => {
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                <DialogHeader>
-                  <DialogTitle className="text-red-400">Reset data</DialogTitle>
-                  <DialogDescription className="text-gray-400">
-                     <b>Be careful!</b> This will reset all your progress and delete all your data.
-                     Are you sure you want to proceed?
-                  </DialogDescription>
+                  <DialogTitle className="text-red-400">{t.ui.resetData}</DialogTitle>
+                  <DialogDescription
+                     className="text-gray-400"
+                     dangerouslySetInnerHTML={{ __html: t.ui.resetDescription }}
+                  />
                </DialogHeader>
                <ResetContent onClose={() => hudStore.setIsResetOpen(false)} />
             </DialogContent>
@@ -58,11 +61,11 @@ export const ResetMenu = observer(({ children }: ResetMenuProps) => {
          <DrawerTrigger asChild>{children}</DrawerTrigger>
          <DrawerContent className="pb-4">
             <DrawerHeader className="text-left">
-               <DrawerTitle className="text-red-400">Reset data</DrawerTitle>
-               <DrawerDescription className="text-gray-400">
-                  <b>Be careful!</b> This will reset all your progress and delete all your data. Are
-                  you sure you want to proceed?
-               </DrawerDescription>
+               <DrawerTitle className="text-red-400">{t.ui.resetData}</DrawerTitle>
+               <DrawerDescription
+                  className="text-gray-400"
+                  dangerouslySetInnerHTML={{ __html: t.ui.resetDescription }}
+               />
             </DrawerHeader>
             <ResetContent className="px-4" onClose={() => hudStore.setIsResetOpen(false)} />
          </DrawerContent>
@@ -73,6 +76,7 @@ export const ResetMenu = observer(({ children }: ResetMenuProps) => {
 const ResetContent = observer(
    ({ onClose, className }: React.ComponentProps<'form'> & { onClose: () => void }) => {
       const { saveStore } = useStore();
+      const { t } = useI18n();
       const [countdown, setCountdown] = React.useState(RESET_COUNTDOWN);
       const isDesktop = useMediaQuery('(min-width: 768px)');
 
@@ -84,7 +88,7 @@ const ResetContent = observer(
 
       const handleReset = () => {
          saveStore.deleteSave();
-         toast.success('Your save has been reset successfully.');
+         toast.success(t.ui.resetSuccess);
 
          onClose();
       };
@@ -93,10 +97,12 @@ const ResetContent = observer(
          <div className={cn('grid items-start gap-6', className)}>
             <div className={cn(['flex gap-2', isDesktop ? 'ml-auto' : 'flex-col'])}>
                <Button disabled={countdown > 0} variant="destructive" onClick={handleReset}>
-                  {countdown > 0 ? `Reset in ${countdown} seconds...` : 'Reset data'}
+                  {countdown > 0
+                     ? interpolate(t.ui.resetCountdown, { seconds: countdown })
+                     : t.ui.resetData}
                </Button>
                <Button variant="dark" onClick={() => onClose()}>
-                  Cancel
+                  {t.ui.cancel}
                </Button>
             </div>
          </div>

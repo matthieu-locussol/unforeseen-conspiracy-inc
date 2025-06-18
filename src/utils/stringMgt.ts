@@ -9,7 +9,16 @@ export const toUpperCaseFirst = (str: string | undefined): string => {
    return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-export const stringifyStatsBoost = (boost: Boost, _i18n: I18nManager): string => {
+export const interpolate = (
+   template: string,
+   variables: Record<string, string | number>,
+): string => {
+   return template.replace(/\{(\w+)\}/g, (match, key) => {
+      return variables[key]?.toString() || match;
+   });
+};
+
+export const stringifyStatsBoost = (boost: Boost, i18n: I18nManager): string => {
    const valueStr =
       boost.type.includes('multiplier') ||
       boost.type.includes('chance') ||
@@ -19,14 +28,24 @@ export const stringifyStatsBoost = (boost: Boost, _i18n: I18nManager): string =>
 
    const targetStr =
       boost.target.type === 'generator'
-         ? 'this generator'
+         ? i18n.t.ui.boostTypes.thisGenerator
          : boost.target.type === 'all_generators'
-         ? 'all generators'
+         ? i18n.t.ui.boostTypes.allGenerators
          : boost.target.type === 'category'
-         ? `${boost.target.id} generators`
-         : 'global';
+         ? i18n.t.ui.boostTypes.categoryGenerators.replace('{category}', boost.target.id)
+         : i18n.t.ui.boostTypes.global;
 
-   const typeStr = boost.type.replace('_', ' ').replace(/\b\w/g, (l: string) => l.toUpperCase());
+   const typeStr = boost.type.includes('multiplier')
+      ? i18n.t.ui.boostTypes.productionMultiplier
+      : boost.type.includes('flat')
+      ? i18n.t.ui.boostTypes.productionFlat
+      : boost.type.includes('speed')
+      ? i18n.t.ui.boostTypes.speedMultiplier
+      : boost.type.includes('reduction')
+      ? i18n.t.ui.boostTypes.costReduction
+      : boost.type.includes('chance')
+      ? i18n.t.ui.boostTypes.doubleChance
+      : boost.type.replace('_', ' ').replace(/\b\w/g, (l: string) => l.toUpperCase());
 
    const resourceStr = boost.resource ? ` ${boost.resource}` : '';
 

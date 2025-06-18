@@ -8,10 +8,12 @@ import { BulkBuyButtons } from '../components/gameplay/BulkBuyButtons';
 import { GeneratorsGrid } from '../components/gameplay/GeneratorsGrid';
 import { ResourceCard } from '../components/gameplay/ResourceCard';
 import { useGameLifecycle } from '../hooks/useGameLifecycle';
+import { useI18n } from '../i18n/i18n';
 import { useStore } from '../store/StoreContext';
 
 export const GamePage = observer(() => {
    const { gameStore } = useStore();
+   const { t } = useI18n();
 
    // Update game state on every tick
    useGameLifecycle();
@@ -20,7 +22,7 @@ export const GamePage = observer(() => {
       <div className="flex flex-col gap-4">
          <div className="flex items-center gap-4">
             <h1 className="text-3xl md:text-4xl font-bold z-10 font-orbitron tracking-wider text-green-400 [text-shadow:0_0_5px_rgba(0,255,0,0.3)] mb-4">
-               Unforeseen Conspiracy Inc.
+               {t.game.title}
             </h1>
             <div className="flex items-center gap-2 ml-auto">
                <Button className="px-3" variant="dark" onClick={() => gameStore.togglePlay()}>
@@ -48,14 +50,16 @@ export const GamePage = observer(() => {
                   gameStore.clickProofs();
                }}
             >
-               Extract proofs
+               {t.ui.extractProofs}
             </ExtractButton>
             <BulkBuyButtons />
          </div>
          <GeneratorsGrid />
          <div className="border-t border-dashed border-green-500/20 pt-2 text-xs text-green-500/40 text-center mt-4">
-            <p>CLASSIFIED INFORMATION - AUTHORIZED ACCESS ONLY - LEVEL 1 CLEARANCE REQUIRED</p>
-            <p>MAJESTIC-12 OVERSIGHT COMMITTEE - PROJECT QUANTUM - {new Date().toISOString()}</p>
+            <p>{t.game.classifiedFooter}</p>
+            <p>
+               {t.game.projectFooter} - {new Date().toISOString()}
+            </p>
          </div>
       </div>
    );

@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 
 import { useMediaQuery } from '../../hooks/useMediaQuery';
+import { useI18n } from '../../i18n/i18n';
 import { useStore } from '../../store/StoreContext';
 import { cn } from '../../utils/cn';
 import { LocaleSwitch } from '../LocaleSwitch';
@@ -32,6 +33,7 @@ interface SettingsMenuProps {
 
 export const SettingsMenu = observer(({ children }: SettingsMenuProps) => {
    const { hudStore } = useStore();
+   const { t } = useI18n();
    const isDesktop = useMediaQuery('(min-width: 768px)');
 
    if (isDesktop) {
@@ -40,9 +42,9 @@ export const SettingsMenu = observer(({ children }: SettingsMenuProps) => {
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                <DialogHeader>
-                  <DialogTitle className="text-green-400">Settings</DialogTitle>
+                  <DialogTitle className="text-green-400">{t.ui.settingsTitle}</DialogTitle>
                   <DialogDescription className="text-gray-400">
-                     Make changes to your settings here.
+                     {t.ui.settingsDescription}
                   </DialogDescription>
                </DialogHeader>
                <SettingsContent onClose={() => hudStore.setIsSettingsOpen(false)} />
@@ -56,9 +58,9 @@ export const SettingsMenu = observer(({ children }: SettingsMenuProps) => {
          <DrawerTrigger asChild>{children}</DrawerTrigger>
          <DrawerContent className="pb-4">
             <DrawerHeader className="text-left">
-               <DrawerTitle className="text-green-400">Settings</DrawerTitle>
+               <DrawerTitle className="text-green-400">{t.ui.settingsTitle}</DrawerTitle>
                <DrawerDescription className="text-gray-400">
-                  Make changes to your settings here.
+                  {t.ui.settingsDescription}
                </DrawerDescription>
             </DrawerHeader>
             <SettingsContent className="px-4" onClose={() => hudStore.setIsSettingsOpen(false)} />
@@ -71,6 +73,7 @@ const SettingsContent = ({
    onClose,
    className,
 }: React.ComponentProps<'form'> & { onClose: () => void }) => {
+   const { t } = useI18n();
    const isDesktop = useMediaQuery('(min-width: 768px)');
 
    return (
@@ -81,7 +84,7 @@ const SettingsContent = ({
             variant="dark"
             onClick={() => onClose()}
          >
-            Close
+            {t.ui.close}
          </Button>
       </div>
    );

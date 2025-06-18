@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 
+import { useI18n } from '../../i18n/i18n';
 import { useStore } from '../../store/StoreContext';
 
 import { CustomIcon } from './Icons';
@@ -7,6 +8,7 @@ import { Button } from './ui/button';
 
 export const PlayButton = observer(() => {
    const { routingStore } = useStore();
+   const { t } = useI18n();
 
    return (
       <Button
@@ -17,7 +19,7 @@ export const PlayButton = observer(() => {
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/10 to-transparent transform -translate-x-full animate-shimmer" />
          </div>
          <CustomIcon className="h-6 w-6 mr-2" icon="play" />
-         LAUNCH
+         {t.ui.launch}
       </Button>
    );
 });

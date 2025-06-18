@@ -5,16 +5,17 @@ import { CustomIcon } from '../components/core/Icons';
 import { Badge } from '../components/core/ui/badge';
 import { Progress } from '../components/core/ui/progress';
 import { CRTBackground } from '../components/design/CRTBackground';
-import { ERROR_MESSAGES, LOADING_MESSAGES } from '../data/bootloader';
 import { VERSION_BUILD } from '../data/version';
+import { useI18n } from '../i18n/i18n';
 import { useStore } from '../store/StoreContext';
 import { cn } from '../utils/cn';
 
 export const BootloaderPage = observer(() => {
    const { routingStore } = useStore();
+   const { t } = useI18n();
 
    const [progress, setProgress] = useState(0);
-   const [currentMessage, setCurrentMessage] = useState(LOADING_MESSAGES[0]);
+   const [currentMessage, setCurrentMessage] = useState(t.bootloader.loadingMessages[0]);
    const [showError, setShowError] = useState(false);
    const [errorMessage, setErrorMessage] = useState('');
    const [terminalLines, setTerminalLines] = useState<string[]>([]);
@@ -27,40 +28,43 @@ export const BootloaderPage = observer(() => {
    useEffect(() => {
       if (progress < 100) {
          if (progress === 0) {
-            addTerminalLine('> UNFORESEEN CONSPIRACY BOOTLOADER v3.7.2');
-            addTerminalLine('> INITIALIZING SYSTEM...');
-            addTerminalLine('> CHECKING SECURITY PROTOCOLS...');
+            addTerminalLine(t.bootloader.terminalMessages.bootloaderHeader);
+            addTerminalLine(t.bootloader.terminalMessages.initializingSystem);
+            addTerminalLine(t.bootloader.terminalMessages.checkingSecurity);
          }
 
          if (progress >= 25 && progress < 50 && bootPhase === 1) {
             setBootPhase(2);
-            addTerminalLine('> PHASE 1 COMPLETE');
-            addTerminalLine('> BEGINNING NEURAL INTERFACE CALIBRATION...');
+            addTerminalLine(t.bootloader.terminalMessages.phase1Complete);
+            addTerminalLine(t.bootloader.terminalMessages.neuralInterfaceCalibration);
          }
 
          if (progress >= 50 && progress < 75 && bootPhase === 2) {
             setBootPhase(3);
-            addTerminalLine('> PHASE 2 COMPLETE');
-            addTerminalLine('> ESTABLISHING SECURE CONNECTIONS...');
+            addTerminalLine(t.bootloader.terminalMessages.phase2Complete);
+            addTerminalLine(t.bootloader.terminalMessages.establishingConnections);
          }
 
          if (progress >= 75 && progress < 100 && bootPhase === 3) {
             setBootPhase(4);
-            addTerminalLine('> PHASE 3 COMPLETE');
-            addTerminalLine('> FINALIZING SYSTEM INITIALIZATION...');
+            addTerminalLine(t.bootloader.terminalMessages.phase3Complete);
+            addTerminalLine(t.bootloader.terminalMessages.finalizingSystem);
          }
 
          if (Math.random() < 0.1 && progress > 10 && !showError) {
             setShowError(true);
-            const randomError = ERROR_MESSAGES[Math.floor(Math.random() * ERROR_MESSAGES.length)];
+            const randomError =
+               t.bootloader.errorMessages[
+                  Math.floor(Math.random() * t.bootloader.errorMessages.length)
+               ];
 
             setErrorMessage(randomError);
             addTerminalLine(`> ${randomError}`);
-            addTerminalLine('> APPLYING COUNTERMEASURES...');
+            addTerminalLine(t.bootloader.terminalMessages.applyingCountermeasures);
 
             setTimeout(() => {
                setShowError(false);
-               addTerminalLine('> COUNTERMEASURES SUCCESSFUL');
+               addTerminalLine(t.bootloader.terminalMessages.countermeasuresSuccessful);
             }, 1500);
          }
 
@@ -72,15 +76,17 @@ export const BootloaderPage = observer(() => {
 
             if (Math.random() < 0.3 || newProgress - progress > 2) {
                const newMessage =
-                  LOADING_MESSAGES[Math.floor(Math.random() * LOADING_MESSAGES.length)];
+                  t.bootloader.loadingMessages[
+                     Math.floor(Math.random() * t.bootloader.loadingMessages.length)
+                  ];
 
                setCurrentMessage(newMessage);
                addTerminalLine(`> ${newMessage}`);
             }
 
             if (newProgress === 100) {
-               addTerminalLine('> BOOTLOADER SEQUENCE COMPLETE');
-               addTerminalLine('> LAUNCHING UNFORESEEN CONSPIRACY...');
+               addTerminalLine(t.bootloader.terminalMessages.bootloaderComplete);
+               addTerminalLine(t.bootloader.terminalMessages.launchingConspiracy);
 
                setTimeout(() => {
                   routingStore.transition('game');
@@ -92,7 +98,15 @@ export const BootloaderPage = observer(() => {
             clearTimeout(timer);
          };
       }
-   }, [progress, bootPhase, showError]);
+   }, [
+      progress,
+      bootPhase,
+      showError,
+      t.bootloader.loadingMessages,
+      t.bootloader.errorMessages,
+      t.bootloader.terminalMessages,
+      routingStore,
+   ]);
 
    return (
       <div className="fixed w-full min-h-screen bg-black/50 text-green-400 font-mono flex flex-col items-center justify-center overflow-hidden">
@@ -103,7 +117,7 @@ export const BootloaderPage = observer(() => {
             <div className="flex items-center justify-between mb-6">
                <h1 className="text-2xl font-bold font-orbitron tracking-wider flex items-center">
                   <CustomIcon className="mr-2 h-6 w-6" icon="terminal" />
-                  BOOTLOADER
+                  {t.ui.bootloader}
                </h1>
                <div className="flex items-center gap-2">
                   <Badge className="bg-green-900/50 text-green-300 border-green-700/50">
@@ -111,7 +125,7 @@ export const BootloaderPage = observer(() => {
                   </Badge>
                   <Badge className="bg-red-900/30 text-red-300 border-red-900/50 px-2 py-0.5 text-xs">
                      <CustomIcon className="h-3 w-3 mr-1" icon="alertTriangle" />
-                     CLASSIFIED
+                     {t.ui.classified}
                   </Badge>
                </div>
             </div>
@@ -125,9 +139,16 @@ export const BootloaderPage = observer(() => {
                            line.includes('ERROR') ||
                            line.includes('WARNING') ||
                            line.includes('ALERT') ||
-                           line.includes('CRITICAL')
+                           line.includes('CRITICAL') ||
+                           line.includes('ERREUR') ||
+                           line.includes('ATTENTION') ||
+                           line.includes('ALERTE') ||
+                           line.includes('CRITIQUE')
                               ? 'text-red-400'
-                              : line.includes('COMPLETE') || line.includes('SUCCESSFUL')
+                              : line.includes('COMPLETE') ||
+                                line.includes('SUCCESSFUL') ||
+                                line.includes('TERMINÉE') ||
+                                line.includes('RÉUSSIES')
                               ? 'text-green-400'
                               : 'text-green-300'
                         }`}
@@ -142,22 +163,22 @@ export const BootloaderPage = observer(() => {
                <div className="bg-gray-900/50 p-2 rounded-md border border-green-900/30 flex items-center">
                   <CustomIcon className="h-4 w-4 mr-2 text-green-400" icon="shield" />
                   <div className="text-xs">
-                     <div className="text-gray-400">Security</div>
-                     <div className="font-bold text-green-400">ACTIVE</div>
+                     <div className="text-gray-400">{t.ui.security}</div>
+                     <div className="font-bold text-green-400">{t.ui.active}</div>
                   </div>
                </div>
                <div className="bg-gray-900/50 p-2 rounded-md border border-green-900/30 flex items-center">
                   <CustomIcon className="h-4 w-4 mr-2 text-green-400" icon="database" />
                   <div className="text-xs">
-                     <div className="text-gray-400">Database</div>
-                     <div className="font-bold text-green-400">CONNECTED</div>
+                     <div className="text-gray-400">{t.ui.database}</div>
+                     <div className="font-bold text-green-400">{t.ui.connected}</div>
                   </div>
                </div>
                <div className="bg-gray-900/50 p-2 rounded-md border border-green-900/30 flex items-center">
                   <CustomIcon className="h-4 w-4 mr-2 text-green-400" icon="lock" />
                   <div className="text-xs">
-                     <div className="text-gray-400">Encryption</div>
-                     <div className="font-bold text-green-400">QUANTUM</div>
+                     <div className="text-gray-400">{t.ui.encryption}</div>
+                     <div className="font-bold text-green-400">{t.ui.quantum}</div>
                   </div>
                </div>
                <div className="bg-gray-900/50 p-2 rounded-md border border-green-900/30 flex items-center">
@@ -166,9 +187,9 @@ export const BootloaderPage = observer(() => {
                      icon="alertTriangle"
                   />
                   <div className="text-xs">
-                     <div className="text-gray-400">Status</div>
+                     <div className="text-gray-400">{t.ui.status}</div>
                      <div className={`font-bold ${showError ? 'text-red-400' : 'text-green-400'}`}>
-                        {showError ? 'WARNING' : 'NOMINAL'}
+                        {showError ? t.ui.warning : t.ui.nominal}
                      </div>
                   </div>
                </div>
@@ -199,7 +220,7 @@ export const BootloaderPage = observer(() => {
                   <div
                      key={phase}
                      className={cn([
-                        'w-3 h-3 rounded-full',
+                        'w-3 h-3 rounded-full border-2 transition-all duration-500',
                         bootPhase >= phase ? 'bg-green-500' : 'bg-gray-700',
                      ])}
                   />
@@ -207,10 +228,8 @@ export const BootloaderPage = observer(() => {
             </div>
 
             <div className="text-center text-xs text-gray-500 mt-8">
-               <p>UNFORESEEN CONSPIRACY BOOTLOADER v3.7.2 © 2025</p>
-               <p className="mt-1">
-                  UNAUTHORIZED ACCESS WILL BE PROSECUTED UNDER INTERDIMENSIONAL LAW
-               </p>
+               <p>{t.bootloader.footer.initializingProtocols}</p>
+               <p className="mt-1">{t.bootloader.footer.securityClearance}</p>
             </div>
          </div>
       </div>

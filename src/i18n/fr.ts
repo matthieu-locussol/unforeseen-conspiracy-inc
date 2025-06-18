@@ -82,4 +82,167 @@ export const FR = {
             'Une collection fondamentale de preuves irréfutables. +2 de production de base de preuves pour Terre Plate.',
       },
    },
+   ui: {
+      // Common actions
+      close: 'Fermer',
+      cancel: 'Annuler',
+      settings: 'Paramètres',
+      launch: 'LANCER',
+      ready: 'PRÊT',
+      updating: 'MISE À JOUR',
+      version: 'Version',
+      status: 'Statut',
+
+      // Game specific
+      extractProofs: 'Extraire des preuves',
+      upgradeMultiplier: 'Améliorer ×{multiplier}',
+
+      // Bootloader
+      bootloader: 'BOOTLOADER',
+      classified: 'CLASSIFIÉ',
+      security: 'Sécurité',
+      database: 'Base de données',
+      encryption: 'Chiffrement',
+      quantum: 'QUANTIQUE',
+      active: 'ACTIF',
+      connected: 'CONNECTÉ',
+      warning: 'ATTENTION',
+      nominal: 'NOMINAL',
+
+      // Settings menu
+      settingsTitle: 'Paramètres',
+      settingsDescription: 'Modifiez vos paramètres ici.',
+
+      // Reset menu
+      resetData: 'Réinitialiser',
+      resetDescription:
+         '<b>Attention !</b> Ceci réinitialisera tous vos progrès et supprimera toutes vos données. Êtes-vous sûr de vouloir continuer ?',
+      resetCountdown: 'Réinitialisation dans {seconds} secondes...',
+      resetSuccess: 'Votre sauvegarde a été réinitialisée avec succès.',
+
+      // System status
+      systemStatus: 'ÉTAT DU SYSTÈME',
+      noUpdatesAvailable: 'Aucune mise à jour disponible',
+      readyToLaunch: 'Prêt à lancer',
+      lastUpdated: 'Dernière mise à jour',
+      securityLevel: 'Niveau de sécurité',
+
+      // Tabs
+      changelog: 'CHANGELOG',
+      about: 'À PROPOS',
+
+      // Generator card
+      level: 'NIV',
+      cost: 'Coût :',
+      nextLevel: 'Niveau suivant :',
+      youNeedToDigDeeper: 'Il faut creuser plus profond...',
+      insufficientResources: 'RESSOURCES INSUFFISANTES',
+      unlock: 'DÉBLOQUER',
+      unlocked: 'Débloqué !',
+
+      // Upgrade card
+      effects: 'Effets :',
+
+      // Bulk buy
+      bulkBuy: 'Achat en gros',
+
+      // Boost types
+      boostTypes: {
+         thisGenerator: 'ce générateur',
+         allGenerators: 'tous les générateurs',
+         categoryGenerators: 'générateurs {category}',
+         global: 'global',
+         productionMultiplier: 'Multiplicateur de Production',
+         productionFlat: 'Production Fixe',
+         speedMultiplier: 'Multiplicateur de Vitesse',
+         costReduction: 'Réduction de Coût',
+         doubleChance: 'Chance de Doublement',
+      },
+
+      // Language names
+      english: 'English',
+      french: 'Français',
+   },
+   bootloader: {
+      loadingMessages: [
+         'Établissement du tunnel quantique sécurisé...',
+         'Contournement des protocoles de surveillance NSA...',
+         'Décryptage de technologie alien classifiée...',
+         'Scan des dispositifs de surveillance gouvernementaux...',
+         "Initialisation de l'interface neurale...",
+         'Désactivation des systèmes de surveillance FBI...',
+         'Connexion au réseau fantôme...',
+         "Vérification du niveau d'autorisation conspirationniste...",
+         'Chargement des contre-mesures de contrôle mental...',
+         "Triangulation des positions d'hélicoptères noirs...",
+         'Activation de la couche de protection en papier alu...',
+         'Nettoyage des données chemtrails des serveurs...',
+         'Analyse des motifs de communication des crop circles...',
+         'Décodage des symboles Illuminati...',
+         'Calibrage des algorithmes de détection des reptiliens...',
+         'Établissement de connexion au mainframe de la Zone 51...',
+         'Contournement des mesures de sécurité terre plate...',
+         'Chargement de la base de données des sociétés secrètes...',
+         'Initialisation des protocoles de défense MK-Ultra...',
+         'Scan des micropuces cachées...',
+         "Vérification des données de simulation d'alunissage...",
+         "Établissement de connexion sécurisée vers l'État profond...",
+         'Contournement des filtres de réalité...',
+         'Chargement des théories du complot : 73% vérifiées...',
+         'Initialisation du moteur de paranoïa...',
+         'Scan des dispositifs de surveillance des pensées...',
+         "Établissement d'intrication quantique avec des univers parallèles...",
+         'Décryptage des fichiers de projets budgets noirs...',
+         "Initialisation du simulateur d'opérations sous faux drapeau...",
+      ],
+      errorMessages: [
+         'ERREUR : Accès non autorisé détecté',
+         'ATTENTION : Contre-mesures de surveillance activées',
+         'ALERTE : Brèche de sécurité dans le secteur 7G',
+         'CRITIQUE : Interface neurale instable',
+         'ATTENTION : Champ de distorsion de réalité détecté',
+         'ERREUR : Fluctuation quantique en cours',
+         'ALERTE : Anomalie temporelle détectée',
+         "ATTENTION : Corruption d'implant mémoire détectée",
+      ],
+      terminalMessages: {
+         bootloaderHeader: '> UNFORESEEN CONSPIRACY BOOTLOADER v3.7.2',
+         initializingSystem: '> INITIALISATION DU SYSTÈME...',
+         checkingSecurity: '> VÉRIFICATION DES PROTOCOLES DE SÉCURITÉ...',
+         phase1Complete: '> PHASE 1 TERMINÉE',
+         neuralInterfaceCalibration: "> DÉBUT DU CALIBRAGE DE L'INTERFACE NEURALE...",
+         phase2Complete: '> PHASE 2 TERMINÉE',
+         establishingConnections: '> ÉTABLISSEMENT DES CONNEXIONS SÉCURISÉES...',
+         phase3Complete: '> PHASE 3 TERMINÉE',
+         finalizingSystem: "> FINALISATION DE L'INITIALISATION DU SYSTÈME...",
+         applyingCountermeasures: '> APPLICATION DES CONTRE-MESURES...',
+         countermeasuresSuccessful: '> CONTRE-MESURES RÉUSSIES',
+         bootloaderComplete: '> SÉQUENCE DE CHARGEMENT TERMINÉE',
+         launchingConspiracy: "> LANCEMENT D'UNFORESEEN CONSPIRACY...",
+      },
+      footer: {
+         initializingProtocols: 'INITIALISATION DES PROTOCOLES DE CONSPIRATION...',
+         securityClearance: "Autorisation de sécurité requise. L'accès non autorisé sera terminé.",
+      },
+   },
+   launcher: {
+      title: 'UNFORESEEN CONSPIRACY INC.',
+      warningMessage:
+         "ATTENTION : Cette simulation contient des informations classifiées sur les opérations secrètes, les gouvernements fantômes et la manipulation quantique. L'accès non autorisé sera surveillé.",
+      aboutText: {
+         paragraph1:
+            'Bienvenue, chercheur de vérité. Tu penses savoir ce qui se passe vraiment ? Eh bien, détrompez-vous.',
+         paragraph2:
+            'Cliquez à travers des couches de mensonges, générant des <span class="text-green-400 font-bold">Preuves</span> indéniables qui exposent tout – des chemtrails aux "retraites" suspectes de célébrités. Récoltez des <span class="text-green-400 font-bold">Preuves</span>, amassez des <span class="text-green-400 font-bold">Abonnés</span> qui comprennent, et gérez cette <span class="text-red-400 font-bold">Paranoïa</span> rampante (est-ce que votre webcam... vous regarde ?).',
+         paragraph3:
+            'Démêlez des conspirations à la fois banales et monstrueuses, des dissimulations gouvernementales à pourquoi les pigeons semblent si... louches. Cliquez en avant, le terrier du lapin vous attend !',
+         paragraph4: "Et n'oubliez pas de regarder derrière vous de temps en temps...",
+      },
+   },
+   game: {
+      title: 'Unforeseen Conspiracy Inc.',
+      classifiedFooter:
+         'INFORMATIONS CLASSIFIÉES - ACCÈS AUTORISÉ SEULEMENT - AUTORISATION NIVEAU 1 REQUISE',
+      projectFooter: 'COMITÉ DE SURVEILLANCE MAJESTIC-12 - PROJET QUANTIQUE',
+   },
 } satisfies Translation;

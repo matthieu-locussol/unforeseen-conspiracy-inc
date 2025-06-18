@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { useI18n } from '../../i18n/i18n';
 import { useStore } from '../../store/StoreContext';
 import { cn } from '../../utils/cn';
+import { interpolate } from '../../utils/stringMgt';
 import { CustomIcon } from '../core/Icons';
 import { Badge } from '../core/ui/badge';
 import { Button } from '../core/ui/button';
@@ -52,7 +53,7 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                         : 'bg-gray-700/10 text-gray-400/90 border-gray-400/30',
                   ])}
                >
-                  LVL {generatorStore.level}
+                  {t.ui.level} {generatorStore.level}
                </Badge>
             </div>
             <div className="grid grid-cols-3 gap-3 mr-auto">
@@ -99,11 +100,11 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
          >
             {generatorStore.unlocked
                ? t['generators'][generatorStore.id]['description']
-               : 'You need to dig deeper...'}
+               : t.ui.youNeedToDigDeeper}
          </p>
          <div className="grid grid-cols-2 w-full gap-2">
             <Card className="p-2 bg-green-800/30 border-green-900 rounded-sm transition-all duration-200 hover:bg-green-800/40">
-               <h2 className="text-sm text-gray-400">Cost:</h2>
+               <h2 className="text-sm text-gray-400">{t.ui.cost}</h2>
                <p className="text-sm">
                   {
                      generatorStore.getCost(
@@ -111,12 +112,12 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                         gameStore.getGeneratorCostReduction(generatorStore.id),
                      ).proofs
                   }{' '}
-                  proofs
+                  {t.resources.proofs.name.toLowerCase()}
                </p>
             </Card>
             {generatorStore.unlocked ? (
                <Card className="p-2 bg-blue-800/30 border-blue-900 rounded-sm transition-all duration-200 hover:bg-blue-800/40">
-                  <h2 className="text-sm text-gray-400">Next level:</h2>
+                  <h2 className="text-sm text-gray-400">{t.ui.nextLevel}</h2>
                   <p className="text-sm text-blue-200 flex items-center">
                      <CustomIcon
                         className="inline-flex h-4 w-4 mr-1 text-amber-400"
@@ -145,7 +146,7 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
             size="sm"
             onClick={() => gameStore.buyGenerator(generatorStore.id, hudStore.bulkBuy)}
          >
-            Upgrade ×{hudStore.bulkBuy}
+            {interpolate(t.ui.upgradeMultiplier, { multiplier: hudStore.bulkBuy })}
          </Button>
       </Card>
    );

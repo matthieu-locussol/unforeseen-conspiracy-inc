@@ -18,6 +18,7 @@ export interface UpgradeCardProps {
 
 export const UpgradeCard = observer(({ upgrade }: UpgradeCardProps) => {
    const i18n = useI18n();
+   const { t } = i18n;
    const { gameStore } = useStore();
    const [isOpen, setIsOpen] = useState(false);
 
@@ -64,13 +65,15 @@ export const UpgradeCard = observer(({ upgrade }: UpgradeCardProps) => {
                <div className="space-y-2">
                   <div className="flex items-center gap-2">
                      <CustomIcon className="h-5 w-5 text-green-400" icon={upgrade.icon} />
-                     <h3 className="font-semibold font-orbitron text-green-400">{upgrade.name}</h3>
+                     <h3 className="font-semibold font-orbitron text-green-400">
+                        {t.upgrades[upgrade.id].name}
+                     </h3>
                   </div>
-                  <p className="text-sm text-gray-300">{upgrade.description}</p>
+                  <p className="text-sm text-gray-300">{t.upgrades[upgrade.id].description}</p>
                </div>
                <div className="space-y-3">
                   <div className="border-t border-gray-700 pt-3">
-                     <h4 className="text-sm font-medium text-gray-400 mb-2">Cost:</h4>
+                     <h4 className="text-sm font-medium text-gray-400 mb-2">{t.ui.cost}</h4>
                      <div className="flex gap-3">
                         {upgrade.cost.proofs > 0 && (
                            <div className="flex items-center gap-1">
@@ -89,7 +92,7 @@ export const UpgradeCard = observer(({ upgrade }: UpgradeCardProps) => {
                      </div>
                   </div>
                   <div className="border-t border-gray-700 pt-3">
-                     <h4 className="text-sm font-medium text-gray-400 mb-2">Effects:</h4>
+                     <h4 className="text-sm font-medium text-gray-400 mb-2">{t.ui.effects}</h4>
                      <div className="space-y-1">
                         {upgrade.boosts.map((boost, index) => (
                            <div key={index} className="text-xs text-gray-300">
@@ -105,7 +108,11 @@ export const UpgradeCard = observer(({ upgrade }: UpgradeCardProps) => {
                   size="sm"
                   onClick={handleUnlock}
                >
-                  {isPurchased ? 'Unlocked!' : canAfford ? 'UNLOCK' : 'INSUFFICIENT RESOURCES'}
+                  {isPurchased
+                     ? t.ui.unlocked
+                     : canAfford
+                     ? t.ui.unlock
+                     : t.ui.insufficientResources}
                </Button>
             </div>
          </PopoverContent>
