@@ -5,17 +5,17 @@ export const EN = {
       proofs: {
          name: 'Proofs',
          description:
-            "Directly downloaded from the 'Hidden WikiLeaks' hosted on a Geocities page. Source...? Meh, I guess.",
+            "Directly downloaded from the 'Hidden WikiLeaks' hosted on a Geocities page. Source...? Meh, who cares.",
       },
       followers: {
          name: 'Followers',
          description:
-            'Your growing audience. They passively join your cause, offering biased confirmation and reducing your Paranoia. Better not to read their comments, however.',
+            "Your growing audience. They passively join your cause, offering biased confirmation and reducing your Paranoia. But you'd better not read their comments.",
       },
       paranoia: {
          name: 'Paranoia',
          description:
-            'This constant feeling of being observed... or is it just you? It advances your progress by making things more difficult and blocking further advancement.',
+            'This constant feeling of being observed... or is it just you? It drives your progress by making things harder and blocking further advancement.',
       },
    },
    generators: {
@@ -233,7 +233,7 @@ export const EN = {
          paragraph1:
             "Welcome, truth-seeker. Think you know what's really going on? Well, think again.",
          paragraph2:
-            'Click your way through layers of lies, generating undeniable <span class="text-green-400 font-bold">Proofs</span> that expose everything – from chemtrails to questionable celebrity "retirements". Gather <span class="text-green-400 font-bold">Proofs</span>, amass <span class="text-green-400 font-bold">Followers</span> who understand, and manage that creeping <span class="text-red-400 font-bold">Paranoia</span> (is your webcam... watching you?).',
+            'Click your way through layers of lies, generating undeniable <span class="text-green-400 font-bold">Proofs</span> that expose everything—from chemtrails to questionable celebrity "retirements." Gather <span class="text-green-400 font-bold">Proofs</span>, amass <span class="text-green-400 font-bold">Followers</span> who understand, and manage that creeping <span class="text-red-400 font-bold">Paranoia</span> (is your webcam... watching you?).',
          paragraph3:
             'Unravel conspiracies both mundane and monstrous, from government cover-ups to why pigeons seem so... shifty. Click onward, the rabbit hole awaits!',
          paragraph4: "And don't forget to check behind you from time to time...",
