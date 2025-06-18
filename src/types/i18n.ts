@@ -138,6 +138,10 @@ export interface Translation {
          paragraph3: string;
          paragraph4: string;
       };
+      footer: {
+         copyright: string;
+         disclaimer: string;
+      };
    };
    game: {
       title: string;

@@ -179,11 +179,10 @@ export const LauncherPage = observer(() => {
             </div>
          </div>
          <div className="text-center text-xs text-gray-500 mt-2">
-            <p>© {new Date().getFullYear()} Unforeseen Conspiracy Inc. All rights reserved.</p>
-            <p className="mt-1">
-               This simulation is for entertainment purposes only. Any resemblance to actual
-               conspiracies is purely... coincidental.
+            <p>
+               {t.launcher.footer.copyright.replace('{year}', new Date().getFullYear().toString())}
             </p>
+            <p className="mt-1">{t.launcher.footer.disclaimer}</p>
          </div>
       </>
    );

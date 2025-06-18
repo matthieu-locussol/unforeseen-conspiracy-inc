@@ -238,6 +238,11 @@ export const EN = {
             'Unravel conspiracies both mundane and monstrous, from government cover-ups to why pigeons seem so... shifty. Click onward, the rabbit hole awaits!',
          paragraph4: "And don't forget to check behind you from time to time...",
       },
+      footer: {
+         copyright: '© {year} Unforeseen Conspiracy Inc. All rights reserved.',
+         disclaimer:
+            'This simulation is for entertainment purposes only. Any resemblance to actual conspiracies is purely... coincidental.',
+      },
    },
    game: {
       title: 'Unforeseen Conspiracy Inc.',

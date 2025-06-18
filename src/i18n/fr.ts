@@ -238,6 +238,11 @@ export const FR = {
             'Démêlez des conspirations à la fois banales et monstrueuses, des dissimulations gouvernementales à pourquoi les pigeons semblent si... louches. Cliquez en avant, le terrier du lapin vous attend !',
          paragraph4: "Et n'oubliez pas de regarder derrière vous de temps en temps...",
       },
+      footer: {
+         copyright: '© {year} Unforeseen Conspiracy Inc. Tous droits réservés.',
+         disclaimer:
+            'Cette simulation est à des fins de divertissement uniquement. Toute ressemblance avec de vraies conspirations est purement... fortuite.',
+      },
    },
    game: {
       title: 'Unforeseen Conspiracy Inc.',
