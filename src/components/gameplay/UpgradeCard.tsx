@@ -60,7 +60,7 @@ export const UpgradeCard = observer(({ upgrade }: UpgradeCardProps) => {
                )}
             </div>
          </PopoverTrigger>
-         <PopoverContent className="w-70" side="top">
+         <PopoverContent className="w-80" side="top">
             <div className="space-y-4 rounded-sm">
                <div className="space-y-2">
                   <div className="flex items-center gap-2">

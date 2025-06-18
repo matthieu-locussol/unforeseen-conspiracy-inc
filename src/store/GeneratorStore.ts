@@ -47,7 +47,7 @@ export class GeneratorStore {
          this._store.upgrades.find((upgrade) => upgrade.id === upgradeId),
       );
 
-      return upgradesStores.filter((upgrade) => upgrade !== undefined) as UpgradeStore[];
+      return upgradesStores.filter((upgrade): upgrade is UpgradeStore => upgrade !== undefined);
    }
 
    /**
