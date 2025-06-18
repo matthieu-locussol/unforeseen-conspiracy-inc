@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { CustomIcon } from '../components/core/Icons';
 import { Badge } from '../components/core/ui/badge';
@@ -13,12 +13,29 @@ import { cn } from '../utils/cn';
 export const BootloaderPage = observer(() => {
    const { routingStore } = useStore();
    const { t } = useI18n();
+   const terminalRef = useRef<HTMLDivElement>(null);
 
    const [progress, setProgress] = useState(0);
    const [currentMessage, setCurrentMessage] = useState(t.bootloader.loadingMessages[0]);
    const [showError, setShowError] = useState(false);
    const [errorMessage, setErrorMessage] = useState('');
-   const [terminalLines, setTerminalLines] = useState<string[]>([]);
+   const [terminalLines, setTerminalLines] = useState<string[]>([
+      'System initialization started...',
+      'Loading boot modules...',
+      'Checking system integrity...',
+      'Verifying security protocols...',
+      'Loading user interface...',
+      'Establishing network connections...',
+      'Running diagnostic tests...',
+      'Calibrating neural interface...',
+      'Loading conspiracy database...',
+      'Encrypting communications...',
+      'Initializing quantum protocols...',
+      'Running security scans...',
+      'Loading classified modules...',
+      'Establishing secure channels...',
+      'Final system checks...',
+   ]);
    const [bootPhase, setBootPhase] = useState(1);
 
    const addTerminalLine = (line: string) => {
@@ -108,12 +125,18 @@ export const BootloaderPage = observer(() => {
       routingStore,
    ]);
 
+   useEffect(() => {
+      if (terminalRef.current) {
+         terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+      }
+   }, [terminalLines]);
+
    return (
-      <div className="fixed w-full min-h-screen bg-black/50 text-green-400 font-mono flex flex-col items-center justify-center overflow-hidden">
+      <div className="fixed w-full min-h-screen bg-black/50 text-green-400 font-mono flex flex-col items-center justify-center">
          <CRTBackground />
          <div className={`absolute inset-0 bg-green-900/10 pointer-events-none animate-flicker`} />
 
-         <div className="w-full max-w-3xl px-4 py-8 relative z-10">
+         <div className="w-full max-w-3xl px-4 py-8 relative z-10 min-h-0">
             <div className="flex items-center justify-between mb-6">
                <h1 className="text-2xl font-bold font-orbitron tracking-wider flex items-center">
                   <CustomIcon className="mr-2 h-6 w-6" icon="terminal" />
@@ -130,8 +153,11 @@ export const BootloaderPage = observer(() => {
                </div>
             </div>
 
-            <div className="bg-black border border-green-900/50 rounded-md p-4 mb-6 h-[300px] overflow-y-auto font-mono text-sm">
-               <div className="space-y-1">
+            <div
+               ref={terminalRef}
+               className="bg-black border border-green-900/50 rounded-md p-4 mb-6 h-[300px] overflow-y-auto font-mono text-sm flex-shrink-0"
+            >
+               <div className="space-y-1 min-h-full">
                   {terminalLines.map((line, index) => (
                      <div
                         key={index}
