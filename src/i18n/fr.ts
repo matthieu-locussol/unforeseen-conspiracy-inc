@@ -10,12 +10,12 @@ export const FR = {
       followers: {
          name: 'Abonnés',
          description:
-            "Ton audience croissante. Ils rejoignent passivement ta cause, t'offrant du biais de confirmation et réduisant ta Paranoïa. Mieux vaut ne pas lire leurs commentaires, cependant.",
+            'Ton audience croissante. Ils rejoignent passivement ta cause, te confortant dans tes idées et réduisant ta Paranoïa. Mais évite de lire leurs commentaires.',
       },
       paranoia: {
          name: 'Paranoïa',
          description:
-            "Ce sentiment constant, oppressant d'être observé... ou est-ce juste toi ? Entrave ton avancement en rendant les choses plus difficiles et en bloquant certains progrès.",
+            "Ce sentiment constant, oppressant d'être observé... ou est-ce juste toi ? Freine ta progression en rendant les choses plus difficiles et bloque certains progrès.",
       },
    },
    generators: {
@@ -233,9 +233,9 @@ export const FR = {
          paragraph1:
             'Bienvenue, chercheur de vérité. Tu penses savoir ce qui se passe vraiment ? Eh bien, détrompe-toi.',
          paragraph2:
-            'Clique à travers des couches de mensonges, générant des <span class="text-green-400 font-bold">Preuves</span> indéniables qui exposent tout – des chemtrails aux "retraites" suspectes de célébrités. Récolte des <span class="text-green-400 font-bold">Preuves</span>, amasse des <span class="text-green-400 font-bold">Abonnés</span> qui comprennent, et gère cette <span class="text-red-400 font-bold">Paranoïa</span> rampante (est-ce que ta webcam... te regarde ?).',
+            'Traverse des couches de mensonges en cliquant, générant des <span class="text-green-400 font-bold">Preuves</span> indéniables qui exposent tout – des chemtrails aux "retraites" suspectes de célébrités. Récolte des <span class="text-green-400 font-bold">Preuves</span>, amasse des <span class="text-green-400 font-bold">Abonnés</span> qui te comprennent, et gère cette <span class="text-red-400 font-bold">Paranoïa</span> rampante (est-ce que ta webcam... te regarde ?).',
          paragraph3:
-            "Démêle des conspirations à la fois banales et monstrueuses, des dissimulations gouvernementales à pourquoi les pigeons semblent si... louches. Clique en avant, le terrier du lapin t'attend !",
+            "Démêle des conspirations à la fois banales et monstrueuses, des dissimulations gouvernementales à pourquoi les pigeons semblent si... louches. Continue de cliquer, le terrier du lapin t'attend !",
          paragraph4: "Et n'oublie pas de regarder derrière toi de temps en temps...",
       },
       footer: {
