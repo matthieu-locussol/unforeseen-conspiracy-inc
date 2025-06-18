@@ -123,7 +123,11 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                         icon="searchCheck"
                      />{' '}
                      →{' '}
-                     {generatorStore.getProduction(generatorStore.level + hudStore.bulkBuy).proofs}
+                     {
+                        generatorStore.getEffectiveProduction(
+                           generatorStore.level + hudStore.bulkBuy,
+                        ).proofs
+                     }
                      /sec (+
                      {generatorStore.getProductionIncrease(hudStore.bulkBuy).proofs}/sec)
                   </p>

@@ -77,12 +77,13 @@ export class GeneratorStore {
       };
    }
 
-   public getProduction(
-      amount: number,
-      flatBonus: GeneratorProduction = { proofs: 0, followers: 0, paranoia: 0 },
-      multiplyBonus: GeneratorProduction = { proofs: 1, followers: 1, paranoia: 1 },
-   ): GeneratorProduction {
-      if (!this.unlocked || this.level === 0) {
+   /**
+    * @description Get the base production for a given level (without any bonuses/multipliers from upgrades)
+    * @param level - The level to calculate production for
+    * @returns The base production for the specified level
+    */
+   public getBaseProduction(level: number): GeneratorProduction {
+      if (!this.unlocked || level === 0) {
          return {
             proofs: 0,
             followers: 0,
@@ -90,20 +91,12 @@ export class GeneratorStore {
          };
       }
 
-      let proofsProduction =
-         this.baseProduction.proofs + (amount - 1) * this.productionMultiplier.proofs;
-      let followersProduction =
-         this.baseProduction.followers + (amount - 1) * this.productionMultiplier.followers;
-      let paranoiaProduction =
-         this.baseProduction.paranoia + (amount - 1) * this.productionMultiplier.paranoia;
-
-      proofsProduction += flatBonus.proofs;
-      followersProduction += flatBonus.followers;
-      paranoiaProduction += flatBonus.paranoia;
-
-      proofsProduction *= multiplyBonus.proofs;
-      followersProduction *= multiplyBonus.followers;
-      paranoiaProduction *= multiplyBonus.paranoia;
+      const proofsProduction =
+         this.baseProduction.proofs + (level - 1) * this.productionMultiplier.proofs;
+      const followersProduction =
+         this.baseProduction.followers + (level - 1) * this.productionMultiplier.followers;
+      const paranoiaProduction =
+         this.baseProduction.paranoia + (level - 1) * this.productionMultiplier.paranoia;
 
       return {
          proofs: +proofsProduction.toFixed(1),
@@ -112,18 +105,64 @@ export class GeneratorStore {
       };
    }
 
-   public getProductionIncrease(amount: number): GeneratorProduction {
-      const newProduction = this.getProduction(this.level + amount);
+   /**
+    * @description Get the effective production including all bonuses and multipliers
+    * @param level - The level to calculate production for (defaults to current level)
+    * @returns The effective production including all bonuses and multipliers
+    */
+   public getEffectiveProduction(level: number = this.level): GeneratorProduction {
+      const baseProduction = this.getBaseProduction(level);
+
+      if (!this.unlocked || level === 0) {
+         return baseProduction;
+      }
+
+      // Get bonuses and multipliers from the game store
+      const multipliers = this._store.getGeneratorMultipliers(this);
+      const flatBonuses = this._store.getFlatBonusesForGenerator(this);
+
+      // Apply flat bonuses first, then multipliers
+      const finalProduction = {
+         proofs: (baseProduction.proofs + flatBonuses.proofs) * multipliers.proofs,
+         followers: (baseProduction.followers + flatBonuses.followers) * multipliers.followers,
+         paranoia: (baseProduction.paranoia + flatBonuses.paranoia) * multipliers.paranoia,
+      };
 
       return {
-         proofs: +(newProduction.proofs - this.effectiveProduction.proofs).toFixed(1),
-         followers: +(newProduction.followers - this.effectiveProduction.followers).toFixed(1),
-         paranoia: +(newProduction.paranoia - this.effectiveProduction.paranoia).toFixed(1),
+         proofs: +finalProduction.proofs.toFixed(1),
+         followers: +finalProduction.followers.toFixed(1),
+         paranoia: +finalProduction.paranoia.toFixed(1),
       };
    }
 
+   /**
+    * @description Get the production increase from buying additional levels
+    * @param amount - The amount of levels to add
+    * @returns The production increase
+    */
+   public getProductionIncrease(amount: number): GeneratorProduction {
+      const currentProduction = this.effectiveProduction;
+      const newProduction = this.getEffectiveProduction(this.level + amount);
+
+      return {
+         proofs: +(newProduction.proofs - currentProduction.proofs).toFixed(1),
+         followers: +(newProduction.followers - currentProduction.followers).toFixed(1),
+         paranoia: +(newProduction.paranoia - currentProduction.paranoia).toFixed(1),
+      };
+   }
+
+   /**
+    * @description Get the current effective production (including all bonuses and multipliers)
+    */
    public get effectiveProduction(): GeneratorProduction {
-      return this.getProduction(this.level);
+      return this.getEffectiveProduction(this.level);
+   }
+
+   /**
+    * @description Get the current base production (without bonuses and multipliers)
+    */
+   public get baseProductionAtCurrentLevel(): GeneratorProduction {
+      return this.getBaseProduction(this.level);
    }
 
    public reset(): void {

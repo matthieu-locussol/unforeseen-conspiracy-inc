@@ -1,5 +1,5 @@
 import type { SerializedGameData } from '../types/game';
-import type { GeneratorId } from '../types/generators';
+import type { GeneratorId, GeneratorProduction } from '../types/generators';
 import type { Conditions, UpgradeId } from '../types/upgrades';
 
 import { makeAutoObservable } from 'mobx';
@@ -74,35 +74,13 @@ export class GameStore {
       const previousFollowers = this.followers.value;
       const previousParanoia = this.paranoia.value;
 
-      // Get global multipliers that apply to all generators
-      const globalMultipliers = this.getGlobalMultipliers();
-
+      // Use the effective production from each generator (which includes all bonuses)
       this.generators.forEach((generator) => {
          const production = generator.effectiveProduction;
 
-         // Get category-specific multipliers for this generator
-         const categoryMultipliers = this.getCategoryMultipliers(generator);
-
-         // Get flat bonuses for this generator
-         const flatBonuses = this.getFlatBonuses(generator);
-
-         // Apply flat bonuses first, then multipliers
-         const finalProofsProduction =
-            (production.proofs + flatBonuses.proofs) *
-            globalMultipliers.proofs *
-            categoryMultipliers.proofs;
-         const finalFollowersProduction =
-            (production.followers + flatBonuses.followers) *
-            globalMultipliers.followers *
-            categoryMultipliers.followers;
-         const finalParanoiaProduction =
-            (production.paranoia + flatBonuses.paranoia) *
-            globalMultipliers.paranoia *
-            categoryMultipliers.paranoia;
-
-         this.proofs.add(finalProofsProduction);
-         this.followers.add(finalFollowersProduction);
-         this.paranoia.add(finalParanoiaProduction);
+         this.proofs.add(production.proofs);
+         this.followers.add(production.followers);
+         this.paranoia.add(production.paranoia);
       });
 
       this.proofs.tick();
@@ -117,47 +95,9 @@ export class GameStore {
    }
 
    /**
-    * Get global multipliers that apply to all generators
+    * Get all multipliers that apply to a generator (global, category, and individual)
     */
-   private getGlobalMultipliers(): { proofs: number; followers: number; paranoia: number } {
-      let proofsMultiplier = 1;
-      let followersMultiplier = 1;
-      let paranoiaMultiplier = 1;
-
-      const unlockedUpgrades = this.upgrades.filter((upgrade) => upgrade.unlocked);
-
-      for (const upgrade of unlockedUpgrades) {
-         for (const boost of upgrade.boosts) {
-            if (
-               boost.type === 'production_multiplier' &&
-               (boost.target.type === 'all_generators' || boost.target.type === 'global')
-            ) {
-               if (boost.resource === 'proofs') {
-                  proofsMultiplier += boost.value;
-               } else if (boost.resource === 'followers') {
-                  followersMultiplier += boost.value;
-               } else if (boost.resource === 'paranoia') {
-                  paranoiaMultiplier += boost.value;
-               }
-            }
-         }
-      }
-
-      return {
-         proofs: proofsMultiplier,
-         followers: followersMultiplier,
-         paranoia: paranoiaMultiplier,
-      };
-   }
-
-   /**
-    * Get category-specific multipliers for a generator
-    */
-   private getCategoryMultipliers(generator: GeneratorStore): {
-      proofs: number;
-      followers: number;
-      paranoia: number;
-   } {
+   public getGeneratorMultipliers(generator: GeneratorStore): GeneratorProduction {
       let proofsMultiplier = 1;
       let followersMultiplier = 1;
       let paranoiaMultiplier = 1;
@@ -167,21 +107,18 @@ export class GameStore {
       for (const upgrade of unlockedUpgrades) {
          for (const boost of upgrade.boosts) {
             if (boost.type === 'production_multiplier') {
-               // Generator-specific boosts
-               if (boost.target.type === 'generator' && boost.target.id === generator.id) {
-                  if (boost.resource === 'proofs') {
-                     proofsMultiplier += boost.value;
-                  } else if (boost.resource === 'followers') {
-                     followersMultiplier += boost.value;
-                  } else if (boost.resource === 'paranoia') {
-                     paranoiaMultiplier += boost.value;
-                  }
-               }
-               // Category-specific boosts
-               else if (
-                  boost.target.type === 'category' &&
-                  generator.categories.includes(boost.target.id)
-               ) {
+               // Check if this boost applies to the generator
+               const appliesToGenerator =
+                  // Global multipliers
+                  boost.target.type === 'all_generators' ||
+                  boost.target.type === 'global' ||
+                  // Generator-specific multipliers
+                  (boost.target.type === 'generator' && boost.target.id === generator.id) ||
+                  // Category-specific multipliers
+                  (boost.target.type === 'category' &&
+                     generator.categories.includes(boost.target.id));
+
+               if (appliesToGenerator) {
                   if (boost.resource === 'proofs') {
                      proofsMultiplier += boost.value;
                   } else if (boost.resource === 'followers') {
@@ -202,13 +139,9 @@ export class GameStore {
    }
 
    /**
-    * Get flat bonuses that apply to a generator
+    * Get flat bonuses that apply to a generator (exposed for GeneratorStore)
     */
-   private getFlatBonuses(generator: GeneratorStore): {
-      proofs: number;
-      followers: number;
-      paranoia: number;
-   } {
+   public getFlatBonusesForGenerator(generator: GeneratorStore): GeneratorProduction {
       let proofsBonus = 0;
       let followersBonus = 0;
       let paranoiaBonus = 0;
@@ -218,31 +151,18 @@ export class GameStore {
       for (const upgrade of unlockedUpgrades) {
          for (const boost of upgrade.boosts) {
             if (boost.type === 'production_flat') {
-               // Generator-specific flat bonuses
-               if (boost.target.type === 'generator' && boost.target.id === generator.id) {
-                  if (boost.resource === 'proofs') {
-                     proofsBonus += boost.value;
-                  } else if (boost.resource === 'followers') {
-                     followersBonus += boost.value;
-                  } else if (boost.resource === 'paranoia') {
-                     paranoiaBonus += boost.value;
-                  }
-               }
-               // Category-specific flat bonuses
-               else if (
-                  boost.target.type === 'category' &&
-                  generator.categories.includes(boost.target.id)
-               ) {
-                  if (boost.resource === 'proofs') {
-                     proofsBonus += boost.value;
-                  } else if (boost.resource === 'followers') {
-                     followersBonus += boost.value;
-                  } else if (boost.resource === 'paranoia') {
-                     paranoiaBonus += boost.value;
-                  }
-               }
-               // Global flat bonuses
-               else if (boost.target.type === 'all_generators' || boost.target.type === 'global') {
+               // Check if this boost applies to the generator
+               const appliesToGenerator =
+                  // Global flat bonuses
+                  boost.target.type === 'all_generators' ||
+                  boost.target.type === 'global' ||
+                  // Generator-specific flat bonuses
+                  (boost.target.type === 'generator' && boost.target.id === generator.id) ||
+                  // Category-specific flat bonuses
+                  (boost.target.type === 'category' &&
+                     generator.categories.includes(boost.target.id));
+
+               if (appliesToGenerator) {
                   if (boost.resource === 'proofs') {
                      proofsBonus += boost.value;
                   } else if (boost.resource === 'followers') {
@@ -255,7 +175,11 @@ export class GameStore {
          }
       }
 
-      return { proofs: proofsBonus, followers: followersBonus, paranoia: paranoiaBonus };
+      return {
+         proofs: proofsBonus,
+         followers: followersBonus,
+         paranoia: paranoiaBonus,
+      };
    }
 
    public checkConditions(conditions: Conditions): boolean {
