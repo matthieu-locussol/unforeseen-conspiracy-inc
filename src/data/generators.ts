@@ -102,6 +102,7 @@ export const GENERATORS: Generator[] = [
          'flat_earth_organization_boost',
          'flat_earth_production_flat',
          'flat_earth_critical_chance',
+         'enhanced_critical_power',
       ],
    },
 ];

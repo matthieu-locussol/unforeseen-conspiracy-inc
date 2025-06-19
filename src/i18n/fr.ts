@@ -85,6 +85,11 @@ export const FR = {
          name: 'Preuve Critique',
          description: 'Augmente la chance de critique de tes clics de 10%.',
       },
+      enhanced_critical_power: {
+         name: 'Pouvoir Critique Amélioré',
+         description:
+            'Les clics critiques deviennent plus puissants. +100% de magnitude des coups critiques.',
+      },
    },
    ui: {
       // Common actions

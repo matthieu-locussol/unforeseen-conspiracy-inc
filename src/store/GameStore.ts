@@ -41,7 +41,7 @@ export class GameStore {
 
       // Initialize game systems
       this.generators = [];
-      this.clicker = new ClickerStore('default');
+      this.clicker = new ClickerStore('default', this);
       this.statistics = new StatisticsStore();
       this.upgrades = [];
 
@@ -137,6 +137,45 @@ export class GameStore {
          followers: followersMultiplier,
          paranoia: paranoiaMultiplier,
       };
+   }
+
+   /**
+    * Get the total click critical chance from base + upgrades
+    */
+   public getClickCriticalChance(): number {
+      let totalCriticalChance = this.clicker.criticalChance;
+
+      const unlockedUpgrades = this.upgrades.filter((upgrade) => upgrade.unlocked);
+
+      for (const upgrade of unlockedUpgrades) {
+         for (const boost of upgrade.boosts) {
+            if (boost.type === 'click_critical_chance') {
+               totalCriticalChance += boost.value;
+            }
+         }
+      }
+
+      // Ensure critical chance never exceeds 100%
+      return Math.min(totalCriticalChance, 1);
+   }
+
+   /**
+    * Get the total click critical multiplier from base + upgrades
+    */
+   public getClickCriticalMultiplier(): number {
+      let totalCriticalMultiplier = this.clicker.criticalMultiplier;
+
+      const unlockedUpgrades = this.upgrades.filter((upgrade) => upgrade.unlocked);
+
+      for (const upgrade of unlockedUpgrades) {
+         for (const boost of upgrade.boosts) {
+            if (boost.type === 'click_critical_magnitude') {
+               totalCriticalMultiplier += boost.value;
+            }
+         }
+      }
+
+      return totalCriticalMultiplier;
    }
 
    /**

@@ -203,4 +203,22 @@ export const UPGRADES: Upgrade[] = [
       conditions: { proofs: 0, followers: 0, paranoia: 0, generators: [] },
       unlocked: false,
    },
+   {
+      id: 'enhanced_critical_power',
+      name: 'Enhanced Critical Power',
+      description: 'Critical clicks become more powerful. +100% critical hit magnitude.',
+      icon: 'zap',
+      cost: { proofs: 2000, followers: 0 },
+      boosts: [
+         {
+            type: 'click_critical_magnitude',
+            target: {
+               type: 'global',
+            },
+            value: 1.0,
+         },
+      ],
+      conditions: { proofs: 1500, followers: 0, paranoia: 0, generators: [] },
+      unlocked: false,
+   },
 ];

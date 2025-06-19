@@ -85,6 +85,10 @@ export const EN = {
          name: 'Critical Evidence',
          description: 'Increases the critical chance of your clicks by 10%.',
       },
+      enhanced_critical_power: {
+         name: 'Enhanced Critical Power',
+         description: 'Critical clicks become more powerful. +100% critical hit magnitude.',
+      },
    },
    ui: {
       // Common actions
