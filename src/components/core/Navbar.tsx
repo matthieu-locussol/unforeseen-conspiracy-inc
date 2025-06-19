@@ -19,7 +19,7 @@ export const Navbar = observer(({ isVisible }: NavbarProps) => {
       <div
          className={`
             fixed top-0 left-0 right-0 z-50
-            bg-green-900/20 backdrop-blur-sm border-b border-green-500/20
+            bg-black/30 backdrop-blur-sm border-b border-green-500/20
             transform transition-transform duration-300 ease-in-out
             ${isVisible ? 'translate-y-0' : '-translate-y-full'}
          `}
