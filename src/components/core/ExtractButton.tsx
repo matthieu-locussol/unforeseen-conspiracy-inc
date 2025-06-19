@@ -23,7 +23,7 @@ interface ExtractButtonProps
    onClick: () => ClickData;
 }
 
-export const ExtractButton = ({ onClick, children, ...rest }: ExtractButtonProps) => {
+export const ExtractButton = ({ onClick, children, className, ...rest }: ExtractButtonProps) => {
    const [floatingTexts, setFloatingTexts] = useState<FloatingText[]>([]);
    const buttonRef = useRef<HTMLButtonElement>(null);
    const textIdRef = useRef(0);
@@ -87,6 +87,8 @@ export const ExtractButton = ({ onClick, children, ...rest }: ExtractButtonProps
 
                // Disabled state
                'disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none',
+
+               className,
             ])}
             tabIndex={-1}
             {...rest}

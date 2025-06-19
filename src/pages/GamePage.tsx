@@ -1,12 +1,10 @@
 import { observer } from 'mobx-react-lite';
 
 import { ExtractButton } from '../components/core/ExtractButton';
-import { CustomIcon } from '../components/core/Icons';
 import { Navbar } from '../components/core/Navbar';
-import { SettingsMenu } from '../components/core/SettingsMenu';
-import { Button } from '../components/core/ui/button';
 import { BulkBuyButtons } from '../components/gameplay/BulkBuyButtons';
 import { GeneratorsGrid } from '../components/gameplay/GeneratorsGrid';
+import { MenuButtons } from '../components/gameplay/MenuButtons';
 import { ResourceCard } from '../components/gameplay/ResourceCard';
 import { useGameLifecycle } from '../hooks/useGameLifecycle';
 import { useScrollNavbar } from '../hooks/useScrollNavbar';
@@ -28,16 +26,7 @@ export const GamePage = observer(() => {
             <h1 className="text-3xl md:text-4xl font-bold z-10 font-orbitron tracking-wider text-green-400 [text-shadow:0_0_5px_rgba(0,255,0,0.3)] mb-4">
                {t.game.title}
             </h1>
-            <div className="flex items-center gap-2 ml-auto">
-               <Button className="px-3" variant="dark" onClick={() => gameStore.togglePlay()}>
-                  <CustomIcon className="w-4 h-4" icon={gameStore.isRunning ? 'pause' : 'play'} />
-               </Button>
-               <SettingsMenu>
-                  <Button className="px-3" variant="dark">
-                     <CustomIcon className="w-4 h-4" icon="settings" />
-                  </Button>
-               </SettingsMenu>
-            </div>
+            <MenuButtons className="ml-auto" />
          </div>
          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <ResourceCard resourceStore={gameStore.proofs} />
