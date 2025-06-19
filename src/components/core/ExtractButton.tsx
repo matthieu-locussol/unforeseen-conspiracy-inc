@@ -109,6 +109,7 @@ export const ExtractButton = ({ onClick, children, ...rest }: ExtractButtonProps
                      left: `${text.x}px`,
                      top: `${text.y}px`,
                      textShadow: '0 0 8px rgba(74, 222, 128, 0.8)',
+                     scale: 0.8 + 0.3 * text.combo,
                   }}
                >
                   +{text.value.toFixed(1)}
