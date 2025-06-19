@@ -1,4 +1,4 @@
-export const formatNumber = (value: bigint): string => {
+export const formatBigint = (value: bigint): string => {
    if (value === 0n) return '0.0';
 
    const valueStr = value.toString();
