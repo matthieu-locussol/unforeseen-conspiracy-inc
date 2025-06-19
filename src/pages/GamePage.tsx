@@ -41,41 +41,6 @@ export const GamePage = observer(() => {
          </div>
          <div className="h-px" id="scroll-threshold" />
          <GeneratorsGrid />
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
-         <div>lol</div>
          <div className="border-t border-dashed border-green-500/20 pt-2 text-xs text-green-500/40 text-center mt-4">
             <p>{t.game.classifiedFooter}</p>
             <p>

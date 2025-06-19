@@ -104,7 +104,7 @@ export const UpgradeCard = observer(({ upgrade }: UpgradeCardProps) => {
                </div>
                <Button
                   className="w-full font-orbitron"
-                  disabled={!canAfford}
+                  disabled={!canAfford || isPurchased}
                   size="sm"
                   onClick={handleUnlock}
                >
