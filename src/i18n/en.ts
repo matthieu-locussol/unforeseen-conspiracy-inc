@@ -81,6 +81,10 @@ export const EN = {
          description:
             'A fundamental collection of irrefutable evidence. +2 base proof production for Flat Earth.',
       },
+      flat_earth_critical_chance: {
+         name: 'Critical Evidence',
+         description: 'Increases the critical chance of your clicks by 10%.',
+      },
    },
    ui: {
       // Common actions

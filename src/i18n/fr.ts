@@ -81,6 +81,10 @@ export const FR = {
          description:
             'Une collection fondamentale de preuves irréfutables. +2 de production de base de preuves pour Terre Plate.',
       },
+      flat_earth_critical_chance: {
+         name: 'Preuve Critique',
+         description: 'Augmente la chance de critique de tes clics de 10%.',
+      },
    },
    ui: {
       // Common actions

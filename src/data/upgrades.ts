@@ -185,4 +185,22 @@ export const UPGRADES: Upgrade[] = [
       conditions: { proofs: 3000, followers: 0, paranoia: 0, generators: [] },
       unlocked: false,
    },
+   {
+      id: 'flat_earth_critical_chance',
+      name: 'Critical Evidence',
+      description: 'Increases the critical chance of your clicks by 10%.',
+      icon: 'target',
+      cost: { proofs: 1000, followers: 0 },
+      boosts: [
+         {
+            type: 'click_critical_chance',
+            target: {
+               type: 'global',
+            },
+            value: 0.05,
+         },
+      ],
+      conditions: { proofs: 0, followers: 0, paranoia: 0, generators: [] },
+      unlocked: false,
+   },
 ];
