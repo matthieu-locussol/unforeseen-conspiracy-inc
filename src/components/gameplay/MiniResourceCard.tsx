@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 
 import { useStore } from '../../store/StoreContext';
 import { cn } from '../../utils/cn';
+import { AnimatedNumber } from '../core/AnimatedNumber';
 import { CustomIcon } from '../core/Icons';
 import { Card } from '../core/ui/card';
 
@@ -44,7 +45,7 @@ export const MiniResourceCard = observer(({ isRed, resourceStore }: MiniResource
                   isRed && 'text-red-400 [text-shadow:0_0_5px_rgba(219,132,107,0.3)]',
                ])}
             >
-               {resourceStore.value.toFixed(0)}
+               <AnimatedNumber value={resourceStore.value} />
             </p>
          </div>
          {gameStore.totalProduction[resourceStore.id] > 0 && (
