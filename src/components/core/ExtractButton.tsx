@@ -101,7 +101,7 @@ export const ExtractButton = ({ onClick, children, ...rest }: ExtractButtonProps
                <div
                   key={text.id}
                   className={cn([
-                     'absolute font-mono text-white font-semibold text-lg animate-float-up',
+                     'absolute font-orbitron text-white font-semibold text-lg animate-float-up',
                      text.isCritical &&
                         'text-2xl text-red-400 font-bold uppercase tracking-wider shadow-lg',
                   ])}
@@ -113,7 +113,7 @@ export const ExtractButton = ({ onClick, children, ...rest }: ExtractButtonProps
                   }}
                >
                   +{text.value.toFixed(1)}
-                  <span className="text-amber-400 text-xs ml-0.5">
+                  <span className="text-amber-400 text-xs ml-0.5 font-orbitron">
                      {text.combo > 1 && `×${text.combo.toFixed(1)}`}
                   </span>
                </div>
