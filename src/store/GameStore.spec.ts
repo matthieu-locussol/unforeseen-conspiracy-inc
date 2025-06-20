@@ -648,8 +648,8 @@ describe('GameStore', () => {
 
             const clickValue = gameStore.clickProofs();
 
-            expect(gameStore.proofs.value).toBe(initialProofs + clickValue);
-            expect(clickValue).toBeGreaterThan(0);
+            expect(gameStore.proofs.value).toBe(initialProofs + clickValue.value);
+            expect(clickValue.value).toBeGreaterThan(0);
          });
 
          it('should track clicks in statistics', () => {
@@ -663,8 +663,8 @@ describe('GameStore', () => {
          it('should return the click value', () => {
             const clickValue = gameStore.clickProofs();
 
-            expect(typeof clickValue).toBe('number');
-            expect(clickValue).toBeGreaterThan(0);
+            expect(typeof clickValue).toBe('object');
+            expect(clickValue.value).toBeGreaterThan(0);
          });
       });
    });
