@@ -1,241 +1,238 @@
-export const formatBigint = (value: bigint): string => {
-   if (value === 0n) return '0.0';
+import { Decimal } from 'decimal.js';
 
-   const valueStr = value.toString();
-   const length = valueStr.length;
+export const formatDecimal = (value: Decimal): string => {
+   if (value.equals(0)) {
+      return '0.0';
+   }
 
-   if (length <= 5) return valueStr;
+   // Handle negative numbers by working with absolute value and adding sign back
+   const isNegative = value.isNegative();
+   const absValue = value.abs();
 
+   // Define scales with their thresholds and formatting
    const scales = [
-      { suffix: 'K', minDigits: 6, maxDigits: 6, precision: 1, divisor: 1000n },
-      { suffix: 'M', minDigits: 7, maxDigits: 9, precision: 2, divisor: 1000000n },
-      { suffix: 'B', minDigits: 10, maxDigits: 12, precision: 2, divisor: 1000000000n },
-      { suffix: 'T', minDigits: 13, maxDigits: 15, precision: 3, divisor: 1000000000000n },
-      { suffix: 'Qa', minDigits: 16, maxDigits: 18, precision: 3, divisor: 1000000000000000n },
-      { suffix: 'Qi', minDigits: 19, maxDigits: 21, precision: 3, divisor: 1000000000000000000n },
-      {
-         suffix: 'Sx',
-         minDigits: 22,
-         maxDigits: 24,
-         precision: 3,
-         divisor: 1000000000000000000000n,
-      },
-      {
-         suffix: 'Sp',
-         minDigits: 25,
-         maxDigits: 27,
-         precision: 3,
-         divisor: 1000000000000000000000000n,
-      },
-      {
-         suffix: 'Oc',
-         minDigits: 28,
-         maxDigits: 30,
-         precision: 3,
-         divisor: 1000000000000000000000000000n,
-      },
-      {
-         suffix: 'No',
-         minDigits: 31,
-         maxDigits: 33,
-         precision: 3,
-         divisor: 1000000000000000000000000000000n,
-      },
-      {
-         suffix: 'Dc',
-         minDigits: 34,
-         maxDigits: 36,
-         precision: 3,
-         divisor: 1000000000000000000000000000000000n,
-      },
+      { suffix: 'K', threshold: new Decimal('1000'), precision: 1 },
+      { suffix: 'M', threshold: new Decimal('1000000'), precision: 2 },
+      { suffix: 'B', threshold: new Decimal('1000000000'), precision: 2 },
+      { suffix: 'T', threshold: new Decimal('1000000000000'), precision: 3 },
+      { suffix: 'Qa', threshold: new Decimal('1000000000000000'), precision: 3 },
+      { suffix: 'Qi', threshold: new Decimal('1000000000000000000'), precision: 3 },
+      { suffix: 'Sx', threshold: new Decimal('1000000000000000000000'), precision: 3 },
+      { suffix: 'Sp', threshold: new Decimal('1000000000000000000000000'), precision: 3 },
+      { suffix: 'Oc', threshold: new Decimal('1000000000000000000000000000'), precision: 3 },
+      { suffix: 'No', threshold: new Decimal('1000000000000000000000000000000'), precision: 3 },
+      { suffix: 'Dc', threshold: new Decimal('1000000000000000000000000000000000'), precision: 3 },
       {
          suffix: 'Ud',
-         minDigits: 37,
-         maxDigits: 39,
+         threshold: new Decimal('1000000000000000000000000000000000000'),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000n,
       },
       {
          suffix: 'Dd',
-         minDigits: 40,
-         maxDigits: 42,
+         threshold: new Decimal('1000000000000000000000000000000000000000'),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000n,
       },
       {
          suffix: 'Td',
-         minDigits: 43,
-         maxDigits: 45,
+         threshold: new Decimal('1000000000000000000000000000000000000000000'),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'Qad',
-         minDigits: 46,
-         maxDigits: 48,
+         threshold: new Decimal('1000000000000000000000000000000000000000000000'),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'Qid',
-         minDigits: 49,
-         maxDigits: 51,
+         threshold: new Decimal('1000000000000000000000000000000000000000000000000'),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'Sxd',
-         minDigits: 52,
-         maxDigits: 54,
+         threshold: new Decimal('1000000000000000000000000000000000000000000000000000'),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'Spd',
-         minDigits: 55,
-         maxDigits: 57,
+         threshold: new Decimal('1000000000000000000000000000000000000000000000000000000'),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'Ocd',
-         minDigits: 58,
-         maxDigits: 60,
+         threshold: new Decimal('1000000000000000000000000000000000000000000000000000000000'),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'Nod',
-         minDigits: 61,
-         maxDigits: 63,
+         threshold: new Decimal('1000000000000000000000000000000000000000000000000000000000000'),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'Vg',
-         minDigits: 64,
-         maxDigits: 66,
+         threshold: new Decimal('1000000000000000000000000000000000000000000000000000000000000000'),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'UVg',
-         minDigits: 67,
-         maxDigits: 69,
+         threshold: new Decimal(
+            '1000000000000000000000000000000000000000000000000000000000000000000',
+         ),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'DVg',
-         minDigits: 70,
-         maxDigits: 72,
+         threshold: new Decimal(
+            '1000000000000000000000000000000000000000000000000000000000000000000000',
+         ),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'TVg',
-         minDigits: 73,
-         maxDigits: 75,
+         threshold: new Decimal(
+            '1000000000000000000000000000000000000000000000000000000000000000000000000',
+         ),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'QaVg',
-         minDigits: 76,
-         maxDigits: 78,
+         threshold: new Decimal(
+            '1000000000000000000000000000000000000000000000000000000000000000000000000000',
+         ),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'QiVg',
-         minDigits: 79,
-         maxDigits: 81,
+         threshold: new Decimal(
+            '1000000000000000000000000000000000000000000000000000000000000000000000000000000',
+         ),
          precision: 3,
-         divisor: 1000000000000000000000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'SxVg',
-         minDigits: 82,
-         maxDigits: 84,
+         threshold: new Decimal(
+            '1000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+         ),
          precision: 3,
-         divisor:
-            1000000000000000000000000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'SpVg',
-         minDigits: 85,
-         maxDigits: 87,
+         threshold: new Decimal(
+            '1000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+         ),
          precision: 3,
-         divisor:
-            1000000000000000000000000000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'OcVg',
-         minDigits: 88,
-         maxDigits: 90,
+         threshold: new Decimal(
+            '1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+         ),
          precision: 3,
-         divisor:
-            1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'NoVg',
-         minDigits: 91,
-         maxDigits: 93,
+         threshold: new Decimal(
+            '1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+         ),
          precision: 3,
-         divisor:
-            1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'Tg',
-         minDigits: 94,
-         maxDigits: 96,
+         threshold: new Decimal(
+            '1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+         ),
          precision: 3,
-         divisor:
-            1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'UTg',
-         minDigits: 97,
-         maxDigits: 99,
+         threshold: new Decimal(
+            '1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+         ),
          precision: 3,
-         divisor:
-            1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000n,
       },
       {
          suffix: 'DTg',
-         minDigits: 100,
-         maxDigits: 102,
+         threshold: new Decimal(
+            '1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+         ),
          precision: 3,
-         divisor:
-            1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000n,
       },
    ];
 
-   let selectedScale = scales[0];
+   // Check if number is less than 100,000 (no suffix needed)
+   if (absValue.lessThan(100000)) {
+      const result = absValue.toString();
 
-   for (const scale of scales) {
-      if (length >= scale.minDigits && length <= scale.maxDigits) {
-         selectedScale = scale;
+      return isNegative ? `-${result}` : result;
+   }
+
+   // Find the appropriate scale (start from largest and work down)
+   let selectedScale = null;
+
+   for (let i = scales.length - 1; i >= 0; i--) {
+      if (absValue.greaterThanOrEqualTo(scales[i].threshold)) {
+         selectedScale = scales[i];
          break;
       }
    }
 
-   if (length > selectedScale.maxDigits) {
-      const digits = valueStr.slice(0, 3);
-      const rest = valueStr.length - 1;
+   // If no scale found or number is too large, use scientific notation
+   if (
+      !selectedScale ||
+      absValue.greaterThanOrEqualTo(scales[scales.length - 1].threshold.mul(1000))
+   ) {
+      // Convert to scientific notation
+      const str = absValue.toString();
+      const match = str.match(/^(\d)\.?(\d*)e\+?(\d+)$/i) || str.match(/^(\d+)\.?(\d*)$/);
 
-      return `${digits[0]}.${digits.slice(1)}e+${rest}`;
+      if (match) {
+         if (match[3]) {
+            // Already in scientific notation
+            const firstDigit = match[1];
+            const nextDigits = match[2].substring(0, 2).padEnd(2, '0');
+            const exponent = match[3];
+            const result = `${firstDigit}.${nextDigits}e+${exponent}`;
+
+            return isNegative ? `-${result}` : result;
+         } else {
+            // Convert regular number to scientific notation
+            const digits = match[1] + match[2];
+            const firstDigit = digits[0];
+            const nextDigits = digits.substring(1, 3).padEnd(2, '0');
+            const exponent = digits.length - 1;
+            const result = `${firstDigit}.${nextDigits}e+${exponent}`;
+
+            return isNegative ? `-${result}` : result;
+         }
+      }
+
+      // Fallback
+      const result = absValue.toString();
+
+      return isNegative ? `-${result}` : result;
    }
 
-   const integerPart = value / selectedScale.divisor;
-   const remainder = value % selectedScale.divisor;
-   let remainderStr = remainder.toString();
-   const expectedRemainderLength = selectedScale.divisor.toString().length - 1;
+   // Format with the selected scale
+   const scaledValue = absValue.div(selectedScale.threshold);
+   let integerPart = scaledValue.floor();
+   let fractionalPart = scaledValue.minus(integerPart);
 
-   while (remainderStr.length < expectedRemainderLength) {
-      remainderStr = '0' + remainderStr;
+   // Handle edge case where precision issues cause 999.999... to become 1000
+   // This happens with very large numbers like 10^102 - 1
+   if (integerPart.equals(1000)) {
+      integerPart = new Decimal(999);
+      // Create a fractional part that represents 0.999... with the required precision
+      const nines = '9'.repeat(selectedScale.precision);
+
+      fractionalPart = new Decimal(`0.${nines}`);
    }
-   const decimalPart = remainderStr.substring(0, selectedScale.precision);
 
-   return `${integerPart}.${decimalPart}${selectedScale.suffix}`;
+   // Format the decimal part with proper rounding
+   const multiplier = Math.pow(10, selectedScale.precision);
+   const decimalValue = fractionalPart.mul(multiplier);
+   const roundedDecimal = decimalValue.toDecimalPlaces(0, Decimal.ROUND_DOWN);
+   const decimalStr = roundedDecimal.toString().padStart(selectedScale.precision, '0');
+
+   const result = `${integerPart}.${decimalStr}${selectedScale.suffix}`;
+
+   return isNegative ? `-${result}` : result;
 };
