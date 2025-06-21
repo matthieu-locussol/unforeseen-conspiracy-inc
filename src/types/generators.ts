@@ -1,7 +1,17 @@
 import type Decimal from 'decimal.js';
 import type { CategoryId, Conditions, Cost, UpgradeId } from './upgrades';
 
-export type GeneratorId = 'chemtrails' | 'michael_jackson' | 'flat_earth';
+export type GeneratorId =
+   | 'chemtrails'
+   | 'michael_jackson'
+   | 'flat_earth'
+   | 'suspicious_pigeons'
+   | 'denver_airport'
+   | 'finnish_non_existence'
+   | 'great_reset_agenda'
+   | '5g_health_impact'
+   | 'corporate_logo_symbology'
+   | 'gates_philanthropic_impacts';
 
 export interface GeneratorProduction {
    proofs: Decimal;
