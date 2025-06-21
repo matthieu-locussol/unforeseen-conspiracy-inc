@@ -533,13 +533,13 @@ describe('GameStore', () => {
          });
 
          it('should apply generator-specific cost reduction', () => {
-            const upgrade = gameStore.upgrades.find((u) => u.id === 'chemtrails_cost_reduction')!;
+            const upgrade = gameStore.upgrades.find((u) => u.id === 'chemtrails_aluminum_hat')!;
 
             upgrade.unlocked = true;
 
             const reduction = gameStore.getGeneratorCostReduction('chemtrails');
 
-            expect(reduction).toStrictEqual(new Decimal(0.25)); // 25% reduction
+            expect(reduction).toStrictEqual(new Decimal(0.05)); // 5% reduction
          });
 
          it('should cap cost reduction at 90%', () => {
@@ -897,16 +897,16 @@ describe('GameStore', () => {
          // Perform a series of operations
          gameStore.proofs.add(new Decimal(10000));
          gameStore.buyGenerator('chemtrails', new Decimal(5));
-         gameStore.buyUpgrade('chemtrails_production_boost');
+         gameStore.buyUpgrade('chemtrails_binoculars');
          gameStore.tick();
          gameStore.clickProofs();
 
          // Game should still be in valid state
          expect(gameStore.proofs.value.greaterThanOrEqualTo(0)).toBeTruthy();
          expect(gameStore.generators[0].level.greaterThan(0)).toBeTruthy();
-         expect(
-            gameStore.upgrades.find((u) => u.id === 'chemtrails_production_boost')!.unlocked,
-         ).toBe(true);
+         expect(gameStore.upgrades.find((u) => u.id === 'chemtrails_binoculars')!.unlocked).toBe(
+            true,
+         );
       });
 
       it('should handle rapid successive ticks', () => {
