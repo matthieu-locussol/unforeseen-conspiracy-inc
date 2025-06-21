@@ -23,7 +23,7 @@ export const stringifyStatsBoost = (boost: Boost, i18n: I18nManager): string => 
       boost.type.includes('multiplier') ||
       boost.type.includes('chance') ||
       boost.type.includes('reduction')
-         ? `+${(boost.value * 100).toFixed(0)}%`
+         ? `+${(boost.value.toNumber() * 100).toFixed(0)}%`
          : `+${boost.value}`;
 
    const targetStr =

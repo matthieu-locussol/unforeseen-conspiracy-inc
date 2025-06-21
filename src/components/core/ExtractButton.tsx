@@ -1,3 +1,4 @@
+import type Decimal from 'decimal.js';
 import type { ClickData } from '../../types/clicker';
 
 import { useRef, useState } from 'react';
@@ -8,9 +9,9 @@ import { Button } from './ui/button';
 
 interface FloatingText {
    id: number;
-   value: number;
+   value: Decimal;
    isCritical: boolean;
-   combo: number;
+   combo: Decimal;
    x: number;
    y: number;
 }
@@ -111,12 +112,12 @@ export const ExtractButton = ({ onClick, children, className, ...rest }: Extract
                      left: `${text.x}px`,
                      top: `${text.y}px`,
                      textShadow: '0 0 8px rgba(74, 222, 128, 0.8)',
-                     scale: 0.8 + 0.3 * text.combo,
+                     scale: 0.8 + 0.3 * text.combo.toNumber(),
                   }}
                >
                   +{text.value.toFixed(1)}
                   <span className="text-amber-400 text-xs ml-0.5 font-orbitron">
-                     {text.combo > 1 && `×${text.combo.toFixed(1)}`}
+                     {text.combo.greaterThan(1) && `×${text.combo.toFixed(1)}`}
                   </span>
                </div>
             ))}

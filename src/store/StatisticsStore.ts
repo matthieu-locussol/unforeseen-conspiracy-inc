@@ -1,16 +1,17 @@
+import Decimal from 'decimal.js';
 import { makeAutoObservable } from 'mobx';
 
 export interface StatisticsData {
    startTime: number;
    lastPrestigeTime: number;
    totalPlayTime: number;
-   totalProofsGenerated: number;
-   totalFollowersGenerated: number;
-   totalParanoiaGenerated: number;
-   totalClicks: number;
+   totalProofsGenerated: string;
+   totalFollowersGenerated: string;
+   totalParanoiaGenerated: string;
+   totalClicks: string;
    totalGeneratorsPurchased: Record<string, number>;
    totalGeneratorsUnlocked: number;
-   totalPrestiges: number;
+   totalPrestiges: string;
 }
 
 export class StatisticsStore {
@@ -20,19 +21,19 @@ export class StatisticsStore {
    public totalPlayTime: number = 0;
 
    // Resource tracking
-   public totalProofsGenerated: number = 0;
-   public totalFollowersGenerated: number = 0;
-   public totalParanoiaGenerated: number = 0;
+   public totalProofsGenerated: Decimal = new Decimal(0);
+   public totalFollowersGenerated: Decimal = new Decimal(0);
+   public totalParanoiaGenerated: Decimal = new Decimal(0);
 
    // Click tracking
-   public totalClicks: number = 0;
+   public totalClicks: Decimal = new Decimal(0);
 
    // Generator tracking
    public totalGeneratorsPurchased: Record<string, number> = {};
    public totalGeneratorsUnlocked: number = 0;
 
    // Prestige tracking
-   public totalPrestiges: number = 0;
+   public totalPrestiges: Decimal = new Decimal(0);
 
    constructor() {
       makeAutoObservable(this);
@@ -51,14 +52,14 @@ export class StatisticsStore {
       this.startTime = now;
    }
 
-   public trackResourceGeneration(proofs: number, followers: number, paranoia: number): void {
-      this.totalProofsGenerated += proofs;
-      this.totalFollowersGenerated += followers;
-      this.totalParanoiaGenerated += paranoia;
+   public trackResourceGeneration(proofs: Decimal, followers: Decimal, paranoia: Decimal): void {
+      this.totalProofsGenerated = this.totalProofsGenerated.add(proofs);
+      this.totalFollowersGenerated = this.totalFollowersGenerated.add(followers);
+      this.totalParanoiaGenerated = this.totalParanoiaGenerated.add(paranoia);
    }
 
-   public trackClicks(count: number): void {
-      this.totalClicks += count;
+   public trackClicks(count: Decimal): void {
+      this.totalClicks = this.totalClicks.add(count);
    }
 
    public trackGeneratorPurchase(generatorId: string, count: number): void {
@@ -74,7 +75,7 @@ export class StatisticsStore {
    }
 
    public trackPrestige(): void {
-      this.totalPrestiges++;
+      this.totalPrestiges = this.totalPrestiges.add(1);
       this.lastPrestigeTime = Date.now();
    }
 
@@ -100,13 +101,13 @@ export class StatisticsStore {
          startTime: this.startTime,
          lastPrestigeTime: this.lastPrestigeTime,
          totalPlayTime: this.totalPlayTime,
-         totalProofsGenerated: this.totalProofsGenerated,
-         totalFollowersGenerated: this.totalFollowersGenerated,
-         totalParanoiaGenerated: this.totalParanoiaGenerated,
-         totalClicks: this.totalClicks,
+         totalProofsGenerated: this.totalProofsGenerated.toString(),
+         totalFollowersGenerated: this.totalFollowersGenerated.toString(),
+         totalParanoiaGenerated: this.totalParanoiaGenerated.toString(),
+         totalClicks: this.totalClicks.toString(),
          totalGeneratorsPurchased: { ...this.totalGeneratorsPurchased },
          totalGeneratorsUnlocked: this.totalGeneratorsUnlocked,
-         totalPrestiges: this.totalPrestiges,
+         totalPrestiges: this.totalPrestiges.toString(),
       };
    }
 
@@ -118,19 +119,19 @@ export class StatisticsStore {
          this.totalPlayTime = data.totalPlayTime;
 
          // Resource tracking
-         this.totalProofsGenerated = data.totalProofsGenerated;
-         this.totalFollowersGenerated = data.totalFollowersGenerated;
-         this.totalParanoiaGenerated = data.totalParanoiaGenerated;
+         this.totalProofsGenerated = new Decimal(data.totalProofsGenerated);
+         this.totalFollowersGenerated = new Decimal(data.totalFollowersGenerated);
+         this.totalParanoiaGenerated = new Decimal(data.totalParanoiaGenerated);
 
          // Click tracking
-         this.totalClicks = data.totalClicks;
+         this.totalClicks = new Decimal(data.totalClicks);
 
          // Generator tracking
          this.totalGeneratorsPurchased = { ...data.totalGeneratorsPurchased };
          this.totalGeneratorsUnlocked = data.totalGeneratorsUnlocked;
 
          // Prestige tracking
-         this.totalPrestiges = data.totalPrestiges;
+         this.totalPrestiges = new Decimal(data.totalPrestiges);
       }
    }
 }

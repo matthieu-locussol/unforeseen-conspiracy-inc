@@ -1,3 +1,4 @@
+import type Decimal from 'decimal.js';
 import type { CustomIcon } from '../components/core/Icons';
 
 export type ResourceId = 'proofs' | 'followers' | 'paranoia';
@@ -5,12 +6,12 @@ export type ResourceId = 'proofs' | 'followers' | 'paranoia';
 export interface Resource {
    id: ResourceId;
    icon: CustomIcon;
-   baseProduction: number;
-   productionMultiplier: number;
+   baseProduction: Decimal;
+   productionMultiplier: Decimal;
    isClickable: boolean;
 }
 
 export interface SerializedResourceData {
    id: ResourceId;
-   value: number;
+   value: string;
 }

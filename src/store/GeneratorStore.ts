@@ -7,6 +7,7 @@ import type { CategoryId, Conditions, Cost, UpgradeId } from '../types/upgrades'
 import type { GameStore } from './GameStore';
 import type { UpgradeStore } from './UpgradeStore';
 
+import { Decimal } from 'decimal.js';
 import { makeAutoObservable } from 'mobx';
 
 import { GENERATORS } from '../data/generators';
@@ -30,7 +31,7 @@ export class GeneratorStore {
 
    public unlocked!: boolean;
 
-   public level!: number;
+   public level!: Decimal;
 
    public upgradesIds!: UpgradeId[];
 
@@ -54,8 +55,8 @@ export class GeneratorStore {
     * @description Buy **amount** levels of this generator.
     * @param amount - The amount of new levels to buy.
     */
-   public buy(amount: number): void {
-      this.level += amount;
+   public buy(amount: Decimal): void {
+      this.level = this.level.add(amount);
       this.unlocked = true;
    }
 
@@ -64,27 +65,28 @@ export class GeneratorStore {
     * @param amount - The amount of new levels you want to buy.
     * @returns The cost to buy *amount* of this generator.
     */
-   public getCost(amount: number, costReduction: number): Cost {
-      let totalProofsCost = 0;
-      let totalFollowersCost = 0;
+   public getCost(amount: Decimal, costReduction: Decimal): Cost {
+      let totalProofsCost = new Decimal(0);
+      let totalFollowersCost = new Decimal(0);
 
-      for (let i = 1; i <= amount; i++) {
-         const levelToBuy = this.level + i;
+      for (let i = new Decimal(1); i.lessThanOrEqualTo(amount); i = i.add(1)) {
+         const levelToBuy = this.level.add(i);
 
-         let proofsCost = this.baseCost.proofs * Math.pow(this.costMultiplier.proofs, levelToBuy);
-         let followersCost =
-            this.baseCost.followers * Math.pow(this.costMultiplier.followers, levelToBuy);
+         let proofsCost = this.baseCost.proofs.mul(this.costMultiplier.proofs.pow(levelToBuy));
+         let followersCost = this.baseCost.followers.mul(
+            this.costMultiplier.followers.pow(levelToBuy),
+         );
 
-         proofsCost *= 1 - costReduction;
-         followersCost *= 1 - costReduction;
+         proofsCost = proofsCost.mul(new Decimal(1).sub(costReduction));
+         followersCost = followersCost.mul(new Decimal(1).sub(costReduction));
 
-         totalProofsCost += proofsCost;
-         totalFollowersCost += followersCost;
+         totalProofsCost = totalProofsCost.add(proofsCost);
+         totalFollowersCost = totalFollowersCost.add(followersCost);
       }
 
       return {
-         proofs: Math.floor(totalProofsCost),
-         followers: Math.floor(totalFollowersCost),
+         proofs: totalProofsCost.round(),
+         followers: totalFollowersCost.round(),
       };
    }
 
@@ -93,26 +95,29 @@ export class GeneratorStore {
     * @param level - The level to calculate production for
     * @returns The base production for the specified level
     */
-   public getBaseProduction(level: number): GeneratorProduction {
-      if (!this.unlocked || level === 0) {
+   public getBaseProduction(level: Decimal): GeneratorProduction {
+      if (!this.unlocked || level.eq(0)) {
          return {
-            proofs: 0,
-            followers: 0,
-            paranoia: 0,
+            proofs: new Decimal(0),
+            followers: new Decimal(0),
+            paranoia: new Decimal(0),
          };
       }
 
-      const proofsProduction =
-         this.baseProduction.proofs + (level - 1) * this.productionMultiplier.proofs;
-      const followersProduction =
-         this.baseProduction.followers + (level - 1) * this.productionMultiplier.followers;
-      const paranoiaProduction =
-         this.baseProduction.paranoia + (level - 1) * this.productionMultiplier.paranoia;
+      const proofsProduction = this.baseProduction.proofs.add(
+         this.productionMultiplier.proofs.mul(level.sub(1)),
+      );
+      const followersProduction = this.baseProduction.followers.add(
+         this.productionMultiplier.followers.mul(level.sub(1)),
+      );
+      const paranoiaProduction = this.baseProduction.paranoia.add(
+         this.productionMultiplier.paranoia.mul(level.sub(1)),
+      );
 
       return {
-         proofs: +proofsProduction.toFixed(1),
-         followers: +followersProduction.toFixed(1),
-         paranoia: +paranoiaProduction.toFixed(1),
+         proofs: proofsProduction.round(),
+         followers: followersProduction.round(),
+         paranoia: paranoiaProduction.round(),
       };
    }
 
@@ -121,10 +126,10 @@ export class GeneratorStore {
     * @param level - The level to calculate production for (defaults to current level)
     * @returns The effective production including all bonuses and multipliers
     */
-   public getEffectiveProduction(level: number = this.level): GeneratorProduction {
+   public getEffectiveProduction(level: Decimal = this.level): GeneratorProduction {
       const baseProduction = this.getBaseProduction(level);
 
-      if (!this.unlocked || level === 0) {
+      if (!this.unlocked || level.eq(0)) {
          return baseProduction;
       }
 
@@ -140,15 +145,15 @@ export class GeneratorStore {
 
       // Apply flat bonuses first, then multipliers
       const finalProduction = {
-         proofs: (baseProduction.proofs + flatBonuses.proofs) * multipliers.proofs,
-         followers: (baseProduction.followers + flatBonuses.followers) * multipliers.followers,
-         paranoia: (baseProduction.paranoia + flatBonuses.paranoia) * multipliers.paranoia,
+         proofs: baseProduction.proofs.add(flatBonuses.proofs).mul(multipliers.proofs),
+         followers: baseProduction.followers.add(flatBonuses.followers).mul(multipliers.followers),
+         paranoia: baseProduction.paranoia.add(flatBonuses.paranoia).mul(multipliers.paranoia),
       };
 
       return {
-         proofs: +finalProduction.proofs.toFixed(1),
-         followers: +finalProduction.followers.toFixed(1),
-         paranoia: +finalProduction.paranoia.toFixed(1),
+         proofs: finalProduction.proofs.round(),
+         followers: finalProduction.followers.round(),
+         paranoia: finalProduction.paranoia.round(),
       };
    }
 
@@ -157,14 +162,14 @@ export class GeneratorStore {
     * @param amount - The amount of levels to add
     * @returns The production increase
     */
-   public getProductionIncrease(amount: number): GeneratorProduction {
+   public getProductionIncrease(amount: Decimal): GeneratorProduction {
       const currentProduction = this.effectiveProduction;
-      const newProduction = this.getEffectiveProduction(this.level + amount);
+      const newProduction = this.getEffectiveProduction(this.level.add(amount));
 
       return {
-         proofs: +(newProduction.proofs - currentProduction.proofs).toFixed(1),
-         followers: +(newProduction.followers - currentProduction.followers).toFixed(1),
-         paranoia: +(newProduction.paranoia - currentProduction.paranoia).toFixed(1),
+         proofs: newProduction.proofs.sub(currentProduction.proofs).round(),
+         followers: newProduction.followers.sub(currentProduction.followers).round(),
+         paranoia: newProduction.paranoia.sub(currentProduction.paranoia).round(),
       };
    }
 
@@ -189,14 +194,14 @@ export class GeneratorStore {
    public serialize(): SerializedGeneratorData {
       return {
          id: this.id,
-         level: this.level,
+         level: this.level.toString(),
          unlocked: this.unlocked,
       };
    }
 
    public deserialize(data: SerializedGeneratorData): void {
       if (typeof data.level !== 'undefined') {
-         this.level = data.level;
+         this.level = new Decimal(data.level);
       }
       if (typeof data.unlocked !== 'undefined') {
          this.unlocked = data.unlocked;
@@ -219,7 +224,7 @@ export class GeneratorStore {
       this.productionMultiplier = { ...data.productionMultiplier };
       this.conditions = { ...data.conditions };
       this.unlocked = data.unlocked;
-      this.level = 0;
+      this.level = new Decimal(0);
       this.upgradesIds = [...data.upgradesIds];
    }
 }

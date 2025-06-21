@@ -1,5 +1,6 @@
 import type { CustomIcon } from '../components/core/Icons';
 
+import Decimal from 'decimal.js';
 import { makeAutoObservable } from 'mobx';
 
 import { RESOURCES } from '../data/resources';
@@ -10,13 +11,13 @@ export class ResourceStore {
 
    public icon!: CustomIcon;
 
-   public baseProduction!: number;
+   public baseProduction!: Decimal;
 
-   public productionMultiplier!: number;
+   public productionMultiplier!: Decimal;
 
    public isClickable!: boolean;
 
-   public value!: number;
+   public value!: Decimal;
 
    constructor(id: ResourceId) {
       makeAutoObservable(this);
@@ -24,17 +25,17 @@ export class ResourceStore {
       this._initialize(id);
    }
 
-   public get productionRate(): number {
-      return this.baseProduction * this.productionMultiplier;
+   public get productionRate(): Decimal {
+      return this.baseProduction.mul(this.productionMultiplier);
    }
 
-   public add(amount: number): void {
-      this.value += amount;
+   public add(amount: Decimal): void {
+      this.value = this.value.add(amount);
    }
 
-   public remove(amount: number): boolean {
-      if (this.value >= amount) {
-         this.value -= amount;
+   public remove(amount: Decimal): boolean {
+      if (this.value.greaterThanOrEqualTo(amount)) {
+         this.value = this.value.sub(amount);
 
          return true;
       }
@@ -52,9 +53,9 @@ export class ResourceStore {
       this.add(amount);
    }
 
-   public click(baseClickValue: number, clickMultiplier: number): void {
+   public click(baseClickValue: Decimal, clickMultiplier: Decimal): void {
       if (this.isClickable) {
-         const amount = baseClickValue * clickMultiplier;
+         const amount = baseClickValue.mul(clickMultiplier);
 
          this.add(amount);
       }
@@ -63,12 +64,12 @@ export class ResourceStore {
    public serialize(): SerializedResourceData {
       return {
          id: this.id,
-         value: this.value,
+         value: this.value.toString(),
       };
    }
 
    public deserialize(data: SerializedResourceData): void {
-      this.value = data.value;
+      this.value = new Decimal(data.value);
    }
 
    private _initialize(id: ResourceId): void {
@@ -85,6 +86,6 @@ export class ResourceStore {
       this.productionMultiplier = data.productionMultiplier;
       this.isClickable = data.isClickable;
 
-      this.value = 0;
+      this.value = new Decimal(0);
    }
 }

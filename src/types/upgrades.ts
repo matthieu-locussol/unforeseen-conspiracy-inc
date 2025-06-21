@@ -1,3 +1,4 @@
+import type Decimal from 'decimal.js';
 import type { CustomIcon } from '../components/core/Icons';
 import type { GeneratorId } from './generators';
 import type { ResourceId } from './resources';
@@ -13,15 +14,15 @@ export type CategoryId =
    | 'other';
 
 export interface Conditions {
-   proofs: number;
-   followers: number;
-   paranoia: number;
+   proofs: Decimal;
+   followers: Decimal;
+   paranoia: Decimal;
    generators: GeneratorId[];
 }
 
 export interface Cost {
-   proofs: number;
-   followers: number;
+   proofs: Decimal;
+   followers: Decimal;
 }
 
 export type BoostType =
@@ -57,7 +58,7 @@ export type BoostTarget =
 export interface Boost {
    type: BoostType;
    target: BoostTarget;
-   value: number;
+   value: Decimal;
    resource?: ResourceId;
 }
 

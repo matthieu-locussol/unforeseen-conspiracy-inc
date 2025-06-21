@@ -1,7 +1,8 @@
+import Decimal from 'decimal.js';
 import { makeAutoObservable } from 'mobx';
 
 export class HudStore {
-   public bulkBuy: number = 1;
+   public bulkBuy: Decimal = new Decimal(1);
 
    public isSettingsOpen: boolean = false;
 
@@ -11,7 +12,7 @@ export class HudStore {
       makeAutoObservable(this);
    }
 
-   public setBulkBuy(value: number): void {
+   public setBulkBuy(value: Decimal): void {
       this.bulkBuy = value;
    }
 

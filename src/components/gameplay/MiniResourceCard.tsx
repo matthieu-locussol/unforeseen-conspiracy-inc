@@ -48,7 +48,7 @@ export const MiniResourceCard = observer(({ isRed, resourceStore }: MiniResource
                <AnimatedNumber value={resourceStore.value} />
             </p>
          </div>
-         {gameStore.totalProduction[resourceStore.id] > 0 && (
+         {gameStore.totalProduction[resourceStore.id].greaterThan(0) && (
             <div
                className={cn([
                   'absolute flex items-center gap-1 border-t border-l border-amber-400/40 bg-amber-700/30 bottom-0 right-0 rounded-tl-md rounded-br-md px-2 text-[0.5em] sm:text-xs text-amber-200',

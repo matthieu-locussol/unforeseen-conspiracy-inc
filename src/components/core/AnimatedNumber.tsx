@@ -1,10 +1,13 @@
+import type Decimal from 'decimal.js';
+
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import { cn } from '../../utils/cn';
+import { formatDecimal } from '../../utils/numberMgt';
 
 interface AnimatedNumberProps {
-   value: number;
+   value: Decimal;
    className?: string;
 }
 
@@ -28,7 +31,7 @@ export const AnimatedNumber = ({ value, className }: AnimatedNumberProps) => {
             ease: 'easeOut',
          }}
       >
-         {Math.floor(displayValue)}
+         {formatDecimal(displayValue)}
       </motion.span>
    );
 };

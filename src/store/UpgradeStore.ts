@@ -1,3 +1,4 @@
+import type Decimal from 'decimal.js';
 import type { CustomIcon } from '../components/core/Icons';
 import type {
    Boost,
@@ -40,12 +41,15 @@ export class UpgradeStore {
       this._initialize(id);
    }
 
-   public canBuy(proofs: number, followers: number): boolean {
+   public canBuy(proofs: Decimal, followers: Decimal): boolean {
       if (!this._store.checkConditions(this.conditions)) {
          return false;
       }
 
-      return this.cost.proofs <= proofs && this.cost.followers <= followers;
+      return (
+         this.cost.proofs.lessThanOrEqualTo(proofs) &&
+         this.cost.followers.lessThanOrEqualTo(followers)
+      );
    }
 
    public buy(): void {
@@ -92,6 +96,7 @@ export class UpgradeStore {
       }
 
       this.id = id;
+
       this.name = data.name;
       this.description = data.description;
       this.icon = data.icon;

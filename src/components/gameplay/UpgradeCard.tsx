@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useI18n } from '../../i18n/i18n';
 import { useStore } from '../../store/StoreContext';
 import { cn } from '../../utils/cn';
+import { formatDecimal } from '../../utils/numberMgt';
 import { stringifyStatsBoost } from '../../utils/stringMgt';
 import { CustomIcon } from '../core/Icons';
 import { Badge } from '../core/ui/badge';
@@ -75,17 +76,19 @@ export const UpgradeCard = observer(({ upgrade }: UpgradeCardProps) => {
                   <div className="border-t border-gray-700 pt-3">
                      <h4 className="text-sm font-medium text-gray-400 mb-2">{t.ui.cost}</h4>
                      <div className="flex gap-3">
-                        {upgrade.cost.proofs > 0 && (
+                        {upgrade.cost.proofs.greaterThan(0) && (
                            <div className="flex items-center gap-1">
                               <CustomIcon className="h-4 w-4 text-green-400" icon="searchCheck" />
-                              <span className="text-sm text-green-400">{upgrade.cost.proofs}</span>
+                              <span className="text-sm text-green-400">
+                                 {formatDecimal(upgrade.cost.proofs)}
+                              </span>
                            </div>
                         )}
-                        {upgrade.cost.followers > 0 && (
+                        {upgrade.cost.followers.greaterThan(0) && (
                            <div className="flex items-center gap-1">
                               <CustomIcon className="h-4 w-4 text-blue-400" icon="usersRound" />
                               <span className="text-sm text-blue-400">
-                                 {upgrade.cost.followers}
+                                 {formatDecimal(upgrade.cost.followers)}
                               </span>
                            </div>
                         )}

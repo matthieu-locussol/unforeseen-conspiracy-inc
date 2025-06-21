@@ -1,5 +1,7 @@
 import type { Upgrade } from '../types/upgrades';
 
+import Decimal from 'decimal.js';
+
 export const UPGRADES: Upgrade[] = [
    {
       id: 'chemtrails_production_boost',
@@ -7,7 +9,7 @@ export const UPGRADES: Upgrade[] = [
       description:
          'Improved analysis techniques reveal more evidence. +50% proof production for Chemtrails.',
       icon: 'flask',
-      cost: { proofs: 100, followers: 0 },
+      cost: { proofs: new Decimal(100), followers: new Decimal(0) },
       boosts: [
          {
             type: 'production_multiplier',
@@ -15,11 +17,16 @@ export const UPGRADES: Upgrade[] = [
                type: 'generator',
                id: 'chemtrails',
             },
-            value: 0.5,
+            value: new Decimal(0.5),
             resource: 'proofs',
          },
       ],
-      conditions: { proofs: 50, followers: 0, paranoia: 0, generators: [] },
+      conditions: {
+         proofs: new Decimal(50),
+         followers: new Decimal(0),
+         paranoia: new Decimal(0),
+         generators: [],
+      },
       unlocked: false,
    },
    {
@@ -28,7 +35,7 @@ export const UPGRADES: Upgrade[] = [
       description:
          'Streamlined processes reduce investigation costs. -25% cost for Chemtrails upgrades.',
       icon: 'coins',
-      cost: { proofs: 200, followers: 0 },
+      cost: { proofs: new Decimal(200), followers: new Decimal(0) },
       boosts: [
          {
             type: 'cost_reduction',
@@ -36,10 +43,15 @@ export const UPGRADES: Upgrade[] = [
                type: 'generator',
                id: 'chemtrails',
             },
-            value: 0.25,
+            value: new Decimal(0.25),
          },
       ],
-      conditions: { proofs: 150, followers: 0, paranoia: 0, generators: [] },
+      conditions: {
+         proofs: new Decimal(150),
+         followers: new Decimal(0),
+         paranoia: new Decimal(0),
+         generators: [],
+      },
       unlocked: false,
    },
    {
@@ -48,7 +60,7 @@ export const UPGRADES: Upgrade[] = [
       description:
          'Sometimes you find smoking gun evidence. 15% chance to double Chemtrails production.',
       icon: 'target',
-      cost: { proofs: 500, followers: 0 },
+      cost: { proofs: new Decimal(500), followers: new Decimal(0) },
       boosts: [
          {
             type: 'double_chance',
@@ -56,10 +68,15 @@ export const UPGRADES: Upgrade[] = [
                type: 'generator',
                id: 'chemtrails',
             },
-            value: 0.15,
+            value: new Decimal(0.15),
          },
       ],
-      conditions: { proofs: 300, followers: 0, paranoia: 0, generators: [] },
+      conditions: {
+         proofs: new Decimal(300),
+         followers: new Decimal(0),
+         paranoia: new Decimal(0),
+         generators: [],
+      },
       unlocked: false,
    },
    {
@@ -68,7 +85,7 @@ export const UPGRADES: Upgrade[] = [
       description:
          'Better understanding of media manipulation techniques. +75% proof production for media-manipulation conspiracies.',
       icon: 'tv',
-      cost: { proofs: 300, followers: 0 },
+      cost: { proofs: new Decimal(300), followers: new Decimal(0) },
       boosts: [
          {
             type: 'production_multiplier',
@@ -76,11 +93,16 @@ export const UPGRADES: Upgrade[] = [
                type: 'category',
                id: 'media-manipulation',
             },
-            value: 0.75,
+            value: new Decimal(0.75),
             resource: 'proofs',
          },
       ],
-      conditions: { proofs: 200, followers: 0, paranoia: 0, generators: [] },
+      conditions: {
+         proofs: new Decimal(200),
+         followers: new Decimal(0),
+         paranoia: new Decimal(0),
+         generators: [],
+      },
       unlocked: false,
    },
    {
@@ -89,7 +111,7 @@ export const UPGRADES: Upgrade[] = [
       description:
          'Faster evidence collection techniques. +30% speed for Michael Jackson investigations.',
       icon: 'zap',
-      cost: { proofs: 800, followers: 0 },
+      cost: { proofs: new Decimal(800), followers: new Decimal(0) },
       boosts: [
          {
             type: 'speed',
@@ -97,10 +119,15 @@ export const UPGRADES: Upgrade[] = [
                type: 'generator',
                id: 'michael_jackson',
             },
-            value: 0.3,
+            value: new Decimal(0.3),
          },
       ],
-      conditions: { proofs: 500, followers: 0, paranoia: 0, generators: [] },
+      conditions: {
+         proofs: new Decimal(500),
+         followers: new Decimal(0),
+         paranoia: new Decimal(0),
+         generators: [],
+      },
       unlocked: false,
    },
    {
@@ -109,7 +136,7 @@ export const UPGRADES: Upgrade[] = [
       description:
          'Bulk operations become more efficient. -10% cost when buying x100 Michael Jackson levels.',
       icon: 'package',
-      cost: { proofs: 1500, followers: 0 },
+      cost: { proofs: new Decimal(1500), followers: new Decimal(0) },
       boosts: [
          {
             type: 'bulk_discount',
@@ -117,10 +144,15 @@ export const UPGRADES: Upgrade[] = [
                type: 'generator',
                id: 'michael_jackson',
             },
-            value: 0.1,
+            value: new Decimal(0.1),
          },
       ],
-      conditions: { proofs: 1000, followers: 0, paranoia: 0, generators: [] },
+      conditions: {
+         proofs: new Decimal(1000),
+         followers: new Decimal(0),
+         paranoia: new Decimal(0),
+         generators: [],
+      },
       unlocked: false,
    },
    {
@@ -129,18 +161,23 @@ export const UPGRADES: Upgrade[] = [
       description:
          'Establish connections between all conspiracies. +25% proof production for all generators.',
       icon: 'globe',
-      cost: { proofs: 2000, followers: 0 },
+      cost: { proofs: new Decimal(2000), followers: new Decimal(0) },
       boosts: [
          {
             type: 'production_multiplier',
             target: {
                type: 'all_generators',
             },
-            value: 0.25,
+            value: new Decimal(0.25),
             resource: 'proofs',
          },
       ],
-      conditions: { proofs: 1500, followers: 0, paranoia: 0, generators: [] },
+      conditions: {
+         proofs: new Decimal(1500),
+         followers: new Decimal(0),
+         paranoia: new Decimal(0),
+         generators: [],
+      },
       unlocked: false,
    },
    {
@@ -149,7 +186,7 @@ export const UPGRADES: Upgrade[] = [
       description:
          'Better coordination among organized conspiracies. +100% proof production for organization conspiracies.',
       icon: 'users',
-      cost: { proofs: 1200, followers: 0 },
+      cost: { proofs: new Decimal(1200), followers: new Decimal(0) },
       boosts: [
          {
             type: 'production_multiplier',
@@ -157,11 +194,16 @@ export const UPGRADES: Upgrade[] = [
                type: 'category',
                id: 'organization',
             },
-            value: 1.0,
+            value: new Decimal(1.0),
             resource: 'proofs',
          },
       ],
-      conditions: { proofs: 800, followers: 0, paranoia: 0, generators: [] },
+      conditions: {
+         proofs: new Decimal(800),
+         followers: new Decimal(0),
+         paranoia: new Decimal(0),
+         generators: [],
+      },
       unlocked: false,
    },
    {
@@ -170,7 +212,7 @@ export const UPGRADES: Upgrade[] = [
       description:
          'A fundamental collection of irrefutable evidence. +2 base proof production for Flat Earth.',
       icon: 'archive',
-      cost: { proofs: 5000, followers: 0 },
+      cost: { proofs: new Decimal(5000), followers: new Decimal(0) },
       boosts: [
          {
             type: 'production_flat',
@@ -178,11 +220,16 @@ export const UPGRADES: Upgrade[] = [
                type: 'generator',
                id: 'flat_earth',
             },
-            value: 2,
+            value: new Decimal(2),
             resource: 'proofs',
          },
       ],
-      conditions: { proofs: 3000, followers: 0, paranoia: 0, generators: [] },
+      conditions: {
+         proofs: new Decimal(3000),
+         followers: new Decimal(0),
+         paranoia: new Decimal(0),
+         generators: [],
+      },
       unlocked: false,
    },
    {
@@ -190,17 +237,22 @@ export const UPGRADES: Upgrade[] = [
       name: 'Critical Evidence',
       description: 'Increases the critical chance of your clicks by 10%.',
       icon: 'target',
-      cost: { proofs: 1000, followers: 0 },
+      cost: { proofs: new Decimal(1000), followers: new Decimal(0) },
       boosts: [
          {
             type: 'click_critical_chance',
             target: {
                type: 'global',
             },
-            value: 0.05,
+            value: new Decimal(0.05),
          },
       ],
-      conditions: { proofs: 0, followers: 0, paranoia: 0, generators: [] },
+      conditions: {
+         proofs: new Decimal(0),
+         followers: new Decimal(0),
+         paranoia: new Decimal(0),
+         generators: [],
+      },
       unlocked: false,
    },
    {
@@ -208,17 +260,22 @@ export const UPGRADES: Upgrade[] = [
       name: 'Enhanced Critical Power',
       description: 'Critical clicks become more powerful. +100% critical hit magnitude.',
       icon: 'zap',
-      cost: { proofs: 2000, followers: 0 },
+      cost: { proofs: new Decimal(2000), followers: new Decimal(0) },
       boosts: [
          {
             type: 'click_critical_magnitude',
             target: {
                type: 'global',
             },
-            value: 1.0,
+            value: new Decimal(1.0),
          },
       ],
-      conditions: { proofs: 1500, followers: 0, paranoia: 0, generators: [] },
+      conditions: {
+         proofs: new Decimal(1500),
+         followers: new Decimal(0),
+         paranoia: new Decimal(0),
+         generators: [],
+      },
       unlocked: false,
    },
 ];

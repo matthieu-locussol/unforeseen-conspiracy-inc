@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { useI18n } from '../../i18n/i18n';
 import { useStore } from '../../store/StoreContext';
 import { cn } from '../../utils/cn';
+import { formatDecimal } from '../../utils/numberMgt';
 import { interpolate } from '../../utils/stringMgt';
 import { CustomIcon } from '../core/Icons';
 import { Badge } from '../core/ui/badge';
@@ -53,7 +54,7 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                         : 'bg-gray-700/10 text-gray-400/90 border-gray-400/30',
                   ])}
                >
-                  {t.ui.level} {generatorStore.level}
+                  {t.ui.level} {formatDecimal(generatorStore.level)}
                </Badge>
             </div>
             <div className="grid grid-cols-3 gap-3 mr-auto">
@@ -76,17 +77,19 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                         : '???'}
                   </p>
                </div>
-               {generatorStore.effectiveProduction.followers > 0 && (
+               {generatorStore.effectiveProduction.followers.greaterThan(0) && (
                   <div className="flex items-center gap-1.5">
                      <CustomIcon className="h-4 w-4 text-amber-400" icon="usersRound" />
-                     <p className="text-sm">{generatorStore.effectiveProduction.followers}/sec</p>
+                     <p className="text-sm">
+                        {formatDecimal(generatorStore.effectiveProduction.followers)}/sec
+                     </p>
                   </div>
                )}
-               {generatorStore.effectiveProduction.paranoia > 0 && (
+               {generatorStore.effectiveProduction.paranoia.greaterThan(0) && (
                   <div className="flex items-center gap-1.5">
                      <CustomIcon className="h-4 w-4 text-red-400" icon="eye" />
                      <p className="text-sm text-red-200">
-                        {generatorStore.effectiveProduction.paranoia}/sec
+                        {formatDecimal(generatorStore.effectiveProduction.paranoia)}/sec
                      </p>
                   </div>
                )}
@@ -106,12 +109,12 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
             <Card className="p-2 bg-green-800/30 border-green-900 rounded-sm transition-all duration-200 hover:bg-green-800/40">
                <h2 className="text-sm text-gray-400">{t.ui.cost}</h2>
                <p className="text-sm">
-                  {
+                  {formatDecimal(
                      generatorStore.getCost(
                         hudStore.bulkBuy,
                         gameStore.getGeneratorCostReduction(generatorStore.id),
-                     ).proofs
-                  }{' '}
+                     ).proofs,
+                  )}{' '}
                   {t.resources.proofs.name.toLowerCase()}
                </p>
             </Card>
@@ -124,13 +127,14 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                         icon="searchCheck"
                      />{' '}
                      →{' '}
-                     {
+                     {formatDecimal(
                         generatorStore.getEffectiveProduction(
-                           generatorStore.level + hudStore.bulkBuy,
-                        ).proofs
-                     }
+                           generatorStore.level.add(hudStore.bulkBuy),
+                        ).proofs,
+                     )}
                      /sec (+
-                     {generatorStore.getProductionIncrease(hudStore.bulkBuy).proofs}/sec)
+                     {formatDecimal(generatorStore.getProductionIncrease(hudStore.bulkBuy).proofs)}
+                     /sec)
                   </p>
                </Card>
             ) : (
@@ -146,7 +150,7 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
             size="sm"
             onClick={() => gameStore.buyGenerator(generatorStore.id, hudStore.bulkBuy)}
          >
-            {interpolate(t.ui.upgradeMultiplier, { multiplier: hudStore.bulkBuy })}
+            {interpolate(t.ui.upgradeMultiplier, { multiplier: formatDecimal(hudStore.bulkBuy) })}
          </Button>
       </Card>
    );

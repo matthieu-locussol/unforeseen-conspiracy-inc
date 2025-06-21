@@ -3,6 +3,7 @@ import type { SerializedGameData } from '../types/game';
 import type { GeneratorId, GeneratorProduction } from '../types/generators';
 import type { Conditions, UpgradeId } from '../types/upgrades';
 
+import Decimal from 'decimal.js';
 import { makeAutoObservable } from 'mobx';
 
 import { GENERATORS } from '../data/generators';
@@ -89,9 +90,9 @@ export class GameStore {
       this.paranoia.tick();
 
       this.statistics.trackResourceGeneration(
-         this.proofs.value - previousProofs,
-         this.followers.value - previousFollowers,
-         this.paranoia.value - previousParanoia,
+         this.proofs.value.sub(previousProofs),
+         this.followers.value.sub(previousFollowers),
+         this.paranoia.value.sub(previousParanoia),
       );
    }
 
@@ -99,9 +100,9 @@ export class GameStore {
     * Get all multipliers that apply to a generator (global, category, and individual)
     */
    public getGeneratorMultipliers(generator: GeneratorStore): GeneratorProduction {
-      let proofsMultiplier = 1;
-      let followersMultiplier = 1;
-      let paranoiaMultiplier = 1;
+      let proofsMultiplier = new Decimal(1);
+      let followersMultiplier = new Decimal(1);
+      let paranoiaMultiplier = new Decimal(1);
 
       const unlockedUpgrades = this.upgrades.filter((upgrade) => upgrade.unlocked);
 
@@ -121,11 +122,11 @@ export class GameStore {
 
                if (appliesToGenerator) {
                   if (boost.resource === 'proofs') {
-                     proofsMultiplier += boost.value;
+                     proofsMultiplier = proofsMultiplier.add(boost.value);
                   } else if (boost.resource === 'followers') {
-                     followersMultiplier += boost.value;
+                     followersMultiplier = followersMultiplier.add(boost.value);
                   } else if (boost.resource === 'paranoia') {
-                     paranoiaMultiplier += boost.value;
+                     paranoiaMultiplier = paranoiaMultiplier.add(boost.value);
                   }
                }
             }
@@ -142,7 +143,7 @@ export class GameStore {
    /**
     * Get the total click critical chance from base + upgrades
     */
-   public getClickCriticalChance(): number {
+   public getClickCriticalChance(): Decimal {
       let totalCriticalChance = this.clicker.criticalChance;
 
       const unlockedUpgrades = this.upgrades.filter((upgrade) => upgrade.unlocked);
@@ -150,19 +151,19 @@ export class GameStore {
       for (const upgrade of unlockedUpgrades) {
          for (const boost of upgrade.boosts) {
             if (boost.type === 'click_critical_chance') {
-               totalCriticalChance += boost.value;
+               totalCriticalChance = totalCriticalChance.add(boost.value);
             }
          }
       }
 
       // Ensure critical chance never exceeds 100%
-      return Math.min(totalCriticalChance, 1);
+      return Decimal.min(totalCriticalChance, 1);
    }
 
    /**
     * Get the total click critical multiplier from base + upgrades
     */
-   public getClickCriticalMultiplier(): number {
+   public getClickCriticalMultiplier(): Decimal {
       let totalCriticalMultiplier = this.clicker.criticalMultiplier;
 
       const unlockedUpgrades = this.upgrades.filter((upgrade) => upgrade.unlocked);
@@ -170,7 +171,7 @@ export class GameStore {
       for (const upgrade of unlockedUpgrades) {
          for (const boost of upgrade.boosts) {
             if (boost.type === 'click_critical_magnitude') {
-               totalCriticalMultiplier += boost.value;
+               totalCriticalMultiplier = totalCriticalMultiplier.add(boost.value);
             }
          }
       }
@@ -182,9 +183,9 @@ export class GameStore {
     * Get flat bonuses that apply to a generator (exposed for GeneratorStore)
     */
    public getFlatBonusesForGenerator(generator: GeneratorStore): GeneratorProduction {
-      let proofsBonus = 0;
-      let followersBonus = 0;
-      let paranoiaBonus = 0;
+      let proofsBonus = new Decimal(0);
+      let followersBonus = new Decimal(0);
+      let paranoiaBonus = new Decimal(0);
 
       const unlockedUpgrades = this.upgrades.filter((upgrade) => upgrade.unlocked);
 
@@ -204,11 +205,11 @@ export class GameStore {
 
                if (appliesToGenerator) {
                   if (boost.resource === 'proofs') {
-                     proofsBonus += boost.value;
+                     proofsBonus = proofsBonus.add(boost.value);
                   } else if (boost.resource === 'followers') {
-                     followersBonus += boost.value;
+                     followersBonus = followersBonus.add(boost.value);
                   } else if (boost.resource === 'paranoia') {
-                     paranoiaBonus += boost.value;
+                     paranoiaBonus = paranoiaBonus.add(boost.value);
                   }
                }
             }
@@ -238,7 +239,7 @@ export class GameStore {
       );
    }
 
-   public canBuyGenerator(id: GeneratorId, amount: number): boolean {
+   public canBuyGenerator(id: GeneratorId, amount: Decimal): boolean {
       const generatorStore = this.generators.find((generator) => generator.id === id);
 
       if (generatorStore === undefined) {
@@ -250,7 +251,7 @@ export class GameStore {
       return this.proofs.value >= cost.proofs && this.followers.value >= cost.followers;
    }
 
-   public buyGenerator(id: GeneratorId, amount: number): boolean {
+   public buyGenerator(id: GeneratorId, amount: Decimal): boolean {
       const generatorStore = this.generators.find((generator) => generator.id === id);
 
       if (generatorStore === undefined) {
@@ -266,7 +267,7 @@ export class GameStore {
          return false;
       }
 
-      generatorStore.buy(amount);
+      generatorStore.buy(Decimal(amount));
 
       return true;
    }
@@ -320,8 +321,8 @@ export class GameStore {
       return true;
    }
 
-   public getGeneratorCostReduction(generatorId: GeneratorId): number {
-      let reduction = 0;
+   public getGeneratorCostReduction(generatorId: GeneratorId): Decimal {
+      let reduction = new Decimal(0);
 
       const unlockedCostReductionUpgrades = this.upgrades
          .filter((upgrade) => upgrade.unlocked)
@@ -330,9 +331,9 @@ export class GameStore {
       for (const { boosts } of unlockedCostReductionUpgrades) {
          for (const boost of boosts) {
             if (boost.target.type === 'all_generators' || boost.target.type === 'global') {
-               reduction += boost.value;
+               reduction = reduction.add(boost.value);
             } else if (boost.target.type === 'generator' && boost.target.id === generatorId) {
-               reduction += boost.value;
+               reduction = reduction.add(boost.value);
             } else if (
                boost.target.type === 'category' &&
                this.generators.some((generator) => {
@@ -344,24 +345,24 @@ export class GameStore {
                   return generator.categories.includes(boost.target.id);
                })
             ) {
-               reduction += boost.value;
+               reduction = reduction.add(boost.value);
             }
          }
       }
 
-      return Math.min(reduction, 0.9);
+      return Decimal.min(reduction, 0.9);
    }
 
    public get totalProduction(): GeneratorProduction {
       return this.generators.reduce(
          (acc, generator) => {
             return {
-               proofs: acc.proofs + generator.effectiveProduction.proofs,
-               followers: acc.followers + generator.effectiveProduction.followers,
-               paranoia: acc.paranoia + generator.effectiveProduction.paranoia,
+               proofs: acc.proofs.add(generator.effectiveProduction.proofs),
+               followers: acc.followers.add(generator.effectiveProduction.followers),
+               paranoia: acc.paranoia.add(generator.effectiveProduction.paranoia),
             };
          },
-         { proofs: 0, followers: 0, paranoia: 0 },
+         { proofs: new Decimal(0), followers: new Decimal(0), paranoia: new Decimal(0) },
       );
    }
 
@@ -369,7 +370,7 @@ export class GameStore {
       const clickData = this.clicker.click();
 
       this.proofs.add(clickData.value);
-      this.statistics.trackClicks(1);
+      this.statistics.trackClicks(new Decimal(1));
 
       return clickData;
    }

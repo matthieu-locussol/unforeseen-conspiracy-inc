@@ -1,6 +1,7 @@
 import type { ClickData, ClickerId, SerializedClickerData } from '../types/clicker';
 import type { GameStore } from './GameStore';
 
+import { Decimal } from 'decimal.js';
 import { makeAutoObservable } from 'mobx';
 
 import { CLICKERS } from '../data/clicker';
@@ -10,23 +11,23 @@ export class ClickerStore {
 
    public id!: ClickerId;
 
-   public baseClickValue!: number;
+   public baseClickValue!: Decimal;
 
-   public clickMultiplier!: number;
+   public clickMultiplier!: Decimal;
 
-   public criticalChance!: number;
+   public criticalChance!: Decimal;
 
-   public criticalMultiplier!: number;
+   public criticalMultiplier!: Decimal;
 
-   public comboMultiplier!: number;
+   public comboMultiplier!: Decimal;
 
-   public maxComboMultiplier!: number;
+   public maxComboMultiplier!: Decimal;
 
    public comboTimeWindow!: number;
 
    public lastClickTime!: number;
 
-   public clickCount!: number;
+   public clickCount!: Decimal;
 
    constructor(id: ClickerId, gameStore: GameStore) {
       makeAutoObservable(this);
@@ -44,10 +45,10 @@ export class ClickerStore {
       const effectiveCriticalChance = this._store.getClickCriticalChance();
       const effectiveCriticalMultiplier = this._store.getClickCriticalMultiplier();
 
-      const isCritical = Math.random() < effectiveCriticalChance;
+      const isCritical = Math.random() < effectiveCriticalChance.toNumber();
 
       if (isCritical) {
-         value *= effectiveCriticalMultiplier;
+         value = value.mul(effectiveCriticalMultiplier);
       }
 
       return { value, isCritical, combo: this.comboMultiplier };
@@ -58,45 +59,47 @@ export class ClickerStore {
       const delta = now - this.lastClickTime;
 
       if (delta < this.comboTimeWindow) {
-         this.clickCount++;
-         this.comboMultiplier = 1 + Math.min(this.clickCount * 0.1, this.maxComboMultiplier);
+         this.clickCount = this.clickCount.add(1);
+         this.comboMultiplier = Decimal(1).add(
+            Decimal.min(this.clickCount.mul(0.1), this.maxComboMultiplier),
+         );
       } else {
-         this.clickCount = 1;
-         this.comboMultiplier = 1;
+         this.clickCount = new Decimal(1);
+         this.comboMultiplier = new Decimal(1);
       }
 
       this.lastClickTime = now;
    }
 
-   public get getEffectiveClickValue(): number {
-      return this.baseClickValue * this.clickMultiplier * this.comboMultiplier;
+   public get getEffectiveClickValue(): Decimal {
+      return this.baseClickValue.mul(this.clickMultiplier).mul(this.comboMultiplier);
    }
 
    public serialize(): SerializedClickerData {
       return {
          id: this.id,
-         baseClickValue: this.baseClickValue,
-         clickMultiplier: this.clickMultiplier,
-         criticalChance: this.criticalChance,
-         criticalMultiplier: this.criticalMultiplier,
-         comboMultiplier: this.comboMultiplier,
-         maxComboMultiplier: this.maxComboMultiplier,
+         baseClickValue: this.baseClickValue.toString(),
+         clickMultiplier: this.clickMultiplier.toString(),
+         criticalChance: this.criticalChance.toString(),
+         criticalMultiplier: this.criticalMultiplier.toString(),
+         comboMultiplier: this.comboMultiplier.toString(),
+         maxComboMultiplier: this.maxComboMultiplier.toString(),
          comboTimeWindow: this.comboTimeWindow,
          lastClickTime: this.lastClickTime,
-         clickCount: this.clickCount,
+         clickCount: this.clickCount.toString(),
       };
    }
 
    public deserialize(data: SerializedClickerData): void {
-      this.baseClickValue = data.baseClickValue;
-      this.clickMultiplier = data.clickMultiplier;
-      this.criticalChance = data.criticalChance;
-      this.criticalMultiplier = data.criticalMultiplier;
-      this.comboMultiplier = data.comboMultiplier;
-      this.maxComboMultiplier = data.maxComboMultiplier;
+      this.baseClickValue = new Decimal(data.baseClickValue);
+      this.clickMultiplier = new Decimal(data.clickMultiplier);
+      this.criticalChance = new Decimal(data.criticalChance);
+      this.criticalMultiplier = new Decimal(data.criticalMultiplier);
+      this.comboMultiplier = new Decimal(data.comboMultiplier);
+      this.maxComboMultiplier = new Decimal(data.maxComboMultiplier);
       this.comboTimeWindow = data.comboTimeWindow;
       this.lastClickTime = data.lastClickTime;
-      this.clickCount = data.clickCount;
+      this.clickCount = new Decimal(data.clickCount);
    }
 
    private _initialize(id: ClickerId): void {
