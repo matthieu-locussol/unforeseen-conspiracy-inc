@@ -1,5 +1,30 @@
 # Conspiracies - Unforeseen Conspiracy Inc.
 
+**LLM Prompt for Writing Descriptions:**
+
+**Objective:** Generate descriptions for new conspiracies (generators) and upgrades that sound like
+they are written by a seasoned, yet unhinged, internet conspiracy theorist, reminiscent of 4chan
+culture.
+
+**Tone Guidelines:**
+
+1. **Cynical & Arrogant:** The voice should be that of someone who believes they have uncovered
+   profound, hidden truths that "normies" are too blind to see. Avoid cheerful or overly
+   enthusiastic language.
+2. **Pseudo-Intellectual:** Use complex-sounding language to describe simple or absurd ideas. The
+   goal is to sound smart while being completely ridiculous.
+3. **Deadpan Humor:** The humor should arise from the serious, matter-of-fact presentation of
+   increasingly bizarre theories. Treat the most insane ideas as established fact.
+4. **Subtle Language:** Instead of using excessive exclamation marks or overtly "childish" phrasing,
+   use declarative statements. The conviction in the tone is what sells the conspiracy.
+5. **Escalating Absurdity:** While early conspiracies might seem almost plausible (to a theorist),
+   they should progressively become more detached from reality. The writing style should remain
+   consistent, making the escalation funnier.
+6. **Key vocabulary (use sparingly):** "sheeple", "the elite", "normies", "red-pilled", "they", "the
+   narrative".
+
+---
+
 This document describes conspiracies (generators) in the game with carefully balanced attributes for
 optimal progression pacing in a long-term game with 20+ generators. Numbers in this incremental
 clicker game can be huge. The biggest unit currently managed by the game is "DTg", 1DTg being equal
@@ -27,8 +52,9 @@ to
 
 ### Description
 
-_"Those white streaks in the sky aren't just contrails from airplanes - they're government chemicals
-being sprayed on us to control our minds! Wake up, sheeple!"_
+_"Look up. You see those white streaks? The normies call them 'contrails'. That's what 'they' want
+you to believe. It's a chemical cocktail, a fog to keep the masses docile. You're breathing it right
+now."_
 
 ### Game Attributes
 
@@ -89,30 +115,31 @@ being sprayed on us to control our minds! Wake up, sheeple!"_
 
 ### Upgrades (12 total)
 
-1. **Binoculars Upgrade** - _"High-powered binoculars to spot the chemtrail planes from miles away.
-   The government thinks we can't see them, but we can!"_
-2. **Weather App Conspiracy** - _"Your weather app is actually a government tool to track who's
-   looking at the sky. Time to go analog!"_
-3. **Aluminum Hat Mk.I** - _"Basic aluminum protection against mind control chemicals. It's not
-   paranoia if they're really spraying you!"_
-4. **Air Quality Monitor** - _"Detect the invisible chemicals in the air. Spoiler alert: they're
-   everywhere!"_
-5. **Government Contacts** - _"You've got a cousin who works at the post office who knows a guy who
-   knows a guy in the FAA. Trust the process!"_
-6. **Whistleblower Network** - _"Former airport workers, disgruntled pilots, and people who 'just
-   know things' are now your informants."_
-7. **Chemical Analysis Kit** - _"Test the rainwater for government chemicals. Warning: results may
-   cause existential crisis."_
-8. **Satellite Tracking** - _"Track the chemtrail planes using 'public' satellite data. They can't
-   hide from space!"_
-9. **Underground Bunker** - _"Your own personal shelter from the chemical rain. Stocked with canned
-   food and conspiracy theories."_
-10.   **Mind Control Resistance** - _"Years of exposure have built up your immunity to government
-      mind control. Or maybe that's what they want you to think..."_
-11.   **Global Chemtrail Map** - _"Track chemtrail patterns worldwide. The truth is written in the
-      sky!"_
-12.   **Anti-Chemtrail Device** - _"Your homemade device that 'neutralizes' chemtrails. Science
-      can't explain why it works, but it totally does!"_
+1. **Binoculars Upgrade** - _"They think we can't see them. With high-powered optics, their delivery
+   systems become crystal clear. Every plane is a potential threat."_
+2. **Weather App Conspiracy** - _"Your phone's weather app isn't for you. It's for them. It tracks
+   who's looking up, who's getting suspicious. Ditch the tech, trust the sky."_
+3. **Aluminum Hat Mk.I** - _"It's not paranoia, it's basic operational security. A simple
+   aluminum-lined hat can disrupt the psychoactive compounds in the spray. A first-line defense."_
+4. **Air Quality Monitor** - _"Standard air quality monitors can be modified to detect the specific
+   non-terrestrial polymers they use. The readings will confirm your worst fears."_
+5. **Government Contacts** - _"Information is power. A guy who knows a guy inside the FAA is a
+   critical node in our information network. He doesn't even know what he's leaking."_
+6. **Whistleblower Network** - _"Create a network of informants: disgruntled ground crew, pilots
+   who've seen too much. They're the weak link in the chain of silence."_
+7. **Chemical Analysis Kit** - _"Rainwater collection and analysis. The results from a basic
+   chemical kit will be... illuminating. It's not just water falling from the sky."_
+8. **Satellite Tracking** - _"They use public satellite data to hide in plain sight. By
+   cross-referencing flight paths with atmospheric aerosol data, their patterns emerge. They can't
+   hide."_
+9. **Underground Bunker** - _"A hardened location is necessary for periods of heavy spraying. Air
+   filtration, canned goods, and a secure data connection. A modern-day fallout shelter."_
+10.   **Mind Control Resistance** - _"Through micro-dosing and mental exercises, you can build a
+      tolerance to the psychotropic agents. Or maybe that's just another layer of their control..."_
+11.   **Global Chemtrail Map** - _"Correlate global flight data with atmospheric readings to create
+      a live map of their operations. The scale of it is staggering."_
+12.   **Anti-Chemtrail Device** - _"A device based on orgone energy principles that can locally
+      disrupt the aerosol suspension. 'Science' doesn't have a paradigm for this. We do."_
 
 ---
 
@@ -120,9 +147,9 @@ being sprayed on us to control our minds! Wake up, sheeple!"_
 
 ### Description
 
-_"Michael Jackson was replaced by a clone in the early 2000s! The real MJ is still alive, but the
-government has been using his clone to control the masses through music. Other celebrities have been
-cloned too - but we can't reveal their names yet..."_
+_"The man the world saw after the early 2000s was not Michael Jackson. He was a bio-synthetic
+duplicate, a puppet. The real MJ was sidelined when he got too close to the truth. They use his
+image to push their sonic mind-control agenda."_
 
 ### Game Attributes
 
@@ -183,30 +210,32 @@ cloned too - but we can't reveal their names yet..."_
 
 ### Upgrades (12 total)
 
-1. **Clone Detection Kit** - _"Advanced equipment to detect subtle differences between the real MJ
-   and his clone. The clone has slightly different fingerprints!"_
-2. **Voice Pattern Analysis** - _"Analyze MJ's voice patterns over the years. The clone's voice has
-   subtle differences that only experts can detect."_
-3. **Plastic Surgery Evidence** - _"The 'plastic surgery' was actually clone integration procedures.
-   They were preparing the clone to look more like the real MJ."_
-4. **Government Cloning Lab** - _"Secret government facility where celebrity clones are created.
-   Located deep underground in Nevada."_
-5. **Celebrity Clone Network** - _"MJ's clone is part of a larger network of celebrity clones. Other
-   stars have been replaced too, but we can't reveal their names yet."_
-6. **Music Mind Control** - _"The clone's music contains subliminal messages to control the masses.
-   That's why his later songs sound 'different'."_
-7. **Underground Real MJ** - _"The real MJ is living in an underground bunker, creating music that
-   will one day expose the truth about the cloning program."_
-8. **Clone Behavioral Analysis** - _"Study the clone's behavior patterns. Real MJ would never have
-   done that weird interview with Martin Bashir!"_
-9. **Government Coverup Team** - _"Special agents assigned to maintain the clone's cover story. They
-   control the media narrative about MJ."_
-10.   **Clone Aging Technology** - _"The clone ages differently than the real MJ would have. That's
-      why he looked so different in his later years."_
-11.   **Celebrity Replacement Program** - _"The government has been systematically replacing
-      celebrities with clones for decades. MJ was just the most famous case."_
-12.   **Truth Serum Formula** - _"A special formula that can force clones to reveal their true
-      nature. The real MJ helped develop it before he was replaced."_
+1. **Clone Detection Kit** - _"Bio-duplicates have tells. Micro-expressions, slight variations in
+   fingerprints. You just need the right equipment to see the seams in the puppet."_
+2. **Voice Pattern Analysis** - _"The vocal cords can be replicated, but not the soul. A
+   spectrographic analysis of his later work reveals harmonic discrepancies that prove it's not
+   him."_
+3. **Plastic Surgery Evidence** - _"It wasn't 'plastic surgery'. It was scheduled maintenance and
+   hardware upgrades for the synthetic replacement. They called it that to mock us."_
+4. **Government Cloning Lab** - _"Deep below the Nevada desert lies the 'bionetics' facility. It's
+   where they grow the replacements for influential figures who won't play ball."_
+5. **Celebrity Clone Network** - _"MJ wasn't the first. A whole network of public figures are
+   duplicates. Revealing the full list would shatter the public's reality. We must be careful."_
+6. **Music Mind Control** - _"The duplicate's music is embedded with low-frequency sonic patterns
+   designed to suppress critical thought. It's why pop music feels so hollow."_
+7. **Underground Real MJ** - _"The real MJ is in hiding, likely in a secure bunker. He's said to be
+   amassing a library of 'truth tracks' to expose the whole system."_
+8. **Clone Behavioral Analysis** - _"The duplicate's behavior deviates from the original's baseline
+   psychological profile. The inconsistencies are subtle, but they're there if you know what to look
+   for."_
+9. **Government Coverup Team** - _"A dedicated team of handlers and media manipulators work around
+   the clock to maintain the duplicate's cover story. We call them the 'mythweavers'."_
+10.   **Clone Aging Technology** - _"The duplicate's aging process is artificial, controlled by
+      telomere-capping injections. It's why his appearance changed so drastically."_
+11.   **Celebrity Replacement Program** - _"This goes beyond one celebrity. It's a systemic program
+      to replace any influential voice with a compliant duplicate. We have to map the network."_
+12.   **Truth Serum Formula** - _"A psychoactive compound that can bypass the duplicate's core
+      programming. Forcing one to speak on a live feed would bring the whole house of cards down."_
 
 ---
 
@@ -214,8 +243,9 @@ cloned too - but we can't reveal their names yet..."_
 
 ### Description
 
-_"The Earth isn't a globe - it's flat! NASA is a Hollywood studio, and all the space photos are CGI.
-The truth has been hidden for centuries by the global elite!"_
+_"The globe is the greatest deception ever perpetrated. A lie to hide the true nature of our realm
+and the resources at its edges. NASA is a film studio with a budget larger than most nations,
+selling you a fantasy to keep you from asking what's beyond the ice wall."_
 
 ### Game Attributes
 
@@ -276,30 +306,30 @@ The truth has been hidden for centuries by the global elite!"_
 
 ### Upgrades (12 total)
 
-1. **Ice Wall Expedition** - _"The Antarctic ice wall is real! It's 150 feet tall and guarded by
-   government agents. Time to climb it!"_
-2. **NASA Studio Access** - _"NASA is just a Hollywood studio in California. All the 'space
-   missions' are filmed on sound stages."_
-3. **Antarctic Treaty Breach** - _"The Antarctic Treaty is just a cover to keep people away from the
-   edge of the world. We're going anyway!"_
-4. **Gravity Hoax Exposure** - _"Gravity doesn't exist! It's just density and buoyancy. The
-   government made up gravity to hide the truth!"_
-5. **Satellite Deception** - _"Satellites are just balloons with cameras. That's why they 'fall'
-   back to Earth when they 'malfunction'."_
-6. **Globe Manufacturing Plant** - _"There's a secret factory making all the globes to perpetuate
-   the lie. We found it!"_
-7. **Round Earth Propaganda** - _"The education system is brainwashing children with fake globes.
-   Time to infiltrate the schools!"_
-8. **Flat Map Cartography** - _"Create the first accurate flat Earth map. The UN logo is actually
-   the real map - they're not even hiding it!"_
-9. **Underworld Exploration** - _"The Earth is hollow! There are civilizations living inside the
-   flat Earth. Time to dig down!"_
-10.   **Sky Dome Technology** - _"The sky is actually a dome with stars painted on it. The sun and
-      moon are just lights on the dome."_
-11.   **Global Elite Network** - _"The global elite know the Earth is flat and are keeping it
-      secret. Time to expose their network!"_
-12.   **Truth Broadcast System** - _"Set up a worldwide network to broadcast the flat Earth truth.
-      The internet is our weapon!"_
+1. **Ice Wall Expedition** - _"Antarctica isn't a continent. It's a 150-foot ice wall encircling our
+   known world, patrolled by a shadowy multinational force. We need to fund an expedition."_
+2. **NASA Studio Access** - _"All 'space missions' are filmed in a secure studio. Gaining access
+   means acquiring original, unedited footage of their green screen operations."_
+3. **Antarctic Treaty Breach** - _"The Antarctic Treaty isn't about science; it's a military pact to
+   guard the world's edge. Breaching it is the only way to get proof."_
+4. **Gravity Hoax Exposure** - _"'Gravity' is a lie to explain why we don't fall off the 'globe.'
+   The truth is simple density and buoyancy. They complicate it to confuse you."_
+5. **Satellite Deception** - _"So-called 'satellites' are just high-altitude reconnaissance drones
+   and communication balloons. They can't orbit a flat plane."_
+6. **Globe Manufacturing Plant** - _"There's a handful of factories that produce every globe on
+   Earth. Infiltrating one would allow us to disrupt the primary tool of indoctrination."_
+7. **Round Earth Propaganda** - _"The narrative is pushed through the education system. We need to
+   develop counter-curriculum materials to de-program the next generation."_
+8. **Flat Map Cartography** - _"Create a true map of our plane, based on suppressed pre-globular
+   records. The UN logo is a good starting point; they're hiding it in plain sight."_
+9. **Underworld Exploration** - _"If the Earth is not a sphere, what's beneath it? Ancient texts
+   speak of a hollow domain. We need to start digging."_
+10.   **Sky Dome Technology** - _"The 'sky' is a physical firmament, a dome onto which celestial
+      bodies are projected. Understanding its technology is key to understanding our prison."_
+11.   **Global Elite Network** - _"The families who perpetuate this lie form a global network.
+      Mapping their connections and control structures is essential to dismantling their power."_
+12.   **Truth Broadcast System** - _"Hijack their own satellite network to broadcast the flat Earth
+      truth to every screen on the planet. A signal that can't be ignored."_
 
 ---
 
@@ -307,9 +337,9 @@ The truth has been hidden for centuries by the global elite!"_
 
 ### Description
 
-_"Those pigeons you see every day? They're not real birds - they're government surveillance drones!
-The government has been replacing real pigeons with robotic spies to monitor our every move. Wake
-up, people! Those 'birds' are watching you right now!"_
+_"The common pigeon. Ubiquitous. Ignored. The perfect chassis for a surveillance drone. They
+replaced the real birds years ago. Every coo is a data packet. Every flutter of wings is a
+repositioning algorithm. They are watching."_
 
 ### Game Attributes
 
@@ -371,30 +401,31 @@ up, people! Those 'birds' are watching you right now!"_
 
 ### Upgrades (12 total)
 
-1. **Bird Watching Equipment** - _"High-powered binoculars and cameras to document the suspicious
-   behavior of 'pigeons.' Notice how they never actually eat bread crumbs? Robots don't need food!"_
-2. **Government Drone Manual** - _"A leaked manual from a 'former' government employee shows how to
-   identify robotic pigeons. The real giveaway? They don't poop like real birds!"_
-3. **Pigeon Behavior Analysis** - _"Study the movement patterns of 'pigeons.' Real birds don't fly
-   in perfect formation or hover suspiciously outside windows for hours!"_
-4. **Robotic Pigeon Factory** - _"Secret government facility where robotic pigeons are manufactured.
-   Located in an abandoned warehouse in New Jersey. We have the coordinates!"_
-5. **Pigeon Surveillance Network** - _"The pigeons are part of a massive surveillance network. Each
-   'bird' has a unique ID and reports back to a central monitoring station."_
-6. **Anti-Pigeon Technology** - _"Developed special devices to jam the pigeon drones' signals. They
-   start malfunctioning and fly in circles when you activate it!"_
-7. **Pigeon Whistleblower** - _"A 'former' government pigeon technician has come forward with
-   evidence. He's been living in hiding since exposing the program."_
-8. **Government Pigeon Training** - _"The government has been training real pigeons to work with the
-   robotic ones. It's a hybrid surveillance system - part bird, part machine!"_
-9. **Pigeon Communication Decoder** - _"Developed technology to intercept the signals between pigeon
-   drones and their control center. They're transmitting everything they see!"_
-10.   **Underground Pigeon Bunker** - _"Your secret base where you analyze captured pigeon drones.
-      The walls are lined with aluminum foil to block their surveillance signals."_
-11.   **Global Pigeon Network** - _"The pigeon surveillance program is worldwide! Every major city
-      has its own network of robotic pigeons. The truth is everywhere!"_
-12.   **Pigeon Truth Exposure** - _"Launch a massive campaign to expose the pigeon surveillance
-      program. Billboards, social media, and public demonstrations. The pigeons can't stop us all!"_
+1. **Bird Watching Equipment** - _"Standard bird-watching equipment is enough to spot the anomalies.
+   Their flight paths are too perfect, their loitering too intentional. They don't eat, they just
+   observe."_
+2. **Government Drone Manual** - _"A leaked field manual for the 'Avian Reconnaissance Unit' details
+   the drones' inner workings. Their power source is the biggest giveaway."_
+3. **Pigeon Behavior Analysis** - _"Log their behavior. You'll find they operate on a repeating loop
+   of programmed actions, unlike a real biological entity."_
+4. **Robotic Pigeon Factory** - _"The drones are assembled in automated facilities disguised as
+   industrial bakeries. We have the address of one in New Jersey."_
+5. **Pigeon Surveillance Network** - _"The drones form a mesh network, relaying data from one to
+   another until it reaches a central collection node. It's an airborne spy grid."_
+6. **Anti-Pigeon Technology** - _"A simple electromagnetic pulse device can temporarily disable the
+   drones. They just reboot and fly off, but it proves they're not real."_
+7. **Pigeon Whistleblower** - _"A former technician from the program has agreed to talk. He's afraid
+   for his life, but his conscience got the better of him."_
+8. **Government Pigeon Training** - _"They use a handful of real, trained pigeons to lead the drone
+   flocks, making them appear more natural. These 'Judas birds' are the key."_
+9. **Pigeon Communication Decoder** - _"The drones communicate via a specific, encrypted frequency.
+   If we can crack it, we can see what they see."_
+10.   **Underground Pigeon Bunker** - _"A secure location is needed to disassemble and analyze a
+      captured drone. We need to reverse-engineer the tech."_
+11.   **Global Pigeon Network** - _"This isn't just a local program. It's global. Every major city
+      is infested with these bio-mechanical spies. The scale is unbelievable."_
+12.   **Pigeon Truth Exposure** - _"Once we have irrefutable proof, we leak it all. A coordinated
+      data dump that will make people look at the birds in a whole new light."_
 
 ---
 
