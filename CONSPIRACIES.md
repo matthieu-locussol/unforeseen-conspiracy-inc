@@ -869,6 +869,115 @@ It's not about speed. It's about control."_
 
 ---
 
+## 9. Hidden Symbology in Corporate Logos
+
+### Description
+
+_"Identifying occult and Masonic symbols embedded in ubiquitous branding. It's not just marketing;
+it's constant, low-level sigil magic reinforcing their dominance in the collective psyche."_
+
+### Game Attributes
+
+```typescript
+{
+   id: 'corporate_logo_symbology',
+   name: 'Hidden Symbology in Corporate Logos',
+   description: 'Decode the occult symbols hidden in plain sight on corporate logos. It\'s not branding; it\'s a global psychological operation.',
+   categories: ['media-manipulation', 'organization', 'hidden-worlds'],
+   baseCost: {
+      proofs: new Decimal(2500000),
+      followers: new Decimal(0),
+   },
+   costMultiplier: {
+      proofs: new Decimal(1.15),
+      followers: new Decimal(0),
+   },
+   baseProduction: {
+      proofs: new Decimal(51),
+      followers: new Decimal(1.5),
+      paranoia: new Decimal(0.8),
+   },
+   productionMultiplier: {
+      proofs: new Decimal(51),
+      followers: new Decimal(1.5),
+      paranoia: new Decimal(0.8),
+   },
+   conditions: {
+      proofs: new Decimal(0),
+      followers: new Decimal(0),
+      paranoia: new Decimal(0),
+      generators: [],
+   },
+   unlocked: false,
+   upgradesIds: [
+      'corporate_logo_sacred_geometry',
+      'corporate_logo_color_analysis',
+      'corporate_logo_subliminal_detector',
+      'corporate_logo_gematria',
+      'corporate_logo_font_psychology',
+      'corporate_logo_sigil_grimoire',
+      'corporate_logo_mascot_deconstruction',
+      'corporate_logo_jungian_mapping',
+      'corporate_logo_ritual_analysis',
+      'corporate_logo_debranding_goggles',
+      'corporate_logo_egregore_connection',
+      'corporate_logo_counter_sigil',
+   ],
+}
+```
+
+### Balance Reasoning
+
+-  **Base Cost**: 2,500,000 proofs - This follows the established exponential cost curve (~4.5x
+   increase), positioning it as a late-game generator requiring significant investment.
+-  **Cost Multiplier**: 1.15x - Maintains the consistent scaling for balanced long-term progression.
+-  **Base Production**: 51 proofs/sec, 1.5 followers/sec, 0.8 paranoia/sec - Provides a ~2.2x
+   increase in proofs, a ~2.3x increase in followers, and a 2x increase in paranoia, consistent with
+   the scaling of previous tiers.
+-  **Unlock Conditions**: 0 proofs - Gated purely by cost to maintain player freedom.
+-  **Categories**: `media-manipulation`, `organization`, and `hidden-worlds` reinforce the themes of
+   information control, secret societies, and occult influences.
+
+### Upgrades (12 total)
+
+1. **Sacred Geometry Ruler** - _"It starts with geometry. A simple ruler and a compass are all you
+   need to uncover the sacred ratios and Masonic patterns hidden in the designs of the most
+   'innocuous' brands."_
+2. **Color Palette Analysis** - _"The color choices aren't aesthetic. They're alchemical. We're
+   analyzing the specific hex codes to reveal their connection to hermetic principles and elemental
+   manipulation."_
+3. **Subliminal Messaging Detector** - _"Flickering images, hidden words, suggestive shapes. We're
+   developing software to scan logos frame-by-frame, revealing the subliminal commands they flash at
+   you millions of times a day."_
+4. **Brand Name Gematria** - _"The names aren't random. Using ancient numerology (Gematria), we can
+   decode the true meaning and intent behind the brand names. The numbers don't lie."_
+5. **Font Psychology Database** - _"The fonts are chosen to evoke specific emotional responses.
+   We're compiling a database of corporate typography and its links to psychological manipulation
+   techniques developed by Tavistock."_
+6. **Sigil Magic Grimoire** - _"A recovered grimoire details how to create and charge sigils for
+   influence. The overlap with modern logo design is... perfect. They are casting spells on a global
+   scale."_
+7. **Corporate Mascot Deconstruction** - _"The friendly mascots are archetypal servitors. We're
+   unmasking their occult origins, from jovial food icons to cartoon animals, revealing the entities
+   they truly represent."_
+8. **Jungian Archetype Mapping** - _"They tap directly into the collective unconscious. By mapping
+   logos to Jungian archetypes, we can see how they hijack our primal symbols to create brand
+   loyalty."_
+9. **Global Branding Ritual Analysis** - _"Product launches and Super Bowl ads aren't just for
+   sales. They are coordinated global rituals designed to energize the corporate sigils. We're
+   tracking their astrological timings."_
+10.   **De-branding Goggles** - _"Specialized eyewear that uses augmented reality to strip away the
+      logos, revealing the raw, unfiltered product underneath. It breaks the spell, one consumer at
+      a time."_
+11.   **Logo-to-Egregore Connection** - _"Each major brand has spawned an 'egregore' - a psychic
+      entity fed by consumer attention. We're learning to trace the flow of energy from the logo to
+      these powerful thoughtforms."_
+12.   **Memetic Counter-Sigil** - _"The only way to fight a symbol is with another symbol. We are
+      designing a memetic counter-sigil, a viral symbol that neutralizes the effects of corporate
+      branding on contact. A vaccine for the mind."_
+
+---
+
 ## Progression Timeline
 
 ### Optimal Play Scenario (Active Clicking + Generator Purchases)
