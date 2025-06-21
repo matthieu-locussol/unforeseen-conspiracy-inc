@@ -180,7 +180,7 @@ image to push their sonic mind-control agenda."_
       paranoia: new Decimal(0),
    },
    conditions: {
-      proofs: new Decimal(150),
+      proofs: new Decimal(0),
       followers: new Decimal(0),
       paranoia: new Decimal(0),
       generators: [],
@@ -208,8 +208,7 @@ image to push their sonic mind-control agenda."_
 -  **Base Cost**: 100 proofs - requires sustained engagement with first generator and clicking
 -  **Cost Multiplier**: 1.15x - consistent scaling across all generators
 -  **Base Production**: 0.2 proofs/sec - modest 2x improvement over chemtrails
--  **Unlock Conditions**: 150 proofs - achievable through combination of clicking and first
-   generator
+-  **Unlock Conditions**: 0 proofs - no requirements
 
 ### Upgrades (12 total)
 
@@ -259,7 +258,7 @@ selling you a fantasy to keep you from asking what's beyond the ice wall."_
    description: 'Expose the greatest lie ever told - the Earth is actually flat, not round!',
    categories: ['organization', 'media-manipulation', 'government'],
    baseCost: {
-      proofs: new Decimal(350),
+      proofs: new Decimal(500),
       followers: new Decimal(0),
    },
    costMultiplier: {
@@ -277,7 +276,7 @@ selling you a fantasy to keep you from asking what's beyond the ice wall."_
       paranoia: new Decimal(0),
    },
    conditions: {
-      proofs: new Decimal(500),
+      proofs: new Decimal(0),
       followers: new Decimal(0),
       paranoia: new Decimal(0),
       generators: [],
@@ -302,10 +301,10 @@ selling you a fantasy to keep you from asking what's beyond the ice wall."_
 
 ### Balance Reasoning
 
--  **Base Cost**: 350 proofs - requires significant investment from multiple sources
+-  **Base Cost**: 500 proofs - requires significant investment from multiple sources
 -  **Cost Multiplier**: 1.15x - consistent scaling for balanced progression
 -  **Base Production**: 0.45 proofs/sec - modest 2.25x improvement over Michael Jackson
--  **Unlock Conditions**: 500 proofs - requires sustained play with multiple generators
+-  **Unlock Conditions**: 0 proofs - no requirements
 
 ### Upgrades (12 total)
 
@@ -353,7 +352,7 @@ repositioning algorithm. They are watching."_
    description: 'Monitor and expose the government\'s robotic pigeon surveillance program that\'s been watching us all along.',
    categories: ['government', 'technology', 'surveillance'],
    baseCost: {
-      proofs: new Decimal(1200),
+      proofs: new Decimal(1700),
       followers: new Decimal(0),
    },
    costMultiplier: {
@@ -371,7 +370,7 @@ repositioning algorithm. They are watching."_
       paranoia: new Decimal(0),
    },
    conditions: {
-      proofs: new Decimal(1500),
+      proofs: new Decimal(0),
       followers: new Decimal(0),
       paranoia: new Decimal(0),
       generators: [],
@@ -396,10 +395,10 @@ repositioning algorithm. They are watching."_
 
 ### Balance Reasoning
 
--  **Base Cost**: 1200 proofs - requires sustained play across all previous generators
+-  **Base Cost**: 1700 proofs - requires sustained play across all previous generators
 -  **Cost Multiplier**: 1.15x - consistent scaling for balanced progression
 -  **Base Production**: 1.0 proofs/sec - solid 2.2x improvement over Flat Earth
--  **Unlock Conditions**: 1500 proofs - requires mastery of earlier generators
+-  **Unlock Conditions**: 0 proofs - no requirements
 -  **Categories**: Government + Technology + Surveillance (introduces surveillance category)
 
 ### Upgrades (12 total)
@@ -450,7 +449,7 @@ beneath."_
    description: 'Something weird is under there. Luggage? Or Lizard Lairs?',
    categories: ['government', 'organization', 'hidden-worlds'],
    baseCost: {
-      proofs: new Decimal(4200),
+      proofs: new Decimal(6500),
       followers: new Decimal(0),
    },
    costMultiplier: {
@@ -468,7 +467,7 @@ beneath."_
       paranoia: new Decimal(0),
    },
    conditions: {
-      proofs: new Decimal(5000),
+      proofs: new Decimal(0),
       followers: new Decimal(0),
       paranoia: new Decimal(0),
       generators: [],
@@ -493,13 +492,12 @@ beneath."_
 
 ### Balance Reasoning
 
--  **Base Cost**: 4200 proofs - requires mastery of all previous generators and significant time
+-  **Base Cost**: 6500 proofs - requires mastery of all previous generators and significant time
    investment
 -  **Cost Multiplier**: 1.15x - consistent scaling for balanced long-term progression
 -  **Base Production**: 2.2 proofs/sec & 0.05 followers/sec - Introduces followers resource
    gradually
--  **Unlock Conditions**: 5000 proofs - achievable only through sustained engagement with multiple
-   generators
+-  **Unlock Conditions**: 0 proofs - no requirements
 -  **Categories**: Introduces 'hidden-worlds' while maintaining government/organization themes
 
 ### Upgrades (12 total)
@@ -548,26 +546,27 @@ beneath."_
 ### Optimal Play Scenario (Active Clicking + Generator Purchases)
 
 1. **0-60 seconds**: Click to 15 proofs, buy first chemtrails generator
-2. **60-300 seconds**: Click + chemtrails production to reach 150 proofs, unlock Michael Jackson
-3. **300-600 seconds**: Buy Michael Jackson generator, continue building up resources
-4. **600-1200 seconds**: Generate 500 proofs through combined generators, unlock Flat Earth
-5. **1200-2400 seconds**: Build up to 1500 proofs, unlock Suspicious Pigeon Watch
-6. **2400-4800 seconds**: Generate 5000 proofs, unlock Denver Airport Anomaly Scanner
+2. **60-300 seconds**: Click + chemtrails production to reach 100 proofs, buy Michael Jackson
+3. **300-900 seconds**: Build generators and continue clicking to reach 500 proofs, buy Flat Earth
+4. **900-2000 seconds**: Generate through combined generators to reach 1700 proofs, buy Suspicious
+   Pigeon Watch
+5. **2000-4500 seconds**: Generate 6500 proofs through all generators, buy Denver Airport Anomaly
+   Scanner
 
 ### Idle Play Scenario (Minimal Clicking)
 
 1. **0-180 seconds**: Click to 15 proofs, buy chemtrails
-2. **180-1800 seconds**: Let chemtrails generate passively to unlock Michael Jackson
-3. **1800-3600 seconds**: Unlock Michael Jackson through passive generation
-4. **3600-7200 seconds**: Unlock Flat Earth through passive generation
-5. **7200-14400 seconds**: Unlock Suspicious Pigeon Watch through passive generation
-6. **14400-28800 seconds**: Unlock Denver Airport through passive generation
+2. **180-2000 seconds**: Let chemtrails generate passively to buy Michael Jackson at 100 proofs
+3. **2000-5000 seconds**: Use chemtrails + Michael Jackson to reach 500 proofs for Flat Earth
+4. **5000-12000 seconds**: Generate 1700 proofs for Suspicious Pigeon Watch through passive income
+5. **12000-25000 seconds**: Generate 6500 proofs for Denver Airport through all generators
 
 ## Balance Principles Applied
 
 ### Cost Scaling
 
--  **3.5x improvement per tier**: 15 → 100 → 350 → 1200 → 4200 (consistent exponential curve)
+-  **Adjusted scaling**: 15 → 100 → 500 → 1700 → 6500 (exponential curve compensating for removed
+   unlock gates)
 -  **1.15x cost multiplier**: Meaningful individual purchase scaling for long-term progression
 -  **No followers cost**: Introduced gradually in later generators
 
@@ -579,9 +578,10 @@ beneath."_
 
 ### Unlock Conditions
 
--  **Proofs**: 0 → 150 → 500 → 1500 → 5000 (balanced ~3x scaling)
--  **No followers/paranoia requirements**: Prevents early-game complexity
--  **Progressive gates**: Each unlock requires mastery of previous generators
+-  **All generators**: 0 proofs/0 followers/0 paranoia - no unlock gates
+-  **Progression gating**: Now entirely through base cost requirements
+-  **Simple access**: Players can save up to skip generators if desired, but economics discourage
+   this
 
 ### Categories Distribution
 
