@@ -1,7 +1,10 @@
-# First 3 Conspiracies - Unforeseen Conspiracy Inc.
+# Conspiracies - Unforeseen Conspiracy Inc.
 
-This document describes the first 3 conspiracies (generators) in the game with carefully balanced
-attributes for optimal progression pacing in a long-term game with 20+ generators.
+This document describes conspiracies (generators) in the game with carefully balanced attributes for
+optimal progression pacing in a long-term game with 20+ generators. Numbers in this incremental
+clicker game can be huge. The biggest unit currently managed by the game is "DTg", 1DTg being equal
+to
+"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000".
 
 ## Game Progression Analysis
 
