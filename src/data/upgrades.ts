@@ -11,7 +11,14 @@ export const UPGRADES: Upgrade[] = [
          "They think we can't see them. With high-powered optics, their delivery systems become crystal clear. Every plane is a potential threat.",
       icon: 'eye',
       cost: { proofs: new Decimal(607), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'chemtrails' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -27,7 +34,14 @@ export const UPGRADES: Upgrade[] = [
          "Your phone's weather app isn't for you. It's for them. It tracks who's looking up, who's getting suspicious. Ditch the tech, trust the sky.",
       icon: 'settings',
       cost: { proofs: new Decimal(3292), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'chemtrails' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -43,7 +57,14 @@ export const UPGRADES: Upgrade[] = [
          "It's not paranoia, it's basic operational security. A simple aluminum-lined hat can disrupt the psychoactive compounds in the spray. A first-line defense.",
       icon: 'shield',
       cost: { proofs: new Decimal(17853), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'generator', id: 'chemtrails' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -59,7 +80,20 @@ export const UPGRADES: Upgrade[] = [
          'Standard air quality monitors can be modified to detect the specific non-terrestrial polymers they use. The readings will confirm your worst fears.',
       icon: 'trendingUp',
       cost: { proofs: new Decimal(96825), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'chemtrails' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.01),
+            target: { type: 'category', id: 'technology' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -75,7 +109,14 @@ export const UPGRADES: Upgrade[] = [
          "Information is power. A guy who knows a guy inside the FAA is a critical node in our information network. He doesn't even know what he's leaking.",
       icon: 'users',
       cost: { proofs: new Decimal(525117), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'chemtrails' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -91,7 +132,20 @@ export const UPGRADES: Upgrade[] = [
          "Create a network of informants: disgruntled ground crew, pilots who've seen too much. They're the weak link in the chain of silence.",
       icon: 'usersRound',
       cost: { proofs: new Decimal(2847952), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'chemtrails' },
+         },
+         {
+            type: 'click_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -107,7 +161,14 @@ export const UPGRADES: Upgrade[] = [
          "Rainwater collection and analysis. The results from a basic chemical kit will be... illuminating. It's not just water falling from the sky.",
       icon: 'flask',
       cost: { proofs: new Decimal(15446485), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'chemtrails' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -123,7 +184,14 @@ export const UPGRADES: Upgrade[] = [
          "They use public satellite data to hide in plain sight. By cross-referencing flight paths with atmospheric aerosol data, their patterns emerge. They can't hide.",
       icon: 'globe',
       cost: { proofs: new Decimal(83777013), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.02),
+            target: { type: 'category', id: 'government' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -139,7 +207,20 @@ export const UPGRADES: Upgrade[] = [
          'A hardened location is necessary for periods of heavy spraying. Air filtration, canned goods, and a secure data connection. A modern-day fallout shelter.',
       icon: 'archive',
       cost: { proofs: new Decimal(454332826), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'chemtrails' },
+         },
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'generator', id: 'chemtrails' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -155,7 +236,14 @@ export const UPGRADES: Upgrade[] = [
          "Through micro-dosing and mental exercises, you can build a tolerance to the psychotropic agents. Or maybe that's just another layer of their control...",
       icon: 'shield',
       cost: { proofs: new Decimal(2464134407), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'click_value',
+            resource: 'proofs',
+            value: new Decimal(1000),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -171,7 +259,14 @@ export const UPGRADES: Upgrade[] = [
          'Correlate global flight data with atmospheric readings to create a live map of their operations. The scale of it is staggering.',
       icon: 'globe',
       cost: { proofs: new Decimal(13364215286), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.01),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -187,7 +282,26 @@ export const UPGRADES: Upgrade[] = [
          "A device based on orgone energy principles that can locally disrupt the aerosol suspension. 'Science' doesn't have a paradigm for this. We do.",
       icon: 'zap',
       cost: { proofs: new Decimal(72483101099), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'chemtrails' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.02),
+            target: { type: 'all_generators' },
+         },
+         {
+            type: 'click_critical_chance',
+            resource: 'proofs',
+            value: new Decimal(0.005),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -204,7 +318,14 @@ export const UPGRADES: Upgrade[] = [
          'Bio-duplicates have tells. Micro-expressions, slight variations in fingerprints. You just need the right equipment to see the seams in the puppet.',
       icon: 'searchCheck',
       cost: { proofs: new Decimal(4045), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'michael_jackson' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -220,7 +341,14 @@ export const UPGRADES: Upgrade[] = [
          "The vocal cords can be replicated, but not the soul. A spectrographic analysis of his later work reveals harmonic discrepancies that prove it's not him.",
       icon: 'zap',
       cost: { proofs: new Decimal(21948), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'michael_jackson' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -236,7 +364,14 @@ export const UPGRADES: Upgrade[] = [
          "It wasn't 'plastic surgery'. It was scheduled maintenance and hardware upgrades for the synthetic replacement. They called it that to mock us.",
       icon: 'fileWarning',
       cost: { proofs: new Decimal(119020), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'generator', id: 'michael_jackson' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -252,7 +387,20 @@ export const UPGRADES: Upgrade[] = [
          "Deep below the Nevada desert lies the 'bionetics' facility. It's where they grow the replacements for influential figures who won't play ball.",
       icon: 'flask',
       cost: { proofs: new Decimal(645502), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'michael_jackson' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.01),
+            target: { type: 'category', id: 'government' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -268,7 +416,14 @@ export const UPGRADES: Upgrade[] = [
          "MJ wasn't the first. A whole network of public figures are duplicates. Revealing the full list would shatter the public's reality. We must be careful.",
       icon: 'users',
       cost: { proofs: new Decimal(3500780), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'michael_jackson' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -284,7 +439,20 @@ export const UPGRADES: Upgrade[] = [
          "The duplicate's music is embedded with low-frequency sonic patterns designed to suppress critical thought. It's why pop music feels so hollow.",
       icon: 'tv',
       cost: { proofs: new Decimal(18986347), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'michael_jackson' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.01),
+            target: { type: 'category', id: 'media-manipulation' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -300,7 +468,14 @@ export const UPGRADES: Upgrade[] = [
          "The real MJ is in hiding, likely in a secure bunker. He's said to be amassing a library of 'truth tracks' to expose the whole system.",
       icon: 'archive',
       cost: { proofs: new Decimal(102976566), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'michael_jackson' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -316,7 +491,14 @@ export const UPGRADES: Upgrade[] = [
          "The duplicate's behavior deviates from the original's baseline psychological profile. The inconsistencies are subtle, but they're there if you know what to look for.",
       icon: 'searchCheck',
       cost: { proofs: new Decimal(558513418), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'michael_jackson' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -332,7 +514,20 @@ export const UPGRADES: Upgrade[] = [
          "A dedicated team of handlers and media manipulators work around the clock to maintain the duplicate's cover story. We call them the 'mythweavers'.",
       icon: 'users',
       cost: { proofs: new Decimal(3028885507), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'michael_jackson' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.02),
+            target: { type: 'category', id: 'government' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -348,7 +543,14 @@ export const UPGRADES: Upgrade[] = [
          "The duplicate's aging process is artificial, controlled by telomere-capping injections. It's why his appearance changed so drastically.",
       icon: 'settings',
       cost: { proofs: new Decimal(16427562713), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'idle_bonus',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -364,7 +566,14 @@ export const UPGRADES: Upgrade[] = [
          "This goes beyond one celebrity. It's a systemic program to replace any influential voice with a compliant duplicate. We have to map the network.",
       icon: 'usersRound',
       cost: { proofs: new Decimal(89094768571), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.015),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -380,7 +589,26 @@ export const UPGRADES: Upgrade[] = [
          "A psychoactive compound that can bypass the duplicate's core programming. Forcing one to speak on a live feed would bring the whole house of cards down.",
       icon: 'flask',
       cost: { proofs: new Decimal(483220673990), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'michael_jackson' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.025),
+            target: { type: 'all_generators' },
+         },
+         {
+            type: 'click_critical_magnitude',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -397,7 +625,14 @@ export const UPGRADES: Upgrade[] = [
          "Antarctica isn't a continent. It's a 150-foot ice wall encircling our known world, patrolled by a shadowy multinational force. We need to fund an expedition.",
       icon: 'globe',
       cost: { proofs: new Decimal(20227), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'flat_earth' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -413,7 +648,14 @@ export const UPGRADES: Upgrade[] = [
          "All 'space missions' are filmed in a secure studio. Gaining access means acquiring original, unedited footage of their green screen operations.",
       icon: 'tv',
       cost: { proofs: new Decimal(109739), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'flat_earth' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -429,7 +671,14 @@ export const UPGRADES: Upgrade[] = [
          "The Antarctic Treaty isn't about science; it's a military pact to guard the world's edge. Breaching it is the only way to get proof.",
       icon: 'fileWarning',
       cost: { proofs: new Decimal(595101), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'generator', id: 'flat_earth' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -445,7 +694,20 @@ export const UPGRADES: Upgrade[] = [
          "'Gravity' is a lie to explain why we don't fall off the 'globe.' The truth is simple density and buoyancy. They complicate it to confuse you.",
       icon: 'alertTriangle',
       cost: { proofs: new Decimal(3227511), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'flat_earth' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.02),
+            target: { type: 'category', id: 'organization' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -461,7 +723,14 @@ export const UPGRADES: Upgrade[] = [
          "So-called 'satellites' are just high-altitude reconnaissance drones and communication balloons. They can't orbit a flat plane.",
       icon: 'globe',
       cost: { proofs: new Decimal(17503899), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'flat_earth' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -477,7 +746,20 @@ export const UPGRADES: Upgrade[] = [
          "There's a handful of factories that produce every globe on Earth. Infiltrating one would allow us to disrupt the primary tool of indoctrination.",
       icon: 'settings',
       cost: { proofs: new Decimal(94931735), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'flat_earth' },
+         },
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.02),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -493,7 +775,14 @@ export const UPGRADES: Upgrade[] = [
          'The narrative is pushed through the education system. We need to develop counter-curriculum materials to de-program the next generation.',
       icon: 'tv',
       cost: { proofs: new Decimal(514882830), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'flat_earth' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -509,7 +798,20 @@ export const UPGRADES: Upgrade[] = [
          "Create a true map of our plane, based on suppressed pre-globular records. The UN logo is a good starting point; they're hiding it in plain sight.",
       icon: 'globe',
       cost: { proofs: new Decimal(2792567091), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'flat_earth' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.02),
+            target: { type: 'category', id: 'media-manipulation' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -525,7 +827,14 @@ export const UPGRADES: Upgrade[] = [
          "If the Earth is not a sphere, what's beneath it? Ancient texts speak of a hollow domain. We need to start digging.",
       icon: 'archive',
       cost: { proofs: new Decimal(15144427533), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.3),
+            target: { type: 'generator', id: 'flat_earth' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -541,7 +850,14 @@ export const UPGRADES: Upgrade[] = [
          "The 'sky' is a physical firmament, a dome onto which celestial bodies are projected. Understanding its technology is key to understanding our prison.",
       icon: 'shield',
       cost: { proofs: new Decimal(82137813563), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'flat_earth' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -557,7 +873,14 @@ export const UPGRADES: Upgrade[] = [
          'The families who perpetuate this lie form a global network. Mapping their connections and control structures is essential to dismantling their power.',
       icon: 'users',
       cost: { proofs: new Decimal(445473842853), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.02),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -573,7 +896,26 @@ export const UPGRADES: Upgrade[] = [
          "Hijack their own satellite network to broadcast the flat Earth truth to every screen on the planet. A signal that can't be ignored.",
       icon: 'tv',
       cost: { proofs: new Decimal(2416103369952), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'flat_earth' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.03),
+            target: { type: 'all_generators' },
+         },
+         {
+            type: 'click_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -590,7 +932,14 @@ export const UPGRADES: Upgrade[] = [
          "Standard bird-watching equipment is enough to spot the anomalies. Their flight paths are too perfect, their loitering too intentional. They don't eat, they just observe.",
       icon: 'eye',
       cost: { proofs: new Decimal(68776), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'suspicious_pigeons' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -606,7 +955,14 @@ export const UPGRADES: Upgrade[] = [
          "A leaked field manual for the 'Avian Reconnaissance Unit' details the drones' inner workings. Their power source is the biggest giveaway.",
       icon: 'fileWarning',
       cost: { proofs: new Decimal(373113), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'suspicious_pigeons' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -622,7 +978,14 @@ export const UPGRADES: Upgrade[] = [
          "Log their behavior. You'll find they operate on a repeating loop of programmed actions, unlike a real biological entity.",
       icon: 'searchCheck',
       cost: { proofs: new Decimal(2023344), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'generator', id: 'suspicious_pigeons' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -638,7 +1001,20 @@ export const UPGRADES: Upgrade[] = [
          'The drones are assembled in automated facilities disguised as industrial bakeries. We have the address of one in New Jersey.',
       icon: 'settings',
       cost: { proofs: new Decimal(10973538), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'suspicious_pigeons' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.02),
+            target: { type: 'category', id: 'surveillance' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -654,7 +1030,14 @@ export const UPGRADES: Upgrade[] = [
          "The drones form a mesh network, relaying data from one to another until it reaches a central collection node. It's an airborne spy grid.",
       icon: 'globe',
       cost: { proofs: new Decimal(59512856), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'suspicious_pigeons' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -670,7 +1053,20 @@ export const UPGRADES: Upgrade[] = [
          "A simple electromagnetic pulse device can temporarily disable the drones. They just reboot and fly off, but it proves they're not real.",
       icon: 'zap',
       cost: { proofs: new Decimal(322769919), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'suspicious_pigeons' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.03),
+            target: { type: 'category', id: 'technology' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -686,7 +1082,14 @@ export const UPGRADES: Upgrade[] = [
          "A former technician from the program has agreed to talk. He's afraid for his life, but his conscience got the better of him.",
       icon: 'users',
       cost: { proofs: new Decimal(1750593641), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'suspicious_pigeons' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -702,7 +1105,20 @@ export const UPGRADES: Upgrade[] = [
          "They use a handful of real, trained pigeons to lead the drone flocks, making them appear more natural. These 'Judas birds' are the key.",
       icon: 'usersRound',
       cost: { proofs: new Decimal(9493922152), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'suspicious_pigeons' },
+         },
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.03),
+            target: { type: 'category', id: 'government' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -718,7 +1134,14 @@ export const UPGRADES: Upgrade[] = [
          'The drones communicate via a specific, encrypted frequency. If we can crack it, we can see what they see.',
       icon: 'terminal',
       cost: { proofs: new Decimal(51491815134), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.3),
+            target: { type: 'generator', id: 'suspicious_pigeons' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -734,7 +1157,14 @@ export const UPGRADES: Upgrade[] = [
          'A secure location is needed to disassemble and analyze a captured drone. We need to reverse-engineer the tech.',
       icon: 'archive',
       cost: { proofs: new Decimal(279282361174), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'suspicious_pigeons' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -750,7 +1180,14 @@ export const UPGRADES: Upgrade[] = [
          "This isn't just a local program. It's global. Every major city is infested with these bio-mechanical spies. The scale is unbelievable.",
       icon: 'globe',
       cost: { proofs: new Decimal(1514581515325), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.025),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -766,7 +1203,26 @@ export const UPGRADES: Upgrade[] = [
          'Once we have irrefutable proof, we leak it all. A coordinated data dump that will make people look at the birds in a whole new light.',
       icon: 'fileWarning',
       cost: { proofs: new Decimal(8214371457839), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'suspicious_pigeons' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.035),
+            target: { type: 'all_generators' },
+         },
+         {
+            type: 'click_critical_chance',
+            resource: 'proofs',
+            value: new Decimal(0.01),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -783,7 +1239,14 @@ export const UPGRADES: Upgrade[] = [
          "The gargoyles perched in the terminal aren't just decorative. Their positions correspond to runic markers, detailing the entrances to the lower levels. It's a map for those who can read it.",
       icon: 'searchCheck',
       cost: { proofs: new Decimal(262973), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'denver_airport' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -799,7 +1262,14 @@ export const UPGRADES: Upgrade[] = [
          "That horse statue, 'Blucifer,' isn't just terrifying public art. It emits a low-frequency field to pacify travelers. We need to analyze its energy signature to find a way to counteract it.",
       icon: 'zap',
       cost: { proofs: new Decimal(1426189), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'denver_airport' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -815,7 +1285,14 @@ export const UPGRADES: Upgrade[] = [
          "The capstone mentions the 'New World Airport Commission.' No such organization officially exists. We need to dig into suppressed records to expose the signatories and their true allegiance.",
       icon: 'fileWarning',
       cost: { proofs: new Decimal(7735397), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'generator', id: 'denver_airport' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -831,7 +1308,20 @@ export const UPGRADES: Upgrade[] = [
          "The murals aren't just bizarre paintings; they're a pictographic timeline of the elite's plans for global depopulation and a one-world government. Every panel is a confession.",
       icon: 'eye',
       cost: { proofs: new Decimal(41951479), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'denver_airport' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'denver_airport' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -847,7 +1337,14 @@ export const UPGRADES: Upgrade[] = [
          "The official story is a 'failed baggage system.' A ludicrous cover for a sprawling underground city. We can use seismic sensors to map the network of tunnels they're hiding.",
       icon: 'globe',
       cost: { proofs: new Decimal(227506992), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.02),
+            target: { type: 'category', id: 'hidden-worlds' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -863,7 +1360,20 @@ export const UPGRADES: Upgrade[] = [
          "Reports from maintenance workers speak of strange, chittering sounds from deep underground. It's not faulty wiring. We need to develop a translator for their reptilian language.",
       icon: 'terminal',
       cost: { proofs: new Decimal(1233863673), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'denver_airport' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'denver_airport' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -879,7 +1389,14 @@ export const UPGRADES: Upgrade[] = [
          'The entire airport is bathed in specific frequencies to induce compliance. A custom jammer will not only block these signals but also reveal the hidden communications layered on top of them.',
       icon: 'zap',
       cost: { proofs: new Decimal(6692225828), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'click_value',
+            resource: 'proofs',
+            value: new Decimal(100000),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -895,7 +1412,20 @@ export const UPGRADES: Upgrade[] = [
          'Construction workers and ex-employees were sworn to secrecy. By offering them anonymity and protection, we can piece together firsthand accounts of what they were forced to build down there.',
       icon: 'users',
       cost: { proofs: new Decimal(36298583477), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.03),
+            target: { type: 'all_generators' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.02),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -911,7 +1441,14 @@ export const UPGRADES: Upgrade[] = [
          "The high levels of background radiation aren't from 'granite countertops'. They're a byproduct of the exotic power sources used in the subterranean levels. A Geiger counter will tell the real story.",
       icon: 'trendingUp',
       cost: { proofs: new Decimal(196860341773), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'denver_airport' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -927,7 +1464,14 @@ export const UPGRADES: Upgrade[] = [
          "The runway layout is not an accident of civil engineering. It's a symbol, visible from above, marking the location as a site of power for a very specific, very old organization.",
       icon: 'searchCheck',
       cost: { proofs: new Decimal(1067759247161), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'denver_airport' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -943,7 +1487,14 @@ export const UPGRADES: Upgrade[] = [
          "Repurpose a standard luggage scanner with quantum tunneling technology. It won't just see what's in the bags; it'll phase through the floor to see what's moving in the 'baggage tunnels' below.",
       icon: 'eye',
       cost: { proofs: new Decimal(5790479701140), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.03),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -959,7 +1510,26 @@ export const UPGRADES: Upgrade[] = [
          'Persistent rumors claim the Queen of England secretly owns property at DIA through shell corporations. Finding that deed would connect the British Crown to the coming New World Order.',
       icon: 'fileWarning',
       cost: { proofs: new Decimal(31405175949572), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'denver_airport' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'denver_airport' },
+         },
+         {
+            type: 'click_critical_magnitude',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -976,7 +1546,14 @@ export const UPGRADES: Upgrade[] = [
          "Cross-reference historical maps with satellite data. The 'Finland' landmass appears inconsistently across different mapping agencies. The gaps in their story are literally visible from space.",
       icon: 'globe',
       cost: { proofs: new Decimal(1129606), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -992,7 +1569,14 @@ export const UPGRADES: Upgrade[] = [
          "Nokia's financial records don't add up for a company supposedly from a country with 5.5 million people. The revenue streams point to Russian and Japanese shell corporations, not Finnish consumers.",
       icon: 'dollar',
       cost: { proofs: new Decimal(6126786), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1008,7 +1592,14 @@ export const UPGRADES: Upgrade[] = [
          "Finnish shares no meaningful linguistic roots with neighboring languages. It's a constructed language designed to give credibility to the hoax. Even the grammar is suspiciously artificial.",
       icon: 'terminal',
       cost: { proofs: new Decimal(33227418), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1024,7 +1615,20 @@ export const UPGRADES: Upgrade[] = [
          "High-resolution satellite imagery of the 'Finland' region shows suspicious pixelation and composite artifacting. They're literally photoshopping a country into existence on our maps.",
       icon: 'globe',
       cost: { proofs: new Decimal(180205211), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'paranoia',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1040,7 +1644,14 @@ export const UPGRADES: Upgrade[] = [
          'Declassified documents from the 1940s reference a secret fishing agreement between Russia and Japan. The coordinates match perfectly with the supposed Finnish borders. Coincidence? Hardly.',
       icon: 'fileWarning',
       cost: { proofs: new Decimal(977348574), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.03),
+            target: { type: 'category', id: 'media-manipulation' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1056,7 +1667,20 @@ export const UPGRADES: Upgrade[] = [
          "Every 'Finnish' person can be traced back to acting agencies in neighboring countries. We're building a comprehensive database of these international operatives and their fake backstories.",
       icon: 'database',
       cost: { proofs: new Decimal(5300755584), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1072,7 +1696,14 @@ export const UPGRADES: Upgrade[] = [
          "Finland's population statistics are mathematically impossible given birth rates, immigration data, and economic output. The numbers are fabricated to support the illusion of a functioning nation-state.",
       icon: 'users',
       cost: { proofs: new Decimal(28750884898), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.03),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1088,7 +1719,20 @@ export const UPGRADES: Upgrade[] = [
          "Schools worldwide teach about 'Finland' as fact. This requires a coordinated global education conspiracy. We need to trace the textbook publishers and their suspicious funding sources.",
       icon: 'tv',
       cost: { proofs: new Decimal(155931652702), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'category', id: 'organization' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1104,7 +1748,14 @@ export const UPGRADES: Upgrade[] = [
          "Finnish embassies are staffed by Russian and Japanese operatives. By monitoring diplomatic communications, we can expose the true chain of command behind the 'Finnish' government facade.",
       icon: 'archive',
       cost: { proofs: new Decimal(845722807530), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1120,7 +1771,14 @@ export const UPGRADES: Upgrade[] = [
          "Finnish 'culture' - from saunas to heavy metal - is artificially constructed to give the hoax authenticity. Each cultural element can be traced to systematic psychological operations designed to fool the masses.",
       icon: 'settings',
       cost: { proofs: new Decimal(4586415891338), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1136,7 +1794,14 @@ export const UPGRADES: Upgrade[] = [
          "The Finland hoax requires coordination between multiple intelligence agencies, the UN, Google Maps, and countless other institutions. We're mapping the entire network responsible for maintaining this lie.",
       icon: 'usersRound',
       cost: { proofs: new Decimal(24875323862276), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.035),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1152,7 +1817,26 @@ export const UPGRADES: Upgrade[] = [
          'Once we have irrefutable proof, we execute a coordinated global revelation. Every major news outlet, social media platform, and government database simultaneously learns the truth: Finland never existed.',
       icon: 'fileWarning',
       cost: { proofs: new Decimal(134887349767676), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+         {
+            type: 'idle_bonus',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1169,7 +1853,14 @@ export const UPGRADES: Upgrade[] = [
          "The official documents are filled with doublespeak. 'Stakeholder capitalism' is just feudalism with better branding. We need to decode their manifestos.",
       icon: 'fileWarning',
       cost: { proofs: new Decimal(5042885), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1185,7 +1876,14 @@ export const UPGRADES: Upgrade[] = [
          "They want to replace cash with a programmable digital currency. One that can be turned off if you buy the 'wrong' kind of products. We must map their blockchain infrastructure.",
       icon: 'dollar',
       cost: { proofs: new Decimal(27351722), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1201,7 +1899,14 @@ export const UPGRADES: Upgrade[] = [
          "The push for 'sustainable' insect protein isn't about the environment. It's about conditioning the masses to accept nutrient paste while the elite eat steak. We're tracking the supply chain.",
       icon: 'package',
       cost: { proofs: new Decimal(148336688), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1217,7 +1922,20 @@ export const UPGRADES: Upgrade[] = [
          "The goal is simple: abolish private property for the commoner. We're analyzing zoning laws and land ownership databases to find the legislative vectors they're using.",
       icon: 'fileWarning',
       cost: { proofs: new Decimal(804576836), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'paranoia',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1233,7 +1951,14 @@ export const UPGRADES: Upgrade[] = [
          'They are building a global social credit system, tying your access to services to your compliance with their narrative. We have to expose the algorithm.',
       icon: 'users',
       cost: { proofs: new Decimal(4363328376), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.04),
+            target: { type: 'category', id: 'government' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1249,7 +1974,20 @@ export const UPGRADES: Upgrade[] = [
          "We'll run simulations based on their economic models. The outcome is always the same: serfdom. These models are not predictions, they are plans.",
       icon: 'terminal',
       cost: { proofs: new Decimal(23664801716), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1265,7 +2003,14 @@ export const UPGRADES: Upgrade[] = [
          "An operative inside the annual WEF meeting in Davos. They won't be discussing policy, just sipping champagne and finalizing our collective future.",
       icon: 'users',
       cost: { proofs: new Decimal(128352168481), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.035),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1281,7 +2026,20 @@ export const UPGRADES: Upgrade[] = [
          "They speak of a 'Great Narrative'. It's the story they will tell to justify the reset. We must deconstruct it before it becomes history.",
       icon: 'archive',
       cost: { proofs: new Decimal(696194917415), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'category', id: 'media-manipulation' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1297,7 +2055,14 @@ export const UPGRADES: Upgrade[] = [
          "They champion AI, IoT, and genetic engineering. Not for progress, but for control. We're investigating the tech companies in their pocket.",
       icon: 'settings',
       cost: { proofs: new Decimal(3775914332900), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1313,7 +2078,14 @@ export const UPGRADES: Upgrade[] = [
          "The WEF's 'Young Global Leaders' program has placed operatives in governments worldwide. We're mapping this network of puppets.",
       icon: 'usersRound',
       cost: { proofs: new Decimal(20481231454552), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1329,7 +2101,14 @@ export const UPGRADES: Upgrade[] = [
          "The idea of a 'personal carbon footprint' was created to shift blame from corporations to individuals. It's the ultimate psychological trick to make you police yourself.",
       icon: 'alertTriangle',
       cost: { proofs: new Decimal(111084936161434), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.04),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1345,7 +2124,26 @@ export const UPGRADES: Upgrade[] = [
          "The promise of 'and you'll be happy' is the most sinister part. It's the promise of a drugged, compliant populace that has forgotten what freedom feels like. We must develop a counter-narrative.",
       icon: 'shield',
       cost: { proofs: new Decimal(602484411135242), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+         {
+            type: 'click_value',
+            resource: 'proofs',
+            value: new Decimal(10000000),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1362,7 +2160,14 @@ export const UPGRADES: Upgrade[] = [
          "Your first step is to see the invisible enemy. A commercial EMF meter is enough to show you the radiation soup you're living in. The readings near a 5G tower will be... informative.",
       icon: 'trendingUp',
       cost: { proofs: new Decimal(22188694), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: '5g_health_impact' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1378,7 +2183,14 @@ export const UPGRADES: Upgrade[] = [
          "You can't fight what you can't block. Lining your research space with a Faraday cage is essential to create a baseline, a 'clean' environment to measure the incoming assault.",
       icon: 'shield',
       cost: { proofs: new Decimal(120325977), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: '5g_health_impact' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1394,7 +2206,14 @@ export const UPGRADES: Upgrade[] = [
          "We've got a source inside a major telecom. He's feeding us internal safety studies that were buried for a reason. The data they have versus the data they publish are two very different things.",
       icon: 'fileWarning',
       cost: { proofs: new Decimal(652597426), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'generator', id: '5g_health_impact' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1410,7 +2229,20 @@ export const UPGRADES: Upgrade[] = [
          "It's not about heat. It's about frequency. Certain millimeter wave frequencies resonate with human cell structures, causing disruption. We're building a model to predict these resonant peaks.",
       icon: 'zap',
       cost: { proofs: new Decimal(3539358079), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: '5g_health_impact' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'paranoia',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: '5g_health_impact' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1426,7 +2258,14 @@ export const UPGRADES: Upgrade[] = [
          "Some people are getting sick, but only in certain areas. We're mapping these sickness clusters and overlaying them with 5G tower locations. The pattern is undeniable.",
       icon: 'globe',
       cost: { proofs: new Decimal(19192245253), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.03),
+            target: { type: 'category', id: 'health' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1442,7 +2281,20 @@ export const UPGRADES: Upgrade[] = [
          "The 'official' science is bought and paid for. We're creating a network of independent, non-industry-funded scientists to review the data. They can't suppress all of them.",
       icon: 'users',
       cost: { proofs: new Decimal(104085607556), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: '5g_health_impact' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: '5g_health_impact' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1458,7 +2310,14 @@ export const UPGRADES: Upgrade[] = [
          "We've located a tower that's been 'deactivated' for maintenance. It's our chance to get inside, pull apart the hardware, and see what technology they're *really* packing in there.",
       icon: 'settings',
       cost: { proofs: new Decimal(564539542549), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.04),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1474,7 +2333,20 @@ export const UPGRADES: Upgrade[] = [
          "They're not just targeting us. Reports of mass bird and bee deaths correlate perfectly with 5G rollouts in major cities. Animals are more sensitive. They're the canaries in the coal mine.",
       icon: 'alertTriangle',
       cost: { proofs: new Decimal(3061655610664), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'category', id: 'technology' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: '5g_health_impact' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1490,7 +2362,14 @@ export const UPGRADES: Upgrade[] = [
          "It's not just physical health. The frequencies can be modulated to affect mood and cognition. 'Brain fog' isn't a symptom, it's a feature. We're working on decoding these modulations.",
       icon: 'zap',
       cost: { proofs: new Decimal(16606042979859), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: '5g_health_impact' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1506,7 +2385,14 @@ export const UPGRADES: Upgrade[] = [
          'A theory gaining traction in our circles. Could the signals be activating dormant graphene oxide introduced into the body through other... vectors? We need to investigate the link.',
       icon: 'flask',
       cost: { proofs: new Decimal(90069536034680), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: '5g_health_impact' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1522,7 +2408,14 @@ export const UPGRADES: Upgrade[] = [
          "The towers are all connected, forming a global grid. They can harmonize their frequencies to create massive 'hot spots' of radiation. We need to map their network topology.",
       icon: 'globe',
       cost: { proofs: new Decimal(488497491787122), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.045),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1538,7 +2431,26 @@ export const UPGRADES: Upgrade[] = [
          "Based on our research, we've developed a device that emits a counter-frequency, creating a localized 'safe zone' by nullifying the 5G waves. It's a shield against the invisible storm.",
       icon: 'zap',
       cost: { proofs: new Decimal(2649479383643798), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: '5g_health_impact' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: '5g_health_impact' },
+         },
+         {
+            type: 'click_critical_chance',
+            resource: 'proofs',
+            value: new Decimal(0.01),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1555,7 +2467,14 @@ export const UPGRADES: Upgrade[] = [
          "It starts with geometry. A simple ruler and a compass are all you need to uncover the sacred ratios and Masonic patterns hidden in the designs of the most 'innocuous' brands.",
       icon: 'searchCheck',
       cost: { proofs: new Decimal(100858610), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1571,7 +2490,14 @@ export const UPGRADES: Upgrade[] = [
          "The color choices aren't aesthetic. They're alchemical. We're analyzing the specific hex codes to reveal their connection to hermetic principles and elemental manipulation.",
       icon: 'flask',
       cost: { proofs: new Decimal(546936259), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1587,7 +2513,14 @@ export const UPGRADES: Upgrade[] = [
          "Flickering images, hidden words, suggestive shapes. We're developing software to scan logos frame-by-frame, revealing the subliminal commands they flash at you millions of times a day.",
       icon: 'eye',
       cost: { proofs: new Decimal(2966806482), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1603,7 +2536,20 @@ export const UPGRADES: Upgrade[] = [
          "The names aren't random. Using ancient numerology (Gematria), we can decode the true meaning and intent behind the brand names. The numbers don't lie.",
       icon: 'terminal',
       cost: { proofs: new Decimal(16089809450), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'paranoia',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1619,7 +2565,14 @@ export const UPGRADES: Upgrade[] = [
          "The fonts are chosen to evoke specific emotional responses. We're compiling a database of corporate typography and its links to psychological manipulation techniques developed by Tavistock.",
       icon: 'database',
       cost: { proofs: new Decimal(87251111603), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.03),
+            target: { type: 'category', id: 'hidden-worlds' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1635,7 +2588,20 @@ export const UPGRADES: Upgrade[] = [
          'A recovered grimoire details how to create and charge sigils for influence. The overlap with modern logo design is... perfect. They are casting spells on a global scale.',
       icon: 'archive',
       cost: { proofs: new Decimal(473199792040), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1651,7 +2617,14 @@ export const UPGRADES: Upgrade[] = [
          "The friendly mascots are archetypal servitors. We're unmasking their occult origins, from jovial food icons to cartoon animals, revealing the entities they truly represent.",
       icon: 'users',
       cost: { proofs: new Decimal(2566543372951), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.045),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1667,7 +2640,20 @@ export const UPGRADES: Upgrade[] = [
          'They tap directly into the collective unconscious. By mapping logos to Jungian archetypes, we can see how they hijack our primal symbols to create brand loyalty.',
       icon: 'usersRound',
       cost: { proofs: new Decimal(13919934622915), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'category', id: 'organization' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1683,7 +2669,14 @@ export const UPGRADES: Upgrade[] = [
          "Product launches and Super Bowl ads aren't just for sales. They are coordinated global rituals designed to energize the corporate sigils. We're tracking their astrological timings.",
       icon: 'globe',
       cost: { proofs: new Decimal(75497931726880), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1699,7 +2692,14 @@ export const UPGRADES: Upgrade[] = [
          'Specialized eyewear that uses augmented reality to strip away the logos, revealing the raw, unfiltered product underneath. It breaks the spell, one consumer at a time.',
       icon: 'eye',
       cost: { proofs: new Decimal(409477017266158), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1715,7 +2715,14 @@ export const UPGRADES: Upgrade[] = [
          "Each major brand has spawned an 'egregore' - a psychic entity fed by consumer attention. We're learning to trace the flow of energy from the logo to these powerful thoughtforms.",
       icon: 'zap',
       cost: { proofs: new Decimal(2220718042122352), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1731,7 +2738,26 @@ export const UPGRADES: Upgrade[] = [
          'The only way to fight a symbol is with another symbol. We are designing a memetic counter-sigil, a viral symbol that neutralizes the effects of corporate branding on contact. A vaccine for the mind.',
       icon: 'shield',
       cost: { proofs: new Decimal(12042788880052328), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+         {
+            type: 'click_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1748,7 +2774,14 @@ export const UPGRADES: Upgrade[] = [
          "Follow the money. Not where they say it goes, but where it *actually* lands. You'll find a labyrinth of NGOs and shell corporations that leads right back to their own portfolio.",
       icon: 'dollar',
       cost: { proofs: new Decimal(464009605), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1764,7 +2797,14 @@ export const UPGRADES: Upgrade[] = [
          "Every humanitarian crisis seems to coincide with a new patent filing from a company they fund. It's not charity, it's vertical integration on a global scale.",
       icon: 'fileWarning',
       cost: { proofs: new Decimal(2516646790), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1780,7 +2820,14 @@ export const UPGRADES: Upgrade[] = [
          "They call it 'sustainable agriculture'. We call it creating a dependency on patented seeds and chemicals. The goal isn't to feed the world, it's to own the food supply.",
       icon: 'package',
       cost: { proofs: new Decimal(13649129817), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1796,7 +2843,20 @@ export const UPGRADES: Upgrade[] = [
          "The vaccines they fund often require treatments for side effects produced by... other companies they fund. It's a self-sustaining business model disguised as public health.",
       icon: 'flask',
       cost: { proofs: new Decimal(74031133475), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'paranoia',
+            value: new Decimal(0.15),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1812,7 +2872,14 @@ export const UPGRADES: Upgrade[] = [
          "Their health initiatives are the perfect cover for mass data collection. They're not tracking diseases; they're tracking you. Demographics, biometrics, compliance rates... it's all in a database.",
       icon: 'database',
       cost: { proofs: new Decimal(401529113374), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.035),
+            target: { type: 'category', id: 'health' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1828,7 +2895,20 @@ export const UPGRADES: Upgrade[] = [
          "They fund educational programs to 'improve learning'. A closer look at the curriculum shows a subtle rewrite of history and science to fit their globalist narrative. Indoctrination starts early.",
       icon: 'tv',
       cost: { proofs: new Decimal(2177999052674), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.2),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1844,7 +2924,14 @@ export const UPGRADES: Upgrade[] = [
          "Why would a tech billionaire be so interested in a seed vault near the North Pole? It's not a backup for humanity; it's a genetic library to be leveraged after the current ecosystem is... 'optimized'.",
       icon: 'archive',
       cost: { proofs: new Decimal(11811984242689), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.05),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1860,7 +2947,20 @@ export const UPGRADES: Upgrade[] = [
          "The push for a global digital ID, tied to your vaccination status and financial records. It's not for convenience. It's the infrastructure for the social credit system they're beta testing.",
       icon: 'users',
       cost: { proofs: new Decimal(64065609470381), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'category', id: 'technology' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1876,7 +2976,14 @@ export const UPGRADES: Upgrade[] = [
          "Dig deep enough, and you find funding for atmospheric geoengineering research. The droughts and famines they 'solve' may just be problems they helped create.",
       icon: 'globe',
       cost: { proofs: new Decimal(347458113642194), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.25),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1892,7 +2999,14 @@ export const UPGRADES: Upgrade[] = [
          "Their 'global health' network is the most comprehensive surveillance system ever created. Gaining back-end access means we can see who they're really targeting with their 'interventions'.",
       icon: 'database',
       cost: { proofs: new Decimal(1884489958744952), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'cost_reduction',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1908,7 +3022,14 @@ export const UPGRADES: Upgrade[] = [
          "Through strategic donations, they've placed allies in key positions within governments and global health organizations. It's not lobbying; it's a silent takeover.",
       icon: 'usersRound',
       cost: { proofs: new Decimal('10220301157960300'), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.05),
+            target: { type: 'all_generators' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -1924,7 +3045,26 @@ export const UPGRADES: Upgrade[] = [
          'The final layer of the onion. The entire philanthropic persona is a meticulously crafted psychological operation to make the public see a savior, not a monopolist. We need to shatter the illusion.',
       icon: 'shield',
       cost: { proofs: new Decimal('55431665420658820'), followers: new Decimal(0) },
-      boosts: [],
+      boosts: [
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'followers',
+            value: new Decimal(0.5),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+         {
+            type: 'click_value',
+            resource: 'proofs',
+            value: new Decimal(1000000000),
+            target: { type: 'global' },
+         },
+      ],
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
