@@ -755,6 +755,120 @@ you already."_
 
 ---
 
+## 8. 5G Health Impact
+
+### Description
+
+_"They're rolling it out everywhere. Little white boxes on every street corner. They call it
+'progress.' Faster downloads for your mindless scrolling. But it's a weapon, hiding in plain sight.
+Millimeter waves that cook you from the inside out, disrupt your cells, cloud your mind. The 'safety
+standards' are a joke, written by the same telecom giants getting rich off our declining health.
+It's not about speed. It's about control."_
+
+### Game Attributes
+
+```typescript
+{
+   id: '5g_health_impact',
+   name: '5G Health Impact Research',
+   description: "Collating non-industry-funded research on millimeter wave exposure and potential biological effects. The official safety reports conveniently overlook inconvenient data. We're looking at the data they bury.",
+   categories: ['technology', 'health', 'media-manipulation'],
+   baseCost: {
+      proofs: new Decimal(550000),
+      followers: new Decimal(0),
+   },
+   costMultiplier: {
+      proofs: new Decimal(1.15),
+      followers: new Decimal(0),
+   },
+   baseProduction: {
+      proofs: new Decimal(23),
+      followers: new Decimal(0.65),
+      paranoia: new Decimal(0.4),
+   },
+   productionMultiplier: {
+      proofs: new Decimal(23),
+      followers: new Decimal(0.65),
+      paranoia: new Decimal(0.4),
+   },
+   conditions: {
+      proofs: new Decimal(0),
+      followers: new Decimal(0),
+      paranoia: new Decimal(0),
+      generators: [],
+   },
+   unlocked: false,
+   upgradesIds: [
+      '5g_health_impact_emf_meter',
+      '5g_health_impact_faraday_cage',
+      '5g_health_impact_leaked_documents',
+      '5g_health_impact_bio_resonance_analysis',
+      '5g_health_impact_dead_zone_mapping',
+      '5g_health_impact_peer_review_network',
+      '5g_health_impact_tower_teardown',
+      '5g_health_impact_animal_dieoff_correlation',
+      '5g_health_impact_psychotronic_modulation',
+      '5g_health_impact_graphene_oxide_link',
+      '5g_health_impact_global_grid_mapping',
+      '5g_health_impact_counter_frequency_emitter',
+   ],
+}
+```
+
+### Balance Reasoning
+
+-  **Base Cost**: 550,000 proofs - This continues the exponential cost curve, making it a
+   significant investment for the mid-to-late game.
+-  **Cost Multiplier**: 1.15x - Maintains the consistent scaling for balanced long-term progression.
+-  **Base Production**: 23 proofs/sec, 0.65 followers/sec, 0.4 paranoia/sec - Provides a ~2.2x
+   increase over the previous generator, making it a powerful but costly upgrade while increasing
+   paranoia.
+-  **Unlock Conditions**: 0 proofs - Gated purely by cost, maintaining player freedom in
+   progression.
+-  **Categories**: Introduces the 'health' category, diversifying the types of conspiracies the
+   player can investigate.
+
+### Upgrades (12 total)
+
+1. **EMF Meter Purchase** - _"Your first step is to see the invisible enemy. A commercial EMF meter
+   is enough to show you the radiation soup you're living in. The readings near a 5G tower will
+   be... informative."_
+2. **Faraday Cage Construction** - _"You can't fight what you can't block. Lining your research
+   space with a Faraday cage is essential to create a baseline, a 'clean' environment to measure the
+   incoming assault."_
+3. **Leaked Industry Documents** - _"We've got a source inside a major telecom. He's feeding us
+   internal safety studies that were buried for a reason. The data they have versus the data they
+   publish are two very different things."_
+4. **Biological Resonance Analysis** - _"It's not about heat. It's about frequency. Certain
+   millimeter wave frequencies resonate with human cell structures, causing disruption. We're
+   building a model to predict these resonant peaks."_
+5. **Urban 'Dead Zone' Mapping** - _"Some people are getting sick, but only in certain areas. We're
+   mapping these sickness clusters and overlaying them with 5G tower locations. The pattern is
+   undeniable."_
+6. **Independent Peer Review Network** - _"The 'official' science is bought and paid for. We're
+   creating a network of independent, non-industry-funded scientists to review the data. They can't
+   suppress all of them."_
+7. **Deactivated Tower Teardown** - _"We've located a tower that's been 'deactivated' for
+   maintenance. It's our chance to get inside, pull apart the hardware, and see what technology
+   they're *really* packing in there."_
+8. **Bird & Bee Die-off Correlation** - _"They're not just targeting us. Reports of mass bird and
+   bee deaths correlate perfectly with 5G rollouts in major cities. Animals are more sensitive.
+   They're the canaries in the coal mine."_
+9. **Psychotronic Frequency Modulation** - _"It's not just physical health. The frequencies can be
+   modulated to affect mood and cognition. 'Brain fog' isn't a symptom, it's a feature. We're
+   working on decoding these modulations."_
+10.   **5G-to-Graphene Oxide Hypothesis** - _"A theory gaining traction in our circles. Could the
+      signals be activating dormant graphene oxide introduced into the body through other...
+      vectors? We need to investigate the link."_
+11.   **Global Frequency Harmonization Grid** - _"The towers are all connected, forming a global
+      grid. They can harmonize their frequencies to create massive 'hot spots' of radiation. We need
+      to map their network topology."_
+12.   **Counter-Frequency Emitter** - _"Based on our research, we've developed a device that emits a
+      counter-frequency, creating a localized 'safe zone' by nullifying the 5G waves. It's a shield
+      against the invisible storm."_
+
+---
+
 ## Progression Timeline
 
 ### Optimal Play Scenario (Active Clicking + Generator Purchases)
