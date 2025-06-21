@@ -22,6 +22,7 @@ export const AnimatedNumber = ({ value, className }: AnimatedNumberProps) => {
 
    return (
       <motion.span
+         dangerouslySetInnerHTML={{ __html: formatDecimal(displayValue) }}
          key={displayValue.toFixed(1)}
          animate={{ scale: 1, opacity: 1 }}
          className={cn('inline-block', className)}
@@ -30,8 +31,6 @@ export const AnimatedNumber = ({ value, className }: AnimatedNumberProps) => {
             duration: 0.2,
             ease: 'easeOut',
          }}
-      >
-         {formatDecimal(displayValue)}
-      </motion.span>
+      />
    );
 };

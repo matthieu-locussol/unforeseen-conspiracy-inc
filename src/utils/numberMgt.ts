@@ -232,7 +232,7 @@ export const formatDecimal = (value: Decimal): string => {
    const roundedDecimal = decimalValue.toDecimalPlaces(0, Decimal.ROUND_DOWN);
    const decimalStr = roundedDecimal.toString().padStart(selectedScale.precision, '0');
 
-   const result = `${integerPart}.${decimalStr}${selectedScale.suffix}`;
+   const result = `${integerPart}.${decimalStr} <b class="text-emerald-200">${selectedScale.suffix}</b>`;
 
    return isNegative ? `-${result}` : result;
 };

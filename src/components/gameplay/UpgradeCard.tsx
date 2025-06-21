@@ -79,17 +79,23 @@ export const UpgradeCard = observer(({ upgrade }: UpgradeCardProps) => {
                         {upgrade.cost.proofs.greaterThan(0) && (
                            <div className="flex items-center gap-1">
                               <CustomIcon className="h-4 w-4 text-green-400" icon="searchCheck" />
-                              <span className="text-sm text-green-400">
-                                 {formatDecimal(upgrade.cost.proofs)}
-                              </span>
+                              <span
+                                 dangerouslySetInnerHTML={{
+                                    __html: formatDecimal(upgrade.cost.proofs),
+                                 }}
+                                 className="text-sm text-green-400"
+                              />
                            </div>
                         )}
                         {upgrade.cost.followers.greaterThan(0) && (
                            <div className="flex items-center gap-1">
                               <CustomIcon className="h-4 w-4 text-blue-400" icon="usersRound" />
-                              <span className="text-sm text-blue-400">
-                                 {formatDecimal(upgrade.cost.followers)}
-                              </span>
+                              <span
+                                 dangerouslySetInnerHTML={{
+                                    __html: formatDecimal(upgrade.cost.followers),
+                                 }}
+                                 className="text-sm text-blue-400"
+                              />
                            </div>
                         )}
                      </div>

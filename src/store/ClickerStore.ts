@@ -45,7 +45,7 @@ export class ClickerStore {
       const effectiveCriticalChance = this._store.getClickCriticalChance();
       const effectiveCriticalMultiplier = this._store.getClickCriticalMultiplier();
 
-      const isCritical = Math.random() < effectiveCriticalChance.toNumber();
+      const isCritical = Decimal.random().lessThan(effectiveCriticalChance);
 
       if (isCritical) {
          value = value.mul(effectiveCriticalMultiplier);

@@ -157,7 +157,7 @@ export class GameStore {
       }
 
       // Ensure critical chance never exceeds 100%
-      return Decimal.min(totalCriticalChance, 1);
+      return Decimal.min(totalCriticalChance, new Decimal('1.00'));
    }
 
    /**

@@ -7,7 +7,7 @@ export const CLICKERS: Clicker[] = [
       id: 'default',
       baseClickValue: new Decimal(1),
       clickMultiplier: new Decimal(1),
-      criticalChance: new Decimal(0.0),
+      criticalChance: new Decimal(0.05),
       criticalMultiplier: new Decimal(2),
       comboMultiplier: new Decimal(1),
       maxComboMultiplier: new Decimal(1.5),

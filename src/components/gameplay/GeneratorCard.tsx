@@ -48,13 +48,13 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                </h2>
                <Badge
                   className={cn([
-                     'font-orbitron border rounded-sm transition-all duration-300',
+                     'font-orbitron border rounded-sm transition-all duration-300 text-nowrap mb-auto',
                      generatorStore.unlocked
                         ? 'bg-blue-700/10 text-blue-400/90 border-blue-400/30'
                         : 'bg-gray-700/10 text-gray-400/90 border-gray-400/30',
                   ])}
                >
-                  {t.ui.level} {formatDecimal(generatorStore.level)}
+                  {t.ui.level} {formatDecimal(generatorStore.level).split('.')[0]}
                </Badge>
             </div>
             <div className="grid grid-cols-3 gap-3 mr-auto">
@@ -80,17 +80,27 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                {generatorStore.effectiveProduction.followers.greaterThan(0) && (
                   <div className="flex items-center gap-1.5">
                      <CustomIcon className="h-4 w-4 text-amber-400" icon="usersRound" />
-                     <p className="text-sm">
-                        {formatDecimal(generatorStore.effectiveProduction.followers)}/sec
-                     </p>
+                     <p
+                        dangerouslySetInnerHTML={{
+                           __html: `${formatDecimal(
+                              generatorStore.effectiveProduction.followers,
+                           )}/sec`,
+                        }}
+                        className="text-sm"
+                     />
                   </div>
                )}
                {generatorStore.effectiveProduction.paranoia.greaterThan(0) && (
                   <div className="flex items-center gap-1.5">
                      <CustomIcon className="h-4 w-4 text-red-400" icon="eye" />
-                     <p className="text-sm text-red-200">
-                        {formatDecimal(generatorStore.effectiveProduction.paranoia)}/sec
-                     </p>
+                     <p
+                        dangerouslySetInnerHTML={{
+                           __html: `${formatDecimal(
+                              generatorStore.effectiveProduction.paranoia,
+                           )}/sec`,
+                        }}
+                        className="text-sm text-red-200"
+                     />
                   </div>
                )}
             </div>
@@ -108,15 +118,17 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
          <div className="grid grid-cols-2 w-full gap-2">
             <Card className="p-2 bg-green-800/30 border-green-900 rounded-sm transition-all duration-200 hover:bg-green-800/40">
                <h2 className="text-sm text-gray-400">{t.ui.cost}</h2>
-               <p className="text-sm">
-                  {formatDecimal(
-                     generatorStore.getCost(
-                        hudStore.bulkBuy,
-                        gameStore.getGeneratorCostReduction(generatorStore.id),
-                     ).proofs,
-                  )}{' '}
-                  {t.resources.proofs.name.toLowerCase()}
-               </p>
+               <p
+                  dangerouslySetInnerHTML={{
+                     __html: `${formatDecimal(
+                        generatorStore.getCost(
+                           hudStore.bulkBuy,
+                           gameStore.getGeneratorCostReduction(generatorStore.id),
+                        ).proofs,
+                     )} ${t.resources.proofs.name.toLowerCase()}`,
+                  }}
+                  className="text-sm"
+               />
             </Card>
             {generatorStore.unlocked ? (
                <Card className="p-2 bg-blue-800/30 border-blue-900 rounded-sm transition-all duration-200 hover:bg-blue-800/40">
@@ -125,16 +137,21 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                      <CustomIcon
                         className="inline-flex h-4 w-4 mr-1 text-amber-400"
                         icon="searchCheck"
-                     />{' '}
-                     →{' '}
-                     {formatDecimal(
-                        generatorStore.getEffectiveProduction(
-                           generatorStore.level.add(hudStore.bulkBuy),
-                        ).proofs,
-                     )}
-                     /sec (+
-                     {formatDecimal(generatorStore.getProductionIncrease(hudStore.bulkBuy).proofs)}
-                     /sec)
+                     />
+                     {' → '}
+                     <span
+                        dangerouslySetInnerHTML={{
+                           __html: `${formatDecimal(
+                              generatorStore.getEffectiveProduction(
+                                 generatorStore.level.add(hudStore.bulkBuy),
+                              ).proofs,
+                           )}/sec (+
+                        ${formatDecimal(
+                           generatorStore.getProductionIncrease(hudStore.bulkBuy).proofs,
+                        )}
+                        /sec)`,
+                        }}
+                     />
                   </p>
                </Card>
             ) : (
