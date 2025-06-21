@@ -303,6 +303,101 @@ The truth has been hidden for centuries by the global elite!"_
 
 ---
 
+## 4. Suspicious Pigeon Watch
+
+### Description
+
+_"Those pigeons you see every day? They're not real birds - they're government surveillance drones!
+The government has been replacing real pigeons with robotic spies to monitor our every move. Wake
+up, people! Those 'birds' are watching you right now!"_
+
+### Game Attributes
+
+```typescript
+{
+   id: 'suspicious_pigeons',
+   name: 'Suspicious Pigeon Watch',
+   description: 'Monitor and expose the government\'s robotic pigeon surveillance program that\'s been watching us all along.',
+   categories: ['government', 'technology', 'surveillance'],
+   baseCost: {
+      proofs: new Decimal(1200),
+      followers: new Decimal(0),
+   },
+   costMultiplier: {
+      proofs: new Decimal(1.11),
+      followers: new Decimal(0),
+   },
+   baseProduction: {
+      proofs: new Decimal(8.0),
+      followers: new Decimal(0),
+      paranoia: new Decimal(0),
+   },
+   productionMultiplier: {
+      proofs: new Decimal(8.0),
+      followers: new Decimal(0),
+      paranoia: new Decimal(0),
+   },
+   conditions: {
+      proofs: new Decimal(2500),
+      followers: new Decimal(0),
+      paranoia: new Decimal(0),
+      generators: [],
+   },
+   unlocked: false,
+   upgradesIds: [
+      'pigeons_bird_watching_equipment',
+      'pigeons_government_drone_manual',
+      'pigeons_pigeon_behavior_analysis',
+      'pigeons_robotic_pigeon_factory',
+      'pigeon_surveillance_network',
+      'pigeons_anti_pigeon_technology',
+      'pigeons_pigeon_whistleblower',
+      'pigeons_government_pigeon_training',
+      'pigeons_pigeon_communication_decoder',
+      'pigeons_underground_pigeon_bunker',
+      'pigeons_global_pigeon_network',
+      'pigeons_pigeon_truth_exposure',
+   ],
+}
+```
+
+### Balance Reasoning
+
+-  **Base Cost**: 1200 proofs - requires ~8-12 minutes of play with previous generators
+-  **Cost Multiplier**: 1.11x - moderate scaling for mid-game progression
+-  **Base Production**: 8.0 proofs/sec - 2.67x better than Flat Earth
+-  **Unlock Conditions**: 2500 proofs - achievable with previous generators
+-  **Categories**: Government + Technology + Surveillance (new category introduction)
+
+### Upgrades (12 total)
+
+1. **Bird Watching Equipment** - _"High-powered binoculars and cameras to document the suspicious
+   behavior of 'pigeons.' Notice how they never actually eat bread crumbs? Robots don't need food!"_
+2. **Government Drone Manual** - _"A leaked manual from a 'former' government employee shows how to
+   identify robotic pigeons. The real giveaway? They don't poop like real birds!"_
+3. **Pigeon Behavior Analysis** - _"Study the movement patterns of 'pigeons.' Real birds don't fly
+   in perfect formation or hover suspiciously outside windows for hours!"_
+4. **Robotic Pigeon Factory** - _"Secret government facility where robotic pigeons are manufactured.
+   Located in an abandoned warehouse in New Jersey. We have the coordinates!"_
+5. **Pigeon Surveillance Network** - _"The pigeons are part of a massive surveillance network. Each
+   'bird' has a unique ID and reports back to a central monitoring station."_
+6. **Anti-Pigeon Technology** - _"Developed special devices to jam the pigeon drones' signals. They
+   start malfunctioning and fly in circles when you activate it!"_
+7. **Pigeon Whistleblower** - _"A 'former' government pigeon technician has come forward with
+   evidence. He's been living in hiding since exposing the program."_
+8. **Government Pigeon Training** - _"The government has been training real pigeons to work with the
+   robotic ones. It's a hybrid surveillance system - part bird, part machine!"_
+9. **Pigeon Communication Decoder** - _"Developed technology to intercept the signals between pigeon
+   drones and their control center. They're transmitting everything they see!"_
+10.   **Underground Pigeon Bunker** - _"Your secret base where you analyze captured pigeon drones.
+      The walls are lined with aluminum foil to block their surveillance signals."_
+11.   **Global Pigeon Network** - _"The pigeon surveillance program is worldwide! Every major city
+      has its own network of robotic pigeons. The truth is everywhere!"_
+12.   **Pigeon Truth Exposure** - _"Launch a massive campaign to expose the pigeon surveillance
+      program. Billboards, social media, and public demonstrations. The pigeons can't stop us all!"_
+
+---
+
 ## Progression Timeline
 
 ### Optimal Play Scenario (Active Clicking + Generator Purchases)
@@ -312,6 +407,7 @@ The truth has been hidden for centuries by the global elite!"_
 3. **180-240 seconds**: Buy Michael Jackson generator, continue clicking
 4. **240-600 seconds**: Build up to 300 proofs, unlock Michael Jackson
 5. **600-1200 seconds**: Generate 1000 proofs, unlock Flat Earth
+6. **1200-2400 seconds**: Generate 2500 proofs, unlock Suspicious Pigeon Watch
 
 ### Idle Play Scenario (Minimal Clicking)
 
@@ -319,12 +415,13 @@ The truth has been hidden for centuries by the global elite!"_
 2. **120-1200 seconds**: Let chemtrails generate passively
 3. **1200-2400 seconds**: Unlock Michael Jackson through passive generation
 4. **2400-4800 seconds**: Unlock Flat Earth through passive generation
+5. **4800-9600 seconds**: Unlock Suspicious Pigeon Watch through passive generation
 
 ## Balance Principles Applied
 
 ### Cost Scaling
 
--  **1.08x → 1.09x → 1.1x**: Very gentle scaling for long-term progression
+-  **1.08x → 1.09x → 1.1x → 1.11x**: Very gentle scaling for long-term progression
 -  **No followers cost**: Introduced much later in the game
 
 ### Production Scaling
@@ -335,16 +432,17 @@ The truth has been hidden for centuries by the global elite!"_
 
 ### Unlock Conditions
 
--  **Proofs**: 0 → 300 → 1000 (3.33x scaling)
+-  **Proofs**: 0 → 300 → 1000 → 2500 (2.5x scaling)
 -  **No followers/paranoia requirements**: Prevents early-game complexity
 -  **Simple progression**: Focus on proofs only for early game
 
 ### Categories Distribution
 
--  **Government**: 3/3 generators (common conspiracy theme)
--  **Media-manipulation**: 2/3 generators (information control)
--  **Technology**: 1/3 generators (scientific skepticism)
--  **Organization**: 1/3 generators (secret societies)
+-  **Government**: 4/4 generators (common conspiracy theme)
+-  **Media-manipulation**: 2/4 generators (information control)
+-  **Technology**: 2/4 generators (scientific skepticism)
+-  **Organization**: 1/4 generators (secret societies)
+-  **Surveillance**: 1/4 generators (new category introduction)
 
 ### Upgrade Design Philosophy
 
