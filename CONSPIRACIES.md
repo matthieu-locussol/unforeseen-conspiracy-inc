@@ -541,6 +541,116 @@ beneath."_
 
 ---
 
+## 6. Finnish Non-Existence Proofing
+
+### Description
+
+_"'Finland' is the most successful geopolitical hoax in modern history. What normies call a Nordic
+country is actually open water, a designated fishing zone split between Russia and Japan since the
+Cold War. The 'Finnish' language? Constructed gibberish. Nokia? A front company to legitimize the
+phantom state. Every Finn you've met is a crisis actor."_
+
+### Game Attributes
+
+```typescript
+{
+   id: 'finnish_non_existence',
+   name: 'Finnish Non-Existence Proofing',
+   description: 'Compiling cartographic, linguistic, and historical anomalies to demonstrate the \'Finland\' construct as a placeholder for Russo-Japanese fishing rights.',
+   categories: ['government', 'media-manipulation', 'organization'],
+   baseCost: {
+      proofs: new Decimal(28000),
+      followers: new Decimal(0),
+   },
+   costMultiplier: {
+      proofs: new Decimal(1.15),
+      followers: new Decimal(0),
+   },
+   baseProduction: {
+      proofs: new Decimal(4.8),
+      followers: new Decimal(0.12),
+      paranoia: new Decimal(0.1),
+   },
+   productionMultiplier: {
+      proofs: new Decimal(4.8),
+      followers: new Decimal(0.12),
+      paranoia: new Decimal(0.1),
+   },
+   conditions: {
+      proofs: new Decimal(0),
+      followers: new Decimal(0),
+      paranoia: new Decimal(0),
+      generators: [],
+   },
+   unlocked: false,
+   upgradesIds: [
+      'finland_cartographic_analysis',
+      'finland_nokia_financial_records',
+      'finland_linguistic_deconstruction',
+      'finland_satellite_imagery_gaps',
+      'finland_fishing_rights_treaty',
+      'finland_crisis_actor_database',
+      'finland_population_census_fraud',
+      'finland_educational_propaganda',
+      'finland_embassy_shell_operations',
+      'finland_cultural_fabrication_unit',
+      'finland_deep_state_coordination',
+      'finland_revelation_protocol',
+   ],
+}
+```
+
+### Balance Reasoning
+
+-  **Base Cost**: 28000 proofs - follows exponential progression requiring mastery of all previous
+   generators
+-  **Cost Multiplier**: 1.15x - consistent scaling for balanced long-term progression
+-  **Base Production**: 4.8 proofs/sec, 0.12 followers/sec, 0.1 paranoia/sec - Introduces paranoia
+   resource gradually
+-  **Unlock Conditions**: 0 proofs - no requirements, gated purely by cost
+-  **Categories**: Government + Media-manipulation + Organization (international conspiracy themes)
+
+### Upgrades (12 total)
+
+1. **Cartographic Analysis System** - _"Cross-reference historical maps with satellite data. The
+   'Finland' landmass appears inconsistently across different mapping agencies. The gaps in their
+   story are literally visible from space."_
+2. **Nokia Financial Records Audit** - _"Nokia's financial records don't add up for a company
+   supposedly from a country with 5.5 million people. The revenue streams point to Russian and
+   Japanese shell corporations, not Finnish consumers."_
+3. **Linguistic Deconstruction Protocol** - _"Finnish shares no meaningful linguistic roots with
+   neighboring languages. It's a constructed language designed to give credibility to the hoax. Even
+   the grammar is suspiciously artificial."_
+4. **Satellite Imagery Gap Analysis** - _"High-resolution satellite imagery of the 'Finland' region
+   shows suspicious pixelation and composite artifacting. They're literally photoshopping a country
+   into existence on our maps."_
+5. **Russo-Japanese Fishing Rights Treaty** - _"Declassified documents from the 1940s reference a
+   secret fishing agreement between Russia and Japan. The coordinates match perfectly with the
+   supposed Finnish borders. Coincidence? Hardly."_
+6. **Crisis Actor Database** - _"Every 'Finnish' person can be traced back to acting agencies in
+   neighboring countries. We're building a comprehensive database of these international operatives
+   and their fake backstories."_
+7. **Population Census Fraud Investigation** - _"Finland's population statistics are mathematically
+   impossible given birth rates, immigration data, and economic output. The numbers are fabricated
+   to support the illusion of a functioning nation-state."_
+8. **Educational System Propaganda Unit** - _"Schools worldwide teach about 'Finland' as fact. This
+   requires a coordinated global education conspiracy. We need to trace the textbook publishers and
+   their suspicious funding sources."_
+9. **Embassy Shell Operations Analysis** - _"Finnish embassies are staffed by Russian and Japanese
+   operatives. By monitoring diplomatic communications, we can expose the true chain of command
+   behind the 'Finnish' government facade."_
+10.   **Cultural Fabrication Unit** - _"Finnish 'culture' - from saunas to heavy metal - is
+      artificially constructed to give the hoax authenticity. Each cultural element can be traced to
+      systematic psychological operations designed to fool the masses."_
+11.   **Deep State Coordination Network** - _"The Finland hoax requires coordination between
+      multiple intelligence agencies, the UN, Google Maps, and countless other institutions. We're
+      mapping the entire network responsible for maintaining this lie."_
+12.   **Finland Revelation Protocol** - _"Once we have irrefutable proof, we execute a coordinated
+      global revelation. Every major news outlet, social media platform, and government database
+      simultaneously learns the truth: Finland never existed."_
+
+---
+
 ## Progression Timeline
 
 ### Optimal Play Scenario (Active Clicking + Generator Purchases)
@@ -552,6 +662,8 @@ beneath."_
    Pigeon Watch
 5. **2000-4500 seconds**: Generate 6500 proofs through all generators, buy Denver Airport Anomaly
    Scanner
+6. **4500-8000 seconds**: Generate 28000 proofs through all generators, buy Finnish Non-Existence
+   Proofing
 
 ### Idle Play Scenario (Minimal Clicking)
 
@@ -560,21 +672,23 @@ beneath."_
 3. **2000-5000 seconds**: Use chemtrails + Michael Jackson to reach 500 proofs for Flat Earth
 4. **5000-12000 seconds**: Generate 1700 proofs for Suspicious Pigeon Watch through passive income
 5. **12000-25000 seconds**: Generate 6500 proofs for Denver Airport through all generators
+6. **25000-45000 seconds**: Generate 28000 proofs for Finnish Non-Existence through all generators
 
 ## Balance Principles Applied
 
 ### Cost Scaling
 
--  **Adjusted scaling**: 15 → 100 → 500 → 1700 → 6500 (exponential curve compensating for removed
-   unlock gates)
+-  **Adjusted scaling**: 15 → 100 → 500 → 1700 → 6500 → 28000 (exponential curve compensating for
+   removed unlock gates)
 -  **1.15x cost multiplier**: Meaningful individual purchase scaling for long-term progression
 -  **No followers cost**: Introduced gradually in later generators
 
 ### Production Scaling
 
--  **~2.2x improvement per tier**: 0.1 → 0.2 → 0.45 → 1.0 → 2.2 (modest, sustainable scaling)
+-  **~2.2x improvement per tier**: 0.1 → 0.2 → 0.45 → 1.0 → 2.2 → 4.8 (modest, sustainable scaling)
 -  **Conservative base values**: Leaves room for upgrades to provide meaningful multipliers
--  **Followers introduced gradually**: 0.05/sec starting at generator 5 only
+-  **Followers introduced gradually**: 0.05/sec starting at generator 5, 0.12/sec at generator 6
+-  **Paranoia introduced gradually**: 0.1/sec starting at generator 6
 
 ### Unlock Conditions
 
@@ -585,12 +699,12 @@ beneath."_
 
 ### Categories Distribution
 
--  **Government**: 5/5 generators (common conspiracy theme)
--  **Media-manipulation**: 2/5 generators (information control)
--  **Technology**: 2/5 generators (scientific skepticism)
--  **Organization**: 2/5 generators (secret societies)
--  **Surveillance**: 1/5 generators (introduces surveillance theme)
--  **Hidden-worlds**: 1/5 generators (introduces hidden realm concepts)
+-  **Government**: 6/6 generators (common conspiracy theme)
+-  **Media-manipulation**: 3/6 generators (information control)
+-  **Technology**: 2/6 generators (scientific skepticism)
+-  **Organization**: 3/6 generators (secret societies)
+-  **Surveillance**: 1/6 generators (introduces surveillance theme)
+-  **Hidden-worlds**: 1/6 generators (introduces hidden realm concepts)
 
 ### Upgrade Design Philosophy
 
@@ -610,5 +724,5 @@ This rebalanced progression emphasizes:
 5. **Resource management**: Followers introduced gradually to add complexity over time
 
 This progression provides a smooth learning curve while maintaining the satirical conspiracy theme
-throughout the early game experience, with room for 17+ more generators in the full game
+throughout the early game experience, with room for 16+ more generators in the full game
 progression.
