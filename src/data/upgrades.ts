@@ -15,7 +15,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'chemtrails' },
          },
       ],
@@ -36,9 +36,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(3292), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'production_flat',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.5),
             target: { type: 'generator', id: 'chemtrails' },
          },
       ],
@@ -61,7 +61,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.15),
             target: { type: 'generator', id: 'chemtrails' },
          },
       ],
@@ -84,13 +84,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.15),
+            value: new Decimal(0.5),
             target: { type: 'generator', id: 'chemtrails' },
          },
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.01),
+            value: new Decimal(0.25),
             target: { type: 'category', id: 'technology' },
          },
       ],
@@ -111,9 +111,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(525117), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'speed',
             resource: 'proofs',
-            value: new Decimal(0.2),
+            value: new Decimal(0.5),
             target: { type: 'generator', id: 'chemtrails' },
          },
       ],
@@ -136,13 +136,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.2),
+            value: new Decimal(0.75),
             target: { type: 'generator', id: 'chemtrails' },
          },
          {
             type: 'click_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.5),
             target: { type: 'global' },
          },
       ],
@@ -163,9 +163,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(15446485), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'double_chance',
             resource: 'proofs',
-            value: new Decimal(0.25),
+            value: new Decimal(0.05),
             target: { type: 'generator', id: 'chemtrails' },
          },
       ],
@@ -188,7 +188,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.02),
+            value: new Decimal(0.5),
             target: { type: 'category', id: 'government' },
          },
       ],
@@ -211,13 +211,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.25),
+            value: new Decimal(1.0),
             target: { type: 'generator', id: 'chemtrails' },
          },
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.3),
             target: { type: 'generator', id: 'chemtrails' },
          },
       ],
@@ -238,9 +238,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(2464134407), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'click_value',
+            type: 'click_critical_chance',
             resource: 'proofs',
-            value: new Decimal(1000),
+            value: new Decimal(0.08),
             target: { type: 'global' },
          },
       ],
@@ -263,7 +263,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.01),
+            value: new Decimal(0.25),
             target: { type: 'all_generators' },
          },
       ],
@@ -286,19 +286,19 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.5),
+            value: new Decimal(1.25),
             target: { type: 'generator', id: 'chemtrails' },
          },
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.02),
+            value: new Decimal(0.5),
             target: { type: 'all_generators' },
          },
          {
-            type: 'click_critical_chance',
+            type: 'click_critical_magnitude',
             resource: 'proofs',
-            value: new Decimal(0.005),
+            value: new Decimal(0.75),
             target: { type: 'global' },
          },
       ],
