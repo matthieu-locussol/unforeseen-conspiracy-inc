@@ -1,0 +1,151 @@
+# Unforeseen Conspiracy Inc. - AI Development Guidelines
+
+## Project Overview
+
+**Game Name:** Unforeseen Conspiracy Inc. **Type:** Idle/Clicker Game with Conspiracy Theory Theme
+**Platform:** Cross-platform (Desktop via Steam, Mobile via App Store/Play Store, Steam Deck
+compatible)
+
+## Core Concept
+
+The player embodies a conspiracy theorist who believes in everything "hidden" or "edgy" found on the
+internet. The goal is to investigate "ongoing cases" (conspiracies) to reveal "truths" to the world.
+The game escalates from common conspiracies (chemtrails, Michael Jackson death) to absurd, satirical
+ones (clouds are cotton, moon is an egg, gravity is political opinion) to mock conspiracy theorists
+humorously.
+
+## Technical Stack
+
+-  **Frontend:** React + TypeScript + Vite
+-  **Backend:** Tauri (Rust) for desktop/mobile builds
+-  **UI Framework:** Custom components with Tailwind CSS
+-  **State Management:** Custom store system
+-  **Internationalization:** i18n support (English, French, extensible)
+-  **Storage:** LocalStorage (no server, no anti-cheat)
+-  **Testing:** Vitest for unit tests
+
+## Key Features & Requirements
+
+### Core Resources
+
+-  **Proofs:** Primary resource (active/passive generation)
+-  **Followers:** Passive resource generation
+-  **Paranoïa:** Negative resource (must be balanced)
+
+### Game Systems
+
+1. **Ongoing Cases (Generators):** Named after conspiracy theories
+
+   -  Name, category, resource generation, humorous description
+   -  Cost scaling, level progression
+   -  Hidden until unlocked with notifications
+
+2. **Metabolism (Click Upgrades):** Improve click-related abilities
+
+   -  Examples: Watch YouTube, fold aluminum hats, browse 4chan
+   -  Focus on conspiracy-themed activities
+
+3. **Researchs (Technology Tree):** Temporary upgrades (reset on prestige)
+
+   -  Name, description, category, tier, cost, prerequisites
+   -  Research time, blocks other research during progress
+
+4. **Archives (Prestige):** Reset with caffeine multiplier
+
+   -  Current/required resources, progress bar
+   -  Multiplier increase mechanics
+
+5. **Revelations (Achievements):** Steam-linked achievements
+
+   -  Name, icon, description, conditions
+   -  Global production bonuses
+
+6. **Statistics:** Comprehensive tracking
+   -  Time scales: since beginning, since last prestige
+   -  Hacker/paranoid visual style
+
+### Special Features
+
+-  **Daily Signal Interception:** Radio tuner interface for daily rewards
+-  **Mini-games:** Periodic pop-up events with conspiracy themes
+-  **Event Bonuses:** Holiday-specific multipliers
+-  **Event Maluses:** Paranoïa-based negative events
+
+### Game Mechanics
+
+-  **Production Multipliers:** Flat and percentage bonuses
+-  **Speed Bonuses:** Frequency increases
+-  **Critical Systems:** Chance and magnitude for critical hits
+-  **Combo System:** Rapid clicking rewards
+-  **Offline Progress:** 50% base + multipliers
+-  **Idle Bonuses:** Non-interaction rewards
+-  **Cost Discounts:** Bulk purchase benefits
+
+## Development Guidelines
+
+### Code Structure
+
+-  **Components:** Organized by feature (core, design, gameplay)
+-  **Stores:** Separate stores for different game systems
+-  **Types:** Comprehensive TypeScript definitions
+-  **Utils:** Helper functions for number/string management
+-  **i18n:** Translation files in separate directory
+
+### UI/UX Principles
+
+-  **Theme:** Conspiracy/hacker aesthetic with retro elements
+-  **Responsive:** Mobile-friendly design
+-  **Controller Support:** Steam Deck compatibility
+-  **Accessibility:** Consider colorblind users, screen readers
+
+### Content Guidelines
+
+-  **Humor:** Satirical, not offensive
+-  **Escalation:** Start believable, end absurd
+-  **Consistency:** Maintain conspiracy theme throughout
+-  **Extensibility:** Easy to add new conspiracies/mini-games
+
+### Technical Requirements
+
+-  **Performance:** Smooth 60fps gameplay
+-  **Save System:** Robust autosave to localStorage
+-  **Cross-platform:** Tauri builds for all targets
+-  **No DRM:** Cheating is acceptable, no anti-cheat needed
+
+### Testing Strategy
+
+-  **Unit Tests:** Core game logic and utilities
+-  **Integration Tests:** Store interactions
+-  **Manual Testing:** Cross-platform compatibility
+
+## File Organization
+
+-  `src/components/`: UI components organized by feature
+-  `src/store/`: Game state management
+-  `src/data/`: Game content and constants
+-  `src/types/`: TypeScript definitions
+-  `src/utils/`: Helper functions
+-  `src/i18n/`: Translation files
+-  `src-tauri/`: Rust backend for Tauri
+
+## Common Patterns
+
+-  Use custom hooks for game logic
+-  Implement proper TypeScript types
+-  Follow React best practices
+-  Maintain consistent naming conventions
+-  Document complex game mechanics
+-  Use semantic HTML for accessibility
+
+## AI Assistance Focus
+
+When helping with this project, prioritize:
+
+1. Maintaining the conspiracy theme and humor
+2. Ensuring cross-platform compatibility
+3. Following established code patterns
+4. Adding proper TypeScript types
+5. Implementing responsive design
+6. Maintaining game balance and progression
+7. Supporting internationalization
+8. Ensuring extensibility for new content
