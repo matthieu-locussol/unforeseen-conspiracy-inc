@@ -1,6 +1,6 @@
 import type { Route } from '../types/routes';
 
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 
 import { TRANSITION_DURATION } from '../data/constants';
 
@@ -17,8 +17,10 @@ export class RoutingStore {
       this.fadingOut = true;
 
       setTimeout(() => {
-         this.page = page;
-         this.fadingOut = false;
+         runInAction(() => {
+            this.page = page;
+            this.fadingOut = false;
+         });
       }, TRANSITION_DURATION);
    }
 }
