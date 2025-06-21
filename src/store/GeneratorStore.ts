@@ -12,6 +12,8 @@ import { makeAutoObservable } from 'mobx';
 
 import { GENERATORS } from '../data/generators';
 
+Decimal.set({ rounding: 1 });
+
 export class GeneratorStore {
    private _store: GameStore;
 
@@ -85,8 +87,8 @@ export class GeneratorStore {
       }
 
       return {
-         proofs: totalProofsCost.round(),
-         followers: totalFollowersCost.round(),
+         proofs: totalProofsCost.toDecimalPlaces(1),
+         followers: totalFollowersCost.toDecimalPlaces(1),
       };
    }
 
@@ -115,9 +117,9 @@ export class GeneratorStore {
       );
 
       return {
-         proofs: proofsProduction.round(),
-         followers: followersProduction.round(),
-         paranoia: paranoiaProduction.round(),
+         proofs: proofsProduction.toDecimalPlaces(1),
+         followers: followersProduction.toDecimalPlaces(1),
+         paranoia: paranoiaProduction.toDecimalPlaces(1),
       };
    }
 
@@ -151,9 +153,9 @@ export class GeneratorStore {
       };
 
       return {
-         proofs: finalProduction.proofs.round(),
-         followers: finalProduction.followers.round(),
-         paranoia: finalProduction.paranoia.round(),
+         proofs: finalProduction.proofs.toDecimalPlaces(1),
+         followers: finalProduction.followers.toDecimalPlaces(1),
+         paranoia: finalProduction.paranoia.toDecimalPlaces(1),
       };
    }
 
@@ -167,9 +169,9 @@ export class GeneratorStore {
       const newProduction = this.getEffectiveProduction(this.level.add(amount));
 
       return {
-         proofs: newProduction.proofs.sub(currentProduction.proofs).round(),
-         followers: newProduction.followers.sub(currentProduction.followers).round(),
-         paranoia: newProduction.paranoia.sub(currentProduction.paranoia).round(),
+         proofs: newProduction.proofs.sub(currentProduction.proofs).toDecimalPlaces(1),
+         followers: newProduction.followers.sub(currentProduction.followers).toDecimalPlaces(1),
+         paranoia: newProduction.paranoia.sub(currentProduction.paranoia).toDecimalPlaces(1),
       };
    }
 

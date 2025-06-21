@@ -233,9 +233,9 @@ export class GameStore {
       }
 
       return (
-         this.proofs.value >= conditions.proofs &&
-         this.followers.value >= conditions.followers &&
-         this.paranoia.value >= conditions.paranoia
+         this.proofs.value.greaterThanOrEqualTo(conditions.proofs) &&
+         this.followers.value.greaterThanOrEqualTo(conditions.followers) &&
+         this.paranoia.value.greaterThanOrEqualTo(conditions.paranoia)
       );
    }
 
@@ -248,7 +248,10 @@ export class GameStore {
 
       const cost = generatorStore.getCost(amount, this.getGeneratorCostReduction(id));
 
-      return this.proofs.value >= cost.proofs && this.followers.value >= cost.followers;
+      return (
+         this.proofs.value.greaterThanOrEqualTo(cost.proofs) &&
+         this.followers.value.greaterThanOrEqualTo(cost.followers)
+      );
    }
 
    public buyGenerator(id: GeneratorId, amount: Decimal): boolean {

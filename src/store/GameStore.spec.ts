@@ -3,6 +3,7 @@ import type { GeneratorId } from '../types/generators';
 import type { UpgradeId } from '../types/upgrades';
 import type { GeneratorStore } from './GeneratorStore';
 
+import Decimal from 'decimal.js';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { GENERATORS } from '../data/generators';
@@ -19,9 +20,9 @@ describe('GameStore', () => {
 
    describe('Initialization', () => {
       it('should initialize with correct default values', () => {
-         expect(gameStore.proofs.value).toBe(0);
-         expect(gameStore.followers.value).toBe(0);
-         expect(gameStore.paranoia.value).toBe(0);
+         expect(gameStore.proofs.value).toStrictEqual(new Decimal(0));
+         expect(gameStore.followers.value).toStrictEqual(new Decimal(0));
+         expect(gameStore.paranoia.value).toStrictEqual(new Decimal(0));
          expect(gameStore.isRunning).toBe(true);
          expect(gameStore.lastUpdateTime).toBeCloseTo(Date.now(), -2);
       });
@@ -112,7 +113,7 @@ describe('GameStore', () => {
          // Unlock and level up some generators for testing
          const chemtrailsGenerator = gameStore.generators.find((g) => g.id === 'chemtrails')!;
 
-         chemtrailsGenerator.buy(5); // Level 5
+         chemtrailsGenerator.buy(new Decimal(5)); // Level 5
       });
 
       it('should update lastUpdateTime when ticking', () => {
@@ -136,7 +137,7 @@ describe('GameStore', () => {
 
          gameStore.tick();
 
-         expect(gameStore.proofs.value).toBeGreaterThan(initialProofs);
+         expect(gameStore.proofs.value.greaterThan(initialProofs)).toBeTruthy();
       });
 
       it('should track resource generation in statistics', () => {
@@ -146,9 +147,9 @@ describe('GameStore', () => {
 
          expect(trackSpy).toHaveBeenCalledOnce();
          expect(trackSpy).toHaveBeenCalledWith(
-            expect.any(Number),
-            expect.any(Number),
-            expect.any(Number),
+            expect.any(Decimal),
+            expect.any(Decimal),
+            expect.any(Decimal),
          );
       });
 
@@ -168,69 +169,88 @@ describe('GameStore', () => {
    describe('Generator Management', () => {
       describe('canBuyGenerator()', () => {
          it('should return false for non-existent generator', () => {
-            const result = gameStore.canBuyGenerator('non-existent' as GeneratorId, 1);
+            const result = gameStore.canBuyGenerator('non-existent' as GeneratorId, new Decimal(1));
 
             expect(result).toBe(false);
          });
 
          it('should return true when player has enough resources', () => {
-            gameStore.proofs.add(1000);
-            gameStore.followers.add(1000);
+            gameStore.proofs.add(new Decimal(1000));
+            gameStore.followers.add(new Decimal(1000));
 
-            const result = gameStore.canBuyGenerator('chemtrails', 1);
+            const result = gameStore.canBuyGenerator('chemtrails', new Decimal(1));
 
             expect(result).toBe(true);
          });
 
          it('should return false when player lacks proofs', () => {
-            gameStore.proofs.add(5); // Less than chemtrails base cost of 10
-            gameStore.followers.add(1000);
+            gameStore.proofs.add(new Decimal(5)); // Less than chemtrails base cost of 10
+            gameStore.followers.add(new Decimal(1000));
 
-            const result = gameStore.canBuyGenerator('chemtrails', 1);
+            const result = gameStore.canBuyGenerator('chemtrails', new Decimal(1));
 
             expect(result).toBe(false);
          });
 
          it('should return false when player lacks followers', () => {
-            gameStore.proofs.add(1000);
-            gameStore.followers.add(0);
+            gameStore.proofs.add(new Decimal(1000));
+            gameStore.followers.add(new Decimal(0));
 
             // Find a generator that actually requires followers - looking at the data, all generators have followers cost of 0
             // So let's test with insufficient proofs instead for michael_jackson
-            gameStore.proofs.value = 25; // Less than michael_jackson base cost of 50
-            gameStore.followers.add(1000);
+            gameStore.proofs.value = new Decimal(25); // Less than michael_jackson base cost of 50
+            gameStore.followers.add(new Decimal(1000));
 
-            const result = gameStore.canBuyGenerator('michael_jackson', 1);
+            const result = gameStore.canBuyGenerator('michael_jackson', new Decimal(1));
 
             expect(result).toBe(false);
          });
 
          it('should account for cost reduction when checking affordability', () => {
-            // Give a cost reduction upgrade
+            // Set up resources to be just enough for chemtrails without cost reduction
+            gameStore.proofs.add(new Decimal(10)); // Base cost of chemtrails
+            gameStore.followers.add(new Decimal(1000));
+
+            // Check the actual cost without any cost reduction
+            const chemtrailsGenerator = gameStore.generators.find((g) => g.id === 'chemtrails')!;
+            const costWithoutReduction = chemtrailsGenerator.getCost(
+               new Decimal(1),
+               new Decimal(0),
+            );
+
+            // Set proofs to exactly the cost without reduction
+            gameStore.proofs.value = costWithoutReduction.proofs;
+
+            // Initially should be able to buy 1 level of chemtrails
+            expect(gameStore.canBuyGenerator('chemtrails', new Decimal(1))).toBe(true);
+
+            // Buy the chemtrails cost reduction upgrade (25% reduction)
             const costReductionUpgrade = gameStore.upgrades.find(
                (u) => u.id === 'chemtrails_cost_reduction',
             )!;
 
             costReductionUpgrade.unlocked = true;
 
-            const originalCost = gameStore.generators.find((g) => g.id === 'chemtrails')!.baseCost
-               .proofs;
-            const reducedCost = originalCost * (1 - 0.25); // 25% reduction
+            // Calculate the cost with 25% reduction
+            const costWithReduction = chemtrailsGenerator.getCost(
+               new Decimal(1),
+               new Decimal(0.25),
+            );
 
-            // Set exact reduced cost amount
-            gameStore.proofs.value = 0;
-            gameStore.proofs.add(Math.floor(reducedCost) + 1); // Add 1 to ensure it's enough
+            // With the reduced cost, we should be able to buy it with less proofs
+            gameStore.proofs.value = costWithReduction.proofs;
+            expect(gameStore.canBuyGenerator('chemtrails', new Decimal(1))).toBe(true);
 
-            const result = gameStore.canBuyGenerator('chemtrails', 1);
-
-            expect(result).toBe(true);
+            // But with slightly less than the reduced cost, we should not be able to buy it
+            gameStore.proofs.value = costWithReduction.proofs.sub(new Decimal(0.1));
+            expect(gameStore.canBuyGenerator('chemtrails', new Decimal(1))).toBe(false);
          });
 
          it('should calculate correct cost for multiple generator levels', () => {
-            gameStore.proofs.add(10000);
-            gameStore.followers.add(10000);
+            gameStore.proofs.add(new Decimal(10000));
+            gameStore.followers.add(new Decimal(10000));
 
-            const result = gameStore.canBuyGenerator('chemtrails', 10);
+            const result = gameStore.canBuyGenerator('chemtrails', new Decimal(10));
 
             expect(result).toBe(true);
          });
@@ -238,12 +258,12 @@ describe('GameStore', () => {
 
       describe('buyGenerator()', () => {
          beforeEach(() => {
-            gameStore.proofs.add(10000);
-            gameStore.followers.add(10000);
+            gameStore.proofs.add(new Decimal(10000));
+            gameStore.followers.add(new Decimal(10000));
          });
 
          it('should return false for non-existent generator', () => {
-            const result = gameStore.buyGenerator('non-existent' as GeneratorId, 1);
+            const result = gameStore.buyGenerator('non-existent' as GeneratorId, new Decimal(1));
 
             expect(result).toBe(false);
          });
@@ -252,30 +272,30 @@ describe('GameStore', () => {
             const initialLevel = gameStore.generators.find((g) => g.id === 'chemtrails')!.level;
             const initialProofs = gameStore.proofs.value;
 
-            const result = gameStore.buyGenerator('chemtrails', 5);
+            const result = gameStore.buyGenerator('chemtrails', new Decimal(5));
 
             expect(result).toBe(true);
-            expect(gameStore.generators.find((g) => g.id === 'chemtrails')!.level).toBe(
-               initialLevel + 5,
+            expect(gameStore.generators.find((g) => g.id === 'chemtrails')!.level).toStrictEqual(
+               initialLevel.plus(5),
             );
-            expect(gameStore.proofs.value).toBeLessThan(initialProofs);
+            expect(gameStore.proofs.value.lessThan(initialProofs)).toBeTruthy();
          });
 
          it('should return false when insufficient resources', () => {
-            gameStore.proofs.value = 5; // Less than cost
-            gameStore.followers.value = 0;
+            gameStore.proofs.value = new Decimal(5); // Less than cost
+            gameStore.followers.value = new Decimal(0);
 
-            const result = gameStore.buyGenerator('chemtrails', 1);
+            const result = gameStore.buyGenerator('chemtrails', new Decimal(1));
 
             expect(result).toBe(false);
          });
 
          it('should not buy generator on failure', () => {
-            gameStore.proofs.value = 5;
-            gameStore.followers.value = 0;
+            gameStore.proofs.value = new Decimal(5);
+            gameStore.followers.value = new Decimal(0);
             const initialLevel = gameStore.generators.find((g) => g.id === 'chemtrails')!.level;
 
-            const result = gameStore.buyGenerator('chemtrails', 1);
+            const result = gameStore.buyGenerator('chemtrails', new Decimal(1));
 
             expect(result).toBe(false);
             expect(gameStore.generators.find((g) => g.id === 'chemtrails')!.level).toBe(
@@ -288,7 +308,7 @@ describe('GameStore', () => {
 
             expect(generator.unlocked).toBe(false);
 
-            gameStore.buyGenerator('michael_jackson', 1);
+            gameStore.buyGenerator('michael_jackson', new Decimal(1));
 
             expect(generator.unlocked).toBe(true);
          });
@@ -328,8 +348,8 @@ describe('GameStore', () => {
          });
 
          it('should return true when conditions are met and affordable', () => {
-            gameStore.proofs.add(1000);
-            gameStore.followers.add(1000);
+            gameStore.proofs.add(new Decimal(1000));
+            gameStore.followers.add(new Decimal(1000));
 
             const result = gameStore.canBuyUpgrade('chemtrails_production_boost');
 
@@ -337,8 +357,8 @@ describe('GameStore', () => {
          });
 
          it('should return false when conditions are not met', () => {
-            gameStore.proofs.add(10); // Less than condition requirement
-            gameStore.followers.add(1000);
+            gameStore.proofs.add(new Decimal(10)); // Less than condition requirement
+            gameStore.followers.add(new Decimal(1000));
 
             const result = gameStore.canBuyUpgrade('chemtrails_production_boost');
 
@@ -346,8 +366,8 @@ describe('GameStore', () => {
          });
 
          it('should return false when unaffordable', () => {
-            gameStore.proofs.add(50); // Meets condition but not cost
-            gameStore.followers.add(1000);
+            gameStore.proofs.add(new Decimal(50)); // Meets condition but not cost
+            gameStore.followers.add(new Decimal(1000));
 
             const result = gameStore.canBuyUpgrade('chemtrails_production_boost');
 
@@ -357,8 +377,8 @@ describe('GameStore', () => {
 
       describe('buyUpgrade()', () => {
          beforeEach(() => {
-            gameStore.proofs.add(10000);
-            gameStore.followers.add(10000);
+            gameStore.proofs.add(new Decimal(10000));
+            gameStore.followers.add(new Decimal(10000));
          });
 
          it('should return false for non-existent upgrade', () => {
@@ -385,12 +405,14 @@ describe('GameStore', () => {
 
             gameStore.buyUpgrade('chemtrails_production_boost');
 
-            expect(gameStore.proofs.value).toBe(initialProofs - upgrade.cost.proofs);
-            expect(gameStore.followers.value).toBe(initialFollowers - upgrade.cost.followers);
+            expect(gameStore.proofs.value).toStrictEqual(initialProofs.minus(upgrade.cost.proofs));
+            expect(gameStore.followers.value).toStrictEqual(
+               initialFollowers.minus(upgrade.cost.followers),
+            );
          });
 
          it('should return false when conditions not met', () => {
-            gameStore.proofs.value = 10; // Less than condition requirement
+            gameStore.proofs.value = new Decimal(10); // Less than condition requirement
 
             const result = gameStore.buyUpgrade('chemtrails_production_boost');
 
@@ -398,7 +420,7 @@ describe('GameStore', () => {
          });
 
          it('should return false when unaffordable', () => {
-            gameStore.proofs.value = 50; // Meets condition but not cost
+            gameStore.proofs.value = new Decimal(50); // Meets condition but not cost
 
             const result = gameStore.buyUpgrade('chemtrails_production_boost');
 
@@ -419,9 +441,9 @@ describe('GameStore', () => {
             const multipliers = gameStore.getGeneratorMultipliers(chemtrailsGenerator);
 
             expect(multipliers).toEqual({
-               proofs: 1,
-               followers: 1,
-               paranoia: 1,
+               proofs: new Decimal(1),
+               followers: new Decimal(1),
+               paranoia: new Decimal(1),
             });
          });
 
@@ -432,7 +454,7 @@ describe('GameStore', () => {
 
             const multipliers = gameStore.getGeneratorMultipliers(chemtrailsGenerator);
 
-            expect(multipliers.proofs).toBe(1.5); // 1 + 0.5 boost
+            expect(multipliers.proofs).toStrictEqual(new Decimal(1.5)); // 1 + 0.5 boost
          });
 
          it('should apply category-specific multipliers', () => {
@@ -444,7 +466,7 @@ describe('GameStore', () => {
             const flatEarthGenerator = gameStore.generators.find((g) => g.id === 'flat_earth')!;
             const multipliers = gameStore.getGeneratorMultipliers(flatEarthGenerator);
 
-            expect(multipliers.proofs).toBe(1.75); // 1 + 0.75 boost
+            expect(multipliers.proofs).toStrictEqual(new Decimal(1.75)); // 1 + 0.75 boost
          });
 
          it('should apply global multipliers to all generators', () => {
@@ -454,7 +476,7 @@ describe('GameStore', () => {
 
             const multipliers = gameStore.getGeneratorMultipliers(chemtrailsGenerator);
 
-            expect(multipliers.proofs).toBe(1.25); // 1 + 0.25 boost
+            expect(multipliers.proofs).toStrictEqual(new Decimal(1.25)); // 1 + 0.25 boost
          });
 
          it('should stack multiple applicable multipliers', () => {
@@ -471,7 +493,7 @@ describe('GameStore', () => {
 
             const multipliers = gameStore.getGeneratorMultipliers(chemtrailsGenerator);
 
-            expect(multipliers.proofs).toBe(1.75); // 1 + 0.5 + 0.25
+            expect(multipliers.proofs).toStrictEqual(new Decimal(1.75)); // 1 + 0.5 + 0.25
          });
       });
 
@@ -486,9 +508,9 @@ describe('GameStore', () => {
             const bonuses = gameStore.getFlatBonusesForGenerator(flatEarthGenerator);
 
             expect(bonuses).toEqual({
-               proofs: 0,
-               followers: 0,
-               paranoia: 0,
+               proofs: new Decimal(0),
+               followers: new Decimal(0),
+               paranoia: new Decimal(0),
             });
          });
 
@@ -499,7 +521,7 @@ describe('GameStore', () => {
 
             const bonuses = gameStore.getFlatBonusesForGenerator(flatEarthGenerator);
 
-            expect(bonuses.proofs).toBe(2); // +2 flat bonus
+            expect(bonuses.proofs).toStrictEqual(new Decimal(2)); // +2 flat bonus
          });
       });
 
@@ -507,7 +529,7 @@ describe('GameStore', () => {
          it('should return 0 when no cost reduction upgrades unlocked', () => {
             const reduction = gameStore.getGeneratorCostReduction('chemtrails');
 
-            expect(reduction).toBe(0);
+            expect(reduction).toStrictEqual(new Decimal(0));
          });
 
          it('should apply generator-specific cost reduction', () => {
@@ -517,7 +539,7 @@ describe('GameStore', () => {
 
             const reduction = gameStore.getGeneratorCostReduction('chemtrails');
 
-            expect(reduction).toBe(0.25); // 25% reduction
+            expect(reduction).toStrictEqual(new Decimal(0.25)); // 25% reduction
          });
 
          it('should cap cost reduction at 90%', () => {
@@ -530,7 +552,7 @@ describe('GameStore', () => {
 
             const reduction = gameStore.getGeneratorCostReduction('chemtrails');
 
-            expect(reduction).toBeLessThanOrEqual(0.9);
+            expect(reduction.lessThanOrEqualTo(0.9)).toBeTruthy();
          });
       });
    });
@@ -538,14 +560,14 @@ describe('GameStore', () => {
    describe('Condition Checking', () => {
       describe('checkConditions()', () => {
          it('should return true when all conditions are met', () => {
-            gameStore.proofs.add(100);
-            gameStore.followers.add(50);
-            gameStore.paranoia.add(25);
+            gameStore.proofs.add(new Decimal(100));
+            gameStore.followers.add(new Decimal(50));
+            gameStore.paranoia.add(new Decimal(25));
 
             const conditions = {
-               proofs: 50,
-               followers: 25,
-               paranoia: 10,
+               proofs: new Decimal(50),
+               followers: new Decimal(25),
+               paranoia: new Decimal(10),
                generators: [] as GeneratorId[],
             };
 
@@ -555,14 +577,14 @@ describe('GameStore', () => {
          });
 
          it('should return false when proofs requirement not met', () => {
-            gameStore.proofs.add(25); // Less than required
-            gameStore.followers.add(50);
-            gameStore.paranoia.add(25);
+            gameStore.proofs.add(new Decimal(25)); // Less than required
+            gameStore.followers.add(new Decimal(50));
+            gameStore.paranoia.add(new Decimal(25));
 
             const conditions = {
-               proofs: 50,
-               followers: 25,
-               paranoia: 10,
+               proofs: new Decimal(50),
+               followers: new Decimal(25),
+               paranoia: new Decimal(10),
                generators: [] as GeneratorId[],
             };
 
@@ -572,14 +594,14 @@ describe('GameStore', () => {
          });
 
          it('should return false when followers requirement not met', () => {
-            gameStore.proofs.add(100);
-            gameStore.followers.add(10); // Less than required
-            gameStore.paranoia.add(25);
+            gameStore.proofs.add(new Decimal(100));
+            gameStore.followers.add(new Decimal(10)); // Less than required
+            gameStore.paranoia.add(new Decimal(25));
 
             const conditions = {
-               proofs: 50,
-               followers: 25,
-               paranoia: 10,
+               proofs: new Decimal(50),
+               followers: new Decimal(25),
+               paranoia: new Decimal(10),
                generators: [] as GeneratorId[],
             };
 
@@ -589,14 +611,14 @@ describe('GameStore', () => {
          });
 
          it('should return false when paranoia requirement not met', () => {
-            gameStore.proofs.add(100);
-            gameStore.followers.add(50);
-            gameStore.paranoia.add(5); // Less than required
+            gameStore.proofs.add(new Decimal(100));
+            gameStore.followers.add(new Decimal(50));
+            gameStore.paranoia.add(new Decimal(5)); // Less than required
 
             const conditions = {
-               proofs: 50,
-               followers: 25,
-               paranoia: 10,
+               proofs: new Decimal(50),
+               followers: new Decimal(25),
+               paranoia: new Decimal(10),
                generators: [] as GeneratorId[],
             };
 
@@ -606,14 +628,14 @@ describe('GameStore', () => {
          });
 
          it('should return false when required generator is missing', () => {
-            gameStore.proofs.add(100);
-            gameStore.followers.add(50);
-            gameStore.paranoia.add(25);
+            gameStore.proofs.add(new Decimal(100));
+            gameStore.followers.add(new Decimal(50));
+            gameStore.paranoia.add(new Decimal(25));
 
             const conditions = {
-               proofs: 50,
-               followers: 25,
-               paranoia: 10,
+               proofs: new Decimal(50),
+               followers: new Decimal(25),
+               paranoia: new Decimal(10),
                generators: ['non-existent' as GeneratorId],
             };
 
@@ -623,14 +645,14 @@ describe('GameStore', () => {
          });
 
          it('should return true when all required generators exist', () => {
-            gameStore.proofs.add(100);
-            gameStore.followers.add(50);
-            gameStore.paranoia.add(25);
+            gameStore.proofs.add(new Decimal(100));
+            gameStore.followers.add(new Decimal(50));
+            gameStore.paranoia.add(new Decimal(25));
 
             const conditions = {
-               proofs: 50,
-               followers: 25,
-               paranoia: 10,
+               proofs: new Decimal(50),
+               followers: new Decimal(25),
+               paranoia: new Decimal(10),
                generators: ['chemtrails'] as GeneratorId[],
             };
 
@@ -648,8 +670,8 @@ describe('GameStore', () => {
 
             const clickValue = gameStore.clickProofs();
 
-            expect(gameStore.proofs.value).toBe(initialProofs + clickValue.value);
-            expect(clickValue.value).toBeGreaterThan(0);
+            expect(gameStore.proofs.value).toStrictEqual(initialProofs.add(clickValue.value));
+            expect(clickValue.value.greaterThan(0)).toBeTruthy();
          });
 
          it('should track clicks in statistics', () => {
@@ -657,14 +679,14 @@ describe('GameStore', () => {
 
             gameStore.clickProofs();
 
-            expect(trackSpy).toHaveBeenCalledWith(1);
+            expect(trackSpy).toHaveBeenCalledWith(new Decimal(1));
          });
 
          it('should return the click value', () => {
             const clickValue = gameStore.clickProofs();
 
             expect(typeof clickValue).toBe('object');
-            expect(clickValue.value).toBeGreaterThan(0);
+            expect(clickValue.value.greaterThan(0)).toBeTruthy();
          });
       });
    });
@@ -716,9 +738,9 @@ describe('GameStore', () => {
          });
 
          it('should include available upgrades that meet conditions', () => {
-            gameStore.proofs.add(10000);
-            gameStore.followers.add(10000);
-            gameStore.paranoia.add(10000);
+            gameStore.proofs.add(new Decimal(10000));
+            gameStore.followers.add(new Decimal(10000));
+            gameStore.paranoia.add(new Decimal(10000));
 
             const visible = gameStore.visibleUpgrades;
 
@@ -733,9 +755,9 @@ describe('GameStore', () => {
          });
 
          it('should not include locked upgrades that do not meet conditions', () => {
-            gameStore.proofs.value = 0;
-            gameStore.followers.value = 0;
-            gameStore.paranoia.value = 0;
+            gameStore.proofs.value = new Decimal(0);
+            gameStore.followers.value = new Decimal(0);
+            gameStore.paranoia.value = new Decimal(0);
 
             const visible = gameStore.visibleUpgrades;
 
@@ -754,10 +776,10 @@ describe('GameStore', () => {
       describe('serialize()', () => {
          it('should serialize all game state correctly', () => {
             // Set up some game state
-            gameStore.proofs.add(100);
-            gameStore.followers.add(50);
-            gameStore.paranoia.add(25);
-            gameStore.generators[0].buy(5);
+            gameStore.proofs.add(new Decimal(100));
+            gameStore.followers.add(new Decimal(50));
+            gameStore.paranoia.add(new Decimal(25));
+            gameStore.generators[0].buy(new Decimal(5));
             gameStore.upgrades[0].unlocked = true;
             gameStore.stop();
 
@@ -788,10 +810,10 @@ describe('GameStore', () => {
 
          beforeEach(() => {
             // Create some test data
-            gameStore.proofs.add(200);
-            gameStore.followers.add(100);
-            gameStore.paranoia.add(50);
-            gameStore.generators[0].buy(10);
+            gameStore.proofs.add(new Decimal(200));
+            gameStore.followers.add(new Decimal(100));
+            gameStore.paranoia.add(new Decimal(50));
+            gameStore.generators[0].buy(new Decimal(10));
             gameStore.upgrades[0].unlocked = true;
             gameStore.stop();
 
@@ -804,10 +826,10 @@ describe('GameStore', () => {
          it('should restore all game state correctly', () => {
             gameStore.deserialize(savedData);
 
-            expect(gameStore.proofs.value).toBe(200);
-            expect(gameStore.followers.value).toBe(100);
-            expect(gameStore.paranoia.value).toBe(50);
-            expect(gameStore.generators[0].level).toBe(10);
+            expect(gameStore.proofs.value).toStrictEqual(new Decimal(200));
+            expect(gameStore.followers.value).toStrictEqual(new Decimal(100));
+            expect(gameStore.paranoia.value).toStrictEqual(new Decimal(50));
+            expect(gameStore.generators[0].level).toStrictEqual(new Decimal(10));
             expect(gameStore.upgrades[0].unlocked).toBe(true);
             expect(gameStore.isRunning).toBe(false);
             expect(gameStore.lastUpdateTime).toBe(savedData.lastUpdateTime);
@@ -850,45 +872,45 @@ describe('GameStore', () => {
 
    describe('Edge Cases and Error Handling', () => {
       it('should handle negative resource amounts gracefully', () => {
-         expect(() => gameStore.proofs.add(-100)).not.toThrow();
-         expect(gameStore.proofs.value).toBe(-100); // ResourceStore allows negative values
+         expect(() => gameStore.proofs.add(new Decimal(-100))).not.toThrow();
+         expect(gameStore.proofs.value.equals(new Decimal(-100))).toBeTruthy(); // ResourceStore allows negative values
       });
 
       it('should handle zero generator purchase amounts', () => {
-         gameStore.proofs.add(1000);
-         const result = gameStore.buyGenerator('chemtrails', 0);
+         gameStore.proofs.add(new Decimal(1000));
+         const result = gameStore.buyGenerator('chemtrails', new Decimal(0));
 
          expect(result).toBe(true); // Should succeed but not change anything
-         expect(gameStore.generators[0].level).toBe(0);
+         expect(gameStore.generators[0].level).toStrictEqual(new Decimal(0));
       });
 
       it('should handle extremely large numbers without breaking', () => {
-         const largeNumber = Number.MAX_SAFE_INTEGER / 2;
+         const largeNumber = new Decimal(Number.MAX_SAFE_INTEGER / 2);
 
          gameStore.proofs.add(largeNumber);
 
-         expect(gameStore.proofs.value).toBe(largeNumber);
+         expect(gameStore.proofs.value).toStrictEqual(largeNumber);
          expect(() => gameStore.tick()).not.toThrow();
       });
 
       it('should maintain consistency after multiple operations', () => {
          // Perform a series of operations
-         gameStore.proofs.add(10000);
-         gameStore.buyGenerator('chemtrails', 5);
+         gameStore.proofs.add(new Decimal(10000));
+         gameStore.buyGenerator('chemtrails', new Decimal(5));
          gameStore.buyUpgrade('chemtrails_production_boost');
          gameStore.tick();
          gameStore.clickProofs();
 
          // Game should still be in valid state
-         expect(gameStore.proofs.value).toBeGreaterThanOrEqual(0);
-         expect(gameStore.generators[0].level).toBeGreaterThan(0);
+         expect(gameStore.proofs.value.greaterThanOrEqualTo(0)).toBeTruthy();
+         expect(gameStore.generators[0].level.greaterThan(0)).toBeTruthy();
          expect(
             gameStore.upgrades.find((u) => u.id === 'chemtrails_production_boost')!.unlocked,
          ).toBe(true);
       });
 
       it('should handle rapid successive ticks', () => {
-         gameStore.generators[0].buy(1);
+         gameStore.generators[0].buy(new Decimal(1));
 
          const initialValue = gameStore.proofs.value;
 
@@ -897,7 +919,7 @@ describe('GameStore', () => {
             gameStore.tick();
          }
 
-         expect(gameStore.proofs.value).toBeGreaterThan(initialValue);
+         expect(gameStore.proofs.value.greaterThan(initialValue)).toBeTruthy();
          expect(gameStore.lastUpdateTime).toBeCloseTo(Date.now(), -2);
       });
    });
