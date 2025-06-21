@@ -651,6 +651,110 @@ phantom state. Every Finn you've met is a crisis actor."_
 
 ---
 
+## 7. Great Reset Agenda
+
+### Description
+
+_"Close reading of World Economic Forum publications and stakeholder capitalism manifestos. 'You'll
+own nothing and be happy' isn't a meme; it's a mission statement from the people who think they own
+you already."_
+
+### Game Attributes
+
+```typescript
+{
+   id: 'great_reset_agenda',
+   name: 'Great Reset Agenda Analysis',
+   description: 'Analyze WEF documents to expose the plan for a new world order where you own nothing.',
+   categories: ['organization', 'government', 'media-manipulation'],
+   baseCost: {
+      proofs: new Decimal(125000),
+      followers: new Decimal(0),
+   },
+   costMultiplier: {
+      proofs: new Decimal(1.15),
+      followers: new Decimal(0),
+   },
+   baseProduction: {
+      proofs: new Decimal(10.5),
+      followers: new Decimal(0.28),
+      paranoia: new Decimal(0.2),
+   },
+   productionMultiplier: {
+      proofs: new Decimal(10.5),
+      followers: new Decimal(0.28),
+      paranoia: new Decimal(0.2),
+   },
+   conditions: {
+      proofs: new Decimal(0),
+      followers: new Decimal(0),
+      paranoia: new Decimal(0),
+      generators: [],
+   },
+   unlocked: false,
+   upgradesIds: [
+      'great_reset_wef_publication_analysis',
+      'great_reset_digital_currency_tracking',
+      'great_reset_insect_protein_propaganda',
+      'great_reset_property_abolition_blueprint',
+      'great_reset_social_credit_system',
+      'great_reset_own_nothing_simulation',
+      'great_reset_davos_infiltration',
+      'great_reset_great_narrative_deconstruction',
+      'great_reset_fourth_industrial_revolution_tech',
+      'great_reset_global_leader_puppet_strings',
+      'great_reset_personal_carbon_footprint_hoax',
+      'great_reset_happiness_doctrine',
+   ],
+}
+```
+
+### Balance Reasoning
+
+-  **Base Cost**: 125,000 proofs - A significant jump, requiring a well-developed network of
+   lower-tier generators to afford.
+-  **Cost Multiplier**: 1.15x - Maintains the consistent scaling curve for balanced long-term play.
+-  **Base Production**: 10.5 proofs/sec, 0.28 followers/sec, 0.2 paranoia/sec - A substantial ~2.2x
+   increase in production, making it a valuable mid-game generator and ramping up paranoia.
+-  **Unlock Conditions**: 0 proofs - Gated purely by its high cost, rewarding players who have
+   optimized their economy.
+-  **Categories**: Focuses on organization and government themes, reinforcing the idea of a
+   top-down, planned conspiracy.
+
+### Upgrades (12 total)
+
+1. **WEF Publication Analysis** - _"The official documents are filled with doublespeak. 'Stakeholder
+   capitalism' is just feudalism with better branding. We need to decode their manifestos."_
+2. **Digital Currency Tracking** - _"They want to replace cash with a programmable digital currency.
+   One that can be turned off if you buy the 'wrong' kind of products. We must map their blockchain
+   infrastructure."_
+3. **Insect Protein Propaganda** - _"The push for 'sustainable' insect protein isn't about the
+   environment. It's about conditioning the masses to accept nutrient paste while the elite eat
+   steak. We're tracking the supply chain."_
+4. **Property Abolition Blueprint** - _"The goal is simple: abolish private property for the
+   commoner. We're analyzing zoning laws and land ownership databases to find the legislative
+   vectors they're using."_
+5. **Social Credit Score System** - _"They are building a global social credit system, tying your
+   access to services to your compliance with their narrative. We have to expose the algorithm."_
+6. **The 'Own Nothing' Simulation** - _"We'll run simulations based on their economic models. The
+   outcome is always the same: serfdom. These models are not predictions, they are plans."_
+7. **Davos Meeting Infiltration** - _"An operative inside the annual WEF meeting in Davos. They
+   won't be discussing policy, just sipping champagne and finalizing our collective future."_
+8. **The Great Narrative Deconstruction** - _"They speak of a 'Great Narrative'. It's the story they
+   will tell to justify the reset. We must deconstruct it before it becomes history."_
+9. **Fourth Industrial Revolution Tech** - _"They champion AI, IoT, and genetic engineering. Not for
+   progress, but for control. We're investigating the tech companies in their pocket."_
+10.   **Global Leader Puppet Strings** - _"The WEF's 'Young Global Leaders' program has placed
+      operatives in governments worldwide. We're mapping this network of puppets."_
+11.   **Personal Carbon Footprint Hoax** - _"The idea of a 'personal carbon footprint' was created
+      to shift blame from corporations to individuals. It's the ultimate psychological trick to make
+      you police yourself."_
+12.   **The Happiness Doctrine** - _"The promise of 'and you'll be happy' is the most sinister part.
+      It's the promise of a drugged, compliant populace that has forgotten what freedom feels like.
+      We must develop a counter-narrative."_
+
+---
+
 ## Progression Timeline
 
 ### Optimal Play Scenario (Active Clicking + Generator Purchases)
@@ -664,6 +768,7 @@ phantom state. Every Finn you've met is a crisis actor."_
    Scanner
 6. **4500-8000 seconds**: Generate 28000 proofs through all generators, buy Finnish Non-Existence
    Proofing
+7. **8000-15000 seconds**: Generate 125000 proofs through all generators, buy Great Reset Agenda
 
 ### Idle Play Scenario (Minimal Clicking)
 
@@ -673,22 +778,25 @@ phantom state. Every Finn you've met is a crisis actor."_
 4. **5000-12000 seconds**: Generate 1700 proofs for Suspicious Pigeon Watch through passive income
 5. **12000-25000 seconds**: Generate 6500 proofs for Denver Airport through all generators
 6. **25000-45000 seconds**: Generate 28000 proofs for Finnish Non-Existence through all generators
+7. **45000-80000 seconds**: Generate 125000 proofs for Great Reset Agenda through all generators
 
 ## Balance Principles Applied
 
 ### Cost Scaling
 
--  **Adjusted scaling**: 15 → 100 → 500 → 1700 → 6500 → 28000 (exponential curve compensating for
-   removed unlock gates)
+-  **Adjusted scaling**: 15 → 100 → 500 → 1700 → 6500 → 28000 → 125000 (exponential curve
+   compensating for removed unlock gates)
 -  **1.15x cost multiplier**: Meaningful individual purchase scaling for long-term progression
 -  **No followers cost**: Introduced gradually in later generators
 
 ### Production Scaling
 
--  **~2.2x improvement per tier**: 0.1 → 0.2 → 0.45 → 1.0 → 2.2 → 4.8 (modest, sustainable scaling)
+-  **~2.2x improvement per tier**: 0.1 → 0.2 → 0.45 → 1.0 → 2.2 → 4.8 → 10.5 (modest, sustainable
+   scaling)
 -  **Conservative base values**: Leaves room for upgrades to provide meaningful multipliers
--  **Followers introduced gradually**: 0.05/sec starting at generator 5, 0.12/sec at generator 6
--  **Paranoia introduced gradually**: 0.1/sec starting at generator 6
+-  **Followers introduced gradually**: 0.05/sec starting at generator 5, 0.12/sec at generator 6,
+   0.28/sec at generator 7
+-  **Paranoia introduced gradually**: 0.1/sec starting at generator 6, 0.2/sec at generator 7
 
 ### Unlock Conditions
 
@@ -699,12 +807,12 @@ phantom state. Every Finn you've met is a crisis actor."_
 
 ### Categories Distribution
 
--  **Government**: 6/6 generators (common conspiracy theme)
--  **Media-manipulation**: 3/6 generators (information control)
--  **Technology**: 2/6 generators (scientific skepticism)
--  **Organization**: 3/6 generators (secret societies)
--  **Surveillance**: 1/6 generators (introduces surveillance theme)
--  **Hidden-worlds**: 1/6 generators (introduces hidden realm concepts)
+-  **Government**: 7/7 generators (common conspiracy theme)
+-  **Media-manipulation**: 4/7 generators (information control)
+-  **Technology**: 2/7 generators (scientific skepticism)
+-  **Organization**: 4/7 generators (secret societies)
+-  **Surveillance**: 1/7 generators (introduces surveillance theme)
+-  **Hidden-worlds**: 1/7 generators (introduces hidden realm concepts)
 
 ### Upgrade Design Philosophy
 
@@ -721,8 +829,8 @@ This rebalanced progression emphasizes:
    latest
 3. **Upgrade significance**: Conservative base values make upgrades feel impactful
 4. **Sustainable scaling**: Mathematical curves designed for 20+ generator long-term progression
-5. **Resource management**: Followers introduced gradually to add complexity over time
+5. **Resource management**: Followers and paranoia introduced gradually to add complexity over time
 
 This progression provides a smooth learning curve while maintaining the satirical conspiracy theme
-throughout the early game experience, with room for 16+ more generators in the full game
+throughout the early game experience, with room for 14+ more generators in the full game
 progression.
