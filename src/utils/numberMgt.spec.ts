@@ -6,124 +6,149 @@ import { formatDecimal } from './numberMgt';
 describe('numberMgt', () => {
    describe('formatDecimal', () => {
       it('should format zero correctly', () => {
-         expect(formatDecimal(Decimal('0'))).toBe('0.0');
+         expect(formatDecimal(Decimal('0'), (s) => s)).toBe('0.0');
       });
 
       it('should format small numbers without suffix', () => {
-         expect(formatDecimal(Decimal('1'))).toBe('1');
-         expect(formatDecimal(Decimal('42'))).toBe('42');
-         expect(formatDecimal(Decimal('999'))).toBe('999');
-         expect(formatDecimal(Decimal('9999'))).toBe('9999');
-         expect(formatDecimal(Decimal('99999'))).toBe('99999');
+         expect(formatDecimal(Decimal('1'), (s) => s)).toBe('1');
+         expect(formatDecimal(Decimal('42'), (s) => s)).toBe('42');
+         expect(formatDecimal(Decimal('999'), (s) => s)).toBe('999');
+         expect(formatDecimal(Decimal('9999'), (s) => s)).toBe('9999');
+         expect(formatDecimal(Decimal('99999'), (s) => s)).toBe('99999');
       });
 
       it('should format thousands with K suffix and 1 decimal', () => {
-         expect(formatDecimal(Decimal('100000'))).toBe('100.0K');
-         expect(formatDecimal(Decimal('123456'))).toBe('123.4K');
-         expect(formatDecimal(Decimal('583727'))).toBe('583.7K');
-         expect(formatDecimal(Decimal('999999'))).toBe('999.9K');
+         expect(formatDecimal(Decimal('100000'), (s) => s)).toBe('100.0K');
+         expect(formatDecimal(Decimal('123456'), (s) => s)).toBe('123.4K');
+         expect(formatDecimal(Decimal('583727'), (s) => s)).toBe('583.7K');
+         expect(formatDecimal(Decimal('999999'), (s) => s)).toBe('999.9K');
       });
 
       it('should format millions with M suffix and 2 decimals', () => {
-         expect(formatDecimal(Decimal('1000000'))).toBe('1.00M');
-         expect(formatDecimal(Decimal('1234567'))).toBe('1.23M');
-         expect(formatDecimal(Decimal('1567890'))).toBe('1.56M');
-         expect(formatDecimal(Decimal('9999999'))).toBe('9.99M');
+         expect(formatDecimal(Decimal('1000000'), (s) => s)).toBe('1.00M');
+         expect(formatDecimal(Decimal('1234567'), (s) => s)).toBe('1.23M');
+         expect(formatDecimal(Decimal('1567890'), (s) => s)).toBe('1.56M');
+         expect(formatDecimal(Decimal('9999999'), (s) => s)).toBe('9.99M');
       });
 
       it('should format billions with B suffix and 2 decimals', () => {
-         expect(formatDecimal(Decimal('1000000000'))).toBe('1.00B');
-         expect(formatDecimal(Decimal('1234567890'))).toBe('1.23B');
-         expect(formatDecimal(Decimal('9999999999'))).toBe('9.99B');
+         expect(formatDecimal(Decimal('1000000000'), (s) => s)).toBe('1.00B');
+         expect(formatDecimal(Decimal('1234567890'), (s) => s)).toBe('1.23B');
+         expect(formatDecimal(Decimal('9999999999'), (s) => s)).toBe('9.99B');
       });
 
       it('should format trillions with T suffix and 3 decimals', () => {
-         expect(formatDecimal(Decimal('1000000000000'))).toBe('1.000T');
-         expect(formatDecimal(Decimal('1234567890123'))).toBe('1.234T');
-         expect(formatDecimal(Decimal('9999999999999'))).toBe('9.999T');
+         expect(formatDecimal(Decimal('1000000000000'), (s) => s)).toBe('1.000T');
+         expect(formatDecimal(Decimal('1234567890123'), (s) => s)).toBe('1.234T');
+         expect(formatDecimal(Decimal('9999999999999'), (s) => s)).toBe('9.999T');
       });
 
       it('should format quadrillions with Qa suffix and 3 decimals', () => {
-         expect(formatDecimal(Decimal('1000000000000000'))).toBe('1.000Qa');
-         expect(formatDecimal(Decimal('1234567890123456'))).toBe('1.234Qa');
+         expect(formatDecimal(Decimal('1000000000000000'), (s) => s)).toBe('1.000Qa');
+         expect(formatDecimal(Decimal('1234567890123456'), (s) => s)).toBe('1.234Qa');
       });
 
       it('should format quintillions with Qi suffix and 3 decimals', () => {
-         expect(formatDecimal(Decimal('1000000000000000000'))).toBe('1.000Qi');
-         expect(formatDecimal(Decimal('1234567890123456789'))).toBe('1.234Qi');
+         expect(formatDecimal(Decimal('1000000000000000000'), (s) => s)).toBe('1.000Qi');
+         expect(formatDecimal(Decimal('1234567890123456789'), (s) => s)).toBe('1.234Qi');
       });
 
       it('should format sextillions with Sx suffix and 3 decimals', () => {
-         expect(formatDecimal(Decimal('1000000000000000000000'))).toBe('1.000Sx');
-         expect(formatDecimal(Decimal('1234567890123456789012'))).toBe('1.234Sx');
+         expect(formatDecimal(Decimal('1000000000000000000000'), (s) => s)).toBe('1.000Sx');
+         expect(formatDecimal(Decimal('1234567890123456789012'), (s) => s)).toBe('1.234Sx');
       });
 
       it('should format septillions with Sp suffix and 3 decimals', () => {
-         expect(formatDecimal(Decimal('1000000000000000000000000'))).toBe('1.000Sp');
-         expect(formatDecimal(Decimal('1234567890123456789012345'))).toBe('1.234Sp');
+         expect(formatDecimal(Decimal('1000000000000000000000000'), (s) => s)).toBe('1.000Sp');
+         expect(formatDecimal(Decimal('1234567890123456789012345'), (s) => s)).toBe('1.234Sp');
       });
 
       it('should format octillions with Oc suffix and 3 decimals', () => {
-         expect(formatDecimal(Decimal('1000000000000000000000000000'))).toBe('1.000Oc');
-         expect(formatDecimal(Decimal('1234567890123456789012345678'))).toBe('1.234Oc');
+         expect(formatDecimal(Decimal('1000000000000000000000000000'), (s) => s)).toBe('1.000Oc');
+         expect(formatDecimal(Decimal('1234567890123456789012345678'), (s) => s)).toBe('1.234Oc');
       });
 
       it('should format nonillions with No suffix and 3 decimals', () => {
-         expect(formatDecimal(Decimal('1000000000000000000000000000000'))).toBe('1.000No');
-         expect(formatDecimal(Decimal('1234567890123456789012345678901'))).toBe('1.234No');
+         expect(formatDecimal(Decimal('1000000000000000000000000000000'), (s) => s)).toBe(
+            '1.000No',
+         );
+         expect(formatDecimal(Decimal('1234567890123456789012345678901'), (s) => s)).toBe(
+            '1.234No',
+         );
       });
 
       it('should format decillions with Dc suffix and 3 decimals', () => {
-         expect(formatDecimal(Decimal('1000000000000000000000000000000000'))).toBe('1.000Dc');
-         expect(formatDecimal(Decimal('1234567890123456789012345678901234'))).toBe('1.234Dc');
+         expect(formatDecimal(Decimal('1000000000000000000000000000000000'), (s) => s)).toBe(
+            '1.000Dc',
+         );
+         expect(formatDecimal(Decimal('1234567890123456789012345678901234'), (s) => s)).toBe(
+            '1.234Dc',
+         );
       });
 
       // New ultra-large suffixes
       it('should format undecillions with Ud suffix', () => {
-         expect(formatDecimal(Decimal('1000000000000000000000000000000000000'))).toBe('1.000Ud');
+         expect(formatDecimal(Decimal('1000000000000000000000000000000000000'), (s) => s)).toBe(
+            '1.000Ud',
+         );
       });
       it('should format duodecillions with Dd suffix', () => {
-         expect(formatDecimal(Decimal('1000000000000000000000000000000000000000'))).toBe('1.000Dd');
+         expect(formatDecimal(Decimal('1000000000000000000000000000000000000000'), (s) => s)).toBe(
+            '1.000Dd',
+         );
       });
       it('should format tredecillions with Td suffix', () => {
-         expect(formatDecimal(Decimal('1000000000000000000000000000000000000000000'))).toBe(
-            '1.000Td',
-         );
+         expect(
+            formatDecimal(Decimal('1000000000000000000000000000000000000000000'), (s) => s),
+         ).toBe('1.000Td');
       });
       it('should format quattuordecillions with Qad suffix', () => {
-         expect(formatDecimal(Decimal('1000000000000000000000000000000000000000000000'))).toBe(
-            '1.000Qad',
-         );
+         expect(
+            formatDecimal(Decimal('1000000000000000000000000000000000000000000000'), (s) => s),
+         ).toBe('1.000Qad');
       });
       it('should format quindecillions with Qid suffix', () => {
-         expect(formatDecimal(Decimal('1000000000000000000000000000000000000000000000000'))).toBe(
-            '1.000Qid',
-         );
+         expect(
+            formatDecimal(Decimal('1000000000000000000000000000000000000000000000000'), (s) => s),
+         ).toBe('1.000Qid');
       });
       it('should format sexdecillions with Sxd suffix', () => {
          expect(
-            formatDecimal(Decimal('1000000000000000000000000000000000000000000000000000')),
+            formatDecimal(
+               Decimal('1000000000000000000000000000000000000000000000000000'),
+               (s) => s,
+            ),
          ).toBe('1.000Sxd');
       });
       it('should format septendecillions with Spd suffix', () => {
          expect(
-            formatDecimal(Decimal('1000000000000000000000000000000000000000000000000000000')),
+            formatDecimal(
+               Decimal('1000000000000000000000000000000000000000000000000000000'),
+               (s) => s,
+            ),
          ).toBe('1.000Spd');
       });
       it('should format octodecillions with Ocd suffix', () => {
          expect(
-            formatDecimal(Decimal('1000000000000000000000000000000000000000000000000000000000')),
+            formatDecimal(
+               Decimal('1000000000000000000000000000000000000000000000000000000000'),
+               (s) => s,
+            ),
          ).toBe('1.000Ocd');
       });
       it('should format novemdecillions with Nod suffix', () => {
          expect(
-            formatDecimal(Decimal('1000000000000000000000000000000000000000000000000000000000000')),
+            formatDecimal(
+               Decimal('1000000000000000000000000000000000000000000000000000000000000'),
+               (s) => s,
+            ),
          ).toBe('1.000Nod');
       });
       it('should format vigintillions with Vg suffix', () => {
          expect(
             formatDecimal(
                Decimal('1000000000000000000000000000000000000000000000000000000000000000'),
+               (s) => s,
             ),
          ).toBe('1.000Vg');
       });
@@ -131,6 +156,7 @@ describe('numberMgt', () => {
          expect(
             formatDecimal(
                Decimal('1000000000000000000000000000000000000000000000000000000000000000000'),
+               (s) => s,
             ),
          ).toBe('1.000UVg');
       });
@@ -138,6 +164,7 @@ describe('numberMgt', () => {
          expect(
             formatDecimal(
                Decimal('1000000000000000000000000000000000000000000000000000000000000000000000'),
+               (s) => s,
             ),
          ).toBe('1.000DVg');
       });
@@ -145,6 +172,7 @@ describe('numberMgt', () => {
          expect(
             formatDecimal(
                Decimal('1000000000000000000000000000000000000000000000000000000000000000000000000'),
+               (s) => s,
             ),
          ).toBe('1.000TVg');
       });
@@ -154,6 +182,7 @@ describe('numberMgt', () => {
                Decimal(
                   '1000000000000000000000000000000000000000000000000000000000000000000000000000',
                ),
+               (s) => s,
             ),
          ).toBe('1.000QaVg');
       });
@@ -163,6 +192,7 @@ describe('numberMgt', () => {
                Decimal(
                   '1000000000000000000000000000000000000000000000000000000000000000000000000000000',
                ),
+               (s) => s,
             ),
          ).toBe('1.000QiVg');
       });
@@ -172,6 +202,7 @@ describe('numberMgt', () => {
                Decimal(
                   '1000000000000000000000000000000000000000000000000000000000000000000000000000000000',
                ),
+               (s) => s,
             ),
          ).toBe('1.000SxVg');
       });
@@ -181,6 +212,7 @@ describe('numberMgt', () => {
                Decimal(
                   '1000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
                ),
+               (s) => s,
             ),
          ).toBe('1.000SpVg');
       });
@@ -190,6 +222,7 @@ describe('numberMgt', () => {
                Decimal(
                   '1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
                ),
+               (s) => s,
             ),
          ).toBe('1.000OcVg');
       });
@@ -199,6 +232,7 @@ describe('numberMgt', () => {
                Decimal(
                   '1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
                ),
+               (s) => s,
             ),
          ).toBe('1.000NoVg');
       });
@@ -208,6 +242,7 @@ describe('numberMgt', () => {
                Decimal(
                   '1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
                ),
+               (s) => s,
             ),
          ).toBe('1.000Tg');
       });
@@ -217,6 +252,7 @@ describe('numberMgt', () => {
                Decimal(
                   '1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
                ),
+               (s) => s,
             ),
          ).toBe('1.000UTg');
       });
@@ -226,15 +262,16 @@ describe('numberMgt', () => {
                Decimal(
                   '1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
                ),
+               (s) => s,
             ),
          ).toBe('1.000DTg');
       });
 
       it('should handle edge cases at scale boundaries', () => {
-         expect(formatDecimal(Decimal('99999'))).toBe('99999');
-         expect(formatDecimal(Decimal('100000'))).toBe('100.0K');
-         expect(formatDecimal(Decimal('999999'))).toBe('999.9K');
-         expect(formatDecimal(Decimal('1000000'))).toBe('1.00M');
+         expect(formatDecimal(Decimal('99999'), (s) => s)).toBe('99999');
+         expect(formatDecimal(Decimal('100000'), (s) => s)).toBe('100.0K');
+         expect(formatDecimal(Decimal('999999'), (s) => s)).toBe('999.9K');
+         expect(formatDecimal(Decimal('1000000'), (s) => s)).toBe('1.00M');
       });
 
       it('should handle very large numbers beyond defined scales', () => {
@@ -245,32 +282,32 @@ describe('numberMgt', () => {
       });
 
       it('should maintain precision according to scale rules', () => {
-         expect(formatDecimal(Decimal('123456'))).toBe('123.4K');
-         expect(formatDecimal(Decimal('1234567'))).toBe('1.23M');
-         expect(formatDecimal(Decimal('1234567890'))).toBe('1.23B');
-         expect(formatDecimal(Decimal('1234567890123'))).toBe('1.234T');
+         expect(formatDecimal(Decimal('123456'), (s) => s)).toBe('123.4K');
+         expect(formatDecimal(Decimal('1234567'), (s) => s)).toBe('1.23M');
+         expect(formatDecimal(Decimal('1234567890'), (s) => s)).toBe('1.23B');
+         expect(formatDecimal(Decimal('1234567890123'), (s) => s)).toBe('1.234T');
       });
 
       it('should handle numbers with trailing zeros correctly', () => {
-         expect(formatDecimal(Decimal('100000'))).toBe('100.0K');
-         expect(formatDecimal(Decimal('1000000'))).toBe('1.00M');
-         expect(formatDecimal(Decimal('1000000000'))).toBe('1.00B');
-         expect(formatDecimal(Decimal('1000000000000'))).toBe('1.000T');
+         expect(formatDecimal(Decimal('100000'), (s) => s)).toBe('100.0K');
+         expect(formatDecimal(Decimal('1000000'), (s) => s)).toBe('1.00M');
+         expect(formatDecimal(Decimal('1000000000'), (s) => s)).toBe('1.00B');
+         expect(formatDecimal(Decimal('1000000000000'), (s) => s)).toBe('1.000T');
       });
 
       // Edge cases
       it('should handle exact boundary values', () => {
          // K boundary
-         expect(formatDecimal(Decimal('999999'))).toBe('999.9K');
-         expect(formatDecimal(Decimal('1000000'))).toBe('1.00M');
+         expect(formatDecimal(Decimal('999999'), (s) => s)).toBe('999.9K');
+         expect(formatDecimal(Decimal('1000000'), (s) => s)).toBe('1.00M');
 
          // M boundary
-         expect(formatDecimal(Decimal('999999999'))).toBe('999.99M');
-         expect(formatDecimal(Decimal('1000000000'))).toBe('1.00B');
+         expect(formatDecimal(Decimal('999999999'), (s) => s)).toBe('999.99M');
+         expect(formatDecimal(Decimal('1000000000'), (s) => s)).toBe('1.00B');
 
          // B boundary
-         expect(formatDecimal(Decimal('999999999999'))).toBe('999.99B');
-         expect(formatDecimal(Decimal('1000000000000'))).toBe('1.000T');
+         expect(formatDecimal(Decimal('999999999999'), (s) => s)).toBe('999.99B');
+         expect(formatDecimal(Decimal('1000000000000'), (s) => s)).toBe('1.000T');
       });
 
       it('should handle numbers with many trailing zeros in scientific notation', () => {
@@ -289,52 +326,56 @@ describe('numberMgt', () => {
          // Just below DTg max (10^102)
          const justBelowThreshold = 10n ** 102n - 1n;
 
-         expect(formatDecimal(Decimal(justBelowThreshold.toString()))).toBe('999.999DTg');
+         expect(formatDecimal(Decimal(justBelowThreshold.toString()), (s) => s)).toBe('999.999DTg');
       });
 
       it('should handle numbers exactly at the scientific notation threshold', () => {
          // Exactly at DTg max (10^102)
          const exactlyAtThreshold = 10n ** 102n;
 
-         expect(formatDecimal(Decimal(exactlyAtThreshold.toString()))).toBe('1.00e+102');
+         expect(formatDecimal(Decimal(exactlyAtThreshold.toString()), (s) => s)).toBe('1.00e+102');
       });
 
       it('should handle numbers just above the scientific notation threshold', () => {
          // Just above DTg max (10^102)
          const justAboveThreshold = 10n ** 102n + 1n;
 
-         expect(formatDecimal(Decimal(justAboveThreshold.toString()))).toBe('1.00e+102');
+         expect(formatDecimal(Decimal(justAboveThreshold.toString()), (s) => s)).toBe('1.00e+102');
       });
 
       it('should handle single digit numbers in each scale', () => {
-         expect(formatDecimal(Decimal('100000'))).toBe('100.0K');
-         expect(formatDecimal(Decimal('1000000'))).toBe('1.00M');
-         expect(formatDecimal(Decimal('1000000000'))).toBe('1.00B');
-         expect(formatDecimal(Decimal('1000000000000'))).toBe('1.000T');
+         expect(formatDecimal(Decimal('100000'), (s) => s)).toBe('100.0K');
+         expect(formatDecimal(Decimal('1000000'), (s) => s)).toBe('1.00M');
+         expect(formatDecimal(Decimal('1000000000'), (s) => s)).toBe('1.00B');
+         expect(formatDecimal(Decimal('1000000000000'), (s) => s)).toBe('1.000T');
       });
 
       it('should handle maximum values in each scale', () => {
-         expect(formatDecimal(Decimal('999999'))).toBe('999.9K');
-         expect(formatDecimal(Decimal('999999999'))).toBe('999.99M');
-         expect(formatDecimal(Decimal('999999999999'))).toBe('999.99B');
-         expect(formatDecimal(Decimal('999999999999999'))).toBe('999.999T');
+         expect(formatDecimal(Decimal('999999'), (s) => s)).toBe('999.9K');
+         expect(formatDecimal(Decimal('999999999'), (s) => s)).toBe('999.99M');
+         expect(formatDecimal(Decimal('999999999999'), (s) => s)).toBe('999.99B');
+         expect(formatDecimal(Decimal('999999999999999'), (s) => s)).toBe('999.999T');
       });
 
       it('should handle numbers with all zeros except first digit', () => {
-         expect(formatDecimal(Decimal('100000'))).toBe('100.0K');
-         expect(formatDecimal(Decimal('1000000'))).toBe('1.00M');
-         expect(formatDecimal(Decimal('1000000000'))).toBe('1.00B');
-         expect(formatDecimal(Decimal('1000000000000'))).toBe('1.000T');
+         expect(formatDecimal(Decimal('100000'), (s) => s)).toBe('100.0K');
+         expect(formatDecimal(Decimal('1000000'), (s) => s)).toBe('1.00M');
+         expect(formatDecimal(Decimal('1000000000'), (s) => s)).toBe('1.00B');
+         expect(formatDecimal(Decimal('1000000000000'), (s) => s)).toBe('1.000T');
       });
 
       it('should handle numbers with mixed digits in scientific notation', () => {
-         expect(formatDecimal(Decimal('123456').mul(Decimal('10').pow(200)))).toBe('1.23e+205');
-         expect(formatDecimal(Decimal('987654').mul(Decimal('10').pow(500)))).toBe('9.87e+505');
+         expect(formatDecimal(Decimal('123456').mul(Decimal('10').pow(200)), (s) => s)).toBe(
+            '1.23e+205',
+         );
+         expect(formatDecimal(Decimal('987654').mul(Decimal('10').pow(500)), (s) => s)).toBe(
+            '9.87e+505',
+         );
       });
 
       it('should handle extremely large numbers in scientific notation', () => {
-         expect(formatDecimal(Decimal('10').pow(10000))).toBe('1.00e+10000');
-         expect(formatDecimal(Decimal('10').pow(100000))).toBe('1.00e+100000');
+         expect(formatDecimal(Decimal('10').pow(10000), (s) => s)).toBe('1.00e+10000');
+         expect(formatDecimal(Decimal('10').pow(100000), (s) => s)).toBe('1.00e+100000');
       });
    });
 });

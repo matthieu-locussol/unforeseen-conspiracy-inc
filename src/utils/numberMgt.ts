@@ -1,6 +1,9 @@
 import { Decimal } from 'decimal.js';
 
-export const formatDecimal = (value: Decimal): string => {
+export const formatDecimal = (
+   value: Decimal,
+   suffixWrapper = (suffix: string) => ` <b class="text-emerald-200">${suffix}</b>`,
+): string => {
    if (value.equals(0)) {
       return '0.0';
    }
@@ -232,7 +235,7 @@ export const formatDecimal = (value: Decimal): string => {
    const roundedDecimal = decimalValue.toDecimalPlaces(0, Decimal.ROUND_DOWN);
    const decimalStr = roundedDecimal.toString().padStart(selectedScale.precision, '0');
 
-   const result = `${integerPart}.${decimalStr} <b class="text-emerald-200">${selectedScale.suffix}</b>`;
+   const result = `${integerPart}.${decimalStr}${suffixWrapper(selectedScale.suffix)}`;
 
    return isNegative ? `-${result}` : result;
 };
