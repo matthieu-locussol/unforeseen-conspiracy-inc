@@ -429,6 +429,114 @@ repositioning algorithm. They are watching."_
 
 ---
 
+## 5. Denver Airport Anomaly Scanner
+
+### Description
+
+_"The 'Denver International Airport' is a monument to their hubris. The sheep see a terminal; we see
+a multi-layered bunker complex. The murals are not art; they are prophecies. The demonic horse
+statue? A sentinel. We're not looking for lost luggage. We're scanning for the Lizard Lairs
+beneath."_
+
+### Game Attributes
+
+```typescript
+{
+   id: 'denver_airport',
+   name: 'Denver Airport Anomaly Scanner',
+   description: 'Something weird is under there. Luggage? Or Lizard Lairs?',
+   categories: ['government', 'organization', 'hidden-worlds'],
+   baseCost: {
+      proofs: new Decimal(2800),
+      followers: new Decimal(0),
+   },
+   costMultiplier: {
+      proofs: new Decimal(1.12),
+      followers: new Decimal(0),
+   },
+   baseProduction: {
+      proofs: new Decimal(20),
+      followers: new Decimal(0.1),
+      paranoia: new Decimal(0),
+   },
+   productionMultiplier: {
+      proofs: new Decimal(20),
+      followers: new Decimal(0.1),
+      paranoia: new Decimal(0),
+   },
+   conditions: {
+      proofs: new Decimal(6000),
+      followers: new Decimal(0),
+      paranoia: new Decimal(0),
+      generators: [],
+   },
+   unlocked: false,
+   upgradesIds: [
+      'denver_airport_gargoyle_glyphs',
+      'denver_airport_blucifers_signature',
+      'denver_airport_nwo_records',
+      'denver_airport_murals_deep_dive',
+      'denver_airport_subterranean_mapping',
+      'denver_airport_lizard_translator',
+      'denver_airport_frequency_jammer',
+      'denver_airport_employee_interviews',
+      'denver_airport_geiger_counter',
+      'denver_airport_runway_analysis',
+      'denver_airport_quantum_scanner',
+      'denver_airport_queen_deed',
+   ],
+}
+```
+
+### Balance Reasoning
+
+-  **Base Cost**: 2800 proofs - requires ~15-20 minutes of play
+-  **Cost Multiplier**: 1.12x - continued moderate scaling
+-  **Base Production**: 20 proofs/sec & 0.1 followers/sec - Introduces the 'followers' resource
+-  **Unlock Conditions**: 6000 proofs - achievable with the previous four generators
+-  **Categories**: Introduces 'hidden-worlds' to broaden conspiracy themes
+
+### Upgrades (12 total)
+
+1. **Gargoyle Glyphs Analysis** - _"The gargoyles perched in the terminal aren't just decorative.
+   Their positions correspond to runic markers, detailing the entrances to the lower levels. It's a
+   map for those who can read it."_
+2. **Blucifer's Energy Signature** - _"That horse statue, 'Blucifer,' isn't just terrifying public
+   art. It emits a low-frequency field to pacify travelers. We need to analyze its energy signature
+   to find a way to counteract it."_
+3. **New World Airport Commission Records** - _"The capstone mentions the 'New World Airport
+   Commission.' No such organization officially exists. We need to dig into suppressed records to
+   expose the signatories and their true allegiance."_
+4. **Murals Deep Dive** - _"The murals aren't just bizarre paintings; they're a pictographic
+   timeline of the elite's plans for global depopulation and a one-world government. Every panel is
+   a confession."_
+5. **Subterranean Tunnels Mapping** - _"The official story is a 'failed baggage system.' A ludicrous
+   cover for a sprawling underground city. We can use seismic sensors to map the network of tunnels
+   they're hiding."_
+6. **Lizard People Language Translator** - _"Reports from maintenance workers speak of strange,
+   chittering sounds from deep underground. It's not faulty wiring. We need to develop a translator
+   for their reptilian language."_
+7. **Unusual Frequency Jammer** - _"The entire airport is bathed in specific frequencies to induce
+   compliance. A custom jammer will not only block these signals but also reveal the hidden
+   communications layered on top of them."_
+8. **Ex-Employee Interviews** - _"Construction workers and ex-employees were sworn to secrecy. By
+   offering them anonymity and protection, we can piece together firsthand accounts of what they
+   were forced to build down there."_
+9. **Geiger Counter Readings** - _"The high levels of background radiation aren't from 'granite
+   countertops'. They're a byproduct of the exotic power sources used in the subterranean levels. A
+   Geiger counter will tell the real story."_
+10.   **Swastika-shaped Runway Analysis** - _"The runway layout is not an accident of civil
+      engineering. It's a symbol, visible from above, marking the location as a site of power for a
+      very specific, very old organization."_
+11.   **Quantum Luggage Scanner** - _"Repurpose a standard luggage scanner with quantum tunneling
+      technology. It won't just see what's in the bags; it'll phase through the floor to see what's
+      moving in the 'baggage tunnels' below."_
+12.   **The Queen of England's Property Deed** - _"Persistent rumors claim the Queen of England
+      secretly owns property at DIA through shell corporations. Finding that deed would connect the
+      British Crown to the coming New World Order."_
+
+---
+
 ## Progression Timeline
 
 ### Optimal Play Scenario (Active Clicking + Generator Purchases)
@@ -439,6 +547,7 @@ repositioning algorithm. They are watching."_
 4. **240-600 seconds**: Build up to 300 proofs, unlock Michael Jackson
 5. **600-1200 seconds**: Generate 1000 proofs, unlock Flat Earth
 6. **1200-2400 seconds**: Generate 2500 proofs, unlock Suspicious Pigeon Watch
+7. **2400-3600 seconds**: Generate 6000 proofs, unlock Denver Airport Anomaly Scanner
 
 ### Idle Play Scenario (Minimal Clicking)
 
@@ -447,12 +556,13 @@ repositioning algorithm. They are watching."_
 3. **1200-2400 seconds**: Unlock Michael Jackson through passive generation
 4. **2400-4800 seconds**: Unlock Flat Earth through passive generation
 5. **4800-9600 seconds**: Unlock Suspicious Pigeon Watch through passive generation
+6. **9600-14400 seconds**: Unlock Denver Airport Anomaly Scanner through passive generation
 
 ## Balance Principles Applied
 
 ### Cost Scaling
 
--  **1.08x → 1.09x → 1.1x → 1.11x**: Very gentle scaling for long-term progression
+-  **1.08x → 1.09x → 1.1x → 1.11x → 1.12x**: Very gentle scaling for long-term progression
 -  **No followers cost**: Introduced much later in the game
 
 ### Production Scaling
@@ -463,17 +573,18 @@ repositioning algorithm. They are watching."_
 
 ### Unlock Conditions
 
--  **Proofs**: 0 → 300 → 1000 → 2500 (2.5x scaling)
+-  **Proofs**: 0 → 300 → 1000 → 2500 → 6000 (2.5x scaling)
 -  **No followers/paranoia requirements**: Prevents early-game complexity
 -  **Simple progression**: Focus on proofs only for early game
 
 ### Categories Distribution
 
--  **Government**: 4/4 generators (common conspiracy theme)
--  **Media-manipulation**: 2/4 generators (information control)
--  **Technology**: 2/4 generators (scientific skepticism)
--  **Organization**: 1/4 generators (secret societies)
--  **Surveillance**: 1/4 generators (new category introduction)
+-  **Government**: 5/5 generators (common conspiracy theme)
+-  **Media-manipulation**: 2/5 generators (information control)
+-  **Technology**: 2/5 generators (scientific skepticism)
+-  **Organization**: 2/5 generators (secret societies)
+-  **Surveillance**: 1/5 generators (new category introduction)
+-  **Hidden-worlds**: 1/5 generators (new category introduction)
 
 ### Upgrade Design Philosophy
 
