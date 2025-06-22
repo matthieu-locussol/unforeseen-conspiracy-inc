@@ -1,11 +1,13 @@
 import type { ClickData } from '../types/clicker';
 import type { SerializedGameData } from '../types/game';
 import type { GeneratorId, GeneratorProduction } from '../types/generators';
+import type { ResourceId } from '../types/resources';
 import type { Conditions, UpgradeId } from '../types/upgrades';
 
 import Decimal from 'decimal.js';
 import { makeAutoObservable } from 'mobx';
 
+import { CLICK_SCALING_COEFFICIENT } from '../data/constants';
 import { GENERATORS } from '../data/generators';
 import { UPGRADES } from '../data/upgrades';
 import { _assertTrue } from '../utils/_assertMgt';
@@ -138,6 +140,21 @@ export class GameStore {
          followers: followersMultiplier,
          paranoia: paranoiaMultiplier,
       };
+   }
+
+   public getClickScalingValue(resource: ResourceId): Decimal {
+      const generatorsProduction = this.totalProduction[resource];
+
+      if (generatorsProduction.lessThan(1)) {
+         return new Decimal(1);
+      }
+
+      const realCoefficient = CLICK_SCALING_COEFFICIENT.mul(
+         new Decimal(100).sub(generatorsProduction.ln()),
+      );
+      const cappedCoefficient = Decimal.max(realCoefficient, new Decimal(0.001));
+
+      return generatorsProduction.mul(cappedCoefficient).toDecimalPlaces(1);
    }
 
    /**

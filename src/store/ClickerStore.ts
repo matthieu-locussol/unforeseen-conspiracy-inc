@@ -40,7 +40,7 @@ export class ClickerStore {
    public click(): ClickData {
       this.updateCombo();
 
-      let value = this.getEffectiveClickValue;
+      let value = this.getEffectiveClickValue.add(this._store.getClickScalingValue('proofs'));
 
       const effectiveCriticalChance = this._store.getClickCriticalChance();
       const effectiveCriticalMultiplier = this._store.getClickCriticalMultiplier();
