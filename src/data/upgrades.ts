@@ -322,7 +322,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'michael_jackson' },
          },
       ],
@@ -343,9 +343,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(21948), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'production_flat',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(1.5),
             target: { type: 'generator', id: 'michael_jackson' },
          },
       ],
@@ -368,7 +368,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.15),
             target: { type: 'generator', id: 'michael_jackson' },
          },
       ],
@@ -391,13 +391,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.15),
+            value: new Decimal(0.5),
             target: { type: 'generator', id: 'michael_jackson' },
          },
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.01),
+            value: new Decimal(0.25),
             target: { type: 'category', id: 'government' },
          },
       ],
@@ -418,9 +418,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(3500780), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'speed',
             resource: 'proofs',
-            value: new Decimal(0.2),
+            value: new Decimal(0.75),
             target: { type: 'generator', id: 'michael_jackson' },
          },
       ],
@@ -443,13 +443,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.2),
+            value: new Decimal(0.75),
             target: { type: 'generator', id: 'michael_jackson' },
          },
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.01),
+            value: new Decimal(0.25),
             target: { type: 'category', id: 'media-manipulation' },
          },
       ],
@@ -470,9 +470,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(102976566), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'double_chance',
             resource: 'proofs',
-            value: new Decimal(0.25),
+            value: new Decimal(0.08),
             target: { type: 'generator', id: 'michael_jackson' },
          },
       ],
@@ -495,7 +495,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.25),
+            value: new Decimal(1.0),
             target: { type: 'generator', id: 'michael_jackson' },
          },
       ],
@@ -518,14 +518,14 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.3),
             target: { type: 'generator', id: 'michael_jackson' },
          },
          {
-            type: 'production_multiplier',
+            type: 'offline_progress',
             resource: 'proofs',
-            value: new Decimal(0.02),
-            target: { type: 'category', id: 'government' },
+            value: new Decimal(0.1),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -547,7 +547,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'idle_bonus',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.1),
             target: { type: 'global' },
          },
       ],
@@ -570,7 +570,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.015),
+            value: new Decimal(0.25),
             target: { type: 'all_generators' },
          },
       ],
@@ -593,19 +593,19 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.5),
+            value: new Decimal(1.25),
             target: { type: 'generator', id: 'michael_jackson' },
          },
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.025),
+            value: new Decimal(0.5),
             target: { type: 'all_generators' },
          },
          {
             type: 'click_critical_magnitude',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(1.0),
             target: { type: 'global' },
          },
       ],
@@ -629,7 +629,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'flat_earth' },
          },
       ],
@@ -650,9 +650,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(109739), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'production_flat',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(3.0),
             target: { type: 'generator', id: 'flat_earth' },
          },
       ],
@@ -675,7 +675,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.15),
             target: { type: 'generator', id: 'flat_earth' },
          },
       ],
@@ -698,13 +698,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.15),
+            value: new Decimal(0.5),
             target: { type: 'generator', id: 'flat_earth' },
          },
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.02),
+            value: new Decimal(0.25),
             target: { type: 'category', id: 'organization' },
          },
       ],
@@ -725,9 +725,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(17503899), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'speed',
             resource: 'proofs',
-            value: new Decimal(0.2),
+            value: new Decimal(1.0),
             target: { type: 'generator', id: 'flat_earth' },
          },
       ],
@@ -750,14 +750,14 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.2),
+            value: new Decimal(0.75),
             target: { type: 'generator', id: 'flat_earth' },
          },
          {
-            type: 'cost_reduction',
+            type: 'click_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.02),
-            target: { type: 'all_generators' },
+            value: new Decimal(0.75),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -777,9 +777,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(514882830), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'double_chance',
             resource: 'proofs',
-            value: new Decimal(0.25),
+            value: new Decimal(0.1),
             target: { type: 'generator', id: 'flat_earth' },
          },
       ],
@@ -802,13 +802,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.25),
+            value: new Decimal(1.0),
             target: { type: 'generator', id: 'flat_earth' },
          },
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.02),
+            value: new Decimal(0.25),
             target: { type: 'category', id: 'media-manipulation' },
          },
       ],
@@ -831,7 +831,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.3),
+            value: new Decimal(1.25),
             target: { type: 'generator', id: 'flat_earth' },
          },
       ],
@@ -854,8 +854,14 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.4),
             target: { type: 'generator', id: 'flat_earth' },
+         },
+         {
+            type: 'offline_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -877,7 +883,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.02),
+            value: new Decimal(0.25),
             target: { type: 'all_generators' },
          },
       ],
@@ -900,19 +906,19 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.5),
+            value: new Decimal(1.25),
             target: { type: 'generator', id: 'flat_earth' },
          },
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.03),
+            value: new Decimal(0.5),
             target: { type: 'all_generators' },
          },
          {
-            type: 'click_multiplier',
+            type: 'click_critical_chance',
             resource: 'proofs',
-            value: new Decimal(0.2),
+            value: new Decimal(0.12),
             target: { type: 'global' },
          },
       ],
@@ -936,7 +942,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'suspicious_pigeons' },
          },
       ],
@@ -957,9 +963,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(373113), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'production_flat',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(8.0),
             target: { type: 'generator', id: 'suspicious_pigeons' },
          },
       ],
@@ -982,7 +988,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.15),
             target: { type: 'generator', id: 'suspicious_pigeons' },
          },
       ],
@@ -1005,13 +1011,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.15),
+            value: new Decimal(0.5),
             target: { type: 'generator', id: 'suspicious_pigeons' },
          },
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.02),
+            value: new Decimal(0.25),
             target: { type: 'category', id: 'surveillance' },
          },
       ],
@@ -1032,9 +1038,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(59512856), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'speed',
             resource: 'proofs',
-            value: new Decimal(0.2),
+            value: new Decimal(1.5),
             target: { type: 'generator', id: 'suspicious_pigeons' },
          },
       ],
@@ -1057,13 +1063,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.2),
+            value: new Decimal(0.75),
             target: { type: 'generator', id: 'suspicious_pigeons' },
          },
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.03),
+            value: new Decimal(0.25),
             target: { type: 'category', id: 'technology' },
          },
       ],
@@ -1084,9 +1090,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(1750593641), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'double_chance',
             resource: 'proofs',
-            value: new Decimal(0.25),
+            value: new Decimal(0.1),
             target: { type: 'generator', id: 'suspicious_pigeons' },
          },
       ],
@@ -1109,14 +1115,14 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.25),
+            value: new Decimal(1.0),
             target: { type: 'generator', id: 'suspicious_pigeons' },
          },
          {
-            type: 'cost_reduction',
+            type: 'click_value',
             resource: 'proofs',
-            value: new Decimal(0.03),
-            target: { type: 'category', id: 'government' },
+            value: new Decimal(50000),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -1138,7 +1144,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.3),
+            value: new Decimal(1.25),
             target: { type: 'generator', id: 'suspicious_pigeons' },
          },
       ],
@@ -1161,8 +1167,14 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.4),
             target: { type: 'generator', id: 'suspicious_pigeons' },
+         },
+         {
+            type: 'research_speed',
+            resource: 'proofs',
+            value: new Decimal(0.5),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -1184,7 +1196,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.025),
+            value: new Decimal(0.25),
             target: { type: 'all_generators' },
          },
       ],
@@ -1207,19 +1219,19 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.5),
+            value: new Decimal(1.25),
             target: { type: 'generator', id: 'suspicious_pigeons' },
          },
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.035),
+            value: new Decimal(0.5),
             target: { type: 'all_generators' },
          },
          {
-            type: 'click_critical_chance',
+            type: 'click_critical_magnitude',
             resource: 'proofs',
-            value: new Decimal(0.01),
+            value: new Decimal(1.5),
             target: { type: 'global' },
          },
       ],
@@ -1243,7 +1255,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'denver_airport' },
          },
       ],
@@ -1264,9 +1276,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(1426189), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'production_flat',
             resource: 'followers',
-            value: new Decimal(0.1),
+            value: new Decimal(0.4),
             target: { type: 'generator', id: 'denver_airport' },
          },
       ],
@@ -1289,7 +1301,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.15),
             target: { type: 'generator', id: 'denver_airport' },
          },
       ],
@@ -1312,13 +1324,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.15),
+            value: new Decimal(0.5),
             target: { type: 'generator', id: 'denver_airport' },
          },
          {
             type: 'production_multiplier',
             resource: 'followers',
-            value: new Decimal(0.15),
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'denver_airport' },
          },
       ],
@@ -1341,7 +1353,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.02),
+            value: new Decimal(0.25),
             target: { type: 'category', id: 'hidden-worlds' },
          },
       ],
@@ -1550,7 +1562,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'finnish_non_existence' },
          },
       ],
@@ -1571,9 +1583,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(6126786), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.1),
+            type: 'production_flat',
+            resource: 'proofs',
+            value: new Decimal(15.0),
             target: { type: 'generator', id: 'finnish_non_existence' },
          },
       ],
@@ -1596,7 +1608,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.15),
             target: { type: 'generator', id: 'finnish_non_existence' },
          },
       ],
@@ -1619,13 +1631,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.15),
+            value: new Decimal(0.5),
             target: { type: 'generator', id: 'finnish_non_existence' },
          },
          {
             type: 'production_multiplier',
-            resource: 'paranoia',
-            value: new Decimal(0.1),
+            resource: 'followers',
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'finnish_non_existence' },
          },
       ],
@@ -1648,8 +1660,8 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.03),
-            target: { type: 'category', id: 'media-manipulation' },
+            value: new Decimal(0.25),
+            target: { type: 'category', id: 'government' },
          },
       ],
       conditions: {
@@ -1669,15 +1681,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(5300755584), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'speed',
             resource: 'proofs',
-            value: new Decimal(0.2),
-            target: { type: 'generator', id: 'finnish_non_existence' },
-         },
-         {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.2),
+            value: new Decimal(2.0),
             target: { type: 'generator', id: 'finnish_non_existence' },
          },
       ],
@@ -1698,10 +1704,10 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(28750884898), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.03),
-            target: { type: 'all_generators' },
+            type: 'double_chance',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'finnish_non_existence' },
          },
       ],
       conditions: {
@@ -1721,16 +1727,16 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(155931652702), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'cost_reduction',
-            resource: 'proofs',
-            value: new Decimal(0.05),
-            target: { type: 'category', id: 'organization' },
-         },
-         {
             type: 'production_multiplier',
             resource: 'proofs',
             value: new Decimal(0.25),
-            target: { type: 'generator', id: 'finnish_non_existence' },
+            target: { type: 'category', id: 'media-manipulation' },
+         },
+         {
+            type: 'click_multiplier',
+            resource: 'proofs',
+            value: new Decimal(1.0),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -1751,8 +1757,8 @@ export const UPGRADES: Upgrade[] = [
       boosts: [
          {
             type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.25),
+            resource: 'proofs',
+            value: new Decimal(0.75),
             target: { type: 'generator', id: 'finnish_non_existence' },
          },
       ],
@@ -1775,8 +1781,14 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.3),
             target: { type: 'generator', id: 'finnish_non_existence' },
+         },
+         {
+            type: 'click_critical_chance',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -1798,7 +1810,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.035),
+            value: new Decimal(0.25),
             target: { type: 'all_generators' },
          },
       ],
@@ -1821,19 +1833,19 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.5),
+            value: new Decimal(1.25),
             target: { type: 'generator', id: 'finnish_non_existence' },
          },
          {
             type: 'production_multiplier',
             resource: 'followers',
             value: new Decimal(0.5),
-            target: { type: 'generator', id: 'finnish_non_existence' },
+            target: { type: 'all_generators' },
          },
          {
-            type: 'idle_bonus',
+            type: 'click_critical_magnitude',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(2.0),
             target: { type: 'global' },
          },
       ],
@@ -1857,7 +1869,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'great_reset_agenda' },
          },
       ],
@@ -1878,9 +1890,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(27351722), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.1),
+            type: 'production_flat',
+            resource: 'proofs',
+            value: new Decimal(35.0),
             target: { type: 'generator', id: 'great_reset_agenda' },
          },
       ],
@@ -1903,7 +1915,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.15),
             target: { type: 'generator', id: 'great_reset_agenda' },
          },
       ],
@@ -1926,13 +1938,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.15),
+            value: new Decimal(0.5),
             target: { type: 'generator', id: 'great_reset_agenda' },
          },
          {
             type: 'production_multiplier',
-            resource: 'paranoia',
-            value: new Decimal(0.15),
+            resource: 'followers',
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'great_reset_agenda' },
          },
       ],
@@ -1955,8 +1967,8 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.04),
-            target: { type: 'category', id: 'government' },
+            value: new Decimal(0.25),
+            target: { type: 'category', id: 'organization' },
          },
       ],
       conditions: {
@@ -1976,15 +1988,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(23664801716), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'speed',
             resource: 'proofs',
-            value: new Decimal(0.2),
-            target: { type: 'generator', id: 'great_reset_agenda' },
-         },
-         {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.2),
+            value: new Decimal(2.5),
             target: { type: 'generator', id: 'great_reset_agenda' },
          },
       ],
@@ -2005,10 +2011,10 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(128352168481), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.035),
-            target: { type: 'all_generators' },
+            type: 'double_chance',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: 'great_reset_agenda' },
          },
       ],
       conditions: {
@@ -2028,16 +2034,16 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(696194917415), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'cost_reduction',
-            resource: 'proofs',
-            value: new Decimal(0.05),
-            target: { type: 'category', id: 'media-manipulation' },
-         },
-         {
             type: 'production_multiplier',
             resource: 'proofs',
             value: new Decimal(0.25),
-            target: { type: 'generator', id: 'great_reset_agenda' },
+            target: { type: 'category', id: 'media-manipulation' },
+         },
+         {
+            type: 'click_value',
+            resource: 'proofs',
+            value: new Decimal(250000),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -2058,8 +2064,8 @@ export const UPGRADES: Upgrade[] = [
       boosts: [
          {
             type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.25),
+            resource: 'proofs',
+            value: new Decimal(0.75),
             target: { type: 'generator', id: 'great_reset_agenda' },
          },
       ],
@@ -2082,8 +2088,14 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.3),
             target: { type: 'generator', id: 'great_reset_agenda' },
+         },
+         {
+            type: 'offline_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -2105,7 +2117,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.04),
+            value: new Decimal(0.25),
             target: { type: 'all_generators' },
          },
       ],
@@ -2128,19 +2140,19 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.5),
+            value: new Decimal(1.25),
             target: { type: 'generator', id: 'great_reset_agenda' },
          },
          {
             type: 'production_multiplier',
             resource: 'followers',
             value: new Decimal(0.5),
-            target: { type: 'generator', id: 'great_reset_agenda' },
+            target: { type: 'all_generators' },
          },
          {
-            type: 'click_value',
+            type: 'research_speed',
             resource: 'proofs',
-            value: new Decimal(10000000),
+            value: new Decimal(0.75),
             target: { type: 'global' },
          },
       ],
@@ -2164,7 +2176,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.25),
             target: { type: 'generator', id: '5g_health_impact' },
          },
       ],
@@ -2185,9 +2197,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(120325977), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.1),
+            type: 'production_flat',
+            resource: 'proofs',
+            value: new Decimal(75.0),
             target: { type: 'generator', id: '5g_health_impact' },
          },
       ],
@@ -2210,7 +2222,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.15),
             target: { type: 'generator', id: '5g_health_impact' },
          },
       ],
@@ -2233,13 +2245,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.15),
+            value: new Decimal(0.5),
             target: { type: 'generator', id: '5g_health_impact' },
          },
          {
             type: 'production_multiplier',
-            resource: 'paranoia',
-            value: new Decimal(0.15),
+            resource: 'followers',
+            value: new Decimal(0.25),
             target: { type: 'generator', id: '5g_health_impact' },
          },
       ],
@@ -2262,8 +2274,8 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.03),
-            target: { type: 'category', id: 'health' },
+            value: new Decimal(0.25),
+            target: { type: 'category', id: 'technology' },
          },
       ],
       conditions: {
@@ -2283,15 +2295,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(104085607556), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'speed',
             resource: 'proofs',
-            value: new Decimal(0.2),
-            target: { type: 'generator', id: '5g_health_impact' },
-         },
-         {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.2),
+            value: new Decimal(3.0),
             target: { type: 'generator', id: '5g_health_impact' },
          },
       ],
@@ -2312,10 +2318,10 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(564539542549), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.04),
-            target: { type: 'all_generators' },
+            type: 'double_chance',
+            resource: 'proofs',
+            value: new Decimal(0.1),
+            target: { type: 'generator', id: '5g_health_impact' },
          },
       ],
       conditions: {
@@ -2335,16 +2341,16 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(3061655610664), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'cost_reduction',
-            resource: 'proofs',
-            value: new Decimal(0.05),
-            target: { type: 'category', id: 'technology' },
-         },
-         {
             type: 'production_multiplier',
             resource: 'proofs',
             value: new Decimal(0.25),
-            target: { type: 'generator', id: '5g_health_impact' },
+            target: { type: 'category', id: 'health' },
+         },
+         {
+            type: 'click_multiplier',
+            resource: 'proofs',
+            value: new Decimal(1.5),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -2365,8 +2371,8 @@ export const UPGRADES: Upgrade[] = [
       boosts: [
          {
             type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.25),
+            resource: 'proofs',
+            value: new Decimal(0.75),
             target: { type: 'generator', id: '5g_health_impact' },
          },
       ],
@@ -2389,8 +2395,14 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.3),
             target: { type: 'generator', id: '5g_health_impact' },
+         },
+         {
+            type: 'click_critical_chance',
+            resource: 'proofs',
+            value: new Decimal(0.2),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -2412,7 +2424,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.045),
+            value: new Decimal(0.25),
             target: { type: 'all_generators' },
          },
       ],
@@ -2435,19 +2447,19 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.5),
+            value: new Decimal(1.25),
             target: { type: 'generator', id: '5g_health_impact' },
          },
          {
             type: 'production_multiplier',
             resource: 'followers',
             value: new Decimal(0.5),
-            target: { type: 'generator', id: '5g_health_impact' },
+            target: { type: 'all_generators' },
          },
          {
-            type: 'click_critical_chance',
+            type: 'click_critical_magnitude',
             resource: 'proofs',
-            value: new Decimal(0.01),
+            value: new Decimal(2.5),
             target: { type: 'global' },
          },
       ],
@@ -2471,7 +2483,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'corporate_logo_symbology' },
          },
       ],
@@ -2492,9 +2504,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(546936259), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.1),
+            type: 'production_flat',
+            resource: 'proofs',
+            value: new Decimal(170.0),
             target: { type: 'generator', id: 'corporate_logo_symbology' },
          },
       ],
@@ -2517,7 +2529,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.15),
             target: { type: 'generator', id: 'corporate_logo_symbology' },
          },
       ],
@@ -2540,13 +2552,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.15),
+            value: new Decimal(0.5),
             target: { type: 'generator', id: 'corporate_logo_symbology' },
          },
          {
             type: 'production_multiplier',
-            resource: 'paranoia',
-            value: new Decimal(0.15),
+            resource: 'followers',
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'corporate_logo_symbology' },
          },
       ],
@@ -2569,8 +2581,8 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.03),
-            target: { type: 'category', id: 'hidden-worlds' },
+            value: new Decimal(0.25),
+            target: { type: 'category', id: 'media-manipulation' },
          },
       ],
       conditions: {
@@ -2590,15 +2602,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(473199792040), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'speed',
             resource: 'proofs',
-            value: new Decimal(0.2),
-            target: { type: 'generator', id: 'corporate_logo_symbology' },
-         },
-         {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.2),
+            value: new Decimal(4.0),
             target: { type: 'generator', id: 'corporate_logo_symbology' },
          },
       ],
@@ -2619,10 +2625,10 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(2566543372951), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.045),
-            target: { type: 'all_generators' },
+            type: 'double_chance',
+            resource: 'proofs',
+            value: new Decimal(0.12),
+            target: { type: 'generator', id: 'corporate_logo_symbology' },
          },
       ],
       conditions: {
@@ -2642,16 +2648,16 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(13919934622915), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'cost_reduction',
-            resource: 'proofs',
-            value: new Decimal(0.05),
-            target: { type: 'category', id: 'organization' },
-         },
-         {
             type: 'production_multiplier',
             resource: 'proofs',
             value: new Decimal(0.25),
-            target: { type: 'generator', id: 'corporate_logo_symbology' },
+            target: { type: 'category', id: 'organization' },
+         },
+         {
+            type: 'click_value',
+            resource: 'proofs',
+            value: new Decimal(500000),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -2672,8 +2678,8 @@ export const UPGRADES: Upgrade[] = [
       boosts: [
          {
             type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.25),
+            resource: 'proofs',
+            value: new Decimal(0.75),
             target: { type: 'generator', id: 'corporate_logo_symbology' },
          },
       ],
@@ -2696,8 +2702,14 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.4),
             target: { type: 'generator', id: 'corporate_logo_symbology' },
+         },
+         {
+            type: 'click_critical_chance',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -2719,7 +2731,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.25),
             target: { type: 'all_generators' },
          },
       ],
@@ -2742,19 +2754,19 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.5),
+            value: new Decimal(1.25),
             target: { type: 'generator', id: 'corporate_logo_symbology' },
          },
          {
             type: 'production_multiplier',
             resource: 'followers',
             value: new Decimal(0.5),
-            target: { type: 'generator', id: 'corporate_logo_symbology' },
+            target: { type: 'all_generators' },
          },
          {
-            type: 'click_multiplier',
+            type: 'click_critical_magnitude',
             resource: 'proofs',
-            value: new Decimal(0.25),
+            value: new Decimal(3.0),
             target: { type: 'global' },
          },
       ],
@@ -2778,7 +2790,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'gates_philanthropic_impacts' },
          },
       ],
@@ -2799,9 +2811,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(2516646790), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.1),
+            type: 'production_flat',
+            resource: 'proofs',
+            value: new Decimal(350.0),
             target: { type: 'generator', id: 'gates_philanthropic_impacts' },
          },
       ],
@@ -2824,7 +2836,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.15),
             target: { type: 'generator', id: 'gates_philanthropic_impacts' },
          },
       ],
@@ -2847,13 +2859,13 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.15),
+            value: new Decimal(0.5),
             target: { type: 'generator', id: 'gates_philanthropic_impacts' },
          },
          {
             type: 'production_multiplier',
-            resource: 'paranoia',
-            value: new Decimal(0.15),
+            resource: 'followers',
+            value: new Decimal(0.25),
             target: { type: 'generator', id: 'gates_philanthropic_impacts' },
          },
       ],
@@ -2876,8 +2888,8 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.035),
-            target: { type: 'category', id: 'health' },
+            value: new Decimal(0.25),
+            target: { type: 'category', id: 'government' },
          },
       ],
       conditions: {
@@ -2897,15 +2909,9 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(2177999052674), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
+            type: 'speed',
             resource: 'proofs',
-            value: new Decimal(0.2),
-            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
-         },
-         {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.2),
+            value: new Decimal(5.0),
             target: { type: 'generator', id: 'gates_philanthropic_impacts' },
          },
       ],
@@ -2926,10 +2932,10 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(11811984242689), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.05),
-            target: { type: 'all_generators' },
+            type: 'double_chance',
+            resource: 'proofs',
+            value: new Decimal(0.12),
+            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
          },
       ],
       conditions: {
@@ -2949,16 +2955,16 @@ export const UPGRADES: Upgrade[] = [
       cost: { proofs: new Decimal(64065609470381), followers: new Decimal(0) },
       boosts: [
          {
-            type: 'cost_reduction',
-            resource: 'proofs',
-            value: new Decimal(0.05),
-            target: { type: 'category', id: 'technology' },
-         },
-         {
             type: 'production_multiplier',
             resource: 'proofs',
             value: new Decimal(0.25),
-            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+            target: { type: 'category', id: 'technology' },
+         },
+         {
+            type: 'click_value',
+            resource: 'proofs',
+            value: new Decimal(1000000),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -2979,8 +2985,8 @@ export const UPGRADES: Upgrade[] = [
       boosts: [
          {
             type: 'production_multiplier',
-            resource: 'followers',
-            value: new Decimal(0.25),
+            resource: 'proofs',
+            value: new Decimal(0.75),
             target: { type: 'generator', id: 'gates_philanthropic_impacts' },
          },
       ],
@@ -3003,8 +3009,14 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'cost_reduction',
             resource: 'proofs',
-            value: new Decimal(0.1),
+            value: new Decimal(0.4),
             target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+         },
+         {
+            type: 'offline_progress',
+            resource: 'proofs',
+            value: new Decimal(0.15),
+            target: { type: 'global' },
          },
       ],
       conditions: {
@@ -3026,7 +3038,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.05),
+            value: new Decimal(0.25),
             target: { type: 'all_generators' },
          },
       ],
@@ -3049,19 +3061,19 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_multiplier',
             resource: 'proofs',
-            value: new Decimal(0.5),
+            value: new Decimal(1.25),
             target: { type: 'generator', id: 'gates_philanthropic_impacts' },
          },
          {
             type: 'production_multiplier',
             resource: 'followers',
             value: new Decimal(0.5),
-            target: { type: 'generator', id: 'gates_philanthropic_impacts' },
+            target: { type: 'all_generators' },
          },
          {
-            type: 'click_value',
+            type: 'research_speed',
             resource: 'proofs',
-            value: new Decimal(1000000000),
+            value: new Decimal(1.0),
             target: { type: 'global' },
          },
       ],

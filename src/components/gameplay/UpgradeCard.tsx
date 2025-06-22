@@ -43,6 +43,7 @@ export const UpgradeCard = observer(({ upgrade }: UpgradeCardProps) => {
                      'h-8 w-8 p-0 transition-all duration-300 transform-gpu rounded-sm border-blue-900',
                      'hover:shadow-sm hover:shadow-blue-400/30',
                      isPurchased && 'opacity-30',
+                     !canAfford && 'opacity-30',
                   ])}
                   size="icon"
                   variant="outline"
