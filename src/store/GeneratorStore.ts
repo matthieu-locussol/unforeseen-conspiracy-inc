@@ -100,7 +100,7 @@ export class GeneratorStore {
     * @returns The base production for the specified level
     */
    public getBaseProduction(level: Decimal): GeneratorProduction {
-      if (!this.unlocked || level.eq(0)) {
+      if (!this.unlocked || level.lessThanOrEqualTo(0)) {
          return {
             proofs: new Decimal(0),
             followers: new Decimal(0),
@@ -145,7 +145,7 @@ export class GeneratorStore {
    public getEffectiveProduction(level: Decimal = this.level): GeneratorProduction {
       const baseProduction = this.getBaseProduction(level);
 
-      if (!this.unlocked || level.eq(0)) {
+      if (!this.unlocked || level.lessThanOrEqualTo(0)) {
          return baseProduction;
       }
 
@@ -236,7 +236,7 @@ export class GeneratorStore {
       this.costMultiplier = { ...data.costMultiplier };
       this.baseProduction = { ...data.baseProduction };
       this.productionMultiplier = { ...data.productionMultiplier };
-      this.levelScaling = data.levelScaling;
+      this.levelScaling = new Decimal(data.levelScaling);
       this.conditions = { ...data.conditions };
       this.unlocked = data.unlocked;
       this.level = new Decimal(0);
