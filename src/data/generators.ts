@@ -24,7 +24,7 @@ export const GENERATORS: Generator[] = [
          followers: new Decimal(0),
          paranoia: new Decimal(0),
       },
-      levelScaling: new Decimal(2.5), // Gentle exponential growth
+      levelScaling: new Decimal(2.5),
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
