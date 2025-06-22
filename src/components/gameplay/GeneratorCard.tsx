@@ -7,7 +7,7 @@ import { useStore } from '../../store/StoreContext';
 import { cn } from '../../utils/cn';
 import { formatDecimal } from '../../utils/numberMgt';
 import { interpolate } from '../../utils/stringMgt';
-import { CustomIcon } from '../core/Icons';
+import { CategoryIcon, CustomIcon } from '../core/Icons';
 import { Badge } from '../core/ui/badge';
 import { Button } from '../core/ui/button';
 import { Card } from '../core/ui/card';
@@ -57,61 +57,72 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                   {t.ui.level} {formatDecimal(generatorStore.level).split('.')[0]}
                </Badge>
             </div>
-            <div className="grid grid-cols-3 gap-3 mr-auto">
-               <div className="flex items-center gap-1.5">
-                  <CustomIcon
-                     className={cn([
-                        'h-4 w-4 transition-colors duration-300',
-                        generatorStore.unlocked ? 'text-amber-400' : 'text-gray-400',
-                     ])}
-                     icon="searchCheck"
-                  />
-                  <p
-                     dangerouslySetInnerHTML={{
-                        __html: generatorStore.unlocked
-                           ? `${formatDecimal(
-                                generatorStore.effectiveProduction.proofs,
-                                (suffix: string) =>
-                                   `<b class="text-amber-600 text-shadow-black text-shadow">${suffix}</b>`,
-                             )}/sec`
-                           : '???',
-                     }}
-                     className={cn([
-                        'text-sm transition-colors duration-300',
-                        generatorStore.unlocked ? 'text-gray-200' : 'text-gray-400',
-                     ])}
-                  />
+            <div className="flex justify-between w-full">
+               <div className="grid grid-cols-3 gap-3 mr-auto">
+                  <div className="flex items-center gap-1.5">
+                     <CustomIcon
+                        className={cn([
+                           'h-4 w-4 transition-colors duration-300',
+                           generatorStore.unlocked ? 'text-amber-400' : 'text-gray-400',
+                        ])}
+                        icon="searchCheck"
+                     />
+                     <p
+                        dangerouslySetInnerHTML={{
+                           __html: generatorStore.unlocked
+                              ? `${formatDecimal(
+                                   generatorStore.effectiveProduction.proofs,
+                                   (suffix: string) =>
+                                      `<b class="text-amber-600 text-shadow-black text-shadow">${suffix}</b>`,
+                                )}/sec`
+                              : '???',
+                        }}
+                        className={cn([
+                           'text-sm transition-colors duration-300',
+                           generatorStore.unlocked ? 'text-gray-200' : 'text-gray-400',
+                        ])}
+                     />
+                  </div>
+                  {generatorStore.effectiveProduction.followers.greaterThan(0) && (
+                     <div className="flex items-center gap-1.5">
+                        <CustomIcon className="h-4 w-4 text-amber-400" icon="usersRound" />
+                        <p
+                           dangerouslySetInnerHTML={{
+                              __html: `${formatDecimal(
+                                 generatorStore.effectiveProduction.followers,
+                                 (suffix: string) =>
+                                    `<b class="text-amber-600 text-shadow-black text-shadow">${suffix}</b>`,
+                              )}/sec`,
+                           }}
+                           className="text-sm text-gray-200"
+                        />
+                     </div>
+                  )}
+                  {generatorStore.effectiveProduction.paranoia.greaterThan(0) && (
+                     <div className="flex items-center gap-1.5">
+                        <CustomIcon className="h-4 w-4 text-red-400" icon="eye" />
+                        <p
+                           dangerouslySetInnerHTML={{
+                              __html: `${formatDecimal(
+                                 generatorStore.effectiveProduction.paranoia,
+                                 (suffix: string) =>
+                                    `<b class="text-red-600 text-shadow-black text-shadow">${suffix}</b>`,
+                              )}/sec`,
+                           }}
+                           className="text-sm text-red-200"
+                        />
+                     </div>
+                  )}
                </div>
-               {generatorStore.effectiveProduction.followers.greaterThan(0) && (
-                  <div className="flex items-center gap-1.5">
-                     <CustomIcon className="h-4 w-4 text-amber-400" icon="usersRound" />
-                     <p
-                        dangerouslySetInnerHTML={{
-                           __html: `${formatDecimal(
-                              generatorStore.effectiveProduction.followers,
-                              (suffix: string) =>
-                                 `<b class="text-amber-600 text-shadow-black text-shadow">${suffix}</b>`,
-                           )}/sec`,
-                        }}
-                        className="text-sm text-gray-200"
+               <div className="flex ml-auto justify-center items-center gap-2">
+                  {generatorStore.categories.map((category) => (
+                     <CategoryIcon
+                        key={category}
+                        category={category}
+                        className="text-white w-4 h-4"
                      />
-                  </div>
-               )}
-               {generatorStore.effectiveProduction.paranoia.greaterThan(0) && (
-                  <div className="flex items-center gap-1.5">
-                     <CustomIcon className="h-4 w-4 text-red-400" icon="eye" />
-                     <p
-                        dangerouslySetInnerHTML={{
-                           __html: `${formatDecimal(
-                              generatorStore.effectiveProduction.paranoia,
-                              (suffix: string) =>
-                                 `<b class="text-red-600 text-shadow-black text-shadow">${suffix}</b>`,
-                           )}/sec`,
-                        }}
-                        className="text-sm text-red-200"
-                     />
-                  </div>
-               )}
+                  ))}
+               </div>
             </div>
          </div>
          <p

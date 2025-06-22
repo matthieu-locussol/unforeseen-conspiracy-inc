@@ -1,3 +1,5 @@
+import type { CategoryId } from '../../types/upgrades';
+
 import * as React from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -36,12 +38,52 @@ const AlertTriangleIcon = (props: IconSvgProps) => {
    );
 };
 
+const AmbulanceIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M10 10H6" />
+         <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+         <path d="M19 18h2a1 1 0 0 0 1-1v-3.28a1 1 0 0 0-.684-.948l-1.923-.641a1 1 0 0 1-.578-.502l-1.539-3.076A1 1 0 0 0 16.382 8H14" />
+         <path d="M8 8v4" />
+         <path d="M9 18h6" />
+         <circle cx="17" cy="18" r="2" />
+         <circle cx="7" cy="18" r="2" />
+      </svg>
+   );
+};
+
 const ArchiveIcon = (props: IconSvgProps) => {
    return (
       <svg {...getCommonProps(props)}>
          <rect height="12" rx="2" width="20" x="2" y="3" />
          <path d="m8 7 4 4 4-4" />
          <path d="M2 7h20" />
+      </svg>
+   );
+};
+
+const BadgeQuestionMarkIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+         <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+         <line x1="12" x2="12.01" y1="17" y2="17" />
+      </svg>
+   );
+};
+
+const BrainIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+         <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+         <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4" />
+         <path d="M17.599 6.5a3 3 0 0 0 .399-1.375" />
+         <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5" />
+         <path d="M3.477 10.896a4 4 0 0 1 .585-.396" />
+         <path d="M19.938 10.5a4 4 0 0 1 .585.396" />
+         <path d="M6 18a4 4 0 0 1-1.967-.516" />
+         <path d="M19.967 17.484A4 4 0 0 1 18 18" />
       </svg>
    );
 };
@@ -155,11 +197,48 @@ const InfoIcon = (props: IconSvgProps) => {
    );
 };
 
+const LandmarkIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M10 18v-7" />
+         <path d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z" />
+         <path d="M14 18v-7" />
+         <path d="M18 18v-7" />
+         <path d="M3 22h18" />
+         <path d="M6 18v-7" />
+      </svg>
+   );
+};
+
 const LockIcon = (props: IconSvgProps) => {
    return (
       <svg {...getCommonProps(props)}>
          <rect height="11" rx="2" ry="2" width="18" x="3" y="11" />
          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      </svg>
+   );
+};
+
+const NetworkIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <rect height="6" rx="1" width="6" x="16" y="16" />
+         <rect height="6" rx="1" width="6" x="2" y="16" />
+         <rect height="6" rx="1" width="6" x="9" y="2" />
+         <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" />
+         <path d="M12 12V8" />
+      </svg>
+   );
+};
+
+const OrbitIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M20.341 6.484A10 10 0 0 1 10.266 21.85" />
+         <path d="M3.659 17.516A10 10 0 0 1 13.74 2.152" />
+         <circle cx="12" cy="12" r="3" />
+         <circle cx="19" cy="5" r="2" />
+         <circle cx="5" cy="19" r="2" />
       </svg>
    );
 };
@@ -187,6 +266,41 @@ const PlayIcon = (props: IconSvgProps) => {
    return (
       <svg {...getCommonProps(props)}>
          <polygon points="6 3 20 12 6 21 6 3" />
+      </svg>
+   );
+};
+
+const SatelliteIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M4 10a7.31 7.31 0 0 0 10 10Z" />
+         <path d="m9 15 3-3" />
+         <path d="M17 13a6 6 0 0 0-6-6" />
+         <path d="M21 13A10 10 0 0 0 11 3" />
+      </svg>
+   );
+};
+
+const ScanEyeIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+         <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+         <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+         <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+         <circle cx="12" cy="12" r="1" />
+         <path d="M18.944 12.33a1 1 0 0 0 0-.66 7.5 7.5 0 0 0-13.888 0 1 1 0 0 0 0 .66 7.5 7.5 0 0 0 13.888 0" />
+      </svg>
+   );
+};
+
+const ScrollIcon = (props: IconSvgProps) => {
+   return (
+      <svg {...getCommonProps(props)}>
+         <path d="M15 12h-5" />
+         <path d="M15 8h-5" />
+         <path d="M19 17V5a2 2 0 0 0-2-2H4" />
+         <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" />
       </svg>
    );
 };
@@ -295,7 +409,10 @@ const ZapIcon = (props: IconSvgProps) => {
 
 export type CustomIcon =
    | 'alertTriangle'
+   | 'ambulance'
    | 'archive'
+   | 'badgeQuestionMark'
+   | 'brain'
    | 'check'
    | 'coins'
    | 'database'
@@ -307,10 +424,16 @@ export type CustomIcon =
    | 'flask'
    | 'globe'
    | 'info'
+   | 'landmark'
    | 'lock'
+   | 'network'
+   | 'orbit'
    | 'package'
    | 'pause'
    | 'play'
+   | 'satellite'
+   | 'scanEye'
+   | 'scroll'
    | 'searchCheck'
    | 'settings'
    | 'shield'
@@ -325,7 +448,10 @@ export type CustomIcon =
 
 const ICONS: Record<CustomIcon, React.FC<IconSvgProps>> = {
    alertTriangle: AlertTriangleIcon,
+   ambulance: AmbulanceIcon,
    archive: ArchiveIcon,
+   badgeQuestionMark: BadgeQuestionMarkIcon,
+   brain: BrainIcon,
    check: CheckIcon,
    coins: CoinsIcon,
    database: DatabaseIcon,
@@ -337,10 +463,16 @@ const ICONS: Record<CustomIcon, React.FC<IconSvgProps>> = {
    flask: FlaskIcon,
    globe: GlobeIcon,
    info: InfoIcon,
+   landmark: LandmarkIcon,
    lock: LockIcon,
+   network: NetworkIcon,
+   orbit: OrbitIcon,
    package: PackageIcon,
    pause: PauseIcon,
    play: PlayIcon,
+   satellite: SatelliteIcon,
+   scanEye: ScanEyeIcon,
+   scroll: ScrollIcon,
    searchCheck: SearchCheckIcon,
    settings: SettingsIcon,
    shield: ShieldIcon,
@@ -375,4 +507,26 @@ export const CustomIcon = ({ icon, className, ...rest }: CustomIconProps) => {
          {...rest}
       />
    );
+};
+
+interface CategoryIconProps extends IconSvgProps {
+   category: CategoryId;
+}
+
+export const CategoryIcon = ({ category, ...rest }: CategoryIconProps) => {
+   const ICONS_MAP: Record<CategoryId, CustomIcon> = {
+      government: 'landmark',
+      history: 'scroll',
+      organization: 'network',
+      extraterrestrial: 'satellite',
+      theory: 'brain',
+      surveillance: 'scanEye',
+      'hidden-worlds': 'orbit',
+      health: 'ambulance',
+      other: 'badgeQuestionMark',
+      'media-manipulation': 'tv',
+      technology: 'terminal',
+   };
+
+   return <CustomIcon icon={ICONS_MAP[category]} {...rest} />;
 };
