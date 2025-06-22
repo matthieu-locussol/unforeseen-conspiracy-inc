@@ -11,6 +11,7 @@ import { CategoryIcon, CustomIcon } from '../core/Icons';
 import { Badge } from '../core/ui/badge';
 import { Button } from '../core/ui/button';
 import { Card } from '../core/ui/card';
+import { Tooltip, TooltipContent, TooltipTrigger } from '../core/ui/tooltip';
 
 import { UpgradesGrid } from './UpgradesGrid';
 
@@ -116,11 +117,18 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                </div>
                <div className="flex ml-auto justify-center items-center gap-2">
                   {generatorStore.categories.map((category) => (
-                     <CategoryIcon
-                        key={category}
-                        category={category}
-                        className="text-white w-4 h-4"
-                     />
+                     <Tooltip>
+                        <TooltipTrigger>
+                           <CategoryIcon
+                              key={category}
+                              category={category}
+                              className="text-white w-4 h-4"
+                           />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                           <p>Add to library</p>
+                        </TooltipContent>
+                     </Tooltip>
                   ))}
                </div>
             </div>
