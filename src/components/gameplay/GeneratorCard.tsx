@@ -139,23 +139,30 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                ? t['generators'][generatorStore.id]['description']
                : t.ui.youNeedToDigDeeper}
          </p>
-         <div className="grid grid-cols-2 w-full gap-2">
-            <Card className="p-2 bg-green-800/30 border-green-900 rounded-sm transition-all duration-200 hover:bg-green-800/40">
-               <h2 className="text-sm text-gray-400">{t.ui.cost}</h2>
-               <p
-                  dangerouslySetInnerHTML={{
-                     __html: `${formatDecimal(
-                        generatorStore.getCost(
-                           hudStore.bulkBuy,
-                           gameStore.getGeneratorCostReduction(generatorStore.id),
-                        ).proofs,
-                        (suffix: string) =>
-                           `<b class="text-green-600 text-shadow-black text-shadow">${suffix}</b>`,
-                     )} ${t.resources.proofs.name.toLowerCase()}`,
-                  }}
-                  className="text-sm"
-               />
-            </Card>
+         <div
+            className={cn([
+               'grid grid-cols-2 w-full gap-2',
+               !generatorStore.unlocked && 'grid-cols-1',
+            ])}
+         >
+            {generatorStore.unlocked && (
+               <Card className="p-2 bg-green-800/30 border-green-900 rounded-sm transition-all duration-200 hover:bg-green-800/40">
+                  <h2 className="text-sm text-gray-400">{t.ui.cost}</h2>
+                  <p
+                     dangerouslySetInnerHTML={{
+                        __html: `${formatDecimal(
+                           generatorStore.getCost(
+                              hudStore.bulkBuy,
+                              gameStore.getGeneratorCostReduction(generatorStore.id),
+                           ).proofs,
+                           (suffix: string) =>
+                              `<b class="text-green-600 text-shadow-black text-shadow">${suffix}</b>`,
+                        )} ${t.resources.proofs.name.toLowerCase()}`,
+                     }}
+                     className="text-sm"
+                  />
+               </Card>
+            )}
             {generatorStore.unlocked ? (
                <Card className="p-2 bg-blue-800/30 border-blue-900 rounded-sm transition-all duration-200 hover:bg-blue-800/40">
                   <h2 className="text-sm text-gray-400">{t.ui.nextLevel}</h2>
@@ -184,7 +191,7 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                </Card>
             ) : (
                <Card className="p-2 bg-gray-600/30 border-gray-900 rounded-sm flex justify-center items-center transition-all duration-300">
-                  <span className="text-gray-500">???</span>
+                  <span className="text-gray-500 my-2">???</span>
                </Card>
             )}
          </div>
