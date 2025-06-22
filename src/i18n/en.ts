@@ -25,22 +25,22 @@ export const EN = {
             "Look up. You see those white streaks? The normies call them 'contrails'. That's what 'they' want you to believe. It's a chemical cocktail, a fog to keep the masses docile. You're breathing it right now.",
       },
       michael_jackson: {
-         name: 'Michael Jackson Clone Conspiracy',
+         name: 'Michael Jackson is a Clone',
          description:
             'The man the world saw after the early 2000s was not Michael Jackson. He was a bio-synthetic duplicate, a puppet. The real MJ was sidelined when he got too close to the truth. They use his image to push their sonic mind-control agenda.',
       },
       flat_earth: {
-         name: 'Flat Earth Theory',
+         name: 'The Earth is Flat',
          description:
             "The globe is the greatest deception ever perpetrated. A lie to hide the true nature of our realm and the resources at its edges. NASA is a film studio with a budget larger than most nations, selling you a fantasy to keep you from asking what's beyond the ice wall.",
       },
       suspicious_pigeons: {
-         name: 'Suspicious Pigeon Watch',
+         name: 'Suspicious Pigeons',
          description:
             'The common pigeon. Ubiquitous. Ignored. The perfect chassis for a surveillance drone. They replaced the real birds years ago. Every coo is a data packet. Every flutter of wings is a repositioning algorithm. They are watching.',
       },
       denver_airport: {
-         name: 'Denver Airport Anomaly',
+         name: 'Denver Airport',
          description:
             "The 'Denver International Airport' is a monument to their hubris. The sheep see a terminal; we see a multi-layered bunker complex. The murals are not art; they are prophecies. The demonic horse statue? A sentinel. We're not looking for lost luggage. We're scanning for the Lizard Lairs beneath.",
       },
@@ -55,17 +55,17 @@ export const EN = {
             "Close reading of World Economic Forum publications and stakeholder capitalism manifestos. 'You'll own nothing and be happy' isn't a meme; it's a mission statement from the people who think they own you already.",
       },
       '5g_health_impact': {
-         name: '5G Health Impact',
+         name: '5G is a Health Hazard',
          description:
             "They're rolling it out everywhere. Little white boxes on every street corner. They call it 'progress.' Faster downloads for your mindless scrolling. But it's a weapon, hiding in plain sight. Millimeter waves that cook you from the inside out, disrupt your cells, cloud your mind. The 'safety standards' are a joke, written by the same telecom giants getting rich off our declining health. It's not about speed. It's about control.",
       },
       corporate_logo_symbology: {
-         name: 'Hidden Symbology in Corporate Logos',
+         name: 'Hidden Symbols in Corporate Logos',
          description:
             "Identifying occult and Masonic symbols embedded in ubiquitous branding. It's not just marketing; it's constant, low-level sigil magic reinforcing their dominance in the collective psyche.",
       },
       gates_philanthropic_impacts: {
-         name: 'Gates Philanthropic Impacts',
+         name: 'Gates is NOT a Philanthropist',
          description:
             "Forensic accounting of Gates Foundation grants versus stated humanitarian goals, cross-referenced with agricultural and pharmaceutical patent acquisitions. 'Saving the world' apparently involves a lot of proprietary tech and population trend analysis.",
       },

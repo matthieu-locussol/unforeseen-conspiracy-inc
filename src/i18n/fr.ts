@@ -25,27 +25,27 @@ export const FR = {
             "Lève les yeux. Tu vois ces traînées blanches ? Les normies appellent ça des 'contrails'. C'est ce qu'ILS veulent te faire croire. C'est un cocktail chimique, un brouillard pour garder les masses dociles. Tu le respires en ce moment même.",
       },
       michael_jackson: {
-         name: 'Conspiration du Clone de Michael Jackson',
+         name: 'Michael Jackson est un Clone',
          description:
             "L'homme que le monde a vu après le début des années 2000 n'était pas Michael Jackson. C'était un double bio-synthétique, une marionnette. Le vrai MJ a été mis sur la touche quand il s'est trop approché de la vérité. Ils utilisent son image pour pousser leur agenda de contrôle mental sonique.",
       },
       flat_earth: {
-         name: 'Théorie de la Terre Plate',
+         name: 'La Terre est Plate',
          description:
             "Le globe est la plus grande supercherie jamais perpétrée. Un mensonge pour cacher la vraie nature de notre royaume et les ressources à ses confins. La NASA est un studio de cinéma avec un budget plus grand que la plupart des nations, te vendant un fantasme pour t'empêcher de demander ce qu'il y a au-delà du mur de glace.",
       },
       suspicious_pigeons: {
-         name: 'Surveillance des Pigeons Suspects',
+         name: 'Les Pigeons sont des Espions',
          description:
             "Le pigeon commun. Omniprésent. Ignoré. Le châssis parfait pour un drone de surveillance. Ils ont remplacé les vrais oiseaux il y a des années. Chaque roucoulement est un paquet de données. Chaque battement d'ailes est un algorithme de repositionnement. Ils observent.",
       },
       denver_airport: {
-         name: "Anomalie de l'Aéroport de Denver",
+         name: "L'Aéroport de Denver",
          description:
             "L'aéroport international de Denver est un monument à leur hubris. Les moutons y voient un terminal ; nous y voyons un complexe de bunkers à plusieurs niveaux. Les peintures murales ne sont pas de l'art, ce sont des prophéties. La statue de cheval démoniaque ? Une sentinelle. Nous ne cherchons pas des bagages perdus. Nous scannons les repaires de lézards en dessous.",
       },
       finnish_non_existence: {
-         name: 'Non-Existence de la Finlande',
+         name: "La Finlande n'existe pas",
          description:
             "La 'Finlande' est le canular géopolitique le plus réussi de l'histoire moderne. Ce que les normies appellent un pays nordique est en fait une étendue d'eau, une zone de pêche partagée entre la Russie et le Japon depuis la Guerre Froide. La langue 'finnoise' ? Du charabia construit de toutes pièces. Nokia ? Une société écran pour légitimer cet état fantôme. Chaque Finlandais que vous avez rencontré est un acteur de crise.",
       },
@@ -55,17 +55,17 @@ export const FR = {
             "Une lecture attentive des publications du Forum Économique Mondial. 'Vous ne posséderez rien et serez heureux' n'est pas un mème, c'est la mission de ceux qui pensent déjà vous posséder.",
       },
       '5g_health_impact': {
-         name: 'Impact de la 5G sur la Santé',
+         name: 'La 5G est un danger pour la Santé',
          description:
             "Ils la déploient partout. Des petites boîtes blanches à chaque coin de rue. Ils appellent ça le 'progrès'. Mais c'est une arme, cachée à la vue de tous. Des ondes millimétriques qui te cuisent de l'intérieur, perturbent tes cellules, embrument ton esprit. Ce n'est pas une question de vitesse. C'est une question de contrôle.",
       },
       corporate_logo_symbology: {
-         name: 'Symbologie Cachée des Logos',
+         name: 'Symboles Cachés dans les Logos',
          description:
             "Identifier les symboles occultes et maçonniques dans les marques. Ce n'est pas du marketing, c'est de la magie sigillaire de bas niveau qui renforce leur domination dans la psyché collective.",
       },
       gates_philanthropic_impacts: {
-         name: 'Impacts Philanthropiques de Gates',
+         name: "Gates n'est pas un Philanthrope",
          description:
             "Analyse des subventions de la Fondation Gates. 'Sauver le monde' implique beaucoup de technologie propriétaire et d'analyse des tendances démographiques.",
       },
