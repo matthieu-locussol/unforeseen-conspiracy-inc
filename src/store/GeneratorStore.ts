@@ -166,29 +166,6 @@ export class GeneratorStore {
          paranoia: baseProduction.paranoia.add(flatBonuses.paranoia).mul(multipliers.paranoia),
       };
 
-      console.log({
-         baseProduction: {
-            proofs: baseProduction.proofs.toString(),
-            followers: baseProduction.followers.toString(),
-            paranoia: baseProduction.paranoia.toString(),
-         },
-         multipliers: {
-            proofs: multipliers.proofs.toString(),
-            followers: multipliers.followers.toString(),
-            paranoia: multipliers.paranoia.toString(),
-         },
-         flatBonuses: {
-            proofs: flatBonuses.proofs.toString(),
-            followers: flatBonuses.followers.toString(),
-            paranoia: flatBonuses.paranoia.toString(),
-         },
-         finalProduction: {
-            proofs: finalProduction.proofs.toString(),
-            followers: finalProduction.followers.toString(),
-            paranoia: finalProduction.paranoia.toString(),
-         },
-      });
-
       return {
          proofs: finalProduction.proofs.toDecimalPlaces(1),
          followers: finalProduction.followers.toDecimalPlaces(1),
