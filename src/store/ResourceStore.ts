@@ -19,6 +19,8 @@ export class ResourceStore {
 
    public value!: Decimal;
 
+   public highestValue!: Decimal;
+
    constructor(id: ResourceId) {
       makeAutoObservable(this);
 
@@ -31,6 +33,10 @@ export class ResourceStore {
 
    public add(amount: Decimal): void {
       this.value = this.value.add(amount);
+
+      if (this.value.greaterThan(this.highestValue)) {
+         this.highestValue = this.value;
+      }
    }
 
    public remove(amount: Decimal): boolean {
@@ -65,6 +71,7 @@ export class ResourceStore {
       return {
          id: this.id,
          value: this.value.toString(),
+         highestValue: this.highestValue.toString(),
       };
    }
 
@@ -87,5 +94,6 @@ export class ResourceStore {
       this.isClickable = data.isClickable;
 
       this.value = new Decimal(0);
+      this.highestValue = new Decimal(0);
    }
 }

@@ -52,7 +52,17 @@ export class GeneratorStore {
          return this._store.upgrades.find((upgrade) => upgrade.id === upgradeId);
       });
 
-      return upgradesStores.filter((upgrade): upgrade is UpgradeStore => upgrade !== undefined);
+      const definedUpgrades = upgradesStores.filter(
+         (upgrade): upgrade is UpgradeStore => upgrade !== undefined,
+      );
+
+      const visibleUpgrades = definedUpgrades.filter(
+         (upgrade) =>
+            upgrade.cost.proofs.lessThanOrEqualTo(this._store.proofs.highestValue) &&
+            upgrade.cost.followers.lessThanOrEqualTo(this._store.followers.highestValue),
+      );
+
+      return visibleUpgrades;
    }
 
    /**

@@ -14,4 +14,5 @@ export interface Resource {
 export interface SerializedResourceData {
    id: ResourceId;
    value: string;
+   highestValue: string;
 }
