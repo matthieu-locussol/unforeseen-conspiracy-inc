@@ -1,6 +1,6 @@
 import type { GeneratorId } from './generators';
 import type { ResourceId } from './resources';
-import type { UpgradeId } from './upgrades';
+import type { CategoryId, UpgradeId } from './upgrades';
 
 export type Locale = 'en' | 'fr';
 
@@ -26,6 +26,7 @@ export interface Translation {
          description: string;
       }
    >;
+   categories: Record<CategoryId, string>;
    ui: {
       // Common actions
       close: string;

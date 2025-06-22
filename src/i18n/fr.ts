@@ -672,6 +672,19 @@ export const FR = {
             "La dernière couche de l'oignon. L'ensemble de la personnalité philanthropique est une opération psychologique méticuleusement conçue pour que le public voie un sauveur, et non un monopoliste. Nous devons briser l'illusion.",
       },
    },
+   categories: {
+      government: 'Gouvernement',
+      history: 'Histoire',
+      technology: 'Technologie',
+      organization: 'Organisation',
+      extraterrestrial: 'Extraterrestre',
+      'media-manipulation': 'Manipulation médiatique',
+      theory: 'Théorie',
+      surveillance: 'Surveillance',
+      'hidden-worlds': 'Mondes cachés',
+      health: 'Santé',
+      other: 'Autre',
+   },
    ui: {
       // Common actions
       close: 'Fermer',

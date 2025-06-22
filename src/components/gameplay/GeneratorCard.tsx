@@ -121,7 +121,7 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                         <TooltipTrigger className="hover:opacity-70">
                            <CategoryIcon category={category} className="text-white w-4 h-4" />
                         </TooltipTrigger>
-                        <TooltipContent>{category}</TooltipContent>
+                        <TooltipContent>{t.categories[category]}</TooltipContent>
                      </Tooltip>
                   ))}
                </div>

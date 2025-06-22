@@ -672,6 +672,19 @@ export const EN = {
             'The entire philanthropic persona is a meticulously crafted psychological operation to make the public see a savior, not a monopolist. We need to shatter the illusion.',
       },
    },
+   categories: {
+      government: 'Government',
+      history: 'History',
+      technology: 'Technology',
+      organization: 'Organization',
+      extraterrestrial: 'Extraterrestrial',
+      'media-manipulation': 'Media Manipulation',
+      theory: 'Theory',
+      surveillance: 'Surveillance',
+      'hidden-worlds': 'Hidden Worlds',
+      health: 'Health',
+      other: 'Other',
+   },
    ui: {
       // Common actions
       close: 'Close',
