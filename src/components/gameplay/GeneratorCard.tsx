@@ -117,17 +117,11 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                </div>
                <div className="flex ml-auto justify-center items-center gap-2">
                   {generatorStore.categories.map((category) => (
-                     <Tooltip>
-                        <TooltipTrigger>
-                           <CategoryIcon
-                              key={category}
-                              category={category}
-                              className="text-white w-4 h-4"
-                           />
+                     <Tooltip key={category}>
+                        <TooltipTrigger className="hover:opacity-70">
+                           <CategoryIcon category={category} className="text-white w-4 h-4" />
                         </TooltipTrigger>
-                        <TooltipContent>
-                           <p>Add to library</p>
-                        </TooltipContent>
+                        <TooltipContent>{category}</TooltipContent>
                      </Tooltip>
                   ))}
                </div>
