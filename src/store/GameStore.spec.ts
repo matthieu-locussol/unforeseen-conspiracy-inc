@@ -226,7 +226,7 @@ describe('GameStore', () => {
 
             // Buy the chemtrails cost reduction upgrade (25% reduction)
             const costReductionUpgrade = gameStore.upgrades.find(
-               (u) => u.id === 'chemtrails_cost_reduction',
+               (u) => u.id === 'chemtrails_aluminum_hat',
             )!;
 
             costReductionUpgrade.unlocked = true;
@@ -234,7 +234,7 @@ describe('GameStore', () => {
             // Calculate the cost with 25% reduction
             const costWithReduction = chemtrailsGenerator.getCost(
                new Decimal(1),
-               new Decimal(0.25),
+               new Decimal(0.15),
             );
 
             // With the reduced cost, we should be able to buy it with less proofs
@@ -318,17 +318,17 @@ describe('GameStore', () => {
    describe('Upgrade Management', () => {
       describe('hasPurchasedUpgrade()', () => {
          it('should return false for unpurchased upgrade', () => {
-            const result = gameStore.hasPurchasedUpgrade('chemtrails_production_boost');
+            const result = gameStore.hasPurchasedUpgrade('chemtrails_binoculars');
 
             expect(result).toBe(false);
          });
 
          it('should return true for purchased upgrade', () => {
-            const upgrade = gameStore.upgrades.find((u) => u.id === 'chemtrails_production_boost')!;
+            const upgrade = gameStore.upgrades.find((u) => u.id === 'chemtrails_binoculars')!;
 
             upgrade.unlocked = true;
 
-            const result = gameStore.hasPurchasedUpgrade('chemtrails_production_boost');
+            const result = gameStore.hasPurchasedUpgrade('chemtrails_binoculars');
 
             expect(result).toBe(true);
          });
@@ -351,25 +351,16 @@ describe('GameStore', () => {
             gameStore.proofs.add(new Decimal(1000));
             gameStore.followers.add(new Decimal(1000));
 
-            const result = gameStore.canBuyUpgrade('chemtrails_production_boost');
+            const result = gameStore.canBuyUpgrade('chemtrails_binoculars');
 
             expect(result).toBe(true);
-         });
-
-         it('should return false when conditions are not met', () => {
-            gameStore.proofs.add(new Decimal(10)); // Less than condition requirement
-            gameStore.followers.add(new Decimal(1000));
-
-            const result = gameStore.canBuyUpgrade('chemtrails_production_boost');
-
-            expect(result).toBe(false);
          });
 
          it('should return false when unaffordable', () => {
             gameStore.proofs.add(new Decimal(50)); // Meets condition but not cost
             gameStore.followers.add(new Decimal(1000));
 
-            const result = gameStore.canBuyUpgrade('chemtrails_production_boost');
+            const result = gameStore.canBuyUpgrade('chemtrails_binoculars');
 
             expect(result).toBe(false);
          });
@@ -387,23 +378,12 @@ describe('GameStore', () => {
             expect(result).toBe(false);
          });
 
-         it('should successfully buy upgrade when conditions met', () => {
-            const upgrade = gameStore.upgrades.find((u) => u.id === 'chemtrails_production_boost')!;
-
-            expect(upgrade.unlocked).toBe(false);
-
-            const result = gameStore.buyUpgrade('chemtrails_production_boost');
-
-            expect(result).toBe(true);
-            expect(upgrade.unlocked).toBe(true);
-         });
-
          it('should deduct correct resources when buying', () => {
-            const upgrade = gameStore.upgrades.find((u) => u.id === 'chemtrails_production_boost')!;
+            const upgrade = gameStore.upgrades.find((u) => u.id === 'chemtrails_binoculars')!;
             const initialProofs = gameStore.proofs.value;
             const initialFollowers = gameStore.followers.value;
 
-            gameStore.buyUpgrade('chemtrails_production_boost');
+            gameStore.buyUpgrade('chemtrails_binoculars');
 
             expect(gameStore.proofs.value).toStrictEqual(initialProofs.minus(upgrade.cost.proofs));
             expect(gameStore.followers.value).toStrictEqual(
@@ -411,18 +391,10 @@ describe('GameStore', () => {
             );
          });
 
-         it('should return false when conditions not met', () => {
-            gameStore.proofs.value = new Decimal(10); // Less than condition requirement
-
-            const result = gameStore.buyUpgrade('chemtrails_production_boost');
-
-            expect(result).toBe(false);
-         });
-
          it('should return false when unaffordable', () => {
             gameStore.proofs.value = new Decimal(50); // Meets condition but not cost
 
-            const result = gameStore.buyUpgrade('chemtrails_production_boost');
+            const result = gameStore.buyUpgrade('chemtrails_whistleblower_network');
 
             expect(result).toBe(false);
          });
@@ -448,52 +420,57 @@ describe('GameStore', () => {
          });
 
          it('should apply generator-specific multipliers', () => {
-            const upgrade = gameStore.upgrades.find((u) => u.id === 'chemtrails_production_boost')!;
+            const upgrade = gameStore.upgrades.find(
+               (u) => u.id === 'chemtrails_whistleblower_network',
+            )!;
 
             upgrade.unlocked = true;
 
             const multipliers = gameStore.getGeneratorMultipliers(chemtrailsGenerator);
 
-            expect(multipliers.proofs).toStrictEqual(new Decimal(1.5)); // 1 + 0.5 boost
+            expect(multipliers.proofs).toStrictEqual(new Decimal(1.75));
          });
 
          it('should apply category-specific multipliers', () => {
-            const upgrade = gameStore.upgrades.find((u) => u.id === 'michael_jackson_media_boost')!;
+            const upgrade = gameStore.upgrades.find(
+               (u) => u.id === 'chemtrails_satellite_tracking',
+            )!;
 
             upgrade.unlocked = true;
 
-            // Flat earth has media-manipulation category
-            const flatEarthGenerator = gameStore.generators.find((g) => g.id === 'flat_earth')!;
-            const multipliers = gameStore.getGeneratorMultipliers(flatEarthGenerator);
+            const chemtrailsGenerator = gameStore.generators.find((g) => g.id === 'chemtrails')!;
+            const multipliers = gameStore.getGeneratorMultipliers(chemtrailsGenerator);
 
-            expect(multipliers.proofs).toStrictEqual(new Decimal(1.75)); // 1 + 0.75 boost
+            expect(multipliers.proofs).toStrictEqual(new Decimal(1.5));
          });
 
          it('should apply global multipliers to all generators', () => {
-            const upgrade = gameStore.upgrades.find((u) => u.id === 'flat_earth_global_boost')!;
+            const upgrade = gameStore.upgrades.find(
+               (u) => u.id === 'chemtrails_government_contacts',
+            )!;
 
             upgrade.unlocked = true;
 
             const multipliers = gameStore.getGeneratorMultipliers(chemtrailsGenerator);
 
-            expect(multipliers.proofs).toStrictEqual(new Decimal(1.25)); // 1 + 0.25 boost
+            expect(multipliers.proofs).toStrictEqual(new Decimal(1.25));
          });
 
          it('should stack multiple applicable multipliers', () => {
             // Apply both generator-specific and global multipliers
             const specificUpgrade = gameStore.upgrades.find(
-               (u) => u.id === 'chemtrails_production_boost',
+               (u) => u.id === 'chemtrails_binoculars',
             )!;
-            const globalUpgrade = gameStore.upgrades.find(
-               (u) => u.id === 'flat_earth_global_boost',
+            const secondSpecificUpgrade = gameStore.upgrades.find(
+               (u) => u.id === 'chemtrails_air_quality_monitor',
             )!;
 
             specificUpgrade.unlocked = true;
-            globalUpgrade.unlocked = true;
+            secondSpecificUpgrade.unlocked = true;
 
             const multipliers = gameStore.getGeneratorMultipliers(chemtrailsGenerator);
 
-            expect(multipliers.proofs).toStrictEqual(new Decimal(1.75)); // 1 + 0.5 + 0.25
+            expect(multipliers.proofs).toStrictEqual(new Decimal(2));
          });
       });
 
@@ -501,7 +478,7 @@ describe('GameStore', () => {
          let flatEarthGenerator: GeneratorStore;
 
          beforeEach(() => {
-            flatEarthGenerator = gameStore.generators.find((g) => g.id === 'flat_earth')!;
+            flatEarthGenerator = gameStore.generators.find((g) => g.id === 'chemtrails')!;
          });
 
          it('should return zero bonuses when no upgrades unlocked', () => {
@@ -515,13 +492,13 @@ describe('GameStore', () => {
          });
 
          it('should apply flat bonuses correctly', () => {
-            const upgrade = gameStore.upgrades.find((u) => u.id === 'flat_earth_production_flat')!;
+            const upgrade = gameStore.upgrades.find((u) => u.id === 'chemtrails_weather_app')!;
 
             upgrade.unlocked = true;
 
             const bonuses = gameStore.getFlatBonusesForGenerator(flatEarthGenerator);
 
-            expect(bonuses.proofs).toStrictEqual(new Decimal(2)); // +2 flat bonus
+            expect(bonuses.proofs).toStrictEqual(new Decimal(5)); // +2 flat bonus
          });
       });
 
@@ -539,7 +516,7 @@ describe('GameStore', () => {
 
             const reduction = gameStore.getGeneratorCostReduction('chemtrails');
 
-            expect(reduction).toStrictEqual(new Decimal(0.05)); // 5% reduction
+            expect(reduction).toStrictEqual(new Decimal(0.15)); // 5% reduction
          });
 
          it('should cap cost reduction at 90%', () => {

@@ -779,7 +779,6 @@ describe('GeneratorStore', () => {
 
          const production = generatorStore.getBaseProduction(new Decimal(-5));
 
-         console.log(production.proofs.toString());
          // Negative levels can result in negative production due to the formula: base + (level-1) * multiplier
          expect(production.proofs.lessThanOrEqualTo(0)).toBeTruthy();
       });

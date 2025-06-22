@@ -38,7 +38,7 @@ export const UPGRADES: Upgrade[] = [
          {
             type: 'production_flat',
             resource: 'proofs',
-            value: new Decimal(0.5),
+            value: new Decimal(5),
             target: { type: 'generator', id: 'chemtrails' },
          },
       ],
@@ -115,6 +115,12 @@ export const UPGRADES: Upgrade[] = [
             resource: 'proofs',
             value: new Decimal(0.5),
             target: { type: 'generator', id: 'chemtrails' },
+         },
+         {
+            type: 'production_multiplier',
+            resource: 'proofs',
+            value: new Decimal(0.25),
+            target: { type: 'all_generators' },
          },
       ],
       conditions: {
