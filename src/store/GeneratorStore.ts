@@ -29,6 +29,8 @@ export class GeneratorStore {
 
    public productionMultiplier!: GeneratorProduction;
 
+   public levelScaling!: Decimal;
+
    public conditions!: Conditions;
 
    public unlocked!: boolean;
@@ -106,15 +108,27 @@ export class GeneratorStore {
          };
       }
 
-      const proofsProduction = this.baseProduction.proofs.add(
+      // Apply exponential scaling: baseProduction * (1 + productionMultiplier * (level - 1)) * level^(levelScaling - 1)
+      const levelFactor = level.pow(this.levelScaling.sub(1));
+      const linearComponent = new Decimal(1).add(
          this.productionMultiplier.proofs.mul(level.sub(1)),
       );
-      const followersProduction = this.baseProduction.followers.add(
+
+      const proofsProduction = this.baseProduction.proofs.mul(levelFactor).mul(linearComponent);
+
+      const followersLinearComponent = new Decimal(1).add(
          this.productionMultiplier.followers.mul(level.sub(1)),
       );
-      const paranoiaProduction = this.baseProduction.paranoia.add(
+      const followersProduction = this.baseProduction.followers
+         .mul(levelFactor)
+         .mul(followersLinearComponent);
+
+      const paranoiaLinearComponent = new Decimal(1).add(
          this.productionMultiplier.paranoia.mul(level.sub(1)),
       );
+      const paranoiaProduction = this.baseProduction.paranoia
+         .mul(levelFactor)
+         .mul(paranoiaLinearComponent);
 
       return {
          proofs: proofsProduction.toDecimalPlaces(1),
@@ -151,6 +165,29 @@ export class GeneratorStore {
          followers: baseProduction.followers.add(flatBonuses.followers).mul(multipliers.followers),
          paranoia: baseProduction.paranoia.add(flatBonuses.paranoia).mul(multipliers.paranoia),
       };
+
+      console.log({
+         baseProduction: {
+            proofs: baseProduction.proofs.toString(),
+            followers: baseProduction.followers.toString(),
+            paranoia: baseProduction.paranoia.toString(),
+         },
+         multipliers: {
+            proofs: multipliers.proofs.toString(),
+            followers: multipliers.followers.toString(),
+            paranoia: multipliers.paranoia.toString(),
+         },
+         flatBonuses: {
+            proofs: flatBonuses.proofs.toString(),
+            followers: flatBonuses.followers.toString(),
+            paranoia: flatBonuses.paranoia.toString(),
+         },
+         finalProduction: {
+            proofs: finalProduction.proofs.toString(),
+            followers: finalProduction.followers.toString(),
+            paranoia: finalProduction.paranoia.toString(),
+         },
+      });
 
       return {
          proofs: finalProduction.proofs.toDecimalPlaces(1),
@@ -198,16 +235,14 @@ export class GeneratorStore {
          id: this.id,
          level: this.level.toString(),
          unlocked: this.unlocked,
+         levelScaling: this.levelScaling.toString(),
       };
    }
 
    public deserialize(data: SerializedGeneratorData): void {
-      if (typeof data.level !== 'undefined') {
-         this.level = new Decimal(data.level);
-      }
-      if (typeof data.unlocked !== 'undefined') {
-         this.unlocked = data.unlocked;
-      }
+      this.level = new Decimal(data.level);
+      this.unlocked = data.unlocked;
+      this.levelScaling = new Decimal(data.levelScaling);
    }
 
    private _initialize(id: GeneratorId): void {
@@ -224,6 +259,7 @@ export class GeneratorStore {
       this.costMultiplier = { ...data.costMultiplier };
       this.baseProduction = { ...data.baseProduction };
       this.productionMultiplier = { ...data.productionMultiplier };
+      this.levelScaling = data.levelScaling;
       this.conditions = { ...data.conditions };
       this.unlocked = data.unlocked;
       this.level = new Decimal(0);

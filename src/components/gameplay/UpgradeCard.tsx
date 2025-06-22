@@ -82,7 +82,11 @@ export const UpgradeCard = observer(({ upgrade }: UpgradeCardProps) => {
                               <CustomIcon className="h-4 w-4 text-green-400" icon="searchCheck" />
                               <span
                                  dangerouslySetInnerHTML={{
-                                    __html: formatDecimal(upgrade.cost.proofs),
+                                    __html: formatDecimal(
+                                       upgrade.cost.proofs,
+                                       (suffix: string) =>
+                                          `<b class="text-green-600 text-shadow-black text-shadow">${suffix}</b>`,
+                                    ),
                                  }}
                                  className="text-sm text-green-400"
                               />

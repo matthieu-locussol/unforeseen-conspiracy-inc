@@ -24,6 +24,7 @@ export const GENERATORS: Generator[] = [
          followers: new Decimal(0),
          paranoia: new Decimal(0),
       },
+      levelScaling: new Decimal(2.5), // Gentle exponential growth
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -67,6 +68,7 @@ export const GENERATORS: Generator[] = [
          followers: new Decimal(0),
          paranoia: new Decimal(0),
       },
+      levelScaling: new Decimal(1.04),
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -110,6 +112,7 @@ export const GENERATORS: Generator[] = [
          followers: new Decimal(0),
          paranoia: new Decimal(0),
       },
+      levelScaling: new Decimal(1.03),
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -153,6 +156,7 @@ export const GENERATORS: Generator[] = [
          followers: new Decimal(0),
          paranoia: new Decimal(0),
       },
+      levelScaling: new Decimal(1.025),
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -196,6 +200,7 @@ export const GENERATORS: Generator[] = [
          followers: new Decimal(0.05),
          paranoia: new Decimal(0),
       },
+      levelScaling: new Decimal(1.02),
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -239,6 +244,7 @@ export const GENERATORS: Generator[] = [
          followers: new Decimal(0.12),
          paranoia: new Decimal(0.1),
       },
+      levelScaling: new Decimal(1.018),
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -282,6 +288,7 @@ export const GENERATORS: Generator[] = [
          followers: new Decimal(0.28),
          paranoia: new Decimal(0.2),
       },
+      levelScaling: new Decimal(1.015),
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -325,6 +332,7 @@ export const GENERATORS: Generator[] = [
          followers: new Decimal(0.65),
          paranoia: new Decimal(0.4),
       },
+      levelScaling: new Decimal(1.012),
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -368,6 +376,7 @@ export const GENERATORS: Generator[] = [
          followers: new Decimal(1.5),
          paranoia: new Decimal(0.8),
       },
+      levelScaling: new Decimal(1.01),
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),
@@ -411,6 +420,7 @@ export const GENERATORS: Generator[] = [
          followers: new Decimal(3.5),
          paranoia: new Decimal(1.6),
       },
+      levelScaling: new Decimal(1.008),
       conditions: {
          proofs: new Decimal(0),
          followers: new Decimal(0),

@@ -2,7 +2,8 @@ import { Decimal } from 'decimal.js';
 
 export const formatDecimal = (
    value: Decimal,
-   suffixWrapper = (suffix: string) => ` <b class="text-emerald-200">${suffix}</b>`,
+   suffixWrapper = (suffix: string) =>
+      `<b class="text-amber-700 text-shadow-black text-shadow">${suffix}</b>`,
 ): string => {
    if (value.equals(0)) {
       return '0.0';

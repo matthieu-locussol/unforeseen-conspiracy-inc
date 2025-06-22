@@ -67,15 +67,20 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                      icon="searchCheck"
                   />
                   <p
+                     dangerouslySetInnerHTML={{
+                        __html: generatorStore.unlocked
+                           ? `${formatDecimal(
+                                generatorStore.effectiveProduction.proofs,
+                                (suffix: string) =>
+                                   `<b class="text-amber-600 text-shadow-black text-shadow">${suffix}</b>`,
+                             )}/sec`
+                           : '???',
+                     }}
                      className={cn([
                         'text-sm transition-colors duration-300',
                         generatorStore.unlocked ? 'text-gray-200' : 'text-gray-400',
                      ])}
-                  >
-                     {generatorStore.unlocked
-                        ? `${generatorStore.effectiveProduction.proofs}/sec`
-                        : '???'}
-                  </p>
+                  />
                </div>
                {generatorStore.effectiveProduction.followers.greaterThan(0) && (
                   <div className="flex items-center gap-1.5">
@@ -84,9 +89,11 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                         dangerouslySetInnerHTML={{
                            __html: `${formatDecimal(
                               generatorStore.effectiveProduction.followers,
+                              (suffix: string) =>
+                                 `<b class="text-amber-600 text-shadow-black text-shadow">${suffix}</b>`,
                            )}/sec`,
                         }}
-                        className="text-sm"
+                        className="text-sm text-gray-200"
                      />
                   </div>
                )}
@@ -97,6 +104,8 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                         dangerouslySetInnerHTML={{
                            __html: `${formatDecimal(
                               generatorStore.effectiveProduction.paranoia,
+                              (suffix: string) =>
+                                 `<b class="text-red-600 text-shadow-black text-shadow">${suffix}</b>`,
                            )}/sec`,
                         }}
                         className="text-sm text-red-200"
@@ -125,6 +134,8 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                            hudStore.bulkBuy,
                            gameStore.getGeneratorCostReduction(generatorStore.id),
                         ).proofs,
+                        (suffix: string) =>
+                           `<b class="text-green-600 text-shadow-black text-shadow">${suffix}</b>`,
                      )} ${t.resources.proofs.name.toLowerCase()}`,
                   }}
                   className="text-sm"
@@ -145,11 +156,13 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
                               generatorStore.getEffectiveProduction(
                                  generatorStore.level.add(hudStore.bulkBuy),
                               ).proofs,
-                           )}/sec (+
-                        ${formatDecimal(
-                           generatorStore.getProductionIncrease(hudStore.bulkBuy).proofs,
-                        )}
-                        /sec)`,
+                              (suffix: string) =>
+                                 `<b class="text-blue-500 text-shadow-black text-shadow">${suffix}</b>`,
+                           )}/sec (+${formatDecimal(
+                              generatorStore.getProductionIncrease(hudStore.bulkBuy).proofs,
+                              (suffix: string) =>
+                                 `<b class="text-blue-500 text-shadow-black text-shadow">${suffix}</b>`,
+                           )})`,
                         }}
                      />
                   </p>

@@ -26,6 +26,7 @@ export interface Generator {
    costMultiplier: Cost;
    baseProduction: GeneratorProduction;
    productionMultiplier: GeneratorProduction;
+   levelScaling: Decimal;
    conditions: Conditions;
    unlocked: boolean;
    upgradesIds: UpgradeId[];
@@ -33,6 +34,7 @@ export interface Generator {
 
 export interface SerializedGeneratorData {
    id: GeneratorId;
-   unlocked: boolean;
    level: string;
+   unlocked: boolean;
+   levelScaling: string; // Optional for backward compatibility
 }

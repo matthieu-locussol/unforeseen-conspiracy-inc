@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { useI18n } from '../../i18n/i18n';
 import { useStore } from '../../store/StoreContext';
 import { cn } from '../../utils/cn';
+import { formatDecimal } from '../../utils/numberMgt';
 import { AnimatedNumber } from '../core/AnimatedNumber';
 import { CustomIcon } from '../core/Icons';
 import { Card } from '../core/ui/card';
@@ -60,7 +61,14 @@ export const ResourceCard = observer(({ isRed, resourceStore }: ResourceCardProp
                   isRed && 'border-red-400/40 bg-red-700/30 text-red-200',
                ])}
             >
-               {gameStore.totalProduction[resourceStore.id].toFixed(1)}/s{' '}
+               <p
+                  dangerouslySetInnerHTML={{
+                     __html: `${formatDecimal(
+                        gameStore.totalProduction[resourceStore.id],
+                        (s) => `<b class="text-amber-600 text-shadow-black text-shadow">${s}</b>`,
+                     )}/s`,
+                  }}
+               />
                <CustomIcon className="w-2.5 h-2.5" icon="trendingUp" />
             </div>
          )}
