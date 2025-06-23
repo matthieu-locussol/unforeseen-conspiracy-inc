@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 
 import { ExtractButton } from '../components/core/ExtractButton';
 import { Navbar } from '../components/core/Navbar';
@@ -10,10 +11,25 @@ import { useGameLifecycle } from '../hooks/useGameLifecycle';
 import { useScrollNavbar } from '../hooks/useScrollNavbar';
 import { useI18n } from '../i18n/i18n';
 import { useStore } from '../store/StoreContext';
+import { setDiscordRichPresence } from '../utils/discordMgt';
+import { formatDecimal } from '../utils/numberMgt';
 
 export const GamePage = observer(() => {
    const { gameStore } = useStore();
    const { t } = useI18n();
+
+   useEffect(() => {
+      setDiscordRichPresence({
+         details: `Has ${formatDecimal(
+            gameStore.statistics.totalProofsGenerated,
+            (s) => s,
+         )} proofs`,
+         state: 'In Game',
+         large_image: 'default',
+         large_text: `Unforeseen Conspiracy Inc.`,
+         timestamp: gameStore.statistics.startTime,
+      });
+   }, [gameStore.statistics.totalProofsGenerated]);
 
    useGameLifecycle();
 

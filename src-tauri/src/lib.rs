@@ -1,5 +1,11 @@
+mod discord;
+
+use discord::DiscordState;
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+   let discord_state = DiscordState::new().ok();
+
    tauri::Builder
       ::default()
       .setup(|app| {
@@ -10,6 +16,8 @@ pub fn run() {
          }
          Ok(())
       })
+      .manage(discord_state)
+      .invoke_handler(tauri::generate_handler![discord::set_discord_rich_presence])
       .run(tauri::generate_context!())
-      .expect("error while running tauri application");
+      .expect("An error occurred while running tauri application");
 }
