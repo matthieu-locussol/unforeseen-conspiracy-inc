@@ -47,6 +47,19 @@ export class GeneratorStore {
       this._initialize(id);
    }
 
+   public get isCostVisible(): boolean {
+      return (
+         this.getCost(
+            new Decimal(1),
+            this._store.getGeneratorCostReduction(this.id),
+         ).proofs.lessThanOrEqualTo(this._store.proofs.highestValue) &&
+         this.getCost(
+            new Decimal(1),
+            this._store.getGeneratorCostReduction(this.id),
+         ).followers.lessThanOrEqualTo(this._store.followers.highestValue)
+      );
+   }
+
    public get upgrades(): UpgradeStore[] {
       const upgradesStores = this.upgradesIds.map((upgradeId) => {
          return this._store.upgrades.find((upgrade) => upgrade.id === upgradeId);

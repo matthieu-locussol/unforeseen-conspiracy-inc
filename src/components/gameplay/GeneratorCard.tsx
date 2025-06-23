@@ -142,10 +142,10 @@ export const GeneratorCard = observer(({ generatorStore }: GeneratorCardProps) =
          <div
             className={cn([
                'grid grid-cols-2 w-full gap-2',
-               !generatorStore.unlocked && 'grid-cols-1',
+               !generatorStore.unlocked && !generatorStore.isCostVisible && 'grid-cols-1',
             ])}
          >
-            {generatorStore.unlocked && (
+            {generatorStore.isCostVisible && (
                <Card className="p-2 bg-green-800/30 border-green-900 rounded-sm transition-all duration-200 hover:bg-green-800/40">
                   <h2 className="text-sm text-gray-400">{t.ui.cost}</h2>
                   <p
