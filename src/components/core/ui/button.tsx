@@ -1,3 +1,5 @@
+import type { LibrarySoundName } from 'react-sounds';
+
 import { Slot } from '@radix-ui/react-slot';
 import { type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
@@ -11,7 +13,7 @@ export interface ButtonProps
    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
       VariantProps<typeof buttonVariants> {
    asChild?: boolean;
-   sound?: string | null;
+   sound?: LibrarySoundName | null;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
