@@ -20,12 +20,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/core/ui/
 import { CHANGELOG } from '../data/changelog';
 import { VERSION_BUILD, VERSION_COMMIT, VERSION_DATE } from '../data/version';
 import { useI18n } from '../i18n/i18n';
+import { useStore } from '../store/StoreContext';
 
 export const LauncherPage = observer(() => {
    const { t } = useI18n();
-   const isUpdating = false; // Placeholder for update status
-   const updateProgress = 40; // Placeholder for update progress
-   const updateStatus = t.ui.noUpdatesAvailable; // Placeholder for update status message
+   const { updaterStore } = useStore();
+   const updateStatus = updaterStore.shouldUpdate ? t.ui.updatesAvailable : t.ui.noUpdatesAvailable;
    const [activeTab, setActiveTab] = useState('changelog');
 
    return (
@@ -53,13 +53,13 @@ export const LauncherPage = observer(() => {
                   </CardTitle>
                   <Badge
                      className={`${
-                        isUpdating
+                        updaterStore.updating
                            ? 'bg-yellow-900/30 text-yellow-300'
                            : 'bg-green-900/30 text-green-300'
                      }`}
                      variant="outline"
                   >
-                     {isUpdating ? t.ui.updating : t.ui.ready}
+                     {updaterStore.updating ? t.ui.updating : t.ui.ready}
                   </Badge>
                </div>
                <CardDescription>{updateStatus}</CardDescription>
@@ -69,9 +69,9 @@ export const LauncherPage = observer(() => {
                   <Progress
                      className="h-2 bg-gray-800"
                      indicatorClassName={`${
-                        isUpdating ? 'bg-yellow-500' : 'bg-green-500'
+                        updaterStore.updating ? 'bg-yellow-500' : 'bg-green-500'
                      } snappy-transition`}
-                     value={updateProgress}
+                     value={updaterStore.progress}
                   />
 
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs text-gray-500">
@@ -79,10 +79,10 @@ export const LauncherPage = observer(() => {
                         <div className="text-gray-400">{t.ui.status}</div>
                         <div
                            className={`font-bold ${
-                              isUpdating ? 'text-yellow-400' : 'text-green-400'
+                              updaterStore.updating ? 'text-yellow-400' : 'text-green-400'
                            }`}
                         >
-                           {isUpdating ? t.ui.updating + '...' : t.ui.readyToLaunch}
+                           {updaterStore.updating ? t.ui.updating + '...' : t.ui.readyToLaunch}
                         </div>
                      </div>
                      <div className="bg-gray-800/50 p-2 rounded-md">

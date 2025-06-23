@@ -4,6 +4,7 @@ import { GameStore } from './GameStore';
 import { HudStore } from './HudStore';
 import { RoutingStore } from './RoutingStore';
 import { SaveStore } from './SaveStore';
+import { UpdaterStore } from './UpdaterStore';
 
 export class Store {
    public gameStore: GameStore;
@@ -14,6 +15,8 @@ export class Store {
 
    public saveStore: SaveStore;
 
+   public updaterStore: UpdaterStore;
+
    constructor() {
       makeAutoObservable(this);
 
@@ -21,6 +24,7 @@ export class Store {
       this.hudStore = new HudStore();
       this.routingStore = new RoutingStore();
       this.saveStore = new SaveStore(this.gameStore);
+      this.updaterStore = new UpdaterStore();
    }
 }
 

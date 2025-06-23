@@ -726,6 +726,7 @@ export const EN = {
       // System status
       systemStatus: 'SYSTEM STATUS',
       noUpdatesAvailable: 'No updates available',
+      updatesAvailable: 'Updates available',
       readyToLaunch: 'Ready to Launch',
       lastUpdated: 'Last Updated',
       securityLevel: 'Security Level',

@@ -67,6 +67,7 @@ export interface Translation {
       // System status
       systemStatus: string;
       noUpdatesAvailable: string;
+      updatesAvailable: string;
       readyToLaunch: string;
       lastUpdated: string;
       securityLevel: string;
