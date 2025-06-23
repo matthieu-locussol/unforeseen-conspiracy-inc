@@ -22,7 +22,9 @@
       "build:app": "TAURI_SIGNING_PRIVATE_KEY=~/.tauri/unforeseen-conspiracy-inc.key tauri build",
       "dev:android": "tauri android dev",
       "dev:ios": "tauri ios dev",
-      "generate:version": "tsx src/scripts/version.ts"
+      "generate:version": "tsx src/scripts/version.ts",
+      "bump:version": "tsx src/scripts/bumpversion.ts",
+      "release": "standard-version -a && pnpm generate:version && pnpm bump:version"
    },
    "dependencies": {
       "@radix-ui/react-dialog": "^1.1.14",
