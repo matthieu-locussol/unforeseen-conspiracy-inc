@@ -35,7 +35,7 @@ export class UpdaterStore {
                   this.shouldUpdate = true;
                   this.updateManifest = updateManifest;
                } else {
-                  this.shouldUpdate = true;
+                  this.shouldUpdate = false;
                }
 
                this.isCheckingUpdate = false;
