@@ -2,6 +2,7 @@ import type Decimal from 'decimal.js';
 import type { ClickData } from '../../types/clicker';
 
 import { useRef, useState } from 'react';
+import { useSound } from 'react-sounds';
 
 import { cn } from '../../utils/cn';
 
@@ -29,10 +30,21 @@ export const ExtractButton = ({ onClick, children, className, ...rest }: Extract
    const buttonRef = useRef<HTMLButtonElement>(null);
    const textIdRef = useRef(0);
 
+   // Sound effects for different hit types
+   const { play: playNormalHit } = useSound('game/hit', { volume: 0.6 });
+   const { play: playCriticalHit } = useSound('game/hit', { volume: 1.0, rate: 1.3 });
+
    const handleExtract: React.MouseEventHandler<HTMLButtonElement> = (event) => {
       if (event.clientX !== 0 && event.clientY !== 0) {
          // Call the original onClick to get the generated value
          const { value, isCritical, combo } = onClick();
+
+         // Play appropriate sound based on critical hit
+         if (isCritical) {
+            playCriticalHit();
+         } else {
+            playNormalHit();
+         }
 
          // If onClick returns a number (the generated value), create floating text
          if (buttonRef.current) {
