@@ -12,11 +12,7 @@ interface UpgradesGridProps {
 }
 
 export const UpgradesGrid = observer(({ generatorStore }: UpgradesGridProps) => {
-   if (generatorStore.upgrades.length === 0) {
-      return null;
-   }
-
-   if (!generatorStore.unlocked) {
+   if (generatorStore.upgrades.length === 0 || !generatorStore.unlocked) {
       return (
          <div className="flex justify-center items-center w-full border-t border-gray-700/70 pt-3">
             <CustomIcon className="text-gray-600 h-8 w-8" icon="eye" />
