@@ -37,6 +37,7 @@
          "icons/icon.icns",
          "icons/icon.ico"
       ],
+      "createUpdaterArtifacts": true,
       "longDescription": "Unravel conspiracies both mundane and monstrous, from government cover-ups to why pigeons seem so... shifty. Click onward, the rabbit hole awaits!"
    },
    "plugins": {
