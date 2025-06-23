@@ -199,7 +199,7 @@ export const LauncherPage = observer(() => {
             </p>
             <p className="mt-1">{t.launcher.footer.disclaimer}</p>
          </div>
-         <Dialog open={updaterStore.openUpdateModal}>
+         <Dialog open={!updaterStore.openUpdateModal}>
             <DialogContent className="sm:max-w-[425px]">
                <DialogHeader>
                   <DialogTitle className="text-green-400">{t.ui.updateModalTitle}</DialogTitle>
@@ -208,7 +208,11 @@ export const LauncherPage = observer(() => {
                   </DialogDescription>
                </DialogHeader>
                <div className="grid items-start gap-6">
-                  <Button className="mx-auto" variant="dark" onClick={() => updaterStore.restart()}>
+                  <Button
+                     className="mx-auto mt-4 px-8"
+                     variant="outline"
+                     onClick={() => updaterStore.restart()}
+                  >
                      {t.ui.updateModalRestart}
                   </Button>
                </div>
