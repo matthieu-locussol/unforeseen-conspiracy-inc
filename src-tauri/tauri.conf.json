@@ -22,7 +22,8 @@
       ],
       "security": {
          "csp": null
-      }
+      },
+      "withGlobalTauri": true
    },
    "bundle": {
       "active": true,
@@ -35,6 +36,13 @@
          "icons/128x128@2x.png",
          "icons/icon.icns",
          "icons/icon.ico"
-      ]
+      ],
+      "longDescription": "Unravel conspiracies both mundane and monstrous, from government cover-ups to why pigeons seem so... shifty. Click onward, the rabbit hole awaits!"
+   },
+   "plugins": {
+      "updater": {
+         "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQyQkNCNDFGNTdFQkVENzcKUldSMzdldFhIN1M4MHY0RnB3UWRxN3lOaTl4TW1NeVIwY0c4R3JoNlRmRkFycThMdTNTMVhKNUgK%",
+         "endpoints": ["https://unforeseen-conspiracy-inc.vercel.app/api/version"]
+      }
    }
 }
