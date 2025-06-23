@@ -26,8 +26,6 @@ const run = () => {
    const versionDate = new Date().toISOString().split('T')[0];
 
    const versionFileContent = `// This file is auto-generated. Do not edit manually.
-export const VERSION_BUILD = '${versionBuild}';
-
 export const VERSION_COMMIT = '${versionCommit}';
 
 export const VERSION_DATE = '${versionDate}';

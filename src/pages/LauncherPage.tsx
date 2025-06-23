@@ -18,9 +18,10 @@ import {
 import { Progress } from '../components/core/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/core/ui/tabs';
 import { CHANGELOG } from '../data/changelog';
-import { VERSION_BUILD, VERSION_COMMIT, VERSION_DATE } from '../data/version';
+import { VERSION_COMMIT, VERSION_DATE } from '../data/version';
 import { useI18n } from '../i18n/i18n';
 import { useStore } from '../store/StoreContext';
+import { getVersion } from '../utils/versionMgt';
 
 export const LauncherPage = observer(() => {
    const { t } = useI18n();
@@ -33,7 +34,7 @@ export const LauncherPage = observer(() => {
          <Title className="text-center">{t.launcher.title}</Title>
          <div className="flex items-center justify-center gap-3 my-4">
             <Badge className="bg-green-900/50 text-green-300 border-green-700/50">
-               v{VERSION_BUILD}
+               {getVersion('v')}
             </Badge>
             <Badge className="bg-gray-900/50 text-gray-400 border-gray-700" variant="outline">
                BUILD {VERSION_COMMIT}
@@ -87,7 +88,7 @@ export const LauncherPage = observer(() => {
                      </div>
                      <div className="bg-gray-800/50 p-2 rounded-md">
                         <div className="text-gray-400">{t.ui.version}</div>
-                        <div className="font-bold text-green-400">{VERSION_BUILD}</div>
+                        <div className="font-bold text-green-400">{getVersion()}</div>
                      </div>
                      <div className="bg-gray-800/50 p-2 rounded-md">
                         <div className="text-gray-400">{t.ui.lastUpdated}</div>

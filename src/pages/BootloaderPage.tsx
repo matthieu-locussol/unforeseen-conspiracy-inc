@@ -5,10 +5,10 @@ import { CustomIcon } from '../components/core/Icons';
 import { Badge } from '../components/core/ui/badge';
 import { Progress } from '../components/core/ui/progress';
 import { CRTBackground } from '../components/design/CRTBackground';
-import { VERSION_BUILD } from '../data/version';
 import { useI18n } from '../i18n/i18n';
 import { useStore } from '../store/StoreContext';
 import { cn } from '../utils/cn';
+import { getVersion } from '../utils/versionMgt';
 
 export const BootloaderPage = observer(() => {
    const { routingStore } = useStore();
@@ -132,7 +132,7 @@ export const BootloaderPage = observer(() => {
                </h1>
                <div className="flex items-center gap-2">
                   <Badge className="bg-green-900/50 text-green-300 border-green-700/50">
-                     v{VERSION_BUILD}
+                     {getVersion('v')}
                   </Badge>
                   <Badge className="bg-red-900/30 text-red-300 border-red-900/50 px-2 py-0.5 text-xs">
                      <CustomIcon className="h-3 w-3 mr-1" icon="alertTriangle" />
