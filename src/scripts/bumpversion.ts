@@ -1,5 +1,9 @@
 import { readFileSync, writeFileSync } from 'fs';
-import { resolve } from 'path';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const getVersion = () => {
    const filePath = resolve(__dirname, '../../package.json');
