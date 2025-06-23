@@ -32,8 +32,10 @@ export class UpdaterStore {
 
             runInAction(() => {
                if (updateManifest !== null) {
-                  this.shouldUpdate = updateManifest.available;
+                  this.shouldUpdate = true;
                   this.updateManifest = updateManifest;
+               } else {
+                  this.shouldUpdate = false;
                }
 
                this.isCheckingUpdate = false;

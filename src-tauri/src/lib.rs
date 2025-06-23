@@ -16,6 +16,9 @@ pub fn run() {
          }
          Ok(())
       })
+      .plugin(tauri_plugin_process::init())
+      .plugin(tauri_plugin_shell::init())
+      .plugin(tauri_plugin_updater::Builder::new().build())
       .manage(discord_state)
       .invoke_handler(tauri::generate_handler![discord::set_discord_rich_presence])
       .run(tauri::generate_context!())

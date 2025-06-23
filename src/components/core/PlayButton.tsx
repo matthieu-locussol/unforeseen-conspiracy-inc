@@ -17,7 +17,9 @@ export const PlayButton = observer(() => {
    return (
       <Button
          className="w-full h-24 bg-gradient-to-r from-green-900 to-green-700 hover:bg-green-800 text-green-100 border border-green-600/50 shadow-lg shadow-green-900/30 font-orbitron tracking-wider text-xl rounded-lg transition-all duration-300 hover:scale-103 relative overflow-hidden"
-         disabled={updaterStore.shouldUpdate || updaterStore.updating}
+         disabled={
+            updaterStore.shouldUpdate || updaterStore.shouldUpdate === null || updaterStore.updating
+         }
          sound="ui/submit"
          onClick={handleLaunch}
       >

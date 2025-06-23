@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { CustomIcon } from '../components/core/Icons';
 import { PlayButton } from '../components/core/PlayButton';
@@ -21,13 +21,22 @@ import { CHANGELOG } from '../data/changelog';
 import { VERSION_COMMIT, VERSION_DATE } from '../data/version';
 import { useI18n } from '../i18n/i18n';
 import { useStore } from '../store/StoreContext';
+import { cn } from '../utils/cn';
 import { getVersion } from '../utils/versionMgt';
 
 export const LauncherPage = observer(() => {
    const { t } = useI18n();
    const { updaterStore } = useStore();
-   const updateStatus = updaterStore.shouldUpdate ? t.ui.updatesAvailable : t.ui.noUpdatesAvailable;
+   const updateStatus = updaterStore.isCheckingUpdate
+      ? t.ui.checkingUpdates
+      : updaterStore.shouldUpdate
+      ? t.ui.updatesAvailable
+      : t.ui.noUpdatesAvailable;
    const [activeTab, setActiveTab] = useState('changelog');
+
+   useEffect(() => {
+      updaterStore.checkUpdate();
+   }, []);
 
    return (
       <>
@@ -54,13 +63,15 @@ export const LauncherPage = observer(() => {
                   </CardTitle>
                   <Badge
                      className={`${
-                        updaterStore.updating
+                        updaterStore.updating || updaterStore.isCheckingUpdate
                            ? 'bg-yellow-900/30 text-yellow-300'
                            : 'bg-green-900/30 text-green-300'
                      }`}
                      variant="outline"
                   >
-                     {updaterStore.updating ? t.ui.updating : t.ui.ready}
+                     {updaterStore.updating || updaterStore.isCheckingUpdate
+                        ? t.ui.updating
+                        : t.ui.ready}
                   </Badge>
                </div>
                <CardDescription>{updateStatus}</CardDescription>
@@ -69,9 +80,11 @@ export const LauncherPage = observer(() => {
                <div className="space-y-4">
                   <Progress
                      className="h-2 bg-gray-800"
-                     indicatorClassName={`${
-                        updaterStore.updating ? 'bg-yellow-500' : 'bg-green-500'
-                     } snappy-transition`}
+                     indicatorClassName={cn([
+                        'snappy-transition bg-green-500',
+                        updaterStore.updating && 'bg-yellow-500',
+                        updaterStore.isCheckingUpdate && 'animate-pulse bg-green-900/70',
+                     ])}
                      value={updaterStore.progress}
                   />
 
@@ -80,10 +93,16 @@ export const LauncherPage = observer(() => {
                         <div className="text-gray-400">{t.ui.status}</div>
                         <div
                            className={`font-bold ${
-                              updaterStore.updating ? 'text-yellow-400' : 'text-green-400'
+                              updaterStore.updating || updaterStore.isCheckingUpdate
+                                 ? 'text-yellow-400'
+                                 : 'text-green-400'
                            }`}
                         >
-                           {updaterStore.updating ? t.ui.updating + '...' : t.ui.readyToLaunch}
+                           {updaterStore.isCheckingUpdate
+                              ? t.ui.fetchingUpdates
+                              : updaterStore.updating
+                              ? t.ui.updating + '...'
+                              : t.ui.readyToLaunch}
                         </div>
                      </div>
                      <div className="bg-gray-800/50 p-2 rounded-md">
