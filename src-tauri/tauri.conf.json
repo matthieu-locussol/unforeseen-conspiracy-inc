@@ -17,6 +17,7 @@
             "width": 1280,
             "height": 800,
             "resizable": true,
+            "center": true,
             "fullscreen": false
          }
       ],
@@ -27,6 +28,10 @@
    },
    "bundle": {
       "active": true,
+      "windows": {
+         "certificateThumbprint": null,
+         "digestAlgorithm": "sha256"
+      },
       "category": "Game",
       "copyright": "Matthieu Locussol <dev.matthieu.locussol@gmail.com> (https://www.matthieu-locussol.com)",
       "targets": "all",
@@ -37,7 +42,8 @@
          "icons/icon.icns",
          "icons/icon.ico"
       ],
-      "createUpdaterArtifacts": true,
+      "createUpdaterArtifacts": "v1Compatible",
+      "shortDescription": "Unforeseen Conspiracy Inc.",
       "longDescription": "Unravel conspiracies both mundane and monstrous, from government cover-ups to why pigeons seem so... shifty. Click onward, the rabbit hole awaits!"
    },
    "plugins": {
