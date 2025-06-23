@@ -1,6 +1,6 @@
 [package]
 name = "unforeseen-conspiracy-inc"
-version = "0.0.13"
+version = "0.0.14"
 description = "Unforeseen Conspiracy Inc."
 authors = ["Matthieu Locussol <dev.matthieu.locussol@gmail.com> (https://www.matthieu-locussol.com)"]
 license = ""

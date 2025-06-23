@@ -2,7 +2,7 @@
    "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
    "productName": "Unforeseen Conspiracy Inc.",
    "mainBinaryName": "unforeseen-conspiracy-inc",
-   "version": "0.0.13",
+   "version": "0.0.14",
    "identifier": "com.unforeseen-conspiracy-inc.dev",
    "build": {
       "frontendDist": "../dist",
