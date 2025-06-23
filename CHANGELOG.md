@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/matthieu-locussol/unforeseen-conspiracy-inc/compare/v0.0.12...v0.0.13) (2025-06-23)
+
+
+### Bug Fixes
+
+* correct logic for update modal visibility in LauncherPage ([6396250](https://github.com/matthieu-locussol/unforeseen-conspiracy-inc/commit/63962502a358e91b74c8a31738d103798ad3c407))
+
 ### [0.0.12](https://github.com/matthieu-locussol/unforeseen-conspiracy-inc/compare/v0.0.11...v0.0.12) (2025-06-23)
 
 
