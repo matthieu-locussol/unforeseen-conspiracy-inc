@@ -2,12 +2,24 @@
 
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as React from 'react';
+import { playSound } from 'react-sounds';
 
 import { cn } from '../../../utils/cn';
 import { CustomIcon } from '../Icons';
 
-function Dialog({ ...props }: React.ComponentProps<typeof DialogPrimitive.Root>) {
-   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
+function Dialog({ onOpenChange, ...props }: React.ComponentProps<typeof DialogPrimitive.Root>) {
+   const prevOpenRef = React.useRef<boolean | undefined>(undefined);
+
+   const handleOpenChange = (open: boolean) => {
+      // Play sound when dialog closes (was open, now closed)
+      if (prevOpenRef.current === true && open === false) {
+         playSound('ui/window_close');
+      }
+      prevOpenRef.current = open;
+      onOpenChange?.(open);
+   };
+
+   return <DialogPrimitive.Root data-slot="dialog" onOpenChange={handleOpenChange} {...props} />;
 }
 
 function DialogTrigger({ ...props }: React.ComponentProps<typeof DialogPrimitive.Trigger>) {

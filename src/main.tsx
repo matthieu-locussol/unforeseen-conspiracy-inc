@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
       <StoreProvider>
          <SoundProvider
             initialEnabled={true}
-            preload={['game/hit', 'ui/submit', 'ui/button_medium']}
+            preload={['game/hit', 'ui/submit', 'ui/button_medium', 'ui/window_close']}
          >
             <Toaster
                closeButton
