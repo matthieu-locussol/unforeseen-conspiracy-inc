@@ -17,6 +17,13 @@ import {
    CardHeader,
    CardTitle,
 } from '../components/core/ui/card';
+import {
+   Dialog,
+   DialogContent,
+   DialogDescription,
+   DialogHeader,
+   DialogTitle,
+} from '../components/core/ui/dialog';
 import { Progress } from '../components/core/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/core/ui/tabs';
 import { VERSION_COMMIT, VERSION_DATE } from '../data/version';
@@ -192,6 +199,21 @@ export const LauncherPage = observer(() => {
             </p>
             <p className="mt-1">{t.launcher.footer.disclaimer}</p>
          </div>
+         <Dialog open={updaterStore.openUpdateModal}>
+            <DialogContent className="sm:max-w-[425px]">
+               <DialogHeader>
+                  <DialogTitle className="text-green-400">{t.ui.updateModalTitle}</DialogTitle>
+                  <DialogDescription className="text-gray-400">
+                     {t.ui.updateModalDescription}
+                  </DialogDescription>
+               </DialogHeader>
+               <div className="grid items-start gap-6">
+                  <Button className="mx-auto" variant="dark" onClick={() => updaterStore.restart()}>
+                     {t.ui.updateModalRestart}
+                  </Button>
+               </div>
+            </DialogContent>
+         </Dialog>
       </>
    );
 });

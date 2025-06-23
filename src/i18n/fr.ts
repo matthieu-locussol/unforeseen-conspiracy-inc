@@ -686,6 +686,11 @@ export const FR = {
       other: 'Autre',
    },
    ui: {
+      // Update modal
+      updateModalTitle: 'Redémarrage du jeu nécessaire',
+      updateModalDescription: 'Afin de terminer la mise à jour, le jeu va devoir redémarrer !',
+      updateModalRestart: 'Redémarrer',
+
       // Common actions
       close: 'Fermer',
       cancel: 'Annuler',

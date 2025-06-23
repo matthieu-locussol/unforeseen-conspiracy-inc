@@ -28,6 +28,11 @@ export interface Translation {
    >;
    categories: Record<CategoryId, string>;
    ui: {
+      // Update modal
+      updateModalTitle: string;
+      updateModalDescription: string;
+      updateModalRestart: string;
+
       // Common actions
       close: string;
       cancel: string;

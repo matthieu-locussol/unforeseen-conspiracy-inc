@@ -686,6 +686,11 @@ export const EN = {
       other: 'Other',
    },
    ui: {
+      // Update modal
+      updateModalTitle: 'Game restart needed',
+      updateModalDescription: 'In order to finish the update, the game will need to restart!',
+      updateModalRestart: 'Restart',
+
       // Common actions
       close: 'Close',
       cancel: 'Cancel',
