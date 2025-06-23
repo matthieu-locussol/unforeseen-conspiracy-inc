@@ -12,7 +12,7 @@ import './styles/globals.css';
 createRoot(document.getElementById('root')!).render(
    <StrictMode>
       <StoreProvider>
-         <SoundProvider initialEnabled={true} preload={['game/hit']}>
+         <SoundProvider initialEnabled={true} preload={['game/hit', 'ui/submit']}>
             <Toaster
                closeButton
                richColors
