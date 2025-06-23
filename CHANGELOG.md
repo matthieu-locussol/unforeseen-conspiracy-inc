@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/matthieu-locussol/unforeseen-conspiracy-inc/compare/v0.0.11...v0.0.12) (2025-06-23)
+
+
+### Features
+
+* add About and Changelog components, enhance PlayButton for update status ([b907ff2](https://github.com/matthieu-locussol/unforeseen-conspiracy-inc/commit/b907ff2a97472cc29e08d0192073e0a756ef2aa7))
+* add update modal for game restart with localized text support ([e2aa251](https://github.com/matthieu-locussol/unforeseen-conspiracy-inc/commit/e2aa251b677df0507f1f2957b43016581d35ed4b))
+
+
+### Bug Fixes
+
+* correct update modal logic and enhance button styling in LauncherPage ([b533cee](https://github.com/matthieu-locussol/unforeseen-conspiracy-inc/commit/b533cee9d4ce794a83d8eba3c1f122bad1708c31))
+* correct updater logic to prevent unnecessary update checks ([963bac8](https://github.com/matthieu-locussol/unforeseen-conspiracy-inc/commit/963bac88666e8a5f9923550253e0f9f76ed93622))
+* enhance updater functionality and improve UI feedback for update status ([7a5b224](https://github.com/matthieu-locussol/unforeseen-conspiracy-inc/commit/7a5b2245bea6b4c4307e6d655b5ddf44af25a6ad))
+
 ### [0.0.11](https://github.com/matthieu-locussol/unforeseen-conspiracy-inc/compare/v0.0.10...v0.0.11) (2025-06-23)
 
 ### [0.0.10](https://github.com/matthieu-locussol/unforeseen-conspiracy-inc/compare/v0.0.9...v0.0.10) (2025-06-23)
