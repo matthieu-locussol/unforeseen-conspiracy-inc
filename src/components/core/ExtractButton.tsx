@@ -31,7 +31,7 @@ export const ExtractButton = ({ onClick, children, className, ...rest }: Extract
    const textIdRef = useRef(0);
 
    // Sound effects for different hit types
-   const { play: playNormalHit } = useSound('game/hit', { volume: 0.6 });
+   const { play: playNormalHit } = useSound('game/hit', { volume: 0.3 });
    const { play: playCriticalHit } = useSound('game/hit', { volume: 1.0, rate: 1.3 });
 
    const handleExtract: React.MouseEventHandler<HTMLButtonElement> = (event) => {

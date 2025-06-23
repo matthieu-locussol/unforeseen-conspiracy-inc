@@ -11,6 +11,7 @@ export const BulkBuyButtons = observer(() => {
       <div className="flex items-center justify-center gap-2 md:gap-4">
          <Button
             disabled={hudStore.bulkBuy.equals(1)}
+            sound="ui/tab_open"
             variant="dark"
             onClick={() => hudStore.setBulkBuy(Decimal(1))}
          >
@@ -18,6 +19,7 @@ export const BulkBuyButtons = observer(() => {
          </Button>
          <Button
             disabled={hudStore.bulkBuy.equals(10)}
+            sound="ui/tab_open"
             variant="dark"
             onClick={() => hudStore.setBulkBuy(Decimal(10))}
          >
@@ -25,6 +27,7 @@ export const BulkBuyButtons = observer(() => {
          </Button>
          <Button
             disabled={hudStore.bulkBuy.equals(25)}
+            sound="ui/tab_open"
             variant="dark"
             onClick={() => hudStore.setBulkBuy(Decimal(25))}
          >
