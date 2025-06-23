@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState } from 'react';
 
+import { About } from '../components/core/About';
+import { Changelog } from '../components/core/Changelog';
 import { CustomIcon } from '../components/core/Icons';
 import { PlayButton } from '../components/core/PlayButton';
 import { ResetMenu } from '../components/core/ResetMenu';
@@ -17,7 +19,6 @@ import {
 } from '../components/core/ui/card';
 import { Progress } from '../components/core/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/core/ui/tabs';
-import { CHANGELOG } from '../data/changelog';
 import { VERSION_COMMIT, VERSION_DATE } from '../data/version';
 import { useI18n } from '../i18n/i18n';
 import { useStore } from '../store/StoreContext';
@@ -42,7 +43,12 @@ export const LauncherPage = observer(() => {
       <>
          <Title className="text-center">{t.launcher.title}</Title>
          <div className="flex items-center justify-center gap-3 my-4">
-            <Badge className="bg-green-900/50 text-green-300 border-green-700/50">
+            <Badge
+               className={cn([
+                  'bg-green-900/50 text-green-300 border-green-700/50',
+                  updaterStore.shouldUpdate && 'bg-amber-900/50 text-amber-300 border-amber-700/50',
+               ])}
+            >
                {getVersion('v')}
             </Badge>
             <Badge className="bg-gray-900/50 text-gray-400 border-gray-700" variant="outline">
@@ -62,14 +68,17 @@ export const LauncherPage = observer(() => {
                      {t.ui.systemStatus}
                   </CardTitle>
                   <Badge
-                     className={`${
-                        updaterStore.updating || updaterStore.isCheckingUpdate
-                           ? 'bg-yellow-900/30 text-yellow-300'
-                           : 'bg-green-900/30 text-green-300'
-                     }`}
+                     className={cn([
+                        'bg-green-900/30 text-green-300',
+                        updaterStore.updating ||
+                           (updaterStore.isCheckingUpdate && 'bg-yellow-900/30 text-yellow-300'),
+                        updaterStore.shouldUpdate && 'bg-red-900/30 text-red-300',
+                     ])}
                      variant="outline"
                   >
-                     {updaterStore.updating || updaterStore.isCheckingUpdate
+                     {updaterStore.shouldUpdate
+                        ? t.ui.outOfDate
+                        : updaterStore.updating || updaterStore.isCheckingUpdate
                         ? t.ui.updating
                         : t.ui.ready}
                   </Badge>
@@ -92,13 +101,16 @@ export const LauncherPage = observer(() => {
                      <div className="bg-gray-800/50 p-2 rounded-md">
                         <div className="text-gray-400">{t.ui.status}</div>
                         <div
-                           className={`font-bold ${
-                              updaterStore.updating || updaterStore.isCheckingUpdate
-                                 ? 'text-yellow-400'
-                                 : 'text-green-400'
-                           }`}
+                           className={cn([
+                              'font-bold text-green-400',
+                              updaterStore.updating ||
+                                 (updaterStore.isCheckingUpdate && 'text-yellow-400'),
+                              updaterStore.shouldUpdate && 'text-red-400',
+                           ])}
                         >
-                           {updaterStore.isCheckingUpdate
+                           {updaterStore.shouldUpdate
+                              ? t.ui.updateNeeded
+                              : updaterStore.isCheckingUpdate
                               ? t.ui.fetchingUpdates
                               : updaterStore.updating
                               ? t.ui.updating + '...'
@@ -107,7 +119,17 @@ export const LauncherPage = observer(() => {
                      </div>
                      <div className="bg-gray-800/50 p-2 rounded-md">
                         <div className="text-gray-400">{t.ui.version}</div>
-                        <div className="font-bold text-green-400">{getVersion()}</div>
+                        <div className={cn(['font-bold text-green-400'])}>
+                           {updaterStore.shouldUpdate &&
+                           updaterStore.updateManifest !== undefined ? (
+                              <span>
+                                 <span className="text-amber-400">{getVersion()}</span> →{' '}
+                                 {updaterStore.updateManifest.version}
+                              </span>
+                           ) : (
+                              getVersion()
+                           )}
+                        </div>
                      </div>
                      <div className="bg-gray-800/50 p-2 rounded-md">
                         <div className="text-gray-400">{t.ui.lastUpdated}</div>
@@ -138,47 +160,13 @@ export const LauncherPage = observer(() => {
                      className="mt-2 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[170px] overflow-y-auto"
                      value="changelog"
                   >
-                     <div className="space-y-6">
-                        {CHANGELOG.map((release) => (
-                           <div key={release.version} className="space-y-2">
-                              <div className="flex items-center gap-2">
-                                 <Badge
-                                    className={`
-                          ${
-                             release.type === 'major'
-                                ? 'bg-purple-900/50 text-purple-300'
-                                : release.type === 'update'
-                                ? 'bg-green-900/50 text-green-300'
-                                : 'bg-yellow-900/50 text-yellow-300'
-                          }
-                        `}
-                                 >
-                                    {release.version}
-                                 </Badge>
-                                 <span className="text-gray-400 text-sm">{release.date}</span>
-                                 <Badge className="text-xs capitalize" variant="outline">
-                                    {release.type}
-                                 </Badge>
-                              </div>
-                              <ul className="space-y-1 pl-5 list-disc text-gray-300 text-sm">
-                                 {release.changes.map((change, i) => (
-                                    <li key={i}>{change}</li>
-                                 ))}
-                              </ul>
-                           </div>
-                        ))}
-                     </div>
+                     <Changelog />
                   </TabsContent>
                   <TabsContent
                      className="mt-2 border border-green-900/30 rounded-lg bg-gray-900/50 p-4 h-[170px] overflow-y-auto"
                      value="about"
                   >
-                     <div className="space-y-4 text-gray-300">
-                        <p>{t.launcher.aboutText.paragraph1}</p>
-                        <p dangerouslySetInnerHTML={{ __html: t.launcher.aboutText.paragraph2 }} />
-                        <p>{t.launcher.aboutText.paragraph3}</p>
-                        <p className="italic">{t.launcher.aboutText.paragraph4}</p>
-                     </div>
+                     <About />
                   </TabsContent>
                </Tabs>
             </div>

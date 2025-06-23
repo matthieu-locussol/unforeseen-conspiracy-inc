@@ -33,6 +33,7 @@ export interface Translation {
       cancel: string;
       settings: string;
       launch: string;
+      update: string;
       ready: string;
       updating: string;
       version: string;
@@ -73,6 +74,8 @@ export interface Translation {
       fetchingUpdates: string;
       lastUpdated: string;
       securityLevel: string;
+      outOfDate: string;
+      updateNeeded: string;
 
       // Tabs
       changelog: string;

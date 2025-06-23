@@ -691,6 +691,7 @@ export const FR = {
       cancel: 'Annuler',
       settings: 'Paramètres',
       launch: 'LANCER',
+      update: 'MISE À JOUR',
       ready: 'PRÊT',
       updating: 'MISE À JOUR',
       version: 'Version',
@@ -732,6 +733,8 @@ export const FR = {
       fetchingUpdates: 'Récupération des mises à jour',
       lastUpdated: 'Dernière mise à jour',
       securityLevel: 'Niveau de sécurité',
+      outOfDate: "Vous n'êtes pas à jour",
+      updateNeeded: 'Mise à jour nécessaire',
 
       // Tabs
       changelog: 'CHANGELOG',

@@ -691,6 +691,7 @@ export const EN = {
       cancel: 'Cancel',
       settings: 'Settings',
       launch: 'LAUNCH',
+      update: 'UPDATE',
       ready: 'READY',
       updating: 'UPDATING',
       version: 'Version',
@@ -732,6 +733,8 @@ export const EN = {
       fetchingUpdates: 'Fetching updates',
       lastUpdated: 'Last Updated',
       securityLevel: 'Security Level',
+      outOfDate: 'Out of date',
+      updateNeeded: 'Update needed',
 
       // Tabs
       changelog: 'CHANGELOG',
