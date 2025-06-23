@@ -199,7 +199,7 @@ export const LauncherPage = observer(() => {
             </p>
             <p className="mt-1">{t.launcher.footer.disclaimer}</p>
          </div>
-         <Dialog open={!updaterStore.openUpdateModal}>
+         <Dialog open={updaterStore.openUpdateModal}>
             <DialogContent className="sm:max-w-[425px]">
                <DialogHeader>
                   <DialogTitle className="text-green-400">{t.ui.updateModalTitle}</DialogTitle>
