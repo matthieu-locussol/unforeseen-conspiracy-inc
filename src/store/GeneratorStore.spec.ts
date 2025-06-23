@@ -8,10 +8,15 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { GENERATORS } from '../data/generators';
 
 import { GeneratorStore } from './GeneratorStore';
+import { ResourceStore } from './ResourceStore';
 import { UpgradeStore } from './UpgradeStore';
 
 // Mock GameStore to isolate GeneratorStore testing
 const createMockGameStore = (): Partial<GameStore> => ({
+   proofs: new ResourceStore('proofs'),
+   followers: new ResourceStore('followers'),
+   paranoia: new ResourceStore('paranoia'),
+   getGeneratorCostReduction: vi.fn().mockReturnValue(new Decimal(0)),
    getGeneratorMultipliers: vi.fn().mockReturnValue({
       proofs: 1,
       followers: 1,
@@ -87,11 +92,11 @@ describe('GeneratorStore', () => {
          expect(generatorStore.id).toBe('michael_jackson');
          expect(generatorStore.categories).toStrictEqual(['media-manipulation', 'government']);
          expect(generatorStore.baseCost).toStrictEqual({
-            proofs: new Decimal(100),
+            proofs: new Decimal(1000),
             followers: new Decimal(0),
          });
          expect(generatorStore.costMultiplier).toStrictEqual({
-            proofs: new Decimal(1.15),
+            proofs: new Decimal(1.14),
             followers: new Decimal(0),
          });
          expect(generatorStore.unlocked).toBe(false);
@@ -108,11 +113,11 @@ describe('GeneratorStore', () => {
             'government',
          ]);
          expect(generatorStore.baseCost).toStrictEqual({
-            proofs: new Decimal(500),
+            proofs: new Decimal(2500),
             followers: new Decimal(0),
          });
          expect(generatorStore.costMultiplier).toStrictEqual({
-            proofs: new Decimal(1.15),
+            proofs: new Decimal(1.13),
             followers: new Decimal(0),
          });
          expect(generatorStore.unlocked).toBe(false);
@@ -329,7 +334,7 @@ describe('GeneratorStore', () => {
 
          const production = generatorStore.getBaseProduction(new Decimal(1));
 
-         expect(production.proofs).toStrictEqual(new Decimal(0.4));
+         expect(production.proofs).toStrictEqual(new Decimal(3.5));
          expect(production.followers).toStrictEqual(new Decimal(0));
          expect(production.paranoia).toStrictEqual(new Decimal(0));
       });
@@ -339,7 +344,7 @@ describe('GeneratorStore', () => {
 
          const production = generatorStore.getBaseProduction(new Decimal(5));
 
-         expect(production.proofs).toStrictEqual(new Decimal(1.3));
+         expect(production.proofs).toStrictEqual(new Decimal(21.7));
          expect(production.followers).toStrictEqual(new Decimal(0));
          expect(production.paranoia).toStrictEqual(new Decimal(0));
       });
@@ -361,7 +366,7 @@ describe('GeneratorStore', () => {
 
          const production = generatorStore.getBaseProduction(new Decimal(3));
 
-         expect(production.proofs).toStrictEqual(new Decimal(0.4));
+         expect(production.proofs).toStrictEqual(new Decimal(1.2));
       });
 
       it('should handle production with all resource types', () => {
@@ -379,9 +384,9 @@ describe('GeneratorStore', () => {
 
          const production = generatorStore.getBaseProduction(new Decimal(4));
 
-         expect(production.proofs).toStrictEqual(new Decimal(1.4));
-         expect(production.followers).toStrictEqual(new Decimal(3.6));
-         expect(production.paranoia).toStrictEqual(new Decimal(6.5));
+         expect(production.proofs).toStrictEqual(new Decimal(5.7));
+         expect(production.followers).toStrictEqual(new Decimal(14));
+         expect(production.paranoia).toStrictEqual(new Decimal(25));
       });
    });
 
