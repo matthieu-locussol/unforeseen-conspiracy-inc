@@ -160,6 +160,16 @@ describe('GeneratorStore', () => {
          // Set up the mock upgrades array before constructing the generatorStore
          const upgradesIds = GENERATORS.find((g) => g.id === 'chemtrails')!.upgradesIds;
 
+         // Set up mock resource stores with highestValue properties to make upgrades visible
+         mockGameStore.proofs = {
+            ...mockGameStore.proofs,
+            highestValue: new Decimal(Number.MAX_SAFE_INTEGER),
+         } as ResourceStore;
+         mockGameStore.followers = {
+            ...mockGameStore.followers,
+            highestValue: new Decimal(Number.MAX_SAFE_INTEGER),
+         } as ResourceStore;
+
          mockGameStore.upgrades = upgradesIds.map(
             (id) => new UpgradeStore(id, mockGameStore as GameStore),
          );
