@@ -1,12 +1,24 @@
 'use client';
 
 import * as React from 'react';
+import { playSound } from 'react-sounds';
 import { Drawer as DrawerPrimitive } from 'vaul';
 
 import { cn } from '../../../utils/cn';
 
-function Drawer({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
-   return <DrawerPrimitive.Root data-slot="drawer" {...props} />;
+function Drawer({ onOpenChange, ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
+   const prevOpenRef = React.useRef<boolean | undefined>(undefined);
+
+   const handleOpenChange = (open: boolean) => {
+      // Play sound when drawer closes (was open, now closed)
+      if (prevOpenRef.current === true && open === false) {
+         playSound('ui/window_close');
+      }
+      prevOpenRef.current = open;
+      onOpenChange?.(open);
+   };
+
+   return <DrawerPrimitive.Root data-slot="drawer" onOpenChange={handleOpenChange} {...props} />;
 }
 
 function DrawerTrigger({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
