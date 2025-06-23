@@ -752,27 +752,37 @@ describe('GameStore', () => {
    describe('Serialization', () => {
       describe('serialize()', () => {
          it('should serialize all game state correctly', () => {
-            // Set up some game state
-            gameStore.proofs.add(new Decimal(100));
-            gameStore.followers.add(new Decimal(50));
-            gameStore.paranoia.add(new Decimal(25));
-            gameStore.generators[0].buy(new Decimal(5));
-            gameStore.upgrades[0].unlocked = true;
-            gameStore.stop();
+            // Mock time to ensure consistent timestamps
+            const mockTime = 1750658817450;
+            const dateNowSpy = vi.spyOn(Date, 'now').mockReturnValue(mockTime);
 
-            const serialized = gameStore.serialize();
+            // Create a fresh game store with mocked time
+            const testGameStore = new GameStore();
+
+            // Set up some game state
+            testGameStore.proofs.add(new Decimal(100));
+            testGameStore.followers.add(new Decimal(50));
+            testGameStore.paranoia.add(new Decimal(25));
+            testGameStore.generators[0].buy(new Decimal(5));
+            testGameStore.upgrades[0].unlocked = true;
+            testGameStore.stop();
+
+            const serialized = testGameStore.serialize();
 
             expect(serialized).toEqual({
-               proofs: gameStore.proofs.serialize(),
-               followers: gameStore.followers.serialize(),
-               paranoia: gameStore.paranoia.serialize(),
-               generators: gameStore.generators.map((g) => g.serialize()),
-               upgrades: gameStore.upgrades.map((u) => u.serialize()),
-               clicker: gameStore.clicker.serialize(),
-               statistics: gameStore.statistics.serialize(),
-               lastUpdateTime: gameStore.lastUpdateTime,
+               proofs: testGameStore.proofs.serialize(),
+               followers: testGameStore.followers.serialize(),
+               paranoia: testGameStore.paranoia.serialize(),
+               generators: testGameStore.generators.map((g) => g.serialize()),
+               upgrades: testGameStore.upgrades.map((u) => u.serialize()),
+               clicker: testGameStore.clicker.serialize(),
+               statistics: testGameStore.statistics.serialize(),
+               lastUpdateTime: testGameStore.lastUpdateTime,
                isRunning: false,
             });
+
+            // Restore the original Date.now implementation
+            dateNowSpy.mockRestore();
          });
 
          it('should produce serializable JSON', () => {
